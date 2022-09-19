@@ -1,0 +1,11 @@
+.header{
+    height: 80px;
+    width: 100%;
+}
+.sidebar{
+    width: 260px;
+    height: 85vh; 
+    background-color: #E8E8E8;
+    border-radius: 0px 39px 50px 0px;
+    margin-top: 20px;
+}
