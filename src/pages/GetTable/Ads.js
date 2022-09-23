@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostAds";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import {Link} from 'react-router-dom'
+import Header from "../../Components/Common/Header";
 
 const Ads = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ const Ads = () => {
     );
   }
   return (
+    <>
+    <Header/>
     <div className="page">
       <Sidebar />
       <div className="rightsidedata">
@@ -102,6 +105,7 @@ const Ads = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 export default Ads;

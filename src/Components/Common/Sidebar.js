@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Sidebar = () => {
   return (
     <div className='sidebar'>
-      <Link to='/' className='mylink'>Dashbaord</Link>
+      <Link to='/dashboard' className='mylink'>Dashbaord</Link>
       <Link to='/races' className='mylink'>Races</Link>
       <Link to='/horse' className='mylink'>Horse</Link>
       <Link to='/jockey' className='mylink'>Jockey</Link>

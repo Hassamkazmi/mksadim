@@ -17,16 +17,21 @@ import FormData from './pages/PostTable/NewsForm'
 import AdsForm from './pages/PostTable/AdsForm';
 import SponsorForm from './pages/PostTable/SponsorForm';
 import PostTrainer from './pages/PostTable/PostTrainer';
+import PostHorse from './pages/PostTable/HorseForm/HorseForm'
 import Trainer from './pages/GetTable/Trainer'
+import Login from './Components/Login';
+import Test from './pages/GetTable/Test'
+
 function App() {
+  
   return (
     <>
     <Provider store={store}>
     <div className="App">
-      <Header />
       <BrowserRouter>
          <Routes>
-          <Route path='/'  element={<Dashboard />} />
+          <Route exact path='/login'   element={<Login />} />
+          <Route path='/dashboard'  element={<Dashboard />} />
           <Route path='/races' element={<Races />} />
           <Route path='/competition' element={<Competition />} />
           <Route path='/statistics' element={<Statistic />} />
@@ -40,6 +45,8 @@ function App() {
           <Route path='/adsform' element={<AdsForm />} />
           <Route path='/sponsorform' element={<SponsorForm />} />
           <Route path='/trainerform' element={<PostTrainer />} />
+          <Route path='/horseform' element={<PostHorse />} />
+          <Route path='/test' element={<Test />} />
          </Routes>
       </BrowserRouter>
     </div>

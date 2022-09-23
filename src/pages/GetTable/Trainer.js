@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,18 +7,21 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+import Header from "../../Components/Common/Header";
 
 const News = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+  
   const { data: trainer, status } = useSelector((state) => state.trainer);
-  useEffect(() => {
-    dispatch(fetchTrainer());
-  }, []);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
-    history("/trainer");
+    window.location.reload()
   };
+  useEffect(() => {
+    dispatch(fetchTrainer());
+
+  }, []);
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -43,7 +46,9 @@ const News = () => {
     );
   }
   return (
-    <div className="page">
+   <>
+   <Header />
+   <div className="page">
       <Sidebar />
       <div className="rightsidedata">
         <div
@@ -104,6 +109,7 @@ const News = () => {
         </span>
       </div>
     </div>
+   </>
   );
 };
 export default News;

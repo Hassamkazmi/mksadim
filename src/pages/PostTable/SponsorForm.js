@@ -4,6 +4,7 @@ import Sidebar from "../../Components/Common/Sidebar";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostNewsSlice";
+import Header from "../../Components/Common/Header";
 
 const SponsorForm = () => {
     const dispatch = useDispatch();
@@ -38,9 +39,11 @@ const SponsorForm = () => {
         alert(error.message)
      }
     }
-    const areAllFieldsFilled = (image !== null) && (DescriptionAr !== "") && (DescriptionEn !== '')
+    const areAllFieldsFilled = (image !== undefined) && (DescriptionAr !== "") && (DescriptionEn !== '')
   return (
-    <div className="page">
+   <>
+   <Header />
+   <div className="page">
     <Sidebar />
     <div className="rightsidedata">
       <div
@@ -145,6 +148,7 @@ const SponsorForm = () => {
     </div>
     
   </div>
+   </>
     
   );
 };

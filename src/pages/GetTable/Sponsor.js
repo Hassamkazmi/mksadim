@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostSponsor";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link } from "react-router-dom";
+import Header from "../../Components/Common/Header";
 
 const News = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,8 @@ const News = () => {
     );
   }
   return (
+    <>
+    <Header />
     <div className="page">
       <Sidebar />
       <div className="rightsidedata">
@@ -101,6 +104,7 @@ const News = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 export default News;

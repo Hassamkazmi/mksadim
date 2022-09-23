@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Sidebar from "../../Components/Common/Sidebar";
-import { fetchHorse, STATUSES } from "../../redux/getReducer/getHorseSlice";
+import { STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
-import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostNewsSlice";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link ,useNavigate } from "react-router-dom";
+import Header from "../../Components/Common/Header";
 
 const Horse = () => {
   const dispatch = useDispatch();
@@ -43,6 +43,8 @@ const Horse = () => {
     );
   }
   return (
+    <>
+    <Header />
     <div className='page'>
       <Sidebar />
       <div className="rightsidedata">
@@ -108,6 +110,7 @@ const Horse = () => {
         </span>
       </div>
     </div>
+    </>
   )
 }
 export default Horse

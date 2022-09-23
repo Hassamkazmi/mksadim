@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostNewsSlice";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link ,useNavigate } from "react-router-dom";
+import Header from "../../Components/Common/Header";
 
 const News = () => {
   const dispatch = useDispatch();
@@ -43,6 +44,8 @@ const News = () => {
     );
   }
   return (
+    <>
+    <Header />
     <div className="page">
       <Sidebar />
       <div className="rightsidedata">
@@ -67,8 +70,7 @@ const News = () => {
               <tbody>
                 {allnews.map((item, index) => {
                   return (
-                    <>
-                      <tr className="tr_table_class">
+                    <tr className="tr_table_class" key={index}>
                         <td>{index}</td>
                         <td>
                           <img src={item.image} alt="" />
@@ -86,7 +88,6 @@ const News = () => {
                           />
                         </td>
                       </tr>
-                    </>
                   );
                 })}
               </tbody>
@@ -102,6 +103,7 @@ const News = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 export default News;
