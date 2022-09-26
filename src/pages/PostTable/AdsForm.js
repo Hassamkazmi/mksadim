@@ -39,6 +39,7 @@ const AdsForm = () => {
         alert(error.message)
      }
     }
+    
     const areAllFieldsFilled = (image !== undefined) && (DescriptionAr !== "") && (DescriptionEn !== '')
   return (
     <>

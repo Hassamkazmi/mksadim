@@ -1,6 +1,6 @@
 import './App.css';
 import './Components/CSS/home.css'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import Dashboard from './pages/Dashboard';
@@ -21,36 +21,41 @@ import PostHorse from './pages/PostTable/HorseForm/HorseForm'
 import Trainer from './pages/GetTable/Trainer'
 import Login from './Components/Login';
 import Test from './pages/GetTable/Test'
+import RaceCourse from './pages/GetTable/RaceCourse';
+import RaceCourseForm from './pages/PostTable/RaceCourseForm';
 
 function App() {
-  
+
   return (
     <>
-    <Provider store={store}>
-    <div className="App">
-      <BrowserRouter>
-         <Routes>
-          <Route exact path='/'   element={<Login />} />
-          <Route path='/dashboard'  element={<Dashboard />} />
-          <Route path='/races' element={<Races />} />
-          <Route path='/competition' element={<Competition />} />
-          <Route path='/statistics' element={<Statistic />} />
-          <Route path='/horse' element={<Horse />} />
-          <Route path='/jockey' element={<Jockey />} />
-          <Route path='/trainer' element={<Trainer />} />
-          <Route path='/news' element={<News />} />
-          <Route path='/ads' element={<Ads />} />
-          <Route path='/sponsor' element={<Sponsor />} />
-          <Route path='/newsform' element={<FormData />} />
-          <Route path='/adsform' element={<AdsForm />} />
-          <Route path='/sponsorform' element={<SponsorForm />} />
-          <Route path='/trainerform' element={<PostTrainer />} />
-          <Route path='/horseform' element={<PostHorse />} />
-          <Route path='/test' element={<Test />} />
-         </Routes>
-      </BrowserRouter>
-    </div>
-    </Provider>
+      <Provider store={store}>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route exact path='/' element={<Login />} />
+              <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/racecourse' element={<RaceCourse />} />
+              <Route path='/races' element={<Races />} />
+              <Route path='/competition' element={<Competition />} />
+              <Route path='/statistics' element={<Statistic />} />
+              <Route path='/horse' element={<Horse />} />
+              <Route path='/jockey' element={<Jockey />} />
+              <Route path='/trainer' element={<Trainer />} />
+              <Route path='/news' element={<News />} />
+              <Route path='/ads' element={<Ads />} />
+              <Route path='/sponsor' element={<Sponsor />} />
+              <Route path='/newsform' element={<FormData />} />
+              <Route path='/adsform' element={<AdsForm />} />
+              <Route path='/sponsorform' element={<SponsorForm />} />
+              <Route path='/trainerform' element={<PostTrainer />} />
+              <Route path='/horseform' element={<PostHorse />} />
+              <Route path='/test' element={<Test />} />
+              <Route path='/racecourseform' element={<RaceCourseForm />} />
+
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </Provider>
     </>
   );
 }

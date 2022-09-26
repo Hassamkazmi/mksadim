@@ -5,6 +5,7 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <Link to='/dashboard' className='mylink'>Dashbaord</Link>
+      <Link to='/racecourse' className='mylink'>RaceCourse</Link>
       <Link to='/races' className='mylink'>Races</Link>
       <Link to='/horse' className='mylink'>Horse</Link>
       <Link to='/jockey' className='mylink'>Jockey</Link>
