@@ -6,7 +6,7 @@ import store from './redux/store'
 import Dashboard from './pages/Dashboard';
 import Races from './pages/GetTable/Races';
 import Competition from './pages/GetTable/Competation';
-import Header from './Components/Common/Header';
+
 import Statistic from './pages/GetTable/Statistic';
 import Horse from './pages/GetTable/Horse';
 import Jockey from './pages/GetTable/Jockey';
@@ -23,6 +23,9 @@ import Login from './Components/Login';
 import Test from './pages/GetTable/Test'
 import RaceCourse from './pages/GetTable/RaceCourse';
 import RaceCourseForm from './pages/PostTable/RaceCourseForm';
+import JockeyForm from './pages/PostTable/JockeyForm';
+import RaceForm from './pages/PostTable/RaceForm/RaceForm';
+
 
 function App() {
 
@@ -51,7 +54,8 @@ function App() {
               <Route path='/horseform' element={<PostHorse />} />
               <Route path='/test' element={<Test />} />
               <Route path='/racecourseform' element={<RaceCourseForm />} />
-
+              <Route path='/jockeyform' element={<JockeyForm />} />
+              <Route path='/raceform' element={<RaceForm />} />
             </Routes>
           </BrowserRouter>
         </div>

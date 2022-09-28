@@ -11,19 +11,15 @@ import Header from "../../Components/Common/Header";
 
 const News = () => {
   const dispatch = useDispatch();
-  const { data: sponsor, status } = useSelector((state) => state.racecourse);
+  const { data: racecourse, status } = useSelector((state) => state.racecourse);
   useEffect(() => {
     dispatch(fetchracecourse());
   }, []);
-  const handleRemove = async (Id) => {
+  const handleRemove =  (Id) => {
 
-    const updateData = sponsor.filter((elem , ind)=>{
+    
 
-return ind !== Id
-
-    })
-
-   await dispatch(remove(Id));
+ dispatch(remove(Id));
 
    fetchracecourse();
   };
@@ -73,7 +69,7 @@ return ind !== Id
                 </tr>
               </thead>
               <tbody>
-                {sponsor.map((item, index) => {
+                {racecourse.map((item, index) => {
                   return (
                     <>
                       <tr className="tr_table_class">

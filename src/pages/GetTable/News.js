@@ -84,7 +84,7 @@ const News = () => {
                             style={{
                               fontSize: "22px",
                             }}
-                            onClick={() => handleRemove(item._id)}
+                            onClick={() => handleRemove(item.id)}
                           />
                         </td>
                       </tr>

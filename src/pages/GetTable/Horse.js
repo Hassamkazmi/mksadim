@@ -1,24 +1,29 @@
 import React from "react";
 import Sidebar from "../../Components/Common/Sidebar";
-import { STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
-import { remove } from "../../redux/postReducer/PostNewsSlice";
+import { remove } from "../../redux/postReducer/PostHorse";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link ,useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+import { useEffect } from "react";
+import { fetchHorse,STATUSES } from "../../redux/getReducer/getHorseSlice";
+import { MdDelete } from "react-icons/md";
 
 const Horse = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: getHorse, status } = useSelector((state) => state.horse);
-  // useEffect(() => {
-  //   dispatch(fetchHorse());
-  // },[]);
+  
+   useEffect(() => {
+     dispatch(fetchHorse());
+   },[]);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
     history('/horse')
   };
+
+
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -67,24 +72,29 @@ const Horse = () => {
                   <th>Sex</th>
                   <th>Color</th>
                   <th>KindOfHorse</th>
-                  <th>Remarks</th>
-                  <th>Rating</th>
-                  <th>Action</th>
+           
                 </tr>
               </thead>
-              {/* <tbody>
+               <tbody>
                 {getHorse.map((item, index) => {
                   return (
                     <>
                       <tr className="tr_table_class">
                         <td>{index}</td>
-                        <td>
-                          <img src={item.image} alt="" />
-                        </td>
-                        <td>{item.TitleEn}</td>
-                        <td>{item.TitleAr}</td>
-                        <td>{item.DescriptionEn}</td>
-                        <td>{item.DescriptionAr}</td>
+                       
+                        <td>{item.NameEn}</td>
+                        <td>{item.NameAr}</td>
+                        <td>{item.PedigreeDetail}</td>
+                        <td>{item.Owner}</td>
+                        <td>{item.Breeder}</td>
+                        <td>{item.Age}</td>
+                        <td>{item.Trainer}</td>
+                        <td>{item.Remarks}</td>
+                        <td>{item.Rating}</td>
+                        <td>{item.Sex}</td>
+                        <td>{item.Color}</td>
+                        <td>{item.KindofHorse}</td>
+                 
                         <td className="table_delete_btn1">
                           <MdDelete
                             style={{
@@ -97,7 +107,7 @@ const Horse = () => {
                     </>
                   );
                 })}
-              </tbody> */}
+              </tbody> 
             </Table>
           </>
         </div>

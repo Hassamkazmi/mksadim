@@ -1,8 +1,69 @@
-import React from 'react'
+import { motion } from "framer-motion";
 
-const RaceOne = () => {
+
+const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
+  const handleNext = () => {
+   
+    setPage(page+1)
+    setX(1000)
+    
+     // if (
+     //   formData.NameEn !== '' &&
+     //   formData.Age !== '' &&
+     //   formData.NameAr !== '' 
+    
+     
+     // ) {
+     //   setPage(page + 1);
+     //   setX(1000);
+     // } else {
+     //   toast.error("Please fill the field");
+     // }
+   };
   return (
-    <div>RaceOne</div>
+    <motion.div
+    initial={{ x: x }}
+    animate={{ x: 0 }}
+    transition={{ duration: 1 }}
+    className=" container"
+  >
+    <div className="row container maincontainer">
+      <div className="col-sm-12 col-md-6 formMain">
+        <input
+          type="raceName"
+          placeholder="RaceName"
+          required
+          className="form-group"
+    value={formData.raceName}
+          onChange={(e) =>
+            setFormData({ ...formData, raceName: e.target.value })
+          }
+        />
+        <input
+          type="text"
+          className="form-group"
+          placeholder="RaceKind"
+          required
+          value={formData.age < 40 ? formData.age : null}
+          onChange={(e) => setFormData({ ...formData, RaceKind: e.target.value })}
+        />
+        <input
+          type="text"
+          className="form-group"
+          placeholder="Descriptionme "
+          required
+      
+          onChange={(e) =>
+            setFormData({ ...formData, Description: e.target.value })
+          }
+        />
+      </div>
+      
+    </div>
+    <div className="container btndiv">
+      <button onClick={handleNext}>Next</button>
+    </div>
+  </motion.div>
   )
 }
 

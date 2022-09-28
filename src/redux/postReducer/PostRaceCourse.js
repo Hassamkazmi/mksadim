@@ -13,7 +13,7 @@ const postRaceCourse = createSlice({
 //https://mksbackend.herokuapp.com/api/v1/deletecourse/:id
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deletecourse/${action.payload}`)
-           return response;
+           return response; 
         }
     }
 })

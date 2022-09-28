@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
-import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
+import { fetchrace , STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
 import { MdDelete } from "react-icons/md";
-import { remove } from "../../redux/postReducer/PostTrainer";
+import { remove } from "../../redux/postReducer/postRace";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
@@ -12,13 +12,13 @@ import Header from "../../Components/Common/Header";
 const Statistic = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  const { data: trainer, status } = useSelector((state) => state.trainer);
+  const { data: race, status } = useSelector((state) => state.race);
   useEffect(() => {
-    dispatch(fetchTrainer());
-  }, []);
+    dispatch(fetchrace());
+  },[]);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
-    history("/trainer");
+    history("/races");
   };
   if (status === STATUSES.LOADING) {
     return (
@@ -59,27 +59,29 @@ const Statistic = () => {
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Age</th>
-                  <th>Detail</th>
-                  <th>Remarks</th>
+                  <th>raceName</th>
+                  <th>RaceKind</th>
+                  <th>Description</th>
+                  <th>Weather</th>
+                  <th>DayNTime</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                {trainer.map((item, index) => {
+                {race.map((item, index) => {
                   return (
                     <>
                       <tr className="tr_table_class">
                         <td>{index}</td>
-                        <td>
-                          <img src={item.image} alt="" />
-                        </td>
-                        <td>{item.Name}</td>
-                        <td>{item.Age}</td>
-                        <td>{item.Detail}</td>
-                        <td>{item.Remarks}</td>
+                        
+                      
+                        <td>{item.raceName}</td>
+                        <td>{item.RaceKind}</td>
+                        <td>{item.Description}</td>
+                        <td>{item.Weather}</td>
+                        <td>{item.DayNTime}</td>
+                       
+                
                         <td className="table_delete_btn1">
                           <MdDelete
                             style={{
@@ -97,7 +99,7 @@ const Statistic = () => {
           </>
         </div>
         <span className="plusIconStyle">
-          <Link to="/trainerform">
+          <Link to="/raceform">
             <BsPlusCircleFill
               style={{
                 fontSize: "22px",

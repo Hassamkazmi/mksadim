@@ -7,30 +7,27 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../../../Components/CSS/horse.css'
 import Sidebar from "../../../Components/Common/Sidebar";
 import Header from "../../../Components/Common/Header";
+
+
+
 function App() {
+
+  
    const [page, setPage] = useState(0);
 
    const [x, setX] = useState(0);
 
    const [formData, setFormData] = useState({
-     NameEn: "",
-     age: "",
-     weight: "",
+    NameEn: "",
+    Age: "",
      NameAr:'',
-     ageAr: "",
-     weightAr: "",
-     kind: "",
-     breeder: "",
-     pedigree: "",
-     kindAr: "",
-     breederAr: "",
-     pedigreeAr: "",
-     color: "",
-     earning: "",
-     price: "",
-     colorAr: "",
-     earningAr: "",
-     priceAr: "",
+     Breeder: "",
+     Remarks: "",
+     Sex: "",
+     Color: "",
+     KindOfHorse: "",
+   
+   
    });
   
 
@@ -59,8 +56,13 @@ function App() {
        x={x}
        setX={setX}
      />,
+
+
    ];
- 
+  
+
+   
+
   return (
     <>
     <Header />

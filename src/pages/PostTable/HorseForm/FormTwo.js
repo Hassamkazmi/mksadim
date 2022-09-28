@@ -1,85 +1,84 @@
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
+  const { data: trainer, status } = useSelector((state) => state.trainer);
+
+
   const handleNext = () => {
-    if (formData.kind && formData.breeder && formData.pedigree !== "") {
+   
       setPage(page + 1);
       setX(1000);
-    } else {
-      toast.error("Please fill the field");
-    }
-  };
+   
+  }
   return (
     <motion.div
-      initial={{ x: x }}
+       initial={{ x: x }}
       transition={{ duration: 1 }}
       animate={{ x: 0 }}
       className=" container"
     >
       <div className="row container maincontainer">
+
         <div className="col-sm-12 col-md-6 formMain">
           <input
             type="text"
-            placeholder="kind"
+            placeholder="Breeder"
             required
             className="form-group"
-            value={formData.kind}
-            onChange={(e) => setFormData({ ...formData, kind: e.target.value })}
+          value={formData.Breeder}
+            onChange={(e) => setFormData({ ...formData, Breeder: e.target.value })}
           />
+          <select name="Country" className="county"  onChange={(e) =>
+              setFormData({ ...formData, Trainer: e.target.value })
+            }  required>
+  
+{
+trainer.map((item)=>(
+
+<option>{item.Name}</option>
+
+
+
+))
+
+
+
+
+}
+</select>
           <input
             type="text"
             className="form-group"
-            placeholder="breeder"
+            placeholder="Remarks"
             required
-            value={formData.breeder}
+         
             onChange={(e) =>
-              setFormData({ ...formData, breeder: e.target.value })
+              setFormData({ ...formData, Remarks: e.target.value })
             }
           />
           <input
             type="text"
             className="form-group"
-            placeholder="pedigree"
+            placeholder="Sex"
             required
-            value={formData.pedigree}
+        
             onChange={(e) =>
-              setFormData({ ...formData, pedigree: e.target.value })
+              setFormData({ ...formData, Sex: e.target.value })
             }
           />
-        </div>
-        <div className="col-sm-12 col-md-6 DataAr">
-          <input
+              <input
             type="text"
-            placeholder="طيب القلب"
+            placeholder="Color"
             required
             className="form-group"
-            value={formData.kindAr}
+            value={formData.Color}
             onChange={(e) =>
-              setFormData({ ...formData, kindAr: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            className="form-group"
-            placeholder="مربي"
-            required
-            value={formData.breederAr}
-            onChange={(e) =>
-              setFormData({ ...formData, breederAr: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            className="form-group"
-            placeholder="النسب"
-            required
-            value={formData.pedigreeAr}
-            onChange={(e) =>
-              setFormData({ ...formData, pedigreeAr: e.target.value })
+              setFormData({ ...formData, Color: e.target.value })
             }
           />
         </div>
+       
       </div>
 
       <div className="btnDivide container">
