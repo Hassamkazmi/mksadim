@@ -65,14 +65,18 @@ const Horse = () => {
                   <th>id</th>
                   <th>NameEn </th>
                   <th>NameAr </th>
-                  <th>PedigreeDetail</th>
+          
                   <th>Owner</th>
                   <th>Breeder</th>
-                  <th>Trainer</th>
-                  <th>Sex</th>
+                  <th>Trainer Id</th>
+                <th>Age</th>
                   <th>Color</th>
-                  <th>KindOfHorse</th>
+               
            
+           
+                  <th>KindOfHorse</th>
+           <th>Remarks</th>
+           <th>Action</th>
                 </tr>
               </thead>
                <tbody>
@@ -84,17 +88,22 @@ const Horse = () => {
                        
                         <td>{item.NameEn}</td>
                         <td>{item.NameAr}</td>
-                        <td>{item.PedigreeDetail}</td>
+                      
                         <td>{item.Owner}</td>
+                      
                         <td>{item.Breeder}</td>
-                        <td>{item.Age}</td>
                         <td>{item.Trainer}</td>
-                        <td>{item.Remarks}</td>
-                        <td>{item.Rating}</td>
-                        <td>{item.Sex}</td>
-                        <td>{item.Color}</td>
-                        <td>{item.KindofHorse}</td>
+                        <td>{item.Age}</td>
+                       <td>{item.Color}</td>
+                      
+                      
+                       <td>{item.KindOfHorse}</td>
                  
+                        <td>{item.Remarks} </td>
+                      
+                        <td>{item.Rating}</td>
+                    
+                      
                         <td className="table_delete_btn1">
                           <MdDelete
                             style={{

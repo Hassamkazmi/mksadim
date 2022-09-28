@@ -19,11 +19,12 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
       NameEn: "",
     Age: "",
      NameAr:'',
-   
+     RaceCourse:'',
      Breeder: "",
      Remarks: "",
      Trainer:'',
      Sex: "",
+     Horses:'',
      Color: "",
      KindOfHorse: "",
     
@@ -42,7 +43,7 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
       className=" container"
     >
       <div className="row container maincontainer">
-        <div className="col-sm-12 col-md-6 DataAr">
+        <div className="col-sm-12 col-md-6 ">
           <input
             type="text"
             placeholder="KindOfHorse"

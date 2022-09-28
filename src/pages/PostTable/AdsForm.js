@@ -34,7 +34,8 @@ const AdsForm = () => {
         formData.append("DescriptionAr", DescriptionAr)
         formData.append("DescriptionEn", DescriptionEn)
         dispatch(add(formData));
-        history('/ads')
+        console.log(formData)
+         history('/ads')
      } catch (error) {
         alert(error.message)
      }

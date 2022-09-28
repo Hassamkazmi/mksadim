@@ -1,7 +1,22 @@
 import { motion } from "framer-motion";
-
+import { useEffect } from "react";
+import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
+ const dispatch = useDispatch()
+  const { data: racecourse, status } = useSelector((state) => state.racecourse);
+useEffect(()=>{
+
+
+
+  dispatch(fetchracecourse())
+
+
+},[])
+
+
   const handleNext = () => {
    
     setPage(page+1)
@@ -30,7 +45,7 @@ const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
     <div className="row container maincontainer">
       <div className="col-sm-12 col-md-6 formMain">
         <input
-          type="raceName"
+          type="text"
           placeholder="RaceName"
           required
           className="form-group"
@@ -44,19 +59,37 @@ const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
           className="form-group"
           placeholder="RaceKind"
           required
-          value={formData.age < 40 ? formData.age : null}
+          value={formData.RaceKind}
           onChange={(e) => setFormData({ ...formData, RaceKind: e.target.value })}
         />
         <input
           type="text"
           className="form-group"
-          placeholder="Descriptionme "
+          placeholder="Description "
           required
-      
+      value={formData.Description}
           onChange={(e) =>
             setFormData({ ...formData, Description: e.target.value })
           }
         />
+          <select name="Country" className="county"  onChange={(e) =>
+              setFormData({ ...formData, RaceCourse: e.target.value })
+            }  required>
+              <option value="0" className="county">
+           
+           Select Race Course Name
+         </option>
+{
+  racecourse.map((course)=>(
+<option value={course._id}>{course.TrackName} </option>
+
+
+
+)
+
+  )}
+</select>
+      
       </div>
       
     </div>

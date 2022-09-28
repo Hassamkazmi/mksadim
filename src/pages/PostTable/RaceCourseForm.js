@@ -47,8 +47,10 @@ const RaceCourseForm = () => {
       
     }
   };
+  const areAllFieldsFilled = (registeration !== '') 
+ 
   
-  const areAllFieldsFilled = (records !== undefined)
+  
   return (
 
     <>

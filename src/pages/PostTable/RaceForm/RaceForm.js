@@ -20,7 +20,9 @@ const RaceForm = () => {
     Description: "",
     Weather:'',
     RaceStatus: "",
-    DayNTime:''
+    DayNTime:'',
+    RaceCourse:'',
+    Horses: ''
   
   });
  

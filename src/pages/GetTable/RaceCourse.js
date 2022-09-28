@@ -20,8 +20,9 @@ const News = () => {
     
 
  dispatch(remove(Id));
-
+ 
    fetchracecourse();
+ 
   };
   if (status === STATUSES.LOADING) {
     return (
@@ -34,6 +35,7 @@ const News = () => {
       </h2>
     );
   }
+
 
   if (status === STATUSES.ERROR) {
     return (
@@ -65,7 +67,7 @@ const News = () => {
                   <th>Country</th>
                   <th>TrackName</th>
                   <th>TrackLength</th>
-            
+            <th>Actions</th>
                 </tr>
               </thead>
               <tbody>

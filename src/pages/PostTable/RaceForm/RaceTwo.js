@@ -1,9 +1,19 @@
 import { motion } from "framer-motion";
-
-
- 
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchHorse } from "../../../redux/getReducer/getHorseSlice";
 const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
-  const handleNext = () => {
+  const dispatch = useDispatch()
+  const { data: getHorse, status } = useSelector((state) => state.horse);
+ useEffect(()=>{
+dispatch(fetchHorse())
+
+
+ },[])
+ 
+ 
+   const handleNext = () => {
    
     setPage(page + 1);
     setX(1000);
@@ -18,20 +28,30 @@ const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
     >
       <div className="row container maincontainer">
         <div className="col-sm-12 col-md-6 formMain">
-          <input
-            type="text"
-            placeholder="RaceCourse"
-            required
-            className="form-group"
+        <select name="Country" className="county"  onChange={(e) =>
+              setFormData({ ...formData, Horses: e.target.value })
+            }  required>
+              <option value="0" className="county">
+           
+           Select Horse
+         </option>
+{
+  getHorse.map((Horses)=>(
+          <option selected=""  className="county" value={Horses._id}>
+         {Horses.NameEn}
+
+          </option>
           
-            onChange={(e) => setFormData({ ...formData, RaceCourse: e.target.value })}
-          />
+    )) }   
+
+</select> 
+
           <input
             type="text"
             className="form-group"
             placeholder="Weather"
             required
-         
+         value={formData.Weather}
             onChange={(e) =>
               setFormData({ ...formData, Weather: e.target.value })
             }
@@ -40,6 +60,7 @@ const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
             type="text"
             className="form-group"
             placeholder="RaceStatus"
+            value={formData.RaceStatus}
             required
         
             onChange={(e) =>

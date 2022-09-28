@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import {fetchTrainer} from '../../../redux/getReducer/getTrainerSlice'
+import { useDispatch } from "react-redux";
 
 const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
+  const dispatch = useDispatch()
   const { data: trainer, status } = useSelector((state) => state.trainer);
 
+useEffect(() => {
 
+  dispatch(fetchTrainer())
+},[])
   const handleNext = () => {
    
       setPage(page + 1);
       setX(1000);
    
   }
+  console.log('trainer', trainer)
   return (
     <motion.div
        initial={{ x: x }}
@@ -32,20 +40,19 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
           <select name="Country" className="county"  onChange={(e) =>
               setFormData({ ...formData, Trainer: e.target.value })
             }  required>
-  
+              <option value="0" className="county">
+           
+           Select Trainer
+         </option>
 {
-trainer.map((item)=>(
+  trainer.map((Country)=>(
+          <option selected=""  className="county" value={Country._id}>
+         {Country.Name}
+         
+          </option>
+          
+    )) }   
 
-<option>{item.Name}</option>
-
-
-
-))
-
-
-
-
-}
 </select>
           <input
             type="text"
