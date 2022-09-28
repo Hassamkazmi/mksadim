@@ -3,22 +3,24 @@ import { toast } from "react-toastify";
 const SignUp = ({ formData, setFormData, page, setPage, x, setX }) => {
   const handleNext = () => {
    
-   setPage(page+1)
-   setX(1000)
-   
-     if (
-       formData.NameEn !== null &&
-       formData.Age !== null &&
-       formData.NameAr !== null 
-   
     
-     ) {
-       setPage(page + 1);
-       setX(1000);
-     } else {
-       toast.error("Please fill the field");
-     }
-  };
+    
+    
+    if (formData.NameEn && formData.Age && formData.NameAr !== "" ) 
+    
+    {
+      setPage(page + 1);
+      setX(1000);
+    }
+    
+    
+    
+    else {
+      toast.error("Please fill the field");
+   
+    }
+  }
+  
 
   return (
     <motion.div
@@ -31,10 +33,11 @@ const SignUp = ({ formData, setFormData, page, setPage, x, setX }) => {
         <div className="col-sm-12 col-md-6 formMain">
           <input
             type="text"
-            placeholder="NameEn"
+            placeholder="NameEng"
             required
             className="form-group"
       value={formData.NameEn}
+  
             onChange={(e) =>
               setFormData({ ...formData, NameEn: e.target.value })
             }

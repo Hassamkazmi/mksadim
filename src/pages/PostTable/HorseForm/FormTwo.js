@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import {fetchTrainer} from '../../../redux/getReducer/getTrainerSlice'
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const dispatch = useDispatch()
@@ -12,12 +13,26 @@ useEffect(() => {
 
   dispatch(fetchTrainer())
 },[])
-  const handleNext = () => {
+const handleNext = () => {
    
-      setPage(page + 1);
-      setX(1000);
-   
+    
+    
+    
+  if (formData.Breeder && formData.Trainer && formData.Remarks && formData.Sex  && formData.Color!==  "" ) 
+  
+  {
+    setPage(page + 1);
+    setX(1000);
   }
+  
+  
+  
+  else {
+    toast.error("Please fill the field");
+ 
+  }
+}
+
   console.log('trainer', trainer)
   return (
     <motion.div

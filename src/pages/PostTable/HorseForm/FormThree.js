@@ -10,7 +10,7 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
 
   const handleSubmit = () => {
    
-
+    
     console.log(formData);
     dispatch(add(formData))
     history('/horse')

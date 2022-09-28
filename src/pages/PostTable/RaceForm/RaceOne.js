@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
  const dispatch = useDispatch()
-  const { data: racecourse, status } = useSelector((state) => state.racecourse);
+  const { data: racecourse } = useSelector((state) => state.racecourse);
 useEffect(()=>{
 
 
@@ -14,7 +15,7 @@ useEffect(()=>{
   dispatch(fetchracecourse())
 
 
-},[])
+},[dispatch])
 
 
   const handleNext = () => {
@@ -22,18 +23,18 @@ useEffect(()=>{
     setPage(page+1)
     setX(1000)
     
-     // if (
-     //   formData.NameEn !== '' &&
-     //   formData.Age !== '' &&
-     //   formData.NameAr !== '' 
+      if (
+       formData.raceName !== '' &&
+      formData.RaceKind !== '' &&
+      formData.NameAr !== '' 
     
      
-     // ) {
-     //   setPage(page + 1);
-     //   setX(1000);
-     // } else {
-     //   toast.error("Please fill the field");
-     // }
+    ) {
+      setPage(page + 1);
+      setX(1000);
+    } else {
+      toast.error("Please fill the field");
+    }
    };
   return (
     <motion.div
