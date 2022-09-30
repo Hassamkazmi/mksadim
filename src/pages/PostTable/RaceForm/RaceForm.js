@@ -22,7 +22,8 @@ const RaceForm = () => {
     RaceStatus: "",
     DayNTime:'',
     RaceCourse:'',
-    Horses: ''
+    Horses: '',
+    RaceStatus:''
   
   });
  

@@ -12,94 +12,94 @@ import Header from "../../../Components/Common/Header";
 
 function App() {
 
-  
-   const [page, setPage] = useState(0);
 
-   const [x, setX] = useState(0);
+  const [page, setPage] = useState(0);
 
-   const [formData, setFormData] = useState({
+  const [x, setX] = useState(0);
+
+  const [formData, setFormData] = useState({
     NameEn: "",
     Age: "",
-     NameAr:'',
-     Breeder: "",
-     Remarks: "",
-     Sex: "",
-     Color: "",
-     KindOfHorse: "",
-   
-   
-   });
-  
-
-   const componentList = [
-   <HorseData
-       formData={formData}
-       setFormData={setFormData}
-       page={page}
-       setPage={setPage}
-     x={x}
-       setX={setX}
-   />,
-     <NextForm
-       formData={formData}
-       setFormData={setFormData}
-       page={page}
-       setPage={setPage}
-       x={x}
-       setX={setX}
-     />,
-     <OtherInfo
-       formData={formData}
-       setFormData={setFormData}
-       page={page}
-       setPage={setPage}
-       x={x}
-       setX={setX}
-     />,
+    NameAr: '',
+    Breeder: "",
+    Remarks: "",
+    Sex: "",
+    Color: "",
+    KindOfHorse: "",
 
 
-   ];
-  
+  });
 
-   
+
+  const componentList = [
+    <HorseData
+      formData={formData}
+      setFormData={setFormData}
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+    <NextForm
+      formData={formData}
+      setFormData={setFormData}
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+    <OtherInfo
+      formData={formData}
+      setFormData={setFormData}
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+
+
+  ];
+
+
+
 
   return (
     <>
-    <Header />
-    <div className="page">
-    <Sidebar />
-    <div className="rightsidedata">
-      <div
-        style={{
-          marginTop: "30px",
-        }}
-      >
-        <h2>Horse Form</h2>
-        <div>
-      <div className="progress-bar">    
-      <div
+      <Header />
+      <div className="page">
+        <Sidebar />
+        <div className="rightsidedata">
+          <div
             style={{
-              width:
-                page === 0
-                  ? "33%"
-                  : page === 1
-                  ? "66%"
-                  : page === 2
-                  ? "100%"
-                  : "100%",
+              marginTop: "30px",
             }}
-          ></div>
-        
+          >
+            <h2>Horse Form</h2>
+            <div>
+              <div className="progress-bar">
+                <div
+                  style={{
+                    width:
+                      page === 0
+                        ? "33%"
+                        : page === 1
+                          ? "66%"
+                          : page === 2
+                            ? "100%"
+                            : "100%",
+                  }}
+                ></div>
+
+              </div>
+              <div className="body">{componentList[page]}</div>
+              <ToastContainer />
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div className="body">{componentList[page]}</div>
-      <ToastContainer /> 
-  </div>
-      </div>
-    </div>
-    
-  </div>
     </>
-    
+
   );
 }
 

@@ -20,8 +20,6 @@ useEffect(()=>{
 
   const handleNext = () => {
    
-    setPage(page+1)
-    setX(1000)
     
       if (
        formData.raceName !== '' &&

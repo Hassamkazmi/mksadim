@@ -4,7 +4,7 @@ const {createSlice} = require('@reduxjs/toolkit');
 const PostAds = createSlice({
     name: 'PostAds',
     initialState : [],
-    reducers:{
+    reducers:{ 
         add(state,action){
           const response = axios.post(`${window.env.API_URL}/uploadAds`,action.payload)
           return response;
@@ -13,6 +13,7 @@ const PostAds = createSlice({
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deleteAds/${action.payload}`)
            return response;
+        
         }
     }
 })

@@ -14,7 +14,7 @@ const Ads = () => {
   const { data: allads, status } = useSelector((state) => state.ads);
   useEffect(() => {
     dispatch(fetchAds());
-  }, [fetchAds]);
+  }, []);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
     
@@ -84,7 +84,7 @@ const Ads = () => {
                             style={{
                               fontSize: "22px",
                             }}
-                            onClick={() => handleRemove(item._id)}
+                            onClick={() => handleRemove(item.index)}
                           />
                         </td>
                       </tr>

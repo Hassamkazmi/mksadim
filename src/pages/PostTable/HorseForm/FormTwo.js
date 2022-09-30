@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import {fetchTrainer} from '../../../redux/getReducer/getTrainerSlice'
+import { fetchTrainer } from '../../../redux/getReducer/getTrainerSlice'
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -9,34 +9,34 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const dispatch = useDispatch()
   const { data: trainer, status } = useSelector((state) => state.trainer);
 
-useEffect(() => {
+  useEffect(() => {
 
-  dispatch(fetchTrainer())
-},[])
-const handleNext = () => {
+    dispatch(fetchTrainer())
    
-    
-    
-    
-  if (formData.Breeder && formData.Trainer && formData.Remarks && formData.Sex  && formData.Color!==  "" ) 
-  
-  {
-    setPage(page + 1);
-    setX(1000);
+  }, [])
+  const handleNext = () => {
+
+
+
+
+    if (formData.Breeder && formData.Trainer && formData.Remarks && formData.Sex && formData.Color !== "") {
+      setPage(page + 1);
+      setX(1000);
+    }
+
+
+
+    else {
+      toast.error("Please fill the field");
+
+    }
   }
-  
-  
-  
-  else {
-    toast.error("Please fill the field");
- 
-  }
-}
 
   console.log('trainer', trainer)
+
   return (
     <motion.div
-       initial={{ x: x }}
+      initial={{ x: x }}
       transition={{ duration: 1 }}
       animate={{ x: 0 }}
       className=" container"
@@ -49,32 +49,32 @@ const handleNext = () => {
             placeholder="Breeder"
             required
             className="form-group"
-          value={formData.Breeder}
+            value={formData.Breeder}
             onChange={(e) => setFormData({ ...formData, Breeder: e.target.value })}
           />
-          <select name="Country" className="county"  onChange={(e) =>
-              setFormData({ ...formData, Trainer: e.target.value })
-            }  required>
-              <option value="0" className="county">
-           
-           Select Trainer
-         </option>
-{
-  trainer.map((Country)=>(
-          <option selected=""  className="county" value={Country._id}>
-         {Country.Name}
-         
-          </option>
-          
-    )) }   
+          <select name="Country" className="county" onChange={(e) =>
+            setFormData({ ...formData, Trainer: e.target.value })
+          } required>
+            <option value="0" className="county">
 
-</select>
+              Select Trainer
+            </option>
+            {
+              trainer.map((TrainerData) => (
+                <option selected="" className="county" value={TrainerData} >
+                  {TrainerData.Name}
+
+                </option>
+
+              ))}
+
+          </select>
           <input
             type="text"
             className="form-group"
             placeholder="Remarks"
             required
-         
+
             onChange={(e) =>
               setFormData({ ...formData, Remarks: e.target.value })
             }
@@ -84,12 +84,12 @@ const handleNext = () => {
             className="form-group"
             placeholder="Sex"
             required
-        
+
             onChange={(e) =>
               setFormData({ ...formData, Sex: e.target.value })
             }
           />
-              <input
+          <input
             type="text"
             placeholder="Color"
             required
@@ -100,7 +100,7 @@ const handleNext = () => {
             }
           />
         </div>
-       
+
       </div>
 
       <div className="btnDivide container">

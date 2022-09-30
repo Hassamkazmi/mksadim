@@ -9,26 +9,26 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const history = useNavigate()
 
   const handleSubmit = () => {
-   
-    
-    console.log(formData);
+
+
+    console.log(formData.Trainer);
     dispatch(add(formData))
-    history('/horse')
+    // history('/horse')
 
     setFormData({
       NameEn: "",
-    Age: "",
-     NameAr:'',
-     RaceCourse:'',
-     Breeder: "",
-     Remarks: "",
-     Trainer:'',
-     Sex: "",
-     Horses:'',
-     Color: "",
-     KindOfHorse: "",
-    
-  
+      Age: "",
+      NameAr: '',
+      RaceCourse: '',
+      Breeder: "",
+      Remarks: "",
+      Trainer: '',
+      Sex: "",
+      Horses: '',
+      Color: "",
+      KindOfHorse: "",
+
+
 
     });
 
@@ -53,9 +53,9 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
               setFormData({ ...formData, KindOfHorse: e.target.value })
             }
           />
-        
-       
-   
+
+
+
 
         </div>
       </div>

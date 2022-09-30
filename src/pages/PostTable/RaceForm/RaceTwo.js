@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchHorse } from "../../../redux/getReducer/getHorseSlice";
+import { toast } from "react-toastify";
 const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const dispatch = useDispatch()
   const { data: getHorse, status } = useSelector((state) => state.horse);
@@ -14,9 +15,13 @@ dispatch(fetchHorse())
  
  
    const handleNext = () => {
+    if(formData.Horses && formData.Weather  !== ''){
    
     setPage(page + 1);
-    setX(1000);
+    setX(1000);}else{
+toast.error('please fill the fields')
+
+    }
  
 }
   return (
@@ -56,17 +61,17 @@ dispatch(fetchHorse())
               setFormData({ ...formData, Weather: e.target.value })
             }
           />
-          <input
-            type="text"
-            className="form-group"
-            placeholder="RaceStatus"
-            value={formData.RaceStatus}
-            required
-        
-            onChange={(e) =>
+       <p>RaceStatus</p>
+  
+<input type="radio" id="html" name="fav_language" value={formData.RaceStatus} onChange={(e) =>
               setFormData({ ...formData, RaceStatus: e.target.value })
-            }
-          />
+            }/>
+<p>Upcoming</p>
+  
+  <input type="radio" id="css" name="fav_language" value={formData.RaceStatus} onChange={(e) =>
+              setFormData({ ...formData, RaceStatus: e.target.value  })
+            }  checked={true}/>
+  <p>Completed</p>
         </div>
        
       </div>
