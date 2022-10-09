@@ -4,6 +4,7 @@ import Sidebar from "../../Components/Common/Sidebar";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostTrainer";
+import Header from "../../Components/Common/Header";
 
 const NewsForm = () => {
     const dispatch = useDispatch();
@@ -34,8 +35,10 @@ const NewsForm = () => {
         alert(error.message)
      }
     }
-    const areAllFieldsFilled = (image !== null) && (Age !== "") && (Detail !== '')
+    const areAllFieldsFilled = (image !== undefined) && (Age !== "") && (Detail !== '')
   return (
+    <>
+    <Header />
     <div className="page">
     <Sidebar />
     <div className="rightsidedata">
@@ -118,6 +121,7 @@ const NewsForm = () => {
     </div>
     
   </div>
+    </>
     
   );
 };

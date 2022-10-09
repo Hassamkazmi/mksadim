@@ -12,10 +12,12 @@ const postTrainer = createSlice({
 
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deletetrainer/${action.payload}`)
-           return response;
+            state.filter((item) => item._id !== action.payload);
+            return response;
         }
     }
 })
 
 export const {add , remove} = postTrainer.actions;
 export default postTrainer.reducer;
+

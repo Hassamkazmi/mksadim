@@ -3,7 +3,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     username: "",
-    email: "",
+    password: "",
     isFetching: false,
     isSuccess: false,
     isError: false,
@@ -16,7 +16,7 @@ export const userSlice = createSlice({
     [signupUser.fulfilled]: (state, { payload }) => {
           state.isFetching = false;
           state.isSuccess = true;
-          state.email = payload.user.email;
+          state.password = payload.user.password;
           state.username = payload.user.name;
         },
         [signupUser.pending]: (state) => {

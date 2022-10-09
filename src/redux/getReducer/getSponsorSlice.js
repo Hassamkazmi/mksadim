@@ -34,7 +34,7 @@ export const {setSponsor, setStatus} = getSponsorSlice.actions;
 export default getSponsorSlice.reducer;
 // 'https://mksbackend.herokuapp.com/api/v1/Sponsorget'
 export const fetchSponsor = createAsyncThunk('sponsor/fetch', async () => {
-    const res = await axios.get(`${API}/Sponsorget`);
+    const res = await axios.get(`${API}/Sponsorget?keyword=&page=1`);
     const data = res.data;
     return data.data;
 })

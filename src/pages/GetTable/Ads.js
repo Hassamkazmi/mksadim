@@ -7,17 +7,26 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostAds";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import {Link} from 'react-router-dom'
+import Header from "../../Components/Common/Header";
+import { edit } from "../../redux/postReducer/PostAds";
+import {BiEdit} from 'react-icons/bi'
+import { useNavigate } from "react-router-dom";
 
 const Ads = () => {
+  const history = useNavigate()
   const dispatch = useDispatch();
   const { data: allads, status } = useSelector((state) => state.ads);
   useEffect(() => {
     dispatch(fetchAds());
-  }, [fetchAds]);
+  }, []);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
-    
   };
+  let handleEdit = (Id)=>{
+
+    dispatch(edit(Id));
+    history('/adsforms')
+    }  
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -42,6 +51,8 @@ const Ads = () => {
     );
   }
   return (
+    <>
+    <Header/>
     <div className="page">
       <Sidebar />
       <div className="rightsidedata">
@@ -76,12 +87,26 @@ const Ads = () => {
                         <td>{item.TitleAr}</td>
                         <td>{item.DescriptionEn}</td>
                         <td>{item.DescriptionAr}</td>
+                    
                         <td className="table_delete_btn1">
+            
+            
+            <BiEdit
+              style={{
+                fontSize: "22px",
+              }}
+              onClick={() => handleEdit(item._id)}
+            />
+          </td>
+                    
+                        <td className="table_delete_btn1">
+            
+            
                           <MdDelete
                             style={{
                               fontSize: "22px",
                             }}
-                            onClick={() => handleRemove(item._id)}
+                            onClick={() => handleRemove(item.index)}
                           />
                         </td>
                       </tr>
@@ -102,6 +127,7 @@ const Ads = () => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 export default Ads;

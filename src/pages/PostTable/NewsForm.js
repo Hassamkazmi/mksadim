@@ -4,6 +4,7 @@ import Sidebar from "../../Components/Common/Sidebar";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostNewsSlice";
+import Header from "../../Components/Common/Header";
 
 const NewsForm = () => {
     const dispatch = useDispatch();
@@ -15,8 +16,6 @@ const NewsForm = () => {
     const [DescriptionAr,setDescriptionAr] = useState('')
     const [DescriptionEn,setDescriptionEn] = useState('')
     const [image,setImage] = useState()
-  
-  
     const fileSelected = event => {
       const image = event.target.files[0]
       setImage(image)
@@ -33,14 +32,16 @@ const NewsForm = () => {
         formData.append("DescriptionAr", DescriptionAr)
         formData.append("DescriptionEn", DescriptionEn)
         dispatch(add(formData));
-        history('/news')
+        history('/news');
      } catch (error) {
         alert(error.message)
      }
     }
-    const areAllFieldsFilled = (image !== null) && (DescriptionAr !== "") && (DescriptionEn !== '')
+    const areAllFieldsFilled = (image !== '') && (image !== undefined) && (DescriptionAr !== "") && (DescriptionEn !== '')
   return (
-    <div className="page">
+   <>
+   <Header />
+   <div className="page">
     <Sidebar />
     <div className="rightsidedata">
       <div
@@ -145,6 +146,7 @@ const NewsForm = () => {
     </div>
     
   </div>
+   </>
     
   );
 };

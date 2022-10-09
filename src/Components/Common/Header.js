@@ -4,8 +4,10 @@ import Notification from './Notification';
 import SearchBar from './Search';
 import Logo from '../../assets/Group.png'
 import '../CSS/header.css';
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  
   return (
     <div className="header">
       <div className="innerHeader">
