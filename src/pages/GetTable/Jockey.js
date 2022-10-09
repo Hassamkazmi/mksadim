@@ -8,7 +8,11 @@ import { remove,add } from "../../redux/postReducer/PostJockey";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
+=======
+
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 const Statistic = () => {
   const dispatch = useDispatch();
@@ -80,7 +84,10 @@ const Statistic = () => {
                         <td>{item.TrackName}</td>
                         <td>{item.TrackNameAr}</td>
                         <td className="table_delete_btn1">
+<<<<<<< HEAD
                          <BiEdit/>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                           <MdDelete
                             style={{
                               fontSize: "22px",

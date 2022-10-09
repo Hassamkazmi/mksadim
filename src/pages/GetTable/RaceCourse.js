@@ -8,7 +8,10 @@ import { remove } from "../../redux/postReducer/PostRaceCourse";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 const News = () => {
   const dispatch = useDispatch();
@@ -16,7 +19,10 @@ const News = () => {
   useEffect(() => {
     dispatch(fetchracecourse());
   }, []);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   const handleRemove =  (Id) => {
 
     
@@ -66,7 +72,10 @@ const News = () => {
               <thead>
                 <tr>
                   <th>id</th>
+<<<<<<< HEAD
                   <th>Image</th>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                   <th>Country</th>
                   <th>TrackName</th>
                   <th>TrackLength</th>
@@ -79,13 +88,20 @@ const News = () => {
                     <>
                       <tr className="tr_table_class">
                         <td>{index}</td>
+<<<<<<< HEAD
                        <td><image src ={item.image}/></td>
+=======
+                       
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                         <td>{item.Country}</td>
                         <td>{item.TrackName}</td>
                         <td>{item.TrackLength}</td>
                      
                         <td className="table_delete_btn1">
+<<<<<<< HEAD
                         <BiEdit/>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                           <MdDelete
                             style={{
                               fontSize: "22px",

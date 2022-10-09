@@ -12,13 +12,21 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   useEffect(() => {
 
     dispatch(fetchTrainer())
+<<<<<<< HEAD
+=======
+   
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   }, [])
   const handleNext = () => {
 
 
 
 
+<<<<<<< HEAD
     if (formData.Breeder && formData.ActiveTrainer && formData.Remarks && formData.Sex && formData.Color !== "") {
+=======
+    if (formData.Breeder && formData.Trainer && formData.Remarks && formData.Sex && formData.Color !== "") {
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
       setPage(page + 1);
       setX(1000);
     }
@@ -32,6 +40,10 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   }
 
   console.log('trainer', trainer)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   return (
     <motion.div
       initial={{ x: x }}
@@ -58,6 +70,7 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
               Select Trainer
             </option>
             {
+<<<<<<< HEAD
               trainer.map((Country) => (
                 <option selected="" className="county" value={Country._id}>
                   {Country.Name}
@@ -78,6 +91,11 @@ const LocationInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
               trainer.map((Country) => (
                 <option selected="" className="county" value={Country._id}>
                   {Country.Name}
+=======
+              trainer.map((TrainerData) => (
+                <option selected="" className="county" value={TrainerData} >
+                  {TrainerData.Name}
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
                 </option>
 

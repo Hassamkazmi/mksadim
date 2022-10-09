@@ -20,8 +20,11 @@ useEffect(()=>{
 
   const handleNext = () => {
    
+<<<<<<< HEAD
     setPage(page+1)
     setX(1000)
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     
       if (
        formData.raceName !== '' &&

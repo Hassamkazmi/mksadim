@@ -12,6 +12,10 @@ const RaceThree = ({ formData, setFormData, page, setPage, x, setX }) => {
   const history = useNavigate()
 
   const handleSubmit = () => {
+<<<<<<< HEAD
+=======
+    if (formData.DayNTime !== ''){
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     dispatch(add(formData))
     history('/races')
 
@@ -26,9 +30,16 @@ const RaceThree = ({ formData, setFormData, page, setPage, x, setX }) => {
       Weather: "",
       Horses: '',
       KindOfHorse: "",
+<<<<<<< HEAD
 
 
     });
+=======
+      RaceStatus:''
+
+
+    })};
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
   };
 

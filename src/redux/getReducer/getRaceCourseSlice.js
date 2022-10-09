@@ -34,7 +34,11 @@ export const {setRacecourse, setStatus} = getRaceCourseSlice.actions;
 export default getRaceCourseSlice.reducer;
 //https://mksbackend.herokuapp.com/api/v1//getracecourse
 export const fetchracecourse = createAsyncThunk('getracecourse/fetch', async () => {
+<<<<<<< HEAD
     const res = await axios.get(`${API}/getracecourse?keyword=&page=1`);
+=======
+    const res = await axios.get(`${API}/getracecourse`);
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     const data = res.data;
     return data.data;
 })

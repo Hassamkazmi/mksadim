@@ -26,8 +26,11 @@ function App() {
     Sex: "",
     Color: "",
     KindOfHorse: "",
+<<<<<<< HEAD
     ActiveTrainer: "",
     Trainer: ""
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
   });

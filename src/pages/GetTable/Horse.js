@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 
+=======
+import React from "react";
+import Sidebar from "../../Components/Common/Sidebar";
+import { useDispatch, useSelector } from "react-redux";
+import Table from "react-bootstrap/Table";
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 import { remove } from "../../redux/postReducer/PostHorse";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link ,useNavigate } from "react-router-dom";
@@ -9,11 +16,15 @@ import Header from "../../Components/Common/Header";
 import { useEffect } from "react";
 import { fetchHorse,STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { MdDelete } from "react-icons/md";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 const Horse = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+<<<<<<< HEAD
   const { data: horse, status } = useSelector((state) => state.horse);
 const [pagenumber,setPageNumber] = useState(1)  
 
@@ -28,6 +39,13 @@ const nextPageHandler = () => {
      dispatch(fetchHorse({pagenumber}));
    },[]);
    console.log(horse)
+=======
+  const { data: getHorse, status } = useSelector((state) => state.horse);
+  
+   useEffect(() => {
+     dispatch(fetchHorse());
+   },[]);
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   const handleRemove = (Id) => {
     dispatch(remove(Id));
     history('/horse')
@@ -69,6 +87,7 @@ const nextPageHandler = () => {
           }}
         >
           <>
+<<<<<<< HEAD
           <table id="customers">
             <tr>
               <th>Name</th>
@@ -112,6 +131,67 @@ const nextPageHandler = () => {
                 })
             }
           </table>
+=======
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>NameEn </th>
+                  <th>NameAr </th>
+          
+                  <th>Owner</th>
+                  <th>Breeder</th>
+                  <th>Trainer Id</th>
+                <th>Age</th>
+                  <th>Color</th>
+               
+           
+           
+                  <th>KindOfHorse</th>
+           <th>Remarks</th>
+           <th>Action</th>
+                </tr>
+              </thead>
+               <tbody>
+                {getHorse.map((item, index) => {
+                  return (
+                    <>
+                      <tr className="tr_table_class">
+                        <td>{index}</td>
+                       
+                        <td>{item.NameEn}</td>
+                        <td>{item.NameAr}</td>
+                      
+                        <td>{item.Owner}</td>
+                      
+                        <td>{item.Breeder}</td>
+                        <td>{item.Trainer}</td>
+                        <td>{item.Age}</td>
+                       <td>{item.Color}</td>
+                      
+                      
+                       <td>{item.KindOfHorse}</td>
+                 
+                        <td>{item.Remarks} </td>
+                      
+                        <td>{item.Rating}</td>
+                    
+                      
+                        <td className="table_delete_btn1">
+                          <MdDelete
+                            style={{
+                              fontSize: "22px",
+                            }}
+                            onClick={() => handleRemove(item._id)}
+                          />
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody> 
+            </Table>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
           </>
         </div>
         <span className="plusIconStyle">
@@ -124,6 +204,7 @@ const nextPageHandler = () => {
       </div>
       
     </div>
+<<<<<<< HEAD
     <div
               style={{
                 display: "flex",
@@ -153,6 +234,8 @@ const nextPageHandler = () => {
                 Next
               </button>
             </div>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     </>
   )
 }

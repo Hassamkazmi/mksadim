@@ -25,8 +25,11 @@ import RaceCourse from './pages/GetTable/RaceCourse';
 import RaceCourseForm from './pages/PostTable/RaceCourseForm';
 import JockeyForm from './pages/PostTable/JockeyForm';
 import RaceForm from './pages/PostTable/RaceForm/RaceForm';
+<<<<<<< HEAD
 import NewOne from './pages/GetTable/NewOne'
 import ScrolTable from './pages/GetTable/ScrolTable';
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
 function App() {
@@ -58,9 +61,12 @@ function App() {
               <Route path='/racecourseform' element={<RaceCourseForm />} />
               <Route path='/jockeyform' element={<JockeyForm />} />
               <Route path='/raceform' element={<RaceForm />} />
+<<<<<<< HEAD
               <Route path='/newone' element={<NewOne />} />
               <Route path='/scroltable' element={<ScrolTable />} />
 
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
             </Routes>
           </BrowserRouter>
         </div>

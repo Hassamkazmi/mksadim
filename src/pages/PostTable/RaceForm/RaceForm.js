@@ -22,7 +22,12 @@ const RaceForm = () => {
     RaceStatus: "",
     DayNTime:'',
     RaceCourse:'',
+<<<<<<< HEAD
     Horses: ''
+=======
+    Horses: '',
+    RaceStatus:''
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   
   });
  

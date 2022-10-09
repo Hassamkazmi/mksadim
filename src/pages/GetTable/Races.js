@@ -8,7 +8,10 @@ import { remove } from "../../redux/postReducer/postRace";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
 const Statistic = () => {
@@ -58,7 +61,11 @@ const Statistic = () => {
           >
             <>
               <Table striped bordered hover>
+<<<<<<< HEAD
           
+=======
+                <thead>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                   <tr>
                     <th>id</th>
                     <th>raceName</th>
@@ -74,8 +81,13 @@ const Statistic = () => {
 
                     <th>Action</th>
                   </tr>
+<<<<<<< HEAD
             
        
+=======
+                </thead>
+                <tbody>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                   {race.map((item, index) => {
                     return (
                       <>
@@ -88,7 +100,11 @@ const Statistic = () => {
                           <td>{item.Description}</td>
                           {
                             item.Horses.map((e) => (
+<<<<<<< HEAD
                               <td>{e.NameEn}</td>
+=======
+                              <td>{e._id}</td>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
                             ))
@@ -96,13 +112,20 @@ const Statistic = () => {
                           }
 
 
+<<<<<<< HEAD
 <td>{item.RaceCourseData === null ? <>No data</> : <>{item.RaceCourseData.TrackName}</>}</td>
+=======
+<td>{item.RaceCourse === null ? <>No data</> : <>{item.RaceCourse.TrackName}</>}</td>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                           <td>{item.Weather}</td>
                           <td>{item.DayNTime === null ? <>-</> :<>{item.DayNTime}</>}</td>
 
 
                           <td className="table_delete_btn1" >
+<<<<<<< HEAD
                             <BiEdit/>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
                             <MdDelete
                               style={{
                                 fontSize: "22px",
@@ -114,7 +137,11 @@ const Statistic = () => {
                       </>
                     );
                   })}
+<<<<<<< HEAD
         
+=======
+                </tbody>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
               </Table>
             </>
           </div>

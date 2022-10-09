@@ -8,8 +8,11 @@ import { remove } from "../../redux/postReducer/PostNewsSlice";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link ,useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
 
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 const News = () => {
   const dispatch = useDispatch();
@@ -116,6 +119,7 @@ const News = () => {
         </span>
       </div>
     </div>
+<<<<<<< HEAD
     <div
               style={{
                 display: "flex",
@@ -145,6 +149,8 @@ const News = () => {
                 Next
               </button>
             </div>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     </>
   );
 };

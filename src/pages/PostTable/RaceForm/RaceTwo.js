@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchHorse } from "../../../redux/getReducer/getHorseSlice";
+<<<<<<< HEAD
 const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const dispatch = useDispatch()
   const { data: horse } = useSelector((state) => state.horse);
@@ -20,6 +21,27 @@ useEffect(()=>{
    
     setPage(page + 1);
     setX(1000);
+=======
+import { toast } from "react-toastify";
+const RaceTwo = ({ formData, setFormData, page, setPage, x, setX }) => {
+  const dispatch = useDispatch()
+  const { data: getHorse, status } = useSelector((state) => state.horse);
+ useEffect(()=>{
+dispatch(fetchHorse())
+
+
+ },[])
+ 
+ 
+   const handleNext = () => {
+    if(formData.Horses && formData.Weather  !== ''){
+   
+    setPage(page + 1);
+    setX(1000);}else{
+toast.error('please fill the fields')
+
+    }
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
  
 }
   return (
@@ -36,6 +58,7 @@ useEffect(()=>{
             }  required>
               <option value="0" className="county">
            
+<<<<<<< HEAD
            Select Horse Name
          </option>
 {
@@ -48,6 +71,20 @@ useEffect(()=>{
 
   )}
 </select>
+=======
+           Select Horse
+         </option>
+{
+  getHorse.map((Horses)=>(
+          <option selected=""  className="county" value={Horses._id}>
+         {Horses.NameEn}
+
+          </option>
+          
+    )) }   
+
+</select> 
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
           <input
             type="text"
@@ -59,6 +96,7 @@ useEffect(()=>{
               setFormData({ ...formData, Weather: e.target.value })
             }
           />
+<<<<<<< HEAD
           <input
             type="text"
             className="form-group"
@@ -70,6 +108,19 @@ useEffect(()=>{
               setFormData({ ...formData, RaceStatus: e.target.value })
             }
           />
+=======
+       <p>RaceStatus</p>
+  
+<input type="radio" id="html" name="fav_language" value={formData.RaceStatus} onChange={(e) =>
+              setFormData({ ...formData, RaceStatus: e.target.value })
+            }/>
+<p>Upcoming</p>
+  
+  <input type="radio" id="css" name="fav_language" value={formData.RaceStatus} onChange={(e) =>
+              setFormData({ ...formData, RaceStatus: e.target.value  })
+            }  checked={true}/>
+  <p>Completed</p>
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
         </div>
        
       </div>

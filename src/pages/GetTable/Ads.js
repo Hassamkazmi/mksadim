@@ -8,9 +8,12 @@ import { remove } from "../../redux/postReducer/PostAds";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import {Link} from 'react-router-dom'
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import { edit } from "../../redux/postReducer/PostAds";
 import {BiEdit} from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 const Ads = () => {
   const history = useNavigate()

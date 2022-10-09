@@ -121,7 +121,11 @@ label {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 .maincontainer {
+=======
+*/ .maincontainer {
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
   display: flex;
   justify-content: space-between;
 }

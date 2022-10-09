@@ -27,7 +27,11 @@
     flex: 2;
     background-size: cover;
     background-repeat: no-repeat;
+<<<<<<< HEAD
     
+=======
+    /* background-image: url('../../Webiste/assets/Rectangle\ 17.png'); */
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
     overflow: hidden;
   }
   .box-form .left .overlay {

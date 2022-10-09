@@ -11,9 +11,15 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
   const handleSubmit = () => {
 
 
+<<<<<<< HEAD
     console.log(formData);
     dispatch(add(formData))
     history('/horse')
+=======
+    console.log(formData.Trainer);
+    dispatch(add(formData))
+    // history('/horse')
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
     setFormData({
       NameEn: "",
@@ -22,14 +28,20 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
       RaceCourse: '',
       Breeder: "",
       Remarks: "",
+<<<<<<< HEAD
       ActiveTrainer: '',
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
       Trainer: '',
       Sex: "",
       Horses: '',
       Color: "",
       KindOfHorse: "",
+<<<<<<< HEAD
       HorseRating: "",
       OverAllRating: ""
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
 
@@ -56,6 +68,7 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
               setFormData({ ...formData, KindOfHorse: e.target.value })
             }
           />
+<<<<<<< HEAD
           <input
             type="text"
             placeholder="HorseRating"
@@ -74,6 +87,8 @@ const OtherInfo = ({ formData, setFormData, page, setPage, x, setX }) => {
               setFormData({ ...formData, OverAllRating: e.target.value })
             }
           />
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
 
 
 
