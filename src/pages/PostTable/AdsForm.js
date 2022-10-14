@@ -38,32 +38,9 @@ const AdsForm = () => {
     } catch (error) {
       alert(error.message)
     }
-<<<<<<< HEAD
   }
 
   const areAllFieldsFilled = (image !== undefined) && (DescriptionAr !== "") && (DescriptionEn !== '')
-=======
-    const submit = async event => {
-      event.preventDefault()
-     try {
-        const formData = new FormData();
-        formData.append("image", image)
-        formData.append("TitleEn", TitleEn)
-        formData.append("TitleAr", TitleAr)
-        formData.append("SecondTitleEn", SecondTitleEn)
-        formData.append("SecondTitleAr", SecondTitleAr)
-        formData.append("DescriptionAr", DescriptionAr)
-        formData.append("DescriptionEn", DescriptionEn)
-        dispatch(add(formData));
-        console.log(formData)
-         history('/ads')
-     } catch (error) {
-        alert(error.message)
-     }
-    }
-    
-    const areAllFieldsFilled = (image !== undefined) && (DescriptionAr !== "") && (DescriptionEn !== '')
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
   return (
     <>
       <Header />

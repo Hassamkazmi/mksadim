@@ -16,9 +16,6 @@ const News = () => {
   const handleRemove = (Id) => {
     dispatch(remove(Id));
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
   };
  
   useEffect(() => {
@@ -27,21 +24,6 @@ const News = () => {
   }, []);
  
 
-=======
-
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
-  };
- 
-  useEffect(() => {
-    dispatch(fetchTrainer(trainer));
-
-  }, []);
-<<<<<<< HEAD
- 
-
-=======
->>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
   if (status === STATUSES.LOADING) {
     return (
       <h2

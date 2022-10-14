@@ -134,7 +134,6 @@ float: right;
     border-radius: 10px;
   }
 
-<<<<<<< HEAD
   .css-1s2u09g-control {
     border-radius: 30px !important;
     width: 105% !important;
@@ -144,16 +143,6 @@ float: right;
     border-radius: 30px !important;
     border: none;
     width: 105% !important;
-=======
-<<<<<<< HEAD
-.maincontainer {
-=======
-*/ .maincontainer {
->>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
-  display: flex;
-  justify-content: space-between;
-}
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
 
   }
 

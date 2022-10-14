@@ -43,7 +43,6 @@ const NewsForm = () => {
           marginTop: "30px",
         }}
       >
-<<<<<<< HEAD
               <div className='Headers'>
 
 
@@ -98,72 +97,15 @@ const NewsForm = () => {
                   <input type="file" size="60" onChange={fileSelected} />
                   <button type='submit' className='SubmitButton' >Add Jockey</button>
 
-=======
-       <div className="container maincontainer">
-          <div className="row">
-            <div className="col-sm-12">
-              <form onSubmit={submit}>
-                <div className="form-row formMain">
-                  <div className="form-group col-md-5 col-lg-5 col-sm-12 ">
-                    <input
-                      type="Text"
-                      className="form-control"
-                      placeholder="Title English"
-                      name="Trainer Name"
-                      onChange={e => setName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="form-group col-md-5">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Trainer Age"
-                      required
-                      name="Age"
-                      onChange={e => setAge(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="form-row formMain">
-                  
-                 
-                </div>
-            
-
-                <div className="formBtnDiv container">
-                  <label>
-                    Enter your File
-                    <input
-                      onChange={fileSelected}
-                      type="file" accept="image/*"
-                      className="fileInput"
-                      name="myFile"
-                    ></input>
-                  </label>
-                  <button type="submit" disabled={!areAllFieldsFilled} className="btn btn-primary">
-                    Submit
-                  </button>
-                </div>
-                <div className="ImageContainer">
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
                 </div>
               </form>
             </div>
           </div>
-<<<<<<< HEAD
 
 
         </div>
       </div>
 
-=======
-        </div>
-      </div>
-    </div>
-    
-  </div>
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
     </>
     
   );

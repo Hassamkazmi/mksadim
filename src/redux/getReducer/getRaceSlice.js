@@ -32,23 +32,8 @@ const getRaceSlice = createSlice({
 
 export const {setRace, setStatus} = getRaceSlice.actions;
 export default getRaceSlice.reducer;
-<<<<<<< HEAD
 export const fetchrace = createAsyncThunk('getrace/fetch', async () => {
     const res = await axios.get(`${API}/getrace?keyword=&limit=&page=`);
     const data = res.data;
     return data.RenderData;
-=======
-//https://mksbackend.herokuapp.com/api/v1/getrace
-export const fetchrace = createAsyncThunk('getrace/fetch', async () => {
-<<<<<<< HEAD
-    const res = await axios.get(`${API}/getrace?keyword=&page=1`);
-    const data = res.data;
-
-    return data.RenderData;
-=======
-    const res = await axios.get(`${API}/getrace`);
-    const data = res.data;
-    return data.data;
->>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
->>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
 })
