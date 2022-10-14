@@ -8,13 +8,15 @@ import { remove } from "../../redux/postReducer/PostSponsor";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+import {BiEdit} from 'react-icons/bi'
+import ScrollContainer from "react-indiana-drag-scroll";
 
 const News = () => {
   const dispatch = useDispatch();
   const { data: sponsor, status } = useSelector((state) => state.sponsor);
   useEffect(() => {
     dispatch(fetchSponsor());
-  }, [fetchSponsor]);
+  }, []);
   const handleRemove = async (Id) => {
    await dispatch(remove(Id));
    fetchSponsor();
@@ -53,7 +55,27 @@ const News = () => {
             marginTop: "30px",
           }}
         >
-          <>
+           <div className="Header ">
+              <h4>News Listings</h4>
+
+              <div>
+                <h6
+                  style={{
+                    marginRight: "100px",
+                    alignItems: "center",
+                    color: "rgba(0, 0, 0, 0.6)",
+                  }}
+                >
+                  Toggle to Arabic
+                </h6>
+
+                <Link to="/sponsorform">
+                  <button>Add News</button>
+                </Link>
+              </div>
+            </div>
+            <div className="div_maint">
+          <ScrollContainer className="scroll-container">
             <Table striped bordered hover>
               <thead>
                 <tr>
@@ -73,13 +95,16 @@ const News = () => {
                       <tr className="tr_table_class">
                         <td>{index}</td>
                         <td>
-                          <img src={item.image} alt="" />
+                          <img src={item.image} alt=""  style={{
+                                  width:'30px',height:'30px'
+                                }}/>
                         </td>
                         <td>{item.TitleEn}</td>
                         <td>{item.TitleAr}</td>
                         <td>{item.DescriptionEn}</td>
                         <td>{item.DescriptionAr}</td>
                         <td className="table_delete_btn1">
+                          <BiEdit/>
                           <MdDelete
                             style={{
                               fontSize: "22px",
@@ -93,15 +118,10 @@ const News = () => {
                 })}
               </tbody>
             </Table>
-          </>
+          </ScrollContainer>
+          </div>
         </div>
-        <span className="plusIconStyle">
-        <Link to='/sponsorform'>
-        <BsPlusCircleFill style={{
-          fontSize:'22px'
-        }}/>
-        </Link>
-        </span>
+       
       </div>
     </div>
     </>

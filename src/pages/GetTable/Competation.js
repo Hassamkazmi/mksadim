@@ -49,7 +49,9 @@ const Statistic = () => {
    <div className="page">
       <Sidebar />
       <div className="rightsidedata">
-        <div
+
+      {/* <div className="newtables"></div> */}
+        {/* <div
           style={{
             marginTop: "30px",
           }}
@@ -95,16 +97,8 @@ const Statistic = () => {
               </tbody>
             </Table>
           </>
-        </div>
-        <span className="plusIconStyle">
-          <Link to="/trainerform">
-            <BsPlusCircleFill
-              style={{
-                fontSize: "22px",
-              }}
-            />
-          </Link>
-        </span>
+        </div> */}
+       
       </div>
     </div>
    </>

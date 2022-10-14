@@ -1,55 +1,78 @@
-import React,{useState} from "react";
-import "./CSS/login.css";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Error from '../Components/Common/Error'
+import { userLogin } from '../redux/postReducer/UserPost'
+import '../Components/CSS/login.css'
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [username, setusername] = useState("");
-  const [password, setpassword] = useState("");
-  const [authenticated, setauthenticated] = useState(localStorage.getItem(localStorage.getItem("authenticated")|| false));
-  const users = [{ username: "admin", password: "admin" }];
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const account = users.find((user) => user.username === username);
-    if (account && account.password === password) {
-        setauthenticated(true)
-        localStorage.setItem("authenticated", true);
-        navigate("/dashboard");
-    } 
-  };
+  const { loading, userInfo, error ,success} = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+  const [customError, setCustomError] = useState(null)
+
+  const { register, handleSubmit } = useForm()
+
+  const navigate = useNavigate()
+
+  // redirect authenticated user to profile screen
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/dashboard')
+    }
+  }, [navigate, userInfo])
+
+  const submitForm = (data) => {
+    dispatch(userLogin(data))  
+     
+  }
+
+  // const AllFilled = (register.Email !== '') && (register.password !== "")
+  // console.log(AllFilled,'register')
   return (
-    <div>
-      <div class="box-form">
-        <div class="left">
-          <div class="overlay">
-            <h3>MKS Racing</h3>
-          </div>
-        </div>
-        <div class="right">
-          <div class="inputs">
-           <form onSubmit={handleSubmit}>
-           <input type="text"
-             placeholder="User Name"
-             name="Username"
-              value={username}
-              onChange={(e) => setusername(e.target.value)}
-              required
-             />
-            <br />
-            <input type="password" placeholder="Password"
-            name="Password"
-            onChange={(e) => setpassword(e.target.value)} 
-            required/>
-             <input className="btnbutton" type="submit" value="Submit" />
-           </form>
-          </div>
-         
-        </div>
-      </div>
+    <>
+    <div className='loginheader'>
+      <h2>
+        MKS RACING DASHBOARD
+      </h2>
     </div>
-  );
-};
+   <div className='registrationform'>
+   
+   <form onSubmit={handleSubmit(submitForm)}>
+   <h3 className='WelcomeAdmin'>Welcome Admin</h3>
+      {error && <Error>{error}</Error>}
+      {customError && <Error>{customError}</Error>}
+      <div className='form-group'>
+      
+        <input
+          type='email'
+          className='form-input'
+          placeholder='Email'
+          {...register('Email')}
+          required
+        />
+      </div>
+     
+    
+      <div className='form-group'>
+      
+        <input
+          type='text'
+          placeholder='Password'
+          className='form-input'
+          {...register('password')}
+          required
+        />
+      </div>
+      <button type='submit' className='buttonRegister' 
+      disabled={loading}>
+        Login
+      </button>
+    </form>
+   </div>
 
-export default Login;
+    </>
+  )
+}
 
-
+export default Login

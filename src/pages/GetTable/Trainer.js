@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
-import { BsPlusCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 
@@ -16,12 +15,15 @@ const News = () => {
   const { data: trainer, status } = useSelector((state) => state.trainer);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
-    window.location.reload()
+
   };
+ 
   useEffect(() => {
-    dispatch(fetchTrainer());
+    dispatch(fetchTrainer(trainer));
 
   }, []);
+ 
+
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -55,18 +57,41 @@ const News = () => {
           style={{
             marginTop: "30px",
           }}
-        >
+
+        >    <div className='Header '>
+
+        <h4>RaceCourse Listings</h4>
+        
+        
+        
+        
+        
+        
+        
+        <div>
+          <h6 style={{ marginRight: "100px", alignItems: "center", color: "rgba(0, 0, 0, 0.6)" }}>Toggle to Arabic</h6>
+        
+          <Link to="/trainerform">
+            <button>Add Trainer</button>
+          </Link>
+        </div>
+        
+        </div>
+
           <>
-            <Table striped bordered hover>
+          <div className="div_maint">
+            <table >
               <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Image</th>
-                  <th>Name</th>
-                  <th>Age</th>
+                <tr>              
+                <th>Name</th>
+                <th>Age</th>
                   <th>Detail</th>
-                  <th>Remarks</th>
+                                   <th>Image</th>
+               
+              
+                  
                   <th>Action</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -74,14 +99,14 @@ const News = () => {
                   return (
                     <>
                       <tr className="tr_table_class">
-                        <td>{index}</td>
-                        <td>
-                          <img src={item.image} alt="" />
-                        </td>
+        
+                    
                         <td>{item.Name}</td>
                         <td>{item.Age}</td>
                         <td>{item.Detail}</td>
-                        <td>{item.Remarks}</td>
+                        <td>
+                          <img src={item.image} alt="" />
+                        </td>                        
                         <td className="table_delete_btn1">
                           <MdDelete
                             style={{
@@ -95,18 +120,11 @@ const News = () => {
                   );
                 })}
               </tbody>
-            </Table>
+            </table>
+            </div>
           </>
         </div>
-        <span className="plusIconStyle">
-          <Link to="/trainerform">
-            <BsPlusCircleFill
-              style={{
-                fontSize: "22px",
-              }}
-            />
-          </Link>
-        </span>
+       
       </div>
     </div>
    </>

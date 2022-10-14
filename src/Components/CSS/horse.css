@@ -1,145 +1,151 @@
-.progress-bar {
-  width: 100vw;
-  height: 15px;
-  background-color: white;
-  margin-bottom: 50px;
+.div_maintb1 {
+  width: calc(100vw - 100px);
+  overflow: scroll;
 }
 
-.progress-bar div {
+.div_maintb1 table {
+  border-spacing: 0;
+  margin-top: 10px;
+}
+
+.div_maintb1 th {
+  position: sticky;
+  top: 0;
+
+  color: #d1d1d1;
+
+  min-width: 300px;
+  padding: 6px;
+
+  font-weight: normal;
+}
+
+.div_maintb1 td {
+  padding: 6px;
+  color: black;
+}
+
+.div_maintb1 th:nth-child(1),
+.div_maintb1 td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  border-radius: 20px;
+}
+
+.div_maintb1 th:nth-child(1) {
+  z-index: 300;
+}
+
+.myselecthorse{
   width: 100%;
-  height: 100%;
-  background-color: #19469d;
-}
+height: 58px;
+left: 1414px;
+top: 248px;
+background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
+border-radius: 20px;
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
-  gap: 0.25em;
 }
-
-.form-group:last-child {
-  margin: 0;
+.myselecthorsedata{
+display: flex;
+align-items: center;
+justify-content: space-around;
 }
-
-.form-group > label {
-  font-weight: bold;
-  font-size: 0.8em;
-  color: #333;
+.myselecthorsedata > span{
+flex: 1;
+color: #fff;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 17px;
+padding: 18px;
 }
-
-.form-group > input {
-  border: 1px solid #19469d;
-  border-radius: 0.25em;
-  font-size: 1rem;
-  padding: 0.25em;
-}
-
-.step-title {
-  margin: 0;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  text-align: center;
-}
-
-input {
-  border: 2px solid #19469d;
-  border-radius: 5px;
-  height: 55px;
-  display: block;
-  margin-bottom: 1rem;
+.myselectdata{
+  margin-top: 15px;
   width: 100%;
+  height: 58px;
+  left: 1414px;
+  top: 248px;
+  border-radius: 20px;
 }
 
-.button-area {
+.myselectiondata{
   display: flex;
-  align-content: space-between;
+align-items: center;
+justify-content: space-around;
 }
-
-.DataAr {
-  direction: rtl;
-}
-
-.btndiv > button {
-  margin-top: 120px;
-  background-color: #19469d;
-  border-radius: 10px;
-  padding: 10px 20px;
-  justify-content: end;
-  color: white;
-  float: right;
-  margin-right: 40px;
-}
-
-.form-row.formMain {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.maincontainer {
-  margin-top: 2rem;
-}
-
-textarea {
-  height: 22rem;
-}
-
-.formBtnDiv {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.formBtnDiv button {
-  background: #19469d;
-}
-
-.fileInput {
-  color: #fff;
-}
-
-.ImageContainer img {
-  justify-content: left;
-  align-items: flex-start;
-  height: 300px;
-  width: 299px;
-}
-
-.fileInput input {
-  background: #19469d;
-}
-
-label {
+.myselectiondata > span{
+  flex: 1;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
   padding: 10px;
+  margin-top: 18px;
+  margin-right: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  height: 55px;
+  }
+  .myselectiondata > span:first-child{
+    width: 116px;
+height: 58.01px;
+left: 398px;
+top: 325.01px;
 
-  display: table;
-  color: #fff;
+background: rgba(0, 0, 0, 0.5);
+border: 1px solid rgba(0, 0, 0, 0.1);
+border-radius: 20px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 21px;
+line-height: 25px;
+color: #FFFFFF;
+  }
+  .myselectiondata > span > Select {
+   padding: 10px;
+  }
+  .sbmtbtn > button{
+    width: 186px;
+height: 51px;
+left: 1230px;
+margin-top: 20px;
+top: 955px;
+background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
+border-radius: 20px;
+border: none;
+float: right;
+  }
+/* 
+  .css-1s2u09g-control {
+    border: none !important;
+  }
+  .css-1s2u09g-control:focus{
+    border: none !important;
+  }
+  .myselectiondata > span > p{
+    font-size: 18px;
+    padding: 10px;
+  } */
 
-  background: #19469d;
-  cursor: pointer;
-}
+  .col-sm{
+    margin: 10px;
+    border-radius: 10px;
+  }
 
-*/ .maincontainer {
-  display: flex;
-  justify-content: space-between;
-}
+  .css-1s2u09g-control {
+    border-radius: 30px !important;
+    width: 105% !important;
+    height: 60px;
+  }
+  .css-1s2u09g-control:focus {
+    border-radius: 30px !important;
+    border: none;
+    width: 105% !important;
 
-.maincontainer {
-  justify-content: center;
-}
+  }
 
-.btnDivide {
-  display: flex;
-  justify-content: space-between;
-}
-
-.btnDivide > button {
-  margin-right: 40px;
-  color: white;
-  margin-top: 120px;
-  background-color: #19469d;
-  border-radius: 10px;
-  padding: 10px 20px;
+  .css-1okebmr-indicatorSeparator {
+    margin-top: 0px !important;
 }

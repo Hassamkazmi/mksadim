@@ -1,25 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchNews, STATUSES } from "../../redux/getReducer/getNewsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Table from "react-bootstrap/Table";
+
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostNewsSlice";
-import { BsPlusCircleFill } from 'react-icons/bs';
-import { Link ,useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+import { BiEdit } from "react-icons/bi";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 const News = () => {
   const dispatch = useDispatch();
+  const [pagenumber, setPageNumber] = useState(1);
+
+  const previousPageHandler = () => {
+    setPageNumber((pagenumber) => pagenumber - 1);
+  };
+  const nextPageHandler = () => {
+    setPageNumber((pagenumber) => pagenumber + 1);
+  };
+
   const history = useNavigate();
   const { data: allnews, status } = useSelector((state) => state.news);
   useEffect(() => {
-    dispatch(fetchNews());
-  },[]);
+    dispatch(fetchNews({ pagenumber }));
+  }, []);
   const handleRemove = (Id) => {
     dispatch(remove(Id));
-    history('/news')
+    history("/news");
   };
+
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -45,64 +57,124 @@ const News = () => {
   }
   return (
     <>
-    <Header />
-    <div className="page">
-      <Sidebar />
-      <div className="rightsidedata">
-        <div
+      <Header />
+      <div className="page">
+        <Sidebar />
+        <div className="rightsidedata">
+          <div
+            style={{
+              marginTop: "30px",
+            }}
+          >
+            <div className="Header ">
+              <h4>News Listings</h4>
+
+              <div>
+                <h6
+                  style={{
+                    marginRight: "100px",
+                    alignItems: "center",
+                    color: "rgba(0, 0, 0, 0.6)",
+                  }}
+                >
+                  Toggle to Arabic
+                </h6>
+
+                <Link to="/newsform">
+                  <button>Add News</button>
+                </Link>
+              </div>
+            </div>
+            <>
+              <div className="div_maint">
+                <ScrollContainer className="scroll-container">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Title En</th>
+
+                        <th>Sub Title En</th>
+
+                        <th>Description En</th>
+                        <th>Title Ar</th>
+                        <th>Sub Title Ar</th>
+                        <th>Description Ar</th>
+                        <th>Image</th>
+
+                        <th>Action</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allnews.map((item, index) => {
+                        return (
+                          <tr className="tr_table_class" key={index}>
+                            <td>{item.TitleEn}</td>
+
+                            <td>{item.SecondTitleEn}</td>
+
+                            <td>{item.DescriptionEn}</td>
+
+                            <td>{item.TitleAr}</td>
+                            <td>{item.DescriptionAr}</td>
+                            <td>{item.SecondTitleAr}</td>
+                            <img
+                              src={item.image}
+                              alt=""
+                              style={{
+                                width: "30px",
+                                height: "30px",
+                              }}
+                            />
+                            <td className="table_delete_btn1">
+                              <BiEdit />
+                              <MdDelete
+                                style={{
+                                  fontSize: "22px",
+                                }}
+                                onClick={() => handleRemove(item.id)}
+                              />
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </ScrollContainer>
+              </div>
+            </>
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          justifyContent: "space-between",
+        }}
+      >
+        <button
+          className="button btn btn-primary"
+          onClick={previousPageHandler}
+          disabled={pagenumber === 1}
+        >
+          Previous
+        </button>
+        <p
           style={{
-            marginTop: "30px",
+            marginTop: "20px",
           }}
         >
-          <>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>Image</th>
-                  <th>Title En</th>
-                  <th>Title Ar</th>
-                  <th>Description En</th>
-                  <th>Description Ar</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allnews.map((item, index) => {
-                  return (
-                    <tr className="tr_table_class" key={index}>
-                        <td>{index}</td>
-                        <td>
-                          <img src={item.image} alt="" />
-                        </td>
-                        <td>{item.TitleEn}</td>
-                        <td>{item.TitleAr}</td>
-                        <td>{item.DescriptionEn}</td>
-                        <td>{item.DescriptionAr}</td>
-                        <td className="table_delete_btn1">
-                          <MdDelete
-                            style={{
-                              fontSize: "22px",
-                            }}
-                            onClick={() => handleRemove(item._id)}
-                          />
-                        </td>
-                      </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </>
-        </div>
-        <span className="plusIconStyle">
-        <Link to='/newsform'>
-        <BsPlusCircleFill style={{
-          fontSize:'22px'
-        }}/>
-        </Link>
-        </span>
+          Page {pagenumber}
+        </p>
+        <button
+          className="button btn btn-primary"
+          onClick={nextPageHandler}
+          disabled={allnews.length <= 1}
+        >
+          Next
+        </button>
       </div>
-    </div>
     </>
   );
 };
