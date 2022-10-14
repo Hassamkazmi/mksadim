@@ -11,6 +11,10 @@ const RaceOne = ({ formData, setFormData, page, setPage, x, setX }) => {
 useEffect(()=>{
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
   dispatch(fetchracecourse())
 
 
@@ -19,8 +23,16 @@ useEffect(()=>{
 
   const handleNext = () => {
    
+<<<<<<< HEAD
     setPage(page+1)
     setX(1000)
+=======
+<<<<<<< HEAD
+    setPage(page+1)
+    setX(1000)
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
     
       if (
        formData.raceName !== '' &&
@@ -49,7 +61,11 @@ useEffect(()=>{
           placeholder="RaceName"
           required
           className="form-group"
+<<<<<<< HEAD
           value={formData.raceName}
+=======
+    value={formData.raceName}
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
           onChange={(e) =>
             setFormData({ ...formData, raceName: e.target.value })
           }

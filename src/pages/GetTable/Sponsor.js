@@ -8,8 +8,15 @@ import { remove } from "../../redux/postReducer/PostSponsor";
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
 import {BiEdit} from 'react-icons/bi'
 import ScrollContainer from "react-indiana-drag-scroll";
+=======
+<<<<<<< HEAD
+import {BiEdit} from 'react-icons/bi'
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
 
 const News = () => {
   const dispatch = useDispatch();
@@ -121,7 +128,17 @@ const News = () => {
           </ScrollContainer>
           </div>
         </div>
+<<<<<<< HEAD
        
+=======
+        <span className="plusIconStyle">
+        <Link to='/sponsorform'>
+        <BsPlusCircleFill style={{
+          fontSize:'34px'
+        }}/>
+        </Link>
+        </span>
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
       </div>
     </div>
     </>

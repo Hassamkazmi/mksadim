@@ -25,12 +25,21 @@ import RaceCourse from './pages/GetTable/RaceCourse';
 import RaceCourseForm from './pages/PostTable/RaceCourseForm';
 import JockeyForm from './pages/PostTable/JockeyForm';
 import RaceForm from './pages/PostTable/RaceForm/RaceForm';
+<<<<<<< HEAD
 import ProtectedRoute from './Components/Common/ProtectedRoute';
 import SelectHorse from './pages/PostTable/SelectHorse'
 import Owner from './pages/GetTable/Owner';
 import OwnerForm from './pages/PostTable/OwnerForm';
 import SliderForm from './pages/PostTable/SliderForm';
 import Slider from './pages/GetTable/Slider';
+=======
+<<<<<<< HEAD
+import NewOne from './pages/GetTable/NewOne'
+import ScrolTable from './pages/GetTable/ScrolTable';
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
 
 function App() {
 
@@ -41,7 +50,10 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route exact path='/' element={<Login />} />
+<<<<<<< HEAD
               <Route element={<ProtectedRoute />}>
+=======
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/racecourse' element={<RaceCourse />} />
               <Route path='/races' element={<Races />} />
@@ -62,12 +74,21 @@ function App() {
               <Route path='/racecourseform' element={<RaceCourseForm />} />
               <Route path='/jockeyform' element={<JockeyForm />} />
               <Route path='/raceform' element={<RaceForm />} />
+<<<<<<< HEAD
               <Route path='/addhorse' element={<SelectHorse />} />
               <Route path='/owner' element={<Owner />} />
               <Route path='/ownerform' element={<OwnerForm/>} />
               <Route path='/sliderform' element={<SliderForm/>} />
               <Route path='/slider' element={<Slider />} />
               </Route>
+=======
+<<<<<<< HEAD
+              <Route path='/newone' element={<NewOne />} />
+              <Route path='/scroltable' element={<ScrolTable />} />
+
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
             </Routes>
           </BrowserRouter>
         </div>

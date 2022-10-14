@@ -7,6 +7,7 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <Link to='/dashboard' className='mylink'>Dashbaord</Link>
+<<<<<<< HEAD
       <Accordion>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Races</Accordion.Header>
@@ -28,6 +29,11 @@ const Sidebar = () => {
       </Accordion.Item>
     </Accordion>
       
+=======
+      <Link to='/racecourse' className='mylink'>RaceCourse</Link>
+      <Link to='/races' className='mylink'>Races</Link>
+      <Link to='/horse' className='mylink'>Horse</Link>
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
       <Link to='/jockey' className='mylink'>Jockey</Link>
       <Link to='/trainer' className='mylink'>Trainer</Link>
       <Link to='/owner' className='mylink'>Owner</Link>

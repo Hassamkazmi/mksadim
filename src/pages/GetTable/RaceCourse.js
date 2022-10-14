@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchracecourse, STATUSES } from "../../redux/getReducer/getRaceCourseSlice";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import '../../Components/CSS/SubTable.css'
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostRaceCourse";
@@ -9,14 +10,34 @@ import { remove } from "../../redux/postReducer/PostRaceCourse";
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 import {BiEdit} from 'react-icons/bi'
+=======
+import Table from "react-bootstrap/Table";
+import { MdDelete } from "react-icons/md";
+import { remove } from "../../redux/postReducer/PostRaceCourse";
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { Link } from "react-router-dom";
+import Header from "../../Components/Common/Header";
+<<<<<<< HEAD
+import {BiEdit} from 'react-icons/bi'
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
 
 const News = () => {
   const dispatch = useDispatch();
   const { data: racecourse, status } = useSelector((state) => state.racecourse);
   useEffect(() => {
     dispatch(fetchracecourse());
+<<<<<<< HEAD
   }, [dispatch]);
 
+=======
+  }, []);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
   const handleRemove =  (Id) => {
 
     
@@ -61,6 +82,7 @@ const News = () => {
             marginTop: "30px",
           }}
         >
+<<<<<<< HEAD
             <div className='Header '>
 
 <h4>RaceCourse Listings</h4>
@@ -94,6 +116,20 @@ const News = () => {
                   <th>Image</th>
                 
              
+=======
+          <>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>id</th>
+<<<<<<< HEAD
+                  <th>Image</th>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+                  <th>Country</th>
+                  <th>TrackName</th>
+                  <th>TrackLength</th>
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
             <th>Actions</th>
                 </tr>
               </thead>
@@ -102,6 +138,7 @@ const News = () => {
                   return (
                     <>
                       <tr className="tr_table_class">
+<<<<<<< HEAD
                        
                         <td>{item.TrackName}</td>
                         <td>{item.TrackLength}</td>
@@ -116,6 +153,23 @@ const News = () => {
                      
                         <td className="table_delete_btn1">
                         <BiEdit/>
+=======
+                        <td>{index}</td>
+<<<<<<< HEAD
+                       <td><image src ={item.image}/></td>
+=======
+                       
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+                        <td>{item.Country}</td>
+                        <td>{item.TrackName}</td>
+                        <td>{item.TrackLength}</td>
+                     
+                        <td className="table_delete_btn1">
+<<<<<<< HEAD
+                        <BiEdit/>
+=======
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
                           <MdDelete
                             style={{
                               fontSize: "22px",
@@ -128,6 +182,7 @@ const News = () => {
                   );
                 })}
               </tbody>
+<<<<<<< HEAD
             </table>
   
         </div>
@@ -135,6 +190,20 @@ const News = () => {
       </div>
     </div>
     </div>
+=======
+            </Table>
+          </>
+        </div>
+        <span className="plusIconStyle">
+        <Link to='/racecourseform'>
+        <BsPlusCircleFill style={{
+          fontSize:'22px'
+        }}/>
+        </Link>
+        </span>
+      </div>
+    </div>
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
     </>
   );
 };

@@ -34,7 +34,15 @@ export const {setjockey, setStatus} = getjockeyslice.actions;
 export default getjockeyslice.reducer;
 //https://mksbackend.herokuapp.com/api/v1/Jockeyget
 export const fetchjockey = createAsyncThunk('getjockey/fetch', async () => {
+<<<<<<< HEAD
     const res = await axios.get(`${API}/Jockeyget?keyword=&page=`);
+=======
+<<<<<<< HEAD
+    const res = await axios.get(`${API}/Jockeyget?keyword=&page=1`);
+=======
+    const res = await axios.get(`${API}/Jockeyget`);
+>>>>>>> 4c3634b98efdd44e0c1cd6fe257405bf59fef281
+>>>>>>> bdfbae53913aa59f758c8c775b68562fcc6b65bd
     const data = res.data;
     return data.data;
 })
