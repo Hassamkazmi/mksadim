@@ -32,6 +32,7 @@ import OwnerForm from './pages/PostTable/OwnerForm';
 import SliderForm from './pages/PostTable/SliderForm';
 import Slider from './pages/GetTable/Slider';
 
+
 function App() {
 
   return (
@@ -67,6 +68,9 @@ function App() {
               <Route path='/ownerform' element={<OwnerForm/>} />
               <Route path='/sliderform' element={<SliderForm/>} />
               <Route path='/slider' element={<Slider />} />
+   
+             
+              
               </Route>
             </Routes>
           </BrowserRouter>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchAds, STATUSES } from "../../redux/getReducer/getAdsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Table from "react-bootstrap/Table";
+
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostAds";
 import { BsPlusCircleFill } from 'react-icons/bs';

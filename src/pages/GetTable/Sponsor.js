@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchSponsor, STATUSES } from "../../redux/getReducer/getSponsorSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Table from "react-bootstrap/Table";
+
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostSponsor";
-import { BsPlusCircleFill } from 'react-icons/bs';
+
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 import {BiEdit} from 'react-icons/bi'

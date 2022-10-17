@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../Components/Common/Sidebar";
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Table from "react-bootstrap/Table";
+
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 
 const News = () => {
   const dispatch = useDispatch();
-  const history = useNavigate();
+ 
   
   const { data: trainer, status } = useSelector((state) => state.trainer);
   const handleRemove = (Id) => {
@@ -20,6 +20,7 @@ const News = () => {
  
   useEffect(() => {
     dispatch(fetchTrainer(trainer));
+
 
   }, []);
  

@@ -5,7 +5,7 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import "react-toastify/dist/ReactToastify.css";
 import { fetchTrainer } from "../../../redux/getReducer/getTrainerSlice";
 import { fetchjockey } from "../../../redux/getReducer/getJockeySlice";
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -15,16 +15,16 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 
 
-const RaceForm = () => {
-  
+const RaceTesting = ({ formData, setFormData,page }) => {
+
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: horse } = useSelector((state) => state.horse);
   const history = useNavigate();
 
 
-    let horseoptions = horse.map(function (item) {
+  let horseoptions = horse.map(function (item) {
     return {
-      id:item._id,
+      id: item._id,
       value: item.NameEn,
       label: item.NameEn,
       jockeyvalue: item.JockeyData.map((item) => item.Name),
@@ -33,39 +33,15 @@ const RaceForm = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [RaceKind, setRaceKind] = useState("");
-  const [raceName, setraceName] = useState("");
-  const [Description, setDescription] = useState("");
-  const [DayNTime, setDayNTime] = useState("");
-  const [Weather, setWeather] = useState("");
-  const [RaceStatus, setRaceStatus] = useState("");
-  const [RaceCourse, setRaceCourse] = useState("");
-  const [Horses, setHorses] = useState("");
+
 
   useEffect(() => {
     dispatch(fetchHorse());
     dispatch(fetchracecourse());
-  }, [dispatch]); 
-  
+  }, [dispatch]);
 
-  const submit = async (event) => {
-    event.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("RaceKind", RaceKind);
-      formData.append("raceName", raceName);
-      formData.append("Description", Description);
-      formData.append("DayNTime", DayNTime);
-      formData.append("Weather", Weather);
-      formData.append("RaceStatus", RaceStatus);
-      formData.append("RaceCourse", RaceCourse);
-      formData.append("Horses", Horses);
-      dispatch(add(formData));
-      history("/races");
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+
+
 
   return (
     <>
@@ -80,14 +56,15 @@ const RaceForm = () => {
           >
             <div className="Headers">Add Race</div>
             <div className="form">
-              <form onSubmit={submit}>
+          
                 <div className="row ">
                   <div className="col-sm">
                     <input
                       placeholder="Race Name"
-                      onChange={(e) => setraceName(e.target.value)}
+                      onChange={(e) => setFormData({ ...formData, raceName: e.target.value })}
+
                       name="Name"
-                      value={raceName}
+                      value={formData.raceName}
                       required
                     ></input>
                   </div>
@@ -104,9 +81,9 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Description"
-                      onChange={(e) => setDescription(e.target.value)}
+                      onChange={(e) => setFormData({ ...formData, Description: e.target.value })}
                       name="Name"
-                      value={Description}
+                      value={formData.Description}
                       required
                     ></input>
                   </div>
@@ -122,12 +99,12 @@ const RaceForm = () => {
                 <div className="row ">
                   <div className="col-sm">
                     <select
-                      onChange={(e) => setRaceKind(e.target.value)}
-                      value={RaceKind}
+                      onChange={(e) => setFormData({ ...formData, RaceKind: e.target.value })}
+                      value={formData.RaceKind}
                     >
                       <option value="0">Race Kind</option>
                       <option value="Flat">Flat</option>
-                      <option value="Truf">Truf</option>
+                      <option value="Turf">Truf</option>
                     </select>
                   </div>
 
@@ -142,10 +119,10 @@ const RaceForm = () => {
                 <div className="row ">
                   <div className="col-sm">
                     <select
-                      onChange={(e) => setWeather(e.target.value)}
-                      value={Weather}
+                      onChange={(e) => setFormData({ ...formData, Weather: e.target.value })}
+                      value={formData.Weather}
                     >
-                      <option value="0">Wheather</option>
+                      <option value="0">Weather</option>
                       <option value="Sunny">Sunny</option>
                       <option value="Cloudy">Cloudy</option>
                     </select>
@@ -153,24 +130,24 @@ const RaceForm = () => {
 
                   <div className="col-sm">
                     <select style={{ direction: "rtl" }}>
-                      <option value="0">Wheather</option>
+                      <option value="0">Weather</option>
                       <option value="RaceKind">Weather</option>
                       <option value="RaceKind">weather</option>
-                      <option value="RaceKind">wEATHER</option>
+                      <option value="RaceKind">weather</option>
                     </select>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-sm">
                     <select
-                      onChange={(e) => setRaceCourse(e.target.value)}
-                      value={RaceCourse}
+                      onChange={(e) => setFormData({ ...formData, RaceCourse: e.target.value })}
+                      value={formData.RaceCourse}
                     >
-                       <option >Select RaceCourse </option>
+                      <option >Select RaceCourse </option>
                       {racecourse.map((course) => (
                         <option value={course._id}>{course.TrackName}</option>
                       ))}
-                      
+
                     </select>
                   </div>
 
@@ -183,32 +160,33 @@ const RaceForm = () => {
                 <div className="row ">
                   <div className="col-sm">
                     <Select placeholder={<div>Type to Add Horses</div>}
-                        defaultValue={Horses}
-                        onChange={setHorses}
-                        options={horseoptions}
-                        isClearable={true}
-                        isSearchable={true}
-                        isMulti
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                      />
+                 
+                      onChange={(e) => setFormData({ ...formData, Horses: e.target.value })}
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                      value={formData.Horses}
+                      isMulti
+                      className="basic-multi-select"
+                      classNamePrefix="select"
+                    />
                   </div>
 
                   <div className="col-sm">
-                  <Select placeholder={<div>Type to Add Horses</div>}
-                        defaultValue={Horses}
-                        onChange={setHorses}
-                        options={horseoptions}
-                        isClearable={true}
-                        isSearchable={true}
-                      />
+                    <Select placeholder={<div>Type to Add Horses</div>}
+                
+        
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
                 </div>
                 <div className="row ">
                   <div className="col-sm">
                     <select
-                      onChange={(e) => setRaceStatus(e.target.value)}
-                      value={RaceStatus}
+            onChange={(e) => setFormData({ ...formData, RaceStatus: e.target.value })}
+                      value={formData.RaceStatus}
                     >
                       <option value="0">Race status</option>
                       <option value="can">Cancel</option>
@@ -227,8 +205,8 @@ const RaceForm = () => {
                     <input
                       placeholder="Day N Time"
                       type="date"
-                      onChange={(e) => setDayNTime(e.target.value)}
-                      value={DayNTime}
+                      onChange={(e) => setFormData({ ...formData, DayNTime  : e.target.value })}
+                      value={  formData.DayNTime}
                     ></input>
                   </div>
 
@@ -244,16 +222,13 @@ const RaceForm = () => {
                 <div className="RaceButtonDiv">
                   <button className="updateButton">updated</button>
 
-              
-                  <button className="SubmitButton" type="submit"
-                  
-                  // onClick={() => navigate('/addhorse')}
-                  >
+
+                  <button className="SubmitButton" onClick={() => navigate('/racehorse')}>
                     Add Horse
                   </button>
-                  
+
                 </div>
-              </form>
+     
             </div>
           </div>
         </div>
@@ -262,4 +237,4 @@ const RaceForm = () => {
   );
 };
 
-export default RaceForm;
+export default RaceTesting;
