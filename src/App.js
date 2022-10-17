@@ -45,7 +45,7 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/racecourse' element={<RaceCourse />} />
               <Route path='/races' element={<Races />} />
-              <Route path='/competition' element={<Competition />} />
+              <Route path='/competition' element={<Competition  />} />
               <Route path='/statistics' element={<Statistic />} />
               <Route path='/horse' element={<Horse />} />
               <Route path='/jockey' element={<Jockey />} />

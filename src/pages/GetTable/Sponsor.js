@@ -56,7 +56,7 @@ const News = () => {
           }}
         >
            <div className="Header ">
-              <h4>News Listings</h4>
+              <h4>Sponsor Listings</h4>
 
               <div>
                 <h6
@@ -70,21 +70,24 @@ const News = () => {
                 </h6>
 
                 <Link to="/sponsorform">
-                  <button>Add News</button>
+                  <button>Add Sponsor</button>
                 </Link>
               </div>
             </div>
             <div className="div_maint">
           <ScrollContainer className="scroll-container">
-            <Table striped bordered hover>
+            <table striped bordered hover>
               <thead>
                 <tr>
-                  <th>id</th>
-                  <th>Image</th>
+
+                  
+
+                  
                   <th>Title En</th>
-                  <th>Title Ar</th>
+                  <th>Title Ar</th>                  
                   <th>Description En</th>
                   <th>Description Ar</th>
+                  <th>Image</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -93,16 +96,18 @@ const News = () => {
                   return (
                     <>
                       <tr className="tr_table_class">
-                        <td>{index}</td>
+                  
+              
+                        <td>{item.TitleEn}</td>
+                        <td>{item.TitleAr}</td>
+                        <td>{item.DescriptionEn}</td>
+                        <td>{item.DescriptionAr}</td>
+                       
                         <td>
                           <img src={item.image} alt=""  style={{
                                   width:'30px',height:'30px'
                                 }}/>
                         </td>
-                        <td>{item.TitleEn}</td>
-                        <td>{item.TitleAr}</td>
-                        <td>{item.DescriptionEn}</td>
-                        <td>{item.DescriptionAr}</td>
                         <td className="table_delete_btn1">
                           <BiEdit/>
                           <MdDelete
@@ -117,7 +122,7 @@ const News = () => {
                   );
                 })}
               </tbody>
-            </Table>
+            </table>
           </ScrollContainer>
           </div>
         </div>

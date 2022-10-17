@@ -60,7 +60,7 @@ const News = () => {
 
         >    <div className='Header '>
 
-        <h4>RaceCourse Listings</h4>
+        <h4>Trainer Listings</h4>
         
         
         

@@ -67,7 +67,7 @@ const Horse = () => {
             }}
           >
             <div className="Header ">
-              <h4>Race Listings</h4>
+              <h4>Horse Listings</h4>
 
               <div>
                 <h6

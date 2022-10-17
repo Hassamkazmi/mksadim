@@ -3,7 +3,7 @@ import "../../Components/CSS/forms.css";
 import Sidebar from "../../Components/Common/Sidebar";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { add } from "../../redux/postReducer/PostNewsSlice";
+import { add } from "../../redux/postReducer/PostSponsor";
 import Header from "../../Components/Common/Header";
 
 const SponsorForm = () => {

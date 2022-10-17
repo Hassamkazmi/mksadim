@@ -62,7 +62,27 @@ const Ads = () => {
           }}
         >
           <>
-            <Table striped bordered hover>
+          <div className="Header ">
+              <h4>Ads Listings</h4>
+
+              <div>
+                <h6
+                  style={{
+                    marginRight: "100px",
+                    alignItems: "center",
+                    color: "rgba(0, 0, 0, 0.6)",
+                  }}
+                >
+                  Toggle to Arabic
+                </h6>
+
+                <Link to="/adsform">
+                  <button>Create Ad</button>
+                </Link>
+              </div>
+            </div>
+            <div className="div_maint">
+            <table striped bordered hover>
               <thead>
                 <tr>
                   <th>id</th>
@@ -115,7 +135,8 @@ const Ads = () => {
                 })}
                 
               </tbody>
-            </Table>
+            </table>
+            </div>
           </>
         </div>
         <span className="plusIconStyle">
