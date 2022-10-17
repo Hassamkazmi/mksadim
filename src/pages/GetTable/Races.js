@@ -101,7 +101,10 @@ const Races = () => {
                     race.map((item) => {
                       const {RaceStatus} = item;
                       return(
-                    <tr key={item._id}  >
+                       <tbody  key={item._id}  style={{
+                        marginTop:'20px'
+                       }}>
+                        <tr>
                     <td style={{
                       "backgroundColor": `${RaceStatus === "Upcoming" ? '#FF9900': RaceStatus === "cancel" ? '#FF0000' : RaceStatus === "live" ? '#5EC30F': '#FF9900'}`}} >{item.raceName}</td>
                     <td>{item.raceName}</td>
@@ -117,6 +120,7 @@ const Races = () => {
                     <td>{item.RaceStatus}</td>
                     
                   </tr>
+                       </tbody>
                       )
                     })
                   }
