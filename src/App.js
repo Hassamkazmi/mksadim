@@ -26,7 +26,7 @@ import RaceCourseForm from './pages/PostTable/RaceCourseForm';
 import JockeyForm from './pages/PostTable/JockeyForm';
 import RaceForm from './pages/PostTable/RaceForm/RaceForm';
 import ProtectedRoute from './Components/Common/ProtectedRoute';
-import SelectHorse from './pages/PostTable/SelectHorse'
+import SelectHorse from './pages/PostTable/SelectHorse';
 import Owner from './pages/GetTable/Owner';
 import OwnerForm from './pages/PostTable/OwnerForm';
 import SliderForm from './pages/PostTable/SliderForm';
