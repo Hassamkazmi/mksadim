@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostNewsSlice";
 import Header from "../../Components/Common/Header";
+import swal from "sweetalert";
 
 const NewsForm = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,12 @@ const NewsForm = () => {
       formData.append("DescriptionAr", DescriptionAr)
       formData.append("DescriptionEn", DescriptionEn)
       dispatch(add(formData));
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
       history('/news');
       console.log("Araha hu " ,formData)
     } catch (error) {

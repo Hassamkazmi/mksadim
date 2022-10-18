@@ -8,7 +8,7 @@ import { add } from "../../redux/postReducer/PostRaceCourse";
 import Header from "../../Components/Common/Header";
 import { Country_Name } from '../../Data/Country'
 import { Country_NameAr } from '../../Data/Country'
-
+import swal from "sweetalert";
 
 const RaceCourseForm = () => {
 
@@ -35,6 +35,12 @@ const RaceCourseForm = () => {
 
       dispatch(add(formData));
       history('/racecourse');
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
     } catch (error) {
       alert(error.message)
     }

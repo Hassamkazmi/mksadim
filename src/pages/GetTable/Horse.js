@@ -10,6 +10,9 @@ import { fetchHorse, STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { MdDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
+import swal from 'sweetalert';
+
+
 const Horse = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -28,7 +31,25 @@ const Horse = () => {
   }, [dispatch]);
   console.log(horse);
   const handleRemove = (Id) => {
-    dispatch(remove(Id));
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        dispatch(remove(Id));
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+
+   
     history("/horse");
   };
 

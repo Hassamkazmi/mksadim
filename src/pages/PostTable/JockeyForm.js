@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostJockey";
 import Header from "../../Components/Common/Header";
+import swal from "sweetalert";
 
 const NewsForm = () => {
     const dispatch = useDispatch();
@@ -27,6 +28,12 @@ const NewsForm = () => {
         formData.append("Age", Age)
         dispatch(add(formData));
         history('/jockey')
+        swal({
+          title: "Success!",
+          text: "Data has been added successfully ",
+          icon: "success",
+          button: "OK",
+        });
      } catch (error) {
         alert(error.message)
      }

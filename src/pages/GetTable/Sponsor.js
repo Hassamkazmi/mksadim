@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostSponsor";
+import swal from 'sweetalert';
+
+
 
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
@@ -18,7 +21,24 @@ const News = () => {
     dispatch(fetchSponsor());
   }, []);
   const handleRemove = async (Id) => {
-   await dispatch(remove(Id));
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+         dispatch(remove(Id));
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+  
    fetchSponsor();
   };
   if (status === STATUSES.LOADING) {

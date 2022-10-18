@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostTrainer";
 import Header from "../../Components/Common/Header";
+import swal from "sweetalert";
 
 const TrainerForm = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,12 @@ const TrainerForm = () => {
      
       dispatch(add(formData));
       history('/trainer');
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
    } catch (error) {
       alert(error.message)
    }

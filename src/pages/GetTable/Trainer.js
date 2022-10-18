@@ -7,6 +7,9 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { Link } from "react-router-dom";
 import Header from "../../Components/Common/Header";
+import swal from 'sweetalert';
+
+
 
 const News = () => {
   const dispatch = useDispatch();
@@ -14,7 +17,24 @@ const News = () => {
   
   const { data: trainer, status } = useSelector((state) => state.trainer);
   const handleRemove = (Id) => {
-    dispatch(remove(Id));
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        dispatch(remove(Id));
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
+   
 
   };
  

@@ -10,6 +10,7 @@ import { fetchjockey } from "../../redux/getReducer/getJockeySlice";
 import Select from "react-select";
 import { fetchOwner } from "../../redux/getReducer/getOwnerSlice";
 import { fetchHorse } from "../../redux/getReducer/getHorseSlice";
+import swal from "sweetalert";
 
 const Gender = [
   { id: "1", value: "Male", label: "Male" },
@@ -116,6 +117,12 @@ const HorseForm = () => {
       formData.append("OverAllRating", OverAllRating);
       dispatch(add(formData));
       history("/horse");
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
      
     } catch (error) {
       alert(error.message);

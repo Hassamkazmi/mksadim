@@ -4,6 +4,7 @@ import Sidebar from "../../Components/Common/Sidebar";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { add } from "../../redux/postReducer/PostSlider";
+import swal from "sweetalert";
 
 const SliderForm = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,12 @@ const SliderForm = () => {
       formData.append("TitleAr", TitleAr);
       dispatch(add(formData));
       history("/slider");
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
       
     } catch (error) {
       alert(error.message);

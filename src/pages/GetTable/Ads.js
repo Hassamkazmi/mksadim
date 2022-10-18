@@ -139,13 +139,7 @@ const Ads = () => {
             </div>
           </>
         </div>
-        <span className="plusIconStyle">
-        <Link to='/adsform'>
-        <BsPlusCircleFill style={{
-          fontSize:'22px'
-        }}/>
-        </Link>
-        </span>
+       
       </div>
     </div>
     </>

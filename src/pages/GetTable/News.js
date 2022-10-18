@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostNewsSlice";
 
+import swal from 'sweetalert';
+
+
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 import { BiEdit } from "react-icons/bi";
@@ -28,6 +31,23 @@ const News = () => {
     dispatch(fetchNews({ pagenumber }));
   }, []);
   const handleRemove = (Id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        dispatch(remove(Id));
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
     dispatch(remove(Id));
     history("/news");
   };

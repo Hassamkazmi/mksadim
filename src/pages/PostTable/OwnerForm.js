@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostOwner";
 import Header from "../../Components/Common/Header";
 import Sidebar from "../../Components/Common/Sidebar";
+import swal from "sweetalert";
 
 const OwnerForm = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,15 @@ const OwnerForm = () => {
       formData.append("Name", Name);
       dispatch(add(formData));
       history("/owner");
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
     } catch (error) {
       alert(error.message);
+
     }
   };
 

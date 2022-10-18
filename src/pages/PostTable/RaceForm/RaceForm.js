@@ -13,6 +13,7 @@ import { fetchHorse, setHorse } from "../../../redux/getReducer/getHorseSlice";
 import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import { Link } from "react-router-dom";
 import Select from "react-select";
+import swal from "sweetalert";
 
 
 const RaceForm = () => {
@@ -20,6 +21,7 @@ const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: horse } = useSelector((state) => state.horse);
   const history = useNavigate();
+
 
   const [data, setData] = useState(true);
 
@@ -80,6 +82,12 @@ const RaceForm = () => {
       formData.append("Horses", selectedOption6.id)
       dispatch(add(formData));
       history("/races");
+      swal({
+        title: "Success!",
+        text: "Data has been added successfully ",
+        icon: "success",
+        button: "OK",
+      });
     } catch (error) {
       alert(error.message);
     }
@@ -149,7 +157,7 @@ const RaceForm = () => {
                     >
                       <option value="0">Race Kind</option>
                       <option value="Flat">Flat</option>
-                      <option value="Truf">Truf</option>
+                      <option value="Turf">Truf</option>
                     </select>
                   </div>
 
@@ -178,7 +186,7 @@ const RaceForm = () => {
                       <option value="0">Wheather</option>
                       <option value="RaceKind">Weather</option>
                       <option value="RaceKind">weather</option>
-                      <option value="RaceKind">wEATHER</option>
+                      <option value="RaceKind">weather</option>
                     </select>
                   </div>
                 </div>

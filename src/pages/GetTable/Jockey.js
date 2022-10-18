@@ -8,6 +8,9 @@ import { remove } from "../../redux/postReducer/PostJockey";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Common/Header";
 import { BiEdit } from "react-icons/bi";
+import swal from 'sweetalert';
+
+
 
 const Statistic = () => {
   const dispatch = useDispatch();
@@ -17,6 +20,24 @@ const Statistic = () => {
     dispatch(fetchjockey());
   }, [dispatch]);
   const handleRemove = (Id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        dispatch(remove(Id));
+        history("/jockey");
+      } else {
+        swal("Your imaginary file is safe!");
+      }
+    });
     dispatch(remove(Id));
     history("/jockey");
   };

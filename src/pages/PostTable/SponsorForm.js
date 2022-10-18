@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostSponsor";
 import Header from "../../Components/Common/Header";
+import swal from "sweetalert";
 
 const SponsorForm = () => {
     const dispatch = useDispatch();
@@ -32,6 +33,12 @@ const SponsorForm = () => {
         formData.append("DescriptionEn", DescriptionEn)
         dispatch(add(formData));
         history('/ads')
+        swal({
+          title: "Success!",
+          text: "Data has been added successfully ",
+          icon: "success",
+          button: "OK",
+        });
      } catch (error) {
         alert(error.message)
      }
