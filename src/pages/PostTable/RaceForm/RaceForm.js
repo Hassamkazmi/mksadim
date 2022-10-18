@@ -15,19 +15,16 @@ import { Link } from "react-router-dom";
 import Select from "react-select";
 import swal from "sweetalert";
 
-
 const RaceForm = () => {
-  
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: horse } = useSelector((state) => state.horse);
   const history = useNavigate();
 
-
   const [data, setData] = useState(true);
 
-    let horseoptions = horse.map(function (item) {
+  let horseoptions = horse.map(function (item) {
     return {
-      id:item._id,
+      id: item._id,
       value: item.NameEn,
       label: item.NameEn,
       jockeyvalue: item.JockeyData.map((item) => item.Name),
@@ -44,24 +41,23 @@ const RaceForm = () => {
   const [RaceStatus, setRaceStatus] = useState("");
   const [RaceCourse, setRaceCourse] = useState("");
   const [Horses, setHorses] = useState("");
-  const [selectedOption1, setSelectedOption1] = useState('');
-  const [selectedOption2, setSelectedOption2] = useState('');
-  const [selectedOption3, setSelectedOption3] = useState('');
-  const [selectedOption4, setSelectedOption4] = useState('');
-  const [selectedOption5, setSelectedOption5] = useState('');
-  const [selectedOption6, setSelectedOption6] = useState('');
+  const [selectedOption1, setSelectedOption1] = useState("");
+  const [selectedOption2, setSelectedOption2] = useState("");
+  const [selectedOption3, setSelectedOption3] = useState("");
+  const [selectedOption4, setSelectedOption4] = useState("");
+  const [selectedOption5, setSelectedOption5] = useState("");
+  const [selectedOption6, setSelectedOption6] = useState("");
 
   // const addTodo = id => {
   //   const newTodos = [...todos, { id }];
   //   setTodos(newTodos);
 
   // };
-  
+
   useEffect(() => {
     dispatch(fetchHorse());
     dispatch(fetchracecourse());
-  }, [dispatch]); 
-  
+  }, [dispatch]);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -74,12 +70,12 @@ const RaceForm = () => {
       formData.append("Weather", Weather);
       formData.append("RaceStatus", RaceStatus);
       formData.append("RaceCourse", RaceCourse);
-      formData.append("Horses",( selectedOption1.id))
-      formData.append("Horses", selectedOption2.id)
-      formData.append("Horses", selectedOption3.id)
-      formData.append("Horses", selectedOption4.id)
-      formData.append("Horses", selectedOption5.id)
-      formData.append("Horses", selectedOption6.id)
+      formData.append("Horses", selectedOption1.id);
+      formData.append("Horses", selectedOption2.id);
+      formData.append("Horses", selectedOption3.id);
+      formData.append("Horses", selectedOption4.id);
+      formData.append("Horses", selectedOption5.id);
+      formData.append("Horses", selectedOption6.id);
       dispatch(add(formData));
       history("/races");
       swal({
@@ -93,124 +89,132 @@ const RaceForm = () => {
     }
   };
 
-  function handleRace(){
-    setData(false)
+  const isSubmitData =
+    RaceKind === "" ||
+    raceName === "" ||
+    Description === "" ||
+    DayNTime === "" ||
+    Weather === "" ||
+    RaceStatus === "" ||
+    RaceCourse === "";
+
+  function handleRace() {
+    setData(false);
   }
   return (
     <>
       <Header />
-      {
-        data ? <div className="page">
-        <Sidebar />
-        <div className="rightsidedata">
-          <div
-            style={{
-              marginTop: "30px",
-            }}
-          >
-            <div className="Headers">Add Race</div>
-            <div className="form">
-              <form>
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Race Name"
-                      onChange={(e) => setraceName(e.target.value)}
-                      name="Name"
-                      value={raceName}
-                      required
-                    ></input>
-                  </div>
+      {data ? (
+        <div className="page">
+          <Sidebar />
+          <div className="rightsidedata">
+            <div
+              style={{
+                marginTop: "30px",
+              }}
+            >
+              <div className="Headers">Add Race</div>
+              <div className="form">
+                <form>
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="Race Name"
+                        onChange={(e) => setraceName(e.target.value)}
+                        name="Name"
+                        value={raceName}
+                        required
+                      ></input>
+                    </div>
 
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="Race Name "
-                      name="Name"
-                    ></input>
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="Race Name "
+                        name="Name"
+                      ></input>
+                    </div>
                   </div>
-                </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Description"
-                      onChange={(e) => setDescription(e.target.value)}
-                      name="Name"
-                      value={Description}
-                      required
-                    ></input>
-                  </div>
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="Description"
+                        onChange={(e) => setDescription(e.target.value)}
+                        name="Name"
+                        value={Description}
+                        required
+                      ></input>
+                    </div>
 
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="Description "
-                      name="Name"
-                    ></input>
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="Description "
+                        name="Name"
+                      ></input>
+                    </div>
                   </div>
-                </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <select
-                      onChange={(e) => setRaceKind(e.target.value)}
-                      value={RaceKind}
-                    >
-                      <option value="0">Race Kind</option>
-                      <option value="Flat">Flat</option>
-                      <option value="Turf">Truf</option>
-                    </select>
-                  </div>
+                  <div className="row ">
+                    <div className="col-sm">
+                      <select
+                        onChange={(e) => setRaceKind(e.target.value)}
+                        value={RaceKind}
+                      >
+                        <option value="0">Race Kind</option>
+                        <option value="Flat">Flat</option>
+                        <option value="Turf">Truf</option>
+                      </select>
+                    </div>
 
-                  <div className="col-sm">
-                    <select style={{ direction: "rtl" }}>
-                      <option value="0">Race Type</option>
-                      <option value="Live">Live</option>
-                      <option value="Going">Due</option>
-                    </select>
+                    <div className="col-sm">
+                      <select style={{ direction: "rtl" }}>
+                        <option value="0">Race Type</option>
+                        <option value="Live">Live</option>
+                        <option value="Going">Due</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <select
-                      onChange={(e) => setWeather(e.target.value)}
-                      value={Weather}
-                    >
-                      <option value="0">Wheather</option>
-                      <option value="Sunny">Sunny</option>
-                      <option value="Cloudy">Cloudy</option>
-                    </select>
-                  </div>
+                  <div className="row ">
+                    <div className="col-sm">
+                      <select
+                        onChange={(e) => setWeather(e.target.value)}
+                        value={Weather}
+                      >
+                        <option value="0">Wheather</option>
+                        <option value="Sunny">Sunny</option>
+                        <option value="Cloudy">Cloudy</option>
+                      </select>
+                    </div>
 
-                  <div className="col-sm">
-                    <select style={{ direction: "rtl" }}>
-                      <option value="0">Wheather</option>
-                      <option value="RaceKind">Weather</option>
-                      <option value="RaceKind">weather</option>
-                      <option value="RaceKind">weather</option>
-                    </select>
+                    <div className="col-sm">
+                      <select style={{ direction: "rtl" }}>
+                        <option value="0">Wheather</option>
+                        <option value="RaceKind">Weather</option>
+                        <option value="RaceKind">weather</option>
+                        <option value="RaceKind">weather</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-sm">
-                    <select
-                      onChange={(e) => setRaceCourse(e.target.value)}
-                      value={RaceCourse}
-                    >
-                       <option >Select RaceCourse </option>
-                      {racecourse.map((course) => (
-                        <option value={course._id}>{course.TrackName}</option>
-                      ))}
-                      
-                    </select>
-                  </div>
+                  <div className="row">
+                    <div className="col-sm">
+                      <select
+                        onChange={(e) => setRaceCourse(e.target.value)}
+                        value={RaceCourse}
+                      >
+                        <option>Select RaceCourse </option>
+                        {racecourse.map((course) => (
+                          <option value={course._id}>{course.TrackName}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                  <div className="col-sm">
-                    <select style={{ direction: "rtl" }}>
-                      <option value="0">RaceCourse</option>
-                    </select>
+                    <div className="col-sm">
+                      <select style={{ direction: "rtl" }}>
+                        <option value="0">RaceCourse</option>
+                      </select>
+                    </div>
                   </div>
-                </div>
-                {/* <div className="row ">
+                  {/* <div className="row ">
                   <div className="col-sm">
                     <Select placeholder={<div>Type to Add Horses</div>}
                         defaultValue={Horses}
@@ -234,82 +238,83 @@ const RaceForm = () => {
                       />
                   </div>
                 </div> */}
-                <div className="row ">
-                  <div className="col-sm">
-                    <select
-                      onChange={(e) => setRaceStatus(e.target.value)}
-                      value={RaceStatus}
+                  <div className="row ">
+                    <div className="col-sm">
+                      <select
+                        onChange={(e) => setRaceStatus(e.target.value)}
+                        value={RaceStatus}
+                      >
+                        <option value="0">Race status</option>
+                        <option value="can">Cancel</option>
+                        <option value="going">Going</option>
+                      </select>
+                    </div>
+
+                    <div className="col-sm">
+                      <select style={{ direction: "rtl" }}>
+                        <option value="0">Race status</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="Day N Time"
+                        type="date"
+                        onChange={(e) => setDayNTime(e.target.value)}
+                        value={DayNTime}
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        placeholder="Day N Time"
+                        type="date"
+                        style={{ direction: "rtl" }}
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="RaceButtonDiv">
+                    <button className="updateButton">updated</button>
+
+                    <button
+                      className="SubmitButton"
+                      onClick={handleRace}
+                      disabled={isSubmitData}
                     >
-                      <option value="0">Race status</option>
-                      <option value="can">Cancel</option>
-                      <option value="going">Going</option>
-                    </select>
+                      Add Horse
+                    </button>
                   </div>
-
-                  <div className="col-sm">
-                    <select style={{ direction: "rtl" }}>
-                      <option value="0">Race status</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Day N Time"
-                      type="date"
-                      onChange={(e) => setDayNTime(e.target.value)}
-                      value={DayNTime}
-                    ></input>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      placeholder="Day N Time"
-                      type="date"
-                      style={{ direction: "rtl" }}
-                    ></input>
-                  </div>
-                </div>
-
-                <div className="RaceButtonDiv">
-                  <button className="updateButton">updated</button>
-
-              
-                  <button className="SubmitButton"
-                  onClick={handleRace}
-                  >
-                    Add Horse
-                  </button>
-                  
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-      </div> :
-      <div className="page">
-      <Sidebar />
-      <div className="rightsidedata">
-        <div
-          style={{
-            marginTop: "30px",
-          }}
-        >
-          <div className="Header ">
-            <h4>Add Horse</h4>
-          </div>
-          <div className="myselecthorse">
-              <div className="myselecthorsedata">
+      ) : (
+        <div className="page">
+          <Sidebar />
+          <div className="rightsidedata">
+            <div
+              style={{
+                marginTop: "30px",
+              }}
+            >
+              <div className="Header ">
+                <h4>Add Horse</h4>
+              </div>
+              <div className="myselecthorse">
+                <div className="myselecthorsedata">
                   <span>Gate #</span>
                   <span>Horse Name</span>
                   <span>Jockey Name</span>
+                </div>
               </div>
-          </div>
-          <div className="myselectdata">
-              <div className="myselectiondata">
+              <div className="myselectdata">
+                <div className="myselectiondata">
                   <span>#1</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption1}
                       onChange={setSelectedOption1}
                       options={horseoptions}
@@ -317,16 +322,18 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption1 === '' ? (
+                  <span>
+                    {selectedOption1 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption1.jockeyvalue[0]}</p>
-                    )}</span>
-              </div>
-              <div className="myselectiondata">
+                    )}
+                  </span>
+                </div>
+                <div className="myselectiondata">
                   <span>#2</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption2}
                       onChange={setSelectedOption2}
                       options={horseoptions}
@@ -334,16 +341,18 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption2 === '' ? (
+                  <span>
+                    {selectedOption2 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption2.jockeyvalue[0]}</p>
-                    )}</span>
-              </div>
-              <div className="myselectiondata">
+                    )}
+                  </span>
+                </div>
+                <div className="myselectiondata">
                   <span>#3</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption3}
                       onChange={setSelectedOption3}
                       options={horseoptions}
@@ -351,16 +360,18 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption3 === '' ? (
+                  <span>
+                    {selectedOption3 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption3.jockeyvalue[0]}</p>
-                    )}</span>
-              </div>
-              <div className="myselectiondata">
+                    )}
+                  </span>
+                </div>
+                <div className="myselectiondata">
                   <span>#4</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption4}
                       onChange={setSelectedOption4}
                       options={horseoptions}
@@ -368,16 +379,18 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption4 === '' ? (
+                  <span>
+                    {selectedOption4 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption4.jockeyvalue[0]}</p>
-                    )}</span>
-              </div>
-              <div className="myselectiondata">
+                    )}
+                  </span>
+                </div>
+                <div className="myselectiondata">
                   <span>#5</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption5}
                       onChange={setSelectedOption5}
                       options={horseoptions}
@@ -385,15 +398,18 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption5 === '' ? (
+                  <span>
+                    {selectedOption5 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption5.jockeyvalue[0]}</p>
-                    )}</span>
-              </div><div className="myselectiondata">
+                    )}
+                  </span>
+                </div>
+                <div className="myselectiondata">
                   <span>#6</span>
                   <span>
-                  <Select
+                    <Select
                       defaultValue={selectedOption6}
                       onChange={setSelectedOption6}
                       options={horseoptions}
@@ -401,22 +417,22 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>{selectedOption6 === '' ? (
+                  <span>
+                    {selectedOption6 === "" ? (
                       <p>N/A</p>
                     ) : (
                       <p>{selectedOption6.jockeyvalue[0]}</p>
-                    )}</span>
+                    )}
+                  </span>
+                </div>
+                <div className="sbmtbtn">
+                  <button onClick={submit}>Save & Publish </button>
+                </div>
               </div>
-              <div className="sbmtbtn">
-                <button onClick={submit}>Save & Publish </button>
-              </div>
+            </div>
           </div>
-          
         </div>
-      </div>
-    </div>
-      }
-      
+      )}
     </>
   );
 };

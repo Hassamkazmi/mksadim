@@ -11,39 +11,46 @@ import swal from "sweetalert";
 const TrainerForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  const [Name,setName] = useState('')
-  const [Age,setAge] = useState('')
-  const [Detail, setDetail] = useState('')
-  const [Remarks,setRemarks] = useState('')
+  const [Name, setName] = useState("");
+  const [Age, setAge] = useState("");
+  const [Detail, setDetail] = useState("");
+  const [Remarks, setRemarks] = useState("");
 
-  const [image,setImage] = useState()
-  const fileSelected = event => {
-    const image = event.target.files[0]
-    setImage(image)
-  }
-  const submit = async event => {
-    event.preventDefault()
-   try {
+  const [image, setImage] = useState();
+  const fileSelected = (event) => {
+    const image = event.target.files[0];
+    setImage(image);
+  };
+  const submit = async (event) => {
+    event.preventDefault();
+    try {
       const formData = new FormData();
-      formData.append("image", image)
-      formData.append("Name", Name)
-      formData.append("Age", Age)
-      formData.append("Detail", Detail)
-      formData.append("Remarks", Remarks)
-      formData.append("Remarks", Remarks)
-     
+      formData.append("image", image);
+      formData.append("Name", Name);
+      formData.append("Age", Age);
+      formData.append("Detail", Detail);
+      formData.append("Remarks", Remarks);
+      formData.append("Remarks", Remarks);
+
       dispatch(add(formData));
-      history('/trainer');
+      history("/trainer");
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
         icon: "success",
         button: "OK",
       });
-   } catch (error) {
-      alert(error.message)
-   }
-  }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+  const isSubmitData =
+    Name === "" ||
+    Age === "" ||
+    Detail === "" ||
+    Remarks === "" ||
+    image === null ||
+    image === undefined;
   return (
     <Fragment>
       <Header />
@@ -55,98 +62,96 @@ const TrainerForm = () => {
               marginTop: "30px",
             }}
           >
-            <div className='Headers'>
-
-
-              Add Trainer
-
-
-
-            </div>
-            <div className='form'>
+            <div className="Headers">Add Trainer</div>
+            <div className="form">
               <form onSubmit={submit}>
                 <div className="row ">
                   <div className="col-sm">
-                    <input placeholder=' Name' onChange={e => setName(e.target.value)} name='Name' value={Name}
-
+                    <input
+                      placeholder=" Name"
+                      onChange={(e) => setName(e.target.value)}
+                      name="Name"
+                      value={Name}
                       required
                     ></input>
-
                   </div>
 
                   <div className="col-sm">
-                    <input style={{ direction: "rtl" }} placeholder="اسم "></input>
-
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                    ></input>
                   </div>
-
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <input placeholder='Age' onChange={e => setAge(e.target.value)} name='Name' value={Age}
+                    <input
+                      placeholder="Age"
+                      onChange={(e) => setAge(e.target.value)}
+                      name="Name"
+                      value={Age}
                       required
-                      type='number'
+                      type="number"
                     ></input>
-
                   </div>
 
                   <div className="col-sm">
-                    <input style={{ direction: "rtl" }} type='number' placeholder="اسم المسار"></input>
-
+                    <input
+                      style={{ direction: "rtl" }}
+                      type="number"
+                      placeholder="اسم المسار"
+                    ></input>
                   </div>
-
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <textarea placeholder="Detail" name='Detail' onChange={e => setDetail (e.target.value)} value={Detail}></textarea>
-
+                    <textarea
+                      placeholder="Detail"
+                      name="Detail"
+                      onChange={(e) => setDetail(e.target.value)}
+                      value={Detail}
+                    ></textarea>
                   </div>
-
 
                   <div className="col-sm">
                     <textarea placeholder="Detail"></textarea>
-
                   </div>
-
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <input placeholder='Remarks' onChange={e => setRemarks(e.target.value)} name='Remarks' value={Remarks}
+                    <input
+                      placeholder="Remarks"
+                      onChange={(e) => setRemarks(e.target.value)}
+                      name="Remarks"
+                      value={Remarks}
                       required
                     ></input>
-
                   </div>
 
                   <div className="col-sm">
-                    <input style={{ direction: "rtl" }} placeholder="طول المسار"></input>
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="طول المسار"
+                    ></input>
                   </div>
-
                 </div>
-             
 
-
-
-
-
-
-
-                <div className='ButtonSection'>
-
+                <div className="ButtonSection">
                   <input type="file" size="60" onChange={fileSelected} />
-                  <button type='submit' className='SubmitButton'>Add Trainer</button>
-
+                  <button
+                    type="submit"
+                    className="SubmitButton"
+                    disabled={isSubmitData}
+                  >
+                    Add Trainer
+                  </button>
                 </div>
               </form>
             </div>
           </div>
-
-
         </div>
       </div>
-
-
-
     </Fragment>
-
   );
 };
 

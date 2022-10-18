@@ -32,10 +32,9 @@ const OwnerForm = () => {
       });
     } catch (error) {
       alert(error.message);
-
     }
   };
-
+  const isSubmitData = Name === "" || image === null || image === undefined;
   return (
     <>
       <Header />
@@ -74,7 +73,11 @@ const OwnerForm = () => {
                     Select File
                     <input type="file" size="60" onChange={fileSelected} />
                   </label>
-                  <button type="submit" className="SubmitButton">
+                  <button
+                    type="submit"
+                    className="SubmitButton"
+                    disabled={isSubmitData}
+                  >
                     Add Owner
                   </button>
                 </div>

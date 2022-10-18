@@ -37,7 +37,8 @@ const SliderForm = () => {
       alert(error.message);
     }
   };
-
+  const isSubmitData =
+  TitleAr === "" || TitleEn === "" || image === null || image === undefined;
   return (
     <>
       <Header />
@@ -76,7 +77,7 @@ const SliderForm = () => {
 
                 <div className="ButtonSection">
                   <input type="file" size="60" onChange={fileSelected} />
-                  <button type="submit" className="SubmitButton">
+                  <button type="submit" className="SubmitButton" disabled={isSubmitData}>
                     Add Slider
                   </button>
                 </div>
