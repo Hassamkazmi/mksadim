@@ -110,26 +110,46 @@ const HorseForm = () => {
       formData.append("Breeder", Breeder);
       formData.append("Color", Color);
       formData.append("KindOfHorse", KindOfHorse);
-      // formData.append("Dam", Dam);
-      // formData.append("Sire", horseoptions.id);
-      // formData.append("GSire", GSire);
+      formData.append("Dam", Dam.id);
+      formData.append("Sire", Sire.id);
+      formData.append("GSire", GSire.id);
       formData.append("Earning", Earning);
       formData.append("OverAllRating", OverAllRating);
       dispatch(add(formData));
       history("/horse");
-      swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
-        icon: "success",
-        button: "OK",
-      });
+      // swal({
+      //   title: "Success!",
+      //   text: "Data has been added successfully ",
+      //   icon: "success",
+      //   button: "OK",
+      // });
      
     } catch (error) {
       alert(error.message);
     }
   };
-  console.log(ActiveJockey,'aaaafff')
-  console.log("owner", owner);
+  const isSubmitData =
+  ActiveOwner === "" ||
+  Jockey === "" ||
+  Age === "" ||
+  NameEn === "" ||
+  NameAr === "" ||
+  Owner === "" ||
+  ActiveTrainer === "" ||
+  ActiveJockey === "" ||
+  Trainer === "" ||
+  Remarks === "" ||
+  HorseRating === "" ||
+  Sex === "" ||
+  Color === "" ||
+  KindOfHorse === "" ||
+  Dam === "" ||
+  Sire === "" ||
+  GSire === "" ||
+  Earning === "" ||
+  OverAllRating === "" ||
+  HorseImage === null ||
+  HorseImage === undefined
   return (
     <Fragment>
       <Header />
@@ -178,6 +198,9 @@ const HorseForm = () => {
 
                   <div className="col-sm">
                     <input
+                      onChange={(e) => setAge(e.target.value)}
+                      name="Name"
+                      value={Age}
                       style={{ direction: "rtl" }}
                       type="number"
                       placeholder="Age"
@@ -394,9 +417,7 @@ const HorseForm = () => {
                       options={traineroption}
                       isClearable={true}
                       isSearchable={true}
-                      isMulti
-                      className="basic-multi-select"
-                      classNamePrefix="select"
+                      
                     />
                   </div>
 
@@ -577,7 +598,7 @@ const HorseForm = () => {
 
                 <div className="ButtonSection">
                   <input type="file" size="60" onChange={fileSelected} />
-                  <button type="submit" className="SubmitButton">
+                  <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
                   </button>
                 </div>
