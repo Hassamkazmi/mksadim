@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
-import Sidebar from '../Components/Common/Sidebar';
+
 import '../Components/CSS/home.css'
-import Header from "../Components/Common/Header";
+
 import { fetchrace, STATUSES } from "../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -40,9 +40,9 @@ console.log(race)
 
   return (
     <>
-    <Header />
+
     <div className='page'>
-      <Sidebar />
+  
       <div className='rightsidedata'>
         <div className='dashboardheader'>
           <h2>Dashboard</h2>

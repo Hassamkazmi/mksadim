@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../../Components/CSS/forms.css";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostSponsor";
-import Header from "../../Components/Common/Header";
+
 import swal from "sweetalert";
 
 const SponsorForm = () => {
@@ -51,16 +51,16 @@ const SponsorForm = () => {
     image === undefined;
   return (
     <>
-      <Header />
-      <div className="page">
-        <Sidebar />
+    
+       <div className="page">
+    
         <div className="rightsidedata">
           <div
             style={{
               marginTop: "30px",
             }}
           >
-            {" "}
+   
             <div className="Headers">Add Sponsor</div>
             <div className="form">
               <form onSubmit={submit}>

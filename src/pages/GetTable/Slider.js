@@ -2,9 +2,10 @@ import React,{useState , useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate,Link } from 'react-router-dom';
-import Header from '../../Components/Common/Header';
-import Sidebar from '../../Components/Common/Sidebar';
+
+
 import { fetchSlider,STATUSES } from '../../redux/getReducer/getSliderSlice';
+import '../../Components/CSS/Table.css'
 
 
 const Slider = () => {
@@ -55,9 +56,9 @@ const Slider = () => {
 
   return (
     <>
-    <Header />
+   
     <div className="page">
-       <Sidebar />
+   
        <div className="rightsidedata">
          <div
            style={{
@@ -84,7 +85,7 @@ const Slider = () => {
                </div>
              </div>
            <>
-           <div className="div_maint">            <table >
+           <div className="div_maintb">            <table >
                <thead>
                  <tr>
                  <th>Title English</th>
@@ -110,7 +111,9 @@ const Slider = () => {
                          </td>
                    
                          
-                         
+                         <td>
+
+                         </td>
                        </tr>
                      </>
                    );

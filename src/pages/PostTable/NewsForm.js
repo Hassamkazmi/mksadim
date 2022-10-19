@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../../Components/CSS/forms.css";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostNewsSlice";
-import Header from "../../Components/Common/Header";
+
 import swal from "sweetalert";
 
 const NewsForm = () => {
@@ -57,9 +57,9 @@ const NewsForm = () => {
 
   return (
     <>
-      <Header />
+    
       <div className="page">
-        <Sidebar />
+  
         <div className="rightsidedata">
           <div
             style={{

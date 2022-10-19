@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { fetchNews, STATUSES } from "../../redux/getReducer/getNewsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 
 
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../Components/Common/Header";
+
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
 
@@ -77,9 +77,9 @@ const News = () => {
   }
   return (
     <>
-      <Header />
+    
       <div className="page">
-        <Sidebar />
+   
         <div className="rightsidedata">
           <div
             style={{
@@ -106,7 +106,7 @@ const News = () => {
               </div>
             </div>
             <>
-              <div className="div_maint">
+              <div className="div_maintb">
                 <ScrollContainer className="scroll-container">
                   <table>
                     <thead>
@@ -166,35 +166,7 @@ const News = () => {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "20px",
-          justifyContent: "space-between",
-        }}
-      >
-        <button
-          className="button btn btn-primary"
-          onClick={previousPageHandler}
-          disabled={pagenumber === 1}
-        >
-          Previous
-        </button>
-        <p
-          style={{
-            marginTop: "20px",
-          }}
-        >
-          Page {pagenumber}
-        </p>
-        <button
-          className="button btn btn-primary"
-          onClick={nextPageHandler}
-          disabled={allnews.length <= 1}
-        >
-          Next
-        </button>
-      </div>
+  
     </>
   );
 };

@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { fetchrace, STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/postReducer/postRace";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../Components/Common/Header";
 import "../../Components/CSS/Table.css";
 import ScrollContainer from "react-indiana-drag-scroll";
 import '../../Components/CSS/race.css'
@@ -46,9 +45,9 @@ const Races = () => {
   }
   return (
     <>
-      <Header />
+ 
       <div className="page">
-        <Sidebar />
+  
         <div className="rightsidedata">
           <div
             style={{

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate  } from 'react-router-dom'
 import Error from '../Components/Common/Error'
 import { userLogin } from '../redux/postReducer/UserPost'
 import '../Components/CSS/login.css'
@@ -12,7 +12,6 @@ const Login = () => {
   const [customError, setCustomError] = useState(null)
 
   const { register, handleSubmit } = useForm()
-
   const navigate = useNavigate()
 
   // redirect authenticated user to profile screen

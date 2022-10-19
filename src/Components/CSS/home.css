@@ -1,7 +1,8 @@
 .page{
     display: flex;
     gap: 22px;
-    
+    width: 87.5%;
+    margin-left: 13px;
 }
 .rightsidedata{
 margin-top: 22px;
@@ -10,10 +11,10 @@ height: 900px;
 overflow-y: auto;
 overflow-x: hidden;
 }
-.tr_table_class td img{
-border-radius: 50%;
-height: 100px;
-width: 100px;
+.tr_table_class td img {
+    border-radius: 50%;
+    height: 50px;
+    width: 80px;
 }
 
 .table_delete_btn1{

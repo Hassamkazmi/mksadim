@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Header from "../../Components/Common/Header";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { add } from "../../redux/postReducer/PostSlider";
@@ -41,9 +40,9 @@ const SliderForm = () => {
   TitleAr === "" || TitleEn === "" || image === null || image === undefined;
   return (
     <>
-      <Header />
+     
       <div className="page">
-        <Sidebar />
+  
         <div className="rightsidedata">
           <div
             style={{

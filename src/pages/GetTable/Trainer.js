@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { Link } from "react-router-dom";
-import Header from "../../Components/Common/Header";
+
 import swal from 'sweetalert';
 
 
@@ -70,9 +70,9 @@ const News = () => {
   }
   return (
    <>
-   <Header />
+
    <div className="page">
-      <Sidebar />
+  
       <div className="rightsidedata">
         <div
           style={{
@@ -100,7 +100,7 @@ const News = () => {
         </div>
 
           <>
-          <div className="div_maint">
+          <div className="div_maintb">
             <table >
               <thead>
                 <tr>              
@@ -124,7 +124,7 @@ const News = () => {
                     
                         <td>{item.Name}</td>
                         <td>{item.Age}</td>
-                        <td>{item.Detail}</td>
+                        <td style={{marginRight:"100px"}}>{item.Detail}</td>
                         <td>
                           <img src={item.image} alt="" />
                         </td>                        

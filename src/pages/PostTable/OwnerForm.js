@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostOwner";
-import Header from "../../Components/Common/Header";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import swal from "sweetalert";
 
 const OwnerForm = () => {
@@ -37,9 +36,8 @@ const OwnerForm = () => {
   const isSubmitData = Name === "" || image === null || image === undefined;
   return (
     <>
-      <Header />
-      <div className="page">
-        <Sidebar />
+           <div className="page">
+     
         <div className="rightsidedata">
           <div
             style={{

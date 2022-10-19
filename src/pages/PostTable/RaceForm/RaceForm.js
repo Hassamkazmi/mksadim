@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { add } from "../../../redux/postReducer/postRace";
-import Header from "../../../Components/Common/Header";
-import Sidebar from "../../../Components/Common/Sidebar";
+
 import "react-toastify/dist/ReactToastify.css";
 import { fetchTrainer } from "../../../redux/getReducer/getTrainerSlice";
 import { fetchjockey } from "../../../redux/getReducer/getJockeySlice";
@@ -103,10 +102,10 @@ const RaceForm = () => {
   }
   return (
     <>
-      <Header />
+ 
       {data ? (
         <div className="page">
-          <Sidebar />
+ 
           <div className="rightsidedata">
             <div
               style={{
@@ -293,7 +292,7 @@ const RaceForm = () => {
         </div>
       ) : (
         <div className="page">
-          <Sidebar />
+  
           <div className="rightsidedata">
             <div
               style={{

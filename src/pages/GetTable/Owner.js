@@ -1,6 +1,5 @@
 import React,{useEffect ,useState} from 'react'
-import Header from '../../Components/Common/Header';
-import Sidebar from '../../Components/Common/Sidebar';
+
 import { Link } from 'react-router-dom';
 import  {fetchOwner}  from '../../redux/getReducer/getOwnerSlice';
 import { useDispatch } from 'react-redux';
@@ -57,9 +56,9 @@ const Owner = () => {
 
   return (
     <>
-    <Header />
+  
     <div className="page">
-       <Sidebar />
+    
        <div className="rightsidedata">
          <div
            style={{
@@ -86,7 +85,7 @@ const Owner = () => {
                </div>
              </div>
            <>
-           <div className="div_maint">            <table >
+           <div className="div_maintb">            <table >
                <thead>
                  <tr>
                  <th>Owner Name</th>
@@ -109,6 +108,7 @@ const Owner = () => {
                          <td>
                            <img src={item.image} alt="" />
                          </td>
+                         <td></td>
                    
                          
                          

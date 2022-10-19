@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { useDispatch, useSelector } from "react-redux";
-import "../../Components/CSS/SubTable.css";
+
 import { remove } from "../../redux/postReducer/PostHorse";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../Components/Common/Header";
+
 import { useEffect } from "react";
 import { fetchHorse, STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { MdDelete } from "react-icons/md";
@@ -33,19 +33,19 @@ const Horse = () => {
   const handleRemove = (Id) => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this data!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
-        swal("Poof! Your imaginary file has been deleted!", {
+        swal(" Your data  has been deleted!", {
           icon: "success",
         });
         dispatch(remove(Id));
       } else {
-        swal("Your imaginary file is safe!");
+        swal("Your data is safe!");
       }
     });
 
@@ -78,9 +78,9 @@ const Horse = () => {
   }
   return (
     <>
-      <Header />
+    
       <div className="page">
-        <Sidebar />
+   
         <div className="rightsidedata">
           <div
             style={{
@@ -107,7 +107,7 @@ const Horse = () => {
               </div>
             </div>
             <>
-              <div className="div_maint">
+              <div className="div_maintb">
                 <ScrollContainer className="scroll-container">
                   <table id="customers">
                     <thead>
@@ -180,35 +180,7 @@ const Horse = () => {
           <span className="plusIconStyle"></span>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "20px",
-          justifyContent: "space-between",
-        }}
-      >
-        <button
-          className="button btn btn-primary"
-          onClick={previousPageHandler}
-          disabled={pagenumber === 1}
-        >
-          Previous
-        </button>
-        <p
-          style={{
-            marginTop: "20px",
-          }}
-        >
-          Page {pagenumber}
-        </p>
-        <button
-          className="button btn btn-primary"
-          onClick={nextPageHandler}
-          disabled={horse.length <= 1}
-        >
-          Next
-        </button>
-      </div>
+   
     </>
   );
 };

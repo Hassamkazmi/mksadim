@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Header from "../../Components/Common/Header";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { fetchTrainer } from "../../redux/getReducer/getTrainerSlice";
 import { add } from "../../redux/postReducer/PostHorse";
 import { useDispatch } from "react-redux";
@@ -132,9 +131,9 @@ const HorseForm = () => {
   console.log("owner", owner);
   return (
     <Fragment>
-      <Header />
+ 
       <div className="page">
-        <Sidebar />
+       
         <div className="rightsidedata">
           <div
             style={{

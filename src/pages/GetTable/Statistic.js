@@ -45,9 +45,9 @@ const Statistic = () => {
   }
   return (
    <>
-   <Header />
+
    <div className="page">
-      <Sidebar />
+   
       <div className="rightsidedata">
         {/* <div
           style={{

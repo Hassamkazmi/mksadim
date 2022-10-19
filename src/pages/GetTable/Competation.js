@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Table from "react-bootstrap/Table";
-import { MdDelete } from "react-icons/md";
+
+
 import { remove } from "../../redux/postReducer/PostTrainer";
-import { BsPlusCircleFill } from "react-icons/bs";
+
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../Components/Common/Header";
+
 
 const Statistic = () => {
   const dispatch = useDispatch();
@@ -45,9 +45,9 @@ const Statistic = () => {
   }
   return (
    <>
-   <Header />
+
    <div className="page">
-      <Sidebar />
+ 
       <div className="rightsidedata">
 
       {/* <div className="newtables"></div> */}

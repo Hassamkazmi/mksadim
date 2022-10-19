@@ -10,6 +10,7 @@
     align-items: center;
     padding-left: 20px;
     padding-right: 30px;
+    margin-left: 20px;
 
 }
 
@@ -40,12 +41,13 @@
     /* height: calc(100vh - 180px); */
     width: calc(100vw - 100px);
     overflow: scroll;
-
+    margin-left: 20px;
 }
 
 table {
     caption-side: bottom;
     border-collapse: inherit;
+    width: 100vw;
 } 
 .div_maintb table {
     border-spacing: 0px 8px;
@@ -58,7 +60,7 @@ table {
 
     color: #d1d1d1;
 
-    min-width: 300px;
+ width: 100vw;
     padding: 6px;
 
     font-weight: normal;
@@ -82,7 +84,7 @@ table {
 
     height: 58px;
     padding-left: 29px;
-    background-color: #5EC30F;
+
 
 }
 
@@ -122,10 +124,13 @@ thead {
 thead {
     background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
     border-radius: 20% !important;
-    margin-left: -100px;
+   
   
 }
-
+tbody{
+  
+    background: #f1f1f1;
+}
 
 
 /* width */
