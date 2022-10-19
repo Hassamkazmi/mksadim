@@ -40,6 +40,7 @@ function App() {
     <>
       <Provider store={store}>
         <div className="App">
+          
           <BrowserRouter>
             <Header />
             <div style={{display: "flex"}}>

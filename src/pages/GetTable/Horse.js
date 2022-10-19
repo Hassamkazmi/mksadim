@@ -180,7 +180,35 @@ const Horse = () => {
           <span className="plusIconStyle"></span>
         </div>
       </div>
-   
+      <div
+        style={{
+          display: "flex",
+          marginTop: "20px",
+          justifyContent: "space-between",
+        }}
+      >
+        <button
+          className="button btn btn-primary"
+          onClick={previousPageHandler}
+          disabled={pagenumber === 1}
+        >
+          Previous
+        </button>
+        <p
+          style={{
+            marginTop: "20px",
+          }}
+        >
+          Page {pagenumber}
+        </p>
+        <button
+          className="button btn btn-primary"
+          onClick={nextPageHandler}
+          disabled={horse.length <= 1}
+        >
+          Next
+        </button>
+      </div>
     </>
   );
 };
