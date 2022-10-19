@@ -30,12 +30,10 @@ const Slider = () => {
     if (status === STATUSES.LOADING) {
       return (
         <h2
-          style={{
-            margin: "100px",
-          }}
-        >
-          Loading....
-        </h2>
+      className="loader"
+      >
+      
+      </h2>
       );
     }
   

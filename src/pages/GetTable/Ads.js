@@ -30,11 +30,9 @@ const Ads = () => {
   if (status === STATUSES.LOADING) {
     return (
       <h2
-        style={{
-          margin: "100px",
-        }}
+      className="loader"
       >
-        Loading....
+        
       </h2>
     );
   }

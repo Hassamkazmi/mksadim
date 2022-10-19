@@ -244,8 +244,10 @@ const RaceForm = () => {
                         value={RaceStatus}
                       >
                         <option value="0">Race status</option>
-                        <option value="can">Cancel</option>
-                        <option value="going">Going</option>
+                        <option value="Cancel">Cancel</option>
+                        <option value="End">End</option>
+                        <option value="Live">Cancel</option>
+                        <option value="Due">Due</option>
                       </select>
                     </div>
 

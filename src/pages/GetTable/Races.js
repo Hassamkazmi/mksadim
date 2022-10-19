@@ -23,11 +23,8 @@ const Races = () => {
   if (status === STATUSES.LOADING) {
     return (
       <h2
-        style={{
-          margin: "100px",
-        }}
+      className="loader"
       >
-        Loading....
       </h2>
     );
   }
@@ -105,7 +102,7 @@ const Races = () => {
                        }}>
                         <tr>
                     <td style={{
-                      "backgroundColor": `${RaceStatus === "Upcoming" ? '#FF9900': RaceStatus === "cancel" ? '#FF0000' : RaceStatus === "live" ? '#5EC30F': '#FF9900'}`}} >{item.raceName}</td>
+                      "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`}} >{item.raceName}</td>
                     <td>{item.raceName}</td>
                     <td>{item.Description}</td>
                     <td>{item.raceName}</td>

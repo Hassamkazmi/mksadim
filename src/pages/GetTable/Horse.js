@@ -56,11 +56,9 @@ const Horse = () => {
   if (status === STATUSES.LOADING) {
     return (
       <h2
-        style={{
-          margin: "100px",
-        }}
+      className="loader"
       >
-        Loading....
+        
       </h2>
     );
   }
@@ -180,7 +178,7 @@ const Horse = () => {
           <span className="plusIconStyle"></span>
         </div>
       </div>
-      <div
+      {/* <div
         style={{
           display: "flex",
           marginTop: "20px",
@@ -208,7 +206,7 @@ const Horse = () => {
         >
           Next
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

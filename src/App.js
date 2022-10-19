@@ -33,8 +33,8 @@ import SliderForm from "./pages/PostTable/SliderForm";
 import Slider from "./pages/GetTable/Slider";
 import Header from "./Components/Common/Header";
 import Sidebar from "./Components/Common/Sidebar";
+import { useLocation } from "react-router-dom";
 function App() {
-
 
   return (
     <>
@@ -45,10 +45,9 @@ function App() {
             <Header />
             <div style={{display: "flex"}}>
             <Sidebar />
-       
             <Routes>
-              <Route exact path="/" element={<Login />} />
-              <Route element={<ProtectedRoute />}>
+                <Route exact path="/login" element={<Login />} />
+                <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/racecourse" element={<RaceCourse />} />
                 <Route path="/races" element={<Races />} />

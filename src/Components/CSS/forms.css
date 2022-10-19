@@ -14,8 +14,7 @@ width: 99.5% !important;
 border-radius: 0px 20px 0px 20px !important;
   height: 80px;
   margin-left: 3px !important;
-  background: linear-gradient(89.98deg, rgba(25, 70, 157, 0.2) 23.67%, rgba(0, 163, 255, 0.2) 97.94%);
-  background-blend-mode: luminosity;
+  background-color: #E8E8E8;
 
   padding-left: 70px;
   padding-top: 24px;

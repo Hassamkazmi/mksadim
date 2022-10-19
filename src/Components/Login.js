@@ -29,7 +29,7 @@ const Login = () => {
   // const AllFilled = (register.Email !== '') && (register.password !== "")
   // console.log(AllFilled,'register')
   return (
-    <>
+    <div className='mainlogin'>
     <div className='loginheader'>
       <h2>
         MKS RACING DASHBOARD
@@ -70,7 +70,7 @@ const Login = () => {
     </form>
    </div>
 
-    </>
+    </div>
   )
 }
 

@@ -18,7 +18,7 @@ const Auth = () => {
 
   const handleLogout = () => {
     dispatch(logout())
-    navigate('/')
+    navigate('/login')
   }
   return (
     <>

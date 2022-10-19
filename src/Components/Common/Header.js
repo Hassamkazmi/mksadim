@@ -7,9 +7,12 @@ import '../CSS/header.css';
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  
+  let {pathname} = useLocation();
+
   return (
-    <div className="header">
+    <>
+    {
+      pathname !== '/login' ?<div className="header">
       <div className="innerHeader">
         <div className="logoclass">
           <img src={Logo} alt="" />
@@ -24,7 +27,10 @@ const Header = () => {
           <Auth />
         </div>
       </div>
-    </div>
+    </div> : null
+    }
+    </>
+    
   );
 };
 
