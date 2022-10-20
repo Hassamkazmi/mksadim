@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { add } from "../../../redux/postReducer/postRace";
-
+import Moment from 'moment';
 import "react-toastify/dist/ReactToastify.css";
 import { fetchTrainer } from "../../../redux/getReducer/getTrainerSlice";
 import { fetchjockey } from "../../../redux/getReducer/getJockeySlice";
@@ -100,6 +100,10 @@ const RaceForm = () => {
   function handleRace() {
     setData(false);
   }
+
+  const formatDate = Moment().format('YYYY-MM-DD')
+
+  console.log(formatDate)
   return (
     <>
  
@@ -257,11 +261,136 @@ const RaceForm = () => {
                       </select>
                     </div>
                   </div>
+                  
+
+                  <div className="row ">
+                    <div className="col-sm">
+                      <select
+                        // onChange={(e) => setRaceStatus(e.target.value)}
+                        // value={RaceStatus}
+                      >
+                        <option value="0">Ground Type</option>
+                        <option value="Cancel">Good</option>
+                        <option value="End">End</option>
+                        <option value="Live">Cancel</option>
+                        <option value="Due">Due</option>
+                      </select>
+                    </div>
+
+                    <div className="col-sm">
+                      <select style={{ direction: "rtl" }}>
+                        <option value="0">Ground Type</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="Sponsor Logo"
+                        type="file"
+                        
+                        
+                      
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        placeholder="Sponsor Logo"
+                        type="file"
+                        style={{ direction: "rtl" }}
+                      ></input>
+                    </div>
+                  </div> */}
+
+                   <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="1st Prize"
+                        
+                        name="Name"
+                      
+                        required
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="1st Prize "
+                        name="Name"
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="2nd Prize"
+                        
+                        name="Name"
+                      
+                        required
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="2nd Prize "
+                        name="Name"
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="3rd Prize"
+                        
+                        name="Name"
+                      
+                        required
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="3rd Prize "
+                        name="Name"
+                      ></input>
+                    </div>
+                  </div>
+
+                  <div className="row ">
+                    <div className="col-sm">
+                      <input
+                        placeholder="4th Prize"
+                        
+                        name="Name"
+                      
+                        required
+                      ></input>
+                    </div>
+
+                    <div className="col-sm">
+                      <input
+                        style={{ direction: "rtl" }}
+                        placeholder="4th Prize "
+                        name="Name"
+                      ></input>
+                    </div>
+                  </div>
                   <div className="row ">
                     <div className="col-sm">
                       <input
                         placeholder="Day N Time"
                         type="date"
+                        min={formatDate}
+                        max="2025-08-31"
+                        
                         onChange={(e) => setDayNTime(e.target.value)}
                         value={DayNTime}
                       ></input>
@@ -272,9 +401,16 @@ const RaceForm = () => {
                         placeholder="Day N Time"
                         type="date"
                         style={{ direction: "rtl" }}
+                        min={formatDate}
+                        max="2025-08-31"
+                        
+                        onChange={(e) => setDayNTime(e.target.value)}
+                        value={DayNTime}
                       ></input>
                     </div>
                   </div>
+
+
 
                   <div className="RaceButtonDiv">
                     <button className="updateButton">updated</button>
