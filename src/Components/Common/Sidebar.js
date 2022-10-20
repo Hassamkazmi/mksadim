@@ -90,7 +90,7 @@ const Sidebar = () => {
    <div> <Link to='/sponsorform' className='mylink'>Add New</Link></div>
     </Accordion.Body>
   </Accordion.Item>
-  <Accordion.Item eventKey="10">
+  <Accordion.Item eventKey="11">
     <Accordion.Header>Slider</Accordion.Header>
     <Accordion.Body className='AccordionBody'>
     <div><Link to='/slider' className='mylink'>View Listing</Link></div>
