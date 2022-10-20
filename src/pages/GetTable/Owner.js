@@ -6,11 +6,20 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
-
+import OwnerPopup from '../../Components/Popup/OwnerPopup';
+import { Modal } from 'react-bootstrap';
 
 
 
 const Owner = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
     const dispatch = useDispatch();
   const [pagenumber,setPageNumber] = useState(1)  
 
@@ -106,7 +115,7 @@ const Owner = () => {
                          <td>
                            <img src={item.image} alt="" />
                          </td>
-                         <td></td>
+                         <td><button onClick={()=>handleShow(item)}>View </button></td>
                    
                          
                          
@@ -123,6 +132,20 @@ const Owner = () => {
       
        </div>
      </div>
+     <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Owner </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <OwnerPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
     </>
   )
 }

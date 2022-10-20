@@ -20,29 +20,85 @@ const Sidebar = () => {
    <div> <Link to='/dashboard' className='mylink'>Add Results</Link></div>
     </Accordion.Body>
   </Accordion.Item>
-</Accordion>
-  <Link to='/racecourse' className='mylink'>RaceCourse</Link>
-  <Accordion>
   <Accordion.Item eventKey="1">
+    <Accordion.Header>RaceCourse</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div>  <Link to='/racecourse' className='mylink'>View Listing</Link></div>
+   <div>   <Link to='/racecourseform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="2">
     <Accordion.Header>Horses</Accordion.Header>
     <Accordion.Body className='AccordionBody'>
     <div><Link to='/horse' className='mylink'>View Listing</Link></div>
    <div> <Link to='/horseform' className='mylink'>Add New</Link></div>
     </Accordion.Body>
   </Accordion.Item>
+  <Accordion.Item eventKey="3">
+    <Accordion.Header>Jockey</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/jockey' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/jockeyform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="4">
+    <Accordion.Header>Trainer</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/trainer' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/trainerform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="5">
+    <Accordion.Header>Owner</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/owner' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/ownerform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="6">
+    <Accordion.Header>Competition</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/competition' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/competition' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="7">
+    <Accordion.Header>Statistics</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/statistics' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/statistics' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="8">
+    <Accordion.Header>News</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/news' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/newsform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="9">
+    <Accordion.Header>Ads</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/ads' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/adsform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="10">
+    <Accordion.Header>Sponsor</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/sponsor' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/sponsorform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
+  <Accordion.Item eventKey="10">
+    <Accordion.Header>Slider</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/slider' className='mylink'>View Listing</Link></div>
+   <div> <Link to='/sliderform' className='mylink'>Add New</Link></div>
+    </Accordion.Body>
+  </Accordion.Item>
 </Accordion>
-  
-  <Link to='/jockey' className='mylink'>Jockey</Link>
-  <Link to='/trainer' className='mylink'>Trainer</Link>
-  <Link to='/owner' className='mylink'>Owner</Link>
-  <Link to='/competition' className='mylink'>Competition</Link>
-  <Link to='/statistics' className='mylink'>Statistics</Link>
-  <Link to='/news' className='mylink'>News</Link>
-  <Link to='/ads' className='mylink'>Ads</Link>
-  <Link to='/sponsor' className='mylink'>Sponsor</Link>
- 
-  <Link to='/slider' className='mylink'>Slider</Link>
-</div> : null
+  </div> : null
 }
 </>
     

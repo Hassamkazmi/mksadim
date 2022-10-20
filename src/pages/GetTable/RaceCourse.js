@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
 import { fetchracecourse, STATUSES } from "../../redux/getReducer/getRaceCourseSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +8,20 @@ import { remove } from "../../redux/postReducer/PostRaceCourse";
 import swal from 'sweetalert';
 import { Link } from "react-router-dom";
 import { BiEdit } from 'react-icons/bi'
+import { Modal } from "react-bootstrap";
+import RacecoursePopup from '../../Components/Popup/RacecoursePopup'
 
-const News = () => {
+const Racecourse = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+    setmodaldata(data)
+    await setShow(true)
+};
+
+
   const dispatch = useDispatch();
   const { data: racecourse, status } = useSelector((state) => state.racecourse);
   useEffect(() => {
@@ -46,9 +58,9 @@ const News = () => {
   if (status === STATUSES.LOADING) {
     return (
       <h2
-      className="loader"
+        className="loader"
       >
-        
+
       </h2>
     );
   }
@@ -65,6 +77,7 @@ const News = () => {
       </h2>
     );
   }
+
   return (
     <>
 
@@ -137,6 +150,8 @@ const News = () => {
                               }}
                               onClick={() => handleRemove(item._id)}
                             />
+                            <button style={{ cursor:"pointer" }} onClick={() => handleShow(item)} >View</button>
+
                           </td>
                         </tr>
                       </>
@@ -150,7 +165,22 @@ const News = () => {
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Race Course </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <RacecoursePopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
+      
     </>
   );
 };
-export default News;
+export default Racecourse;

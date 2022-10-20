@@ -1,14 +1,25 @@
 import React, { useEffect,useState } from "react";
+
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { Link } from "react-router-dom";
-import swal from "sweetalert";
-import ReactPaginate from "react-paginate";
+
+import swal from 'sweetalert';
 
 
-const News = () => {
+
+const Trainer = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
+
   const dispatch = useDispatch();
 
   const { data: trainer, status } = useSelector((state) => state.trainer);
@@ -69,100 +80,86 @@ const handlePageClick = async (data) => {
     );
   }
   return (
-    <>
-      <div className="page">
-        <div className="rightsidedata">
-          <div
-            style={{
-              marginTop: "30px",
-            }}
-          >
-            {" "}
-            <div className="Header ">
-              <h4>Trainer Listings</h4>
+   <>
 
-              <div>
-                <h6
-                  style={{
-                    marginRight: "100px",
-                    alignItems: "center",
-                    color: "rgba(0, 0, 0, 0.6)",
-                  }}
-                >
-                  Toggle to Arabic
-                </h6>
+   <div className="page">
+  
+      <div className="rightsidedata">
+        <div
+          style={{
+            marginTop: "30px",
+          }}
 
-                <Link to="/trainerform">
-                  <button>Add Trainer</button>
-                </Link>
-              </div>
-            </div>
-            <>
-              <div className="div_maintb">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Age</th>
-                      <th>Detail</th>
-                      <th>Image</th>
+        >    <div className='Header '>
 
-                      <th>Action</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {trainer.map((item, index) => {
-                      return (
-                        <>
-                          <tr className="tr_table_class">
-                            <td>{item.Name}</td>
-                            <td>{item.Age}</td>
-                            <td style={{ marginRight: "100px" }}>
-                              {item.Detail}
-                            </td>
-                            <td>
-                              <img src={item.image} alt="" />
-                            </td>
-                            <td className="table_delete_btn1">
-                              <MdDelete
-                                style={{
-                                  fontSize: "22px",
-                                }}
-                                onClick={() => handleRemove(item._id)}
-                              />
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </tbody>
-                </table>
-                <ReactPaginate
-        previousLabel={"previous"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination justify-content-center"}
-        pageClassName={"page-item"}
-        pageLinkClassName={"page-link"}
-        previousClassName={"page-item"}
-        previousLinkClassName={"page-link"}
-        nextClassName={"page-item"}
-        nextLinkClassName={"page-link"}
-        breakClassName={"page-item"}
-        breakLinkClassName={"page-link"}
-        activeClassName={"active"}
-      />
-              </div>
-            </>
-          </div>
+        <h4>Trainer Listings</h4>
+        
+        
+        
+        
+        
+        
+        
+        <div>
+          <h6 style={{ marginRight: "100px", alignItems: "center", color: "rgba(0, 0, 0, 0.6)" }}>Toggle to Arabic</h6>
+        
+          <Link to="/trainerform">
+            <button>Add Trainer</button>
+          </Link>
         </div>
+        
+        </div>
+
+          <>
+          <div className="div_maintb">
+            <table >
+              <thead>
+                <tr>              
+                <th>Name</th>
+                <th>Age</th>
+                  <th>Detail</th>
+                                   <th>Image</th>
+               
+              
+                  
+                  <th>Action</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {trainer.map((item, index) => {
+                  return (
+                    <>
+                      <tr className="tr_table_class">
+        
+                    
+                        <td>{item.Name}</td>
+                        <td>{item.Age}</td>
+                        <td style={{marginRight:"100px"}}>{item.Detail}</td>
+                        <td>
+                          <img src={item.image} alt="" />
+                        </td>                        
+                        <td className="table_delete_btn1">
+                          <MdDelete
+                            style={{
+                              fontSize: "22px",
+                            }}
+                            onClick={() => handleRemove(item._id)}
+                          />
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </table>
+            </div>
+          </>
+        </div>
+       
       </div>
-    </>
+    </div>
+   </>
   );
 };
-export default News;
+export default Trainer;

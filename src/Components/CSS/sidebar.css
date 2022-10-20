@@ -25,3 +25,7 @@ font-size: 15.5949px;
     --bs-accordion-bg: #E8E8E8;
     --bs-accordion-border-color:none;
 }
+.accordion-body {
+    background-color: #707070;
+    border-radius: 0 0 20px 0 ;
+}

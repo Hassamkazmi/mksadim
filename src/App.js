@@ -33,11 +33,13 @@ import SliderForm from "./pages/PostTable/SliderForm";
 import Slider from "./pages/GetTable/Slider";
 import Header from "./Components/Common/Header";
 import Sidebar from "./Components/Common/Sidebar";
-import { useLocation } from "react-router-dom";
+import React from "react";
+
+
 
 
 function App() {
-
+  const [modalShow, setModalShow] = React.useState(false);
   return (
     <>
       <Provider store={store}>
@@ -74,7 +76,8 @@ function App() {
                 <Route path="/owner" element={<Owner />} />
                 <Route path="/ownerform" element={<OwnerForm />} />
                 <Route path="/sliderform" element={<SliderForm />} />
-                <Route path="/slider" element={<Slider />} />
+                <Route path="/slider" element={<Slider  show={modalShow}
+        onHide={() => setModalShow(false)}/>} />
               </Route>
             </Routes>
             </div>

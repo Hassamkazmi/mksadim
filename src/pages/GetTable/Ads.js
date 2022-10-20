@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect,useState } from "react";
 import { fetchAds, STATUSES } from "../../redux/getReducer/getAdsSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostAds";
-
 import { Link } from 'react-router-dom'
-
 import { edit } from "../../redux/postReducer/PostAds";
 import { BiEdit } from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
+import AdsPopup from "../../Components/Popup/AdsPopup";
 
 const Ads = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
   const history = useNavigate()
   const dispatch = useDispatch();
   const { data: allads, status } = useSelector((state) => state.ads);
@@ -117,15 +123,18 @@ const Ads = () => {
                                 }}
                                 onClick={() => handleRemove(item.index)}
                               />
+                                <button onClick={() => handleShow(item)}>View</button>
                               <BiEdit
                                 style={{
                                   fontSize: "22px",
                                   marginRight: "100px"
                                 }}
                                 onClick={() => handleEdit(item._id)}
-                              />
-                            </td>
 
+                              />
+                            
+                            </td>
+                          
 
 
 
@@ -142,6 +151,20 @@ const Ads = () => {
 
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Ads </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <AdsPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal> 
     </>
   );
 };
