@@ -11,6 +11,7 @@ import { BiEdit } from 'react-icons/bi'
 import ScrollContainer from "react-indiana-drag-scroll";
 import SponserPopup from '../../Components/Popup/SponserPopup';
 import { Modal } from "react-bootstrap";
+import {BsFillEyeFill} from 'react-icons/bs'
 
 
 
@@ -144,7 +145,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item._id)}
                               />
-                               <button style={{ cursor:"pointer"}} onClick={() => handleShow(item)} >View</button>
+                               <BsFillEyeFill style={{ cursor:"pointer"}} onClick={() => handleShow(item)} />
                             </td>
                           </tr>
                         </>

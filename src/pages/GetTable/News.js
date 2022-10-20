@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
 import NewsPopup from "../../Components/Popup/NewsPopup";
+import {BsFillEyeFill} from 'react-icons/bs'
 
 const News = () => {
   const [data ,setdata] = useState()
@@ -161,7 +162,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item.id)}
                               />
-                              <button onClick={()=> handleShow(item)}>View</button>
+                              <BsFillEyeFill onClick={()=> handleShow(item)}/>
                             </td>
                           </tr>
                         );

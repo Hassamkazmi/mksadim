@@ -174,3 +174,16 @@ tbody{
     border-radius: 20px !important;
    
 }
+td.table_delete_btn1 {
+    font-size: 20px;
+}
+
+td:last-child {
+  color: #19469D;
+  
+  }
+  td:last-child >svg {
+    margin-left: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    }

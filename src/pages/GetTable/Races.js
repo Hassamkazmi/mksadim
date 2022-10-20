@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
 import { fetchrace, STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,19 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../Components/CSS/Table.css";
 import ScrollContainer from "react-indiana-drag-scroll";
 import '../../Components/CSS/race.css'
+import {BsFillEyeFill} from "react-icons/bs"
+import { Modal } from "react-bootstrap";
+import RacePopup from "../../Components/Popup/RacePopup";
 
 const Races = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+    setmodaldata(data)
+    await setShow(true)
+};
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: race, status } = useSelector((state) => state.race);
@@ -90,6 +101,7 @@ const Races = () => {
                       <th>Ground</th>
                       <th># of Horse</th>
                       <th>Status</th>
+                      <th>Action</th>
                       
                     </tr>
                   </thead>
@@ -114,6 +126,7 @@ const Races = () => {
                     <td>{item.raceName}</td>
                     <td>{item.Horses.length}</td>
                     <td>{item.RaceStatus}</td>
+                    <td> <BsFillEyeFill onClick={()=> handleShow(item)}/> </td>
                     
                   </tr>
                        </tbody>
@@ -126,6 +139,20 @@ const Races = () => {
           </div>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Race Course </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <RacePopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
     </>
   );
 };

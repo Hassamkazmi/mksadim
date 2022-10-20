@@ -9,7 +9,7 @@ import SliderPopup from '../../Components/Popup/SliderPopup';
 
 import { fetchSlider,STATUSES } from '../../redux/getReducer/getSliderSlice';
 import '../../Components/CSS/Table.css'
-
+import {BsFillEyeFill} from 'react-icons/bs'
 
 const Slider = () => {
 
@@ -122,7 +122,7 @@ console.log(data,"nhi ")
                    
                          
                          <td>
-                         <button style={{color:"green", cursor:"pointer"}} onClick={() => handleShow(item)} >View</button>
+                         <BsFillEyeFill style={{color:"green", cursor:"pointer"}} onClick={() => handleShow(item)} />
                          </td>
                        </tr>
                      </>

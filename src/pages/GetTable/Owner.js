@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
 import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
+import {BsFillEyeFill} from "react-icons/bs"
 
 
 
@@ -115,7 +116,7 @@ const Owner = () => {
                          <td>
                            <img src={item.image} alt="" />
                          </td>
-                         <td><button onClick={()=>handleShow(item)}>View </button></td>
+                         <td><BsFillEyeFill onClick={()=>handleShow(item) }/></td>
                    
                          
                          
@@ -136,7 +137,7 @@ const Owner = () => {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
                 <Modal.Header closeButton>
-                    <h2>Owner </h2>
+                    <h2>Slider </h2>
                 </Modal.Header>
                 <Modal.Body>
                 <OwnerPopup data={modaldata} />

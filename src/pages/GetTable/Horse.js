@@ -11,9 +11,20 @@ import { MdDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
 import swal from 'sweetalert';
+import {BsFillEyeFill} from 'react-icons/bs'
+import { Modal } from "react-bootstrap";
+import HorsePopup from "../../Components/Popup/HorsePopup";
 
 
 const Horse = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: horse, status } = useSelector((state) => state.horse);
@@ -164,6 +175,8 @@ const Horse = () => {
                               <td>
                                 <BiEdit />
                                 <MdDelete onClick={handleRemove} />
+                                <BsFillEyeFill onClick={()=> handleShow(item) }/>
+                                  
                               </td>
                             </tr>
                           </tbody>
@@ -175,7 +188,7 @@ const Horse = () => {
               </div>
             </>
           </div>
-          <span className="plusIconStyle"></span>
+     
         </div>
       </div>
       {/* <div
@@ -207,6 +220,20 @@ const Horse = () => {
           Next
         </button>
       </div> */}
+        <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Jockey </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <HorsePopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
     </>
   );
 };

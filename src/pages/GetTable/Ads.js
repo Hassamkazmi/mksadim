@@ -9,6 +9,7 @@ import { BiEdit } from 'react-icons/bi'
 import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import AdsPopup from "../../Components/Popup/AdsPopup";
+import {BsFillEyeFill} from 'react-icons/bs'
 
 const Ads = () => {
   const [data ,setdata] = useState()
@@ -123,20 +124,25 @@ const Ads = () => {
                                 }}
                                 onClick={() => handleRemove(item.index)}
                               />
-                                <button onClick={() => handleShow(item)}>View</button>
+                                  
+                              
                               <BiEdit
                                 style={{
                                   fontSize: "22px",
-                                  marginRight: "100px"
+                          
                                 }}
                                 onClick={() => handleEdit(item._id)}
 
                               />
-                            
+                              
+                              <BsFillEyeFill onClick={()=>handleShow(item)}  style={{
+                                  fontSize: "22px",
+                          marginRight:"100px"
+                                }}/> 
                             </td>
                           
 
-
+                       
 
                           </tr>
                         </>

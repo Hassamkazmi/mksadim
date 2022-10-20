@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
+import TrainerPopup from "../../Components/Popup/TrainerPopup";
+import {BsFillEyeFill} from 'react-icons/bs';
 
 import swal from 'sweetalert';
 
@@ -146,6 +149,7 @@ const handlePageClick = async (data) => {
                             }}
                             onClick={() => handleRemove(item._id)}
                           />
+                          <BsFillEyeFill onClick={() => handleShow(item)}/>
                         </td>
                       </tr>
                     </>
@@ -159,6 +163,20 @@ const handlePageClick = async (data) => {
        
       </div>
     </div>
+    <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Jockey </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <TrainerPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
    </>
   );
 };
