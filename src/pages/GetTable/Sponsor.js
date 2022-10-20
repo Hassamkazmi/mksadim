@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
 import { fetchSponsor, STATUSES } from "../../redux/getReducer/getSponsorSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +9,21 @@ import swal from 'sweetalert';
 import { Link } from "react-router-dom";
 import { BiEdit } from 'react-icons/bi'
 import ScrollContainer from "react-indiana-drag-scroll";
+import SponserPopup from '../../Components/Popup/SponserPopup';
+import { Modal } from "react-bootstrap";
+
+
 
 const News = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
+
   const dispatch = useDispatch();
   const { data: sponsor, status } = useSelector((state) => state.sponsor);
   useEffect(() => {
@@ -58,6 +71,7 @@ const News = () => {
       </h2>
     );
   }
+
   return (
     <>
 
@@ -130,6 +144,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item._id)}
                               />
+                               <button style={{ cursor:"pointer"}} onClick={() => handleShow(item)} >View</button>
                             </td>
                           </tr>
                         </>
@@ -143,6 +158,20 @@ const News = () => {
 
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Sponsor </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <SponserPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
     </>
   );
 };

@@ -1,18 +1,30 @@
-import React, { useEffect } from "react";
-import Sidebar from "../../Components/Common/Sidebar";
+import React, { useEffect,useState } from "react";
+
 import { fetchjockey, STATUSES } from "../../redux/getReducer/getJockeySlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostJockey";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../Components/Common/Header";
+
 import { BiEdit } from "react-icons/bi";
 import swal from 'sweetalert';
+import JockeyPopup from "../../Components/Popup/JockeyPopup";
+import { Modal } from "react-bootstrap";
+import {BsFillEyeFill} from 'react-icons/bs'
+
 
 
 
 const Statistic = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: jockey, status } = useSelector((state) => state.jockey);
@@ -123,6 +135,7 @@ const Statistic = () => {
                                 }}
                                 onClick={() => handleRemove(item._id)}
                               />
+                            <BsFillEyeFill onClick={()=> handleShow(item) }/>
                             </td>
                           </tr>
                         </>
@@ -136,6 +149,21 @@ const Statistic = () => {
           <span className="plusIconStyle"></span>
         </div>
       </div>
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Jockey </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <JockeyPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
+      
     </>
   );
 };

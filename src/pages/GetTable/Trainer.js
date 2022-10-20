@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { fetchTrainer, STATUSES } from "../../redux/getReducer/getTrainerSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,12 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostTrainer";
 import { Link } from "react-router-dom";
-
+import { Modal } from "react-bootstrap";
 import swal from 'sweetalert';
+import TrainerPopup from "../../Components/Popup/TrainerPopup";
 
 
 
-const News = () => {
+const Trainer = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
+
   const dispatch = useDispatch();
  
   
@@ -104,6 +114,7 @@ const News = () => {
                 <th>Name</th>
                 <th>Age</th>
                   <th>Detail</th>
+                  <th>Remarks</th>
                                    <th>Image</th>
                
               
@@ -122,6 +133,7 @@ const News = () => {
                         <td>{item.Name}</td>
                         <td>{item.Age}</td>
                         <td style={{marginRight:"100px"}}>{item.Detail}</td>
+                        <td>{item.Remarks}</td>
                         <td>
                           <img src={item.image} alt="" />
                         </td>                        
@@ -132,6 +144,7 @@ const News = () => {
                             }}
                             onClick={() => handleRemove(item._id)}
                           />
+                          <button onClick={()=> handleShow(item)}>View</button>
                         </td>
                       </tr>
                     </>
@@ -145,7 +158,22 @@ const News = () => {
        
       </div>
     </div>
+
+    <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Trainer </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <TrainerPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
    </>
   );
 };
-export default News;
+export default Trainer;

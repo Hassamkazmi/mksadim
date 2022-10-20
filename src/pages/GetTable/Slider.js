@@ -3,12 +3,26 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate,Link } from 'react-router-dom';
 
+import { Modal } from 'react-bootstrap';
+import SliderPopup from '../../Components/Popup/SliderPopup';
+
 
 import { fetchSlider,STATUSES } from '../../redux/getReducer/getSliderSlice';
 import '../../Components/CSS/Table.css'
 
 
 const Slider = () => {
+
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
+
+  
 
     const dispatch = useDispatch();
     const [pagenumber,setPageNumber] = useState(1)  
@@ -25,7 +39,8 @@ const Slider = () => {
     useEffect(() => {
       dispatch(fetchSlider({pagenumber}));
     },[]);
-    console.log(slider)
+
+   
    
     if (status === STATUSES.LOADING) {
       return (
@@ -48,10 +63,7 @@ const Slider = () => {
         </h2>
       );
     }
-  
-  
-  
-
+console.log(data,"nhi ")
   return (
     <>
    
@@ -110,7 +122,7 @@ const Slider = () => {
                    
                          
                          <td>
-
+                         <button style={{color:"green", cursor:"pointer"}} onClick={() => handleShow(item)} >View</button>
                          </td>
                        </tr>
                      </>
@@ -125,6 +137,20 @@ const Slider = () => {
       
        </div>
      </div>
+     <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>Slider </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <SliderPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
     </>
   )
 }

@@ -7,14 +7,23 @@ import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostNewsSlice";
 
 import swal from 'sweetalert';
-
+import { Modal } from "react-bootstrap";
 
 import { Link, useNavigate } from "react-router-dom";
 
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
+import NewsPopup from "../../Components/Popup/NewsPopup";
 
 const News = () => {
+  const [data ,setdata] = useState()
+  const [show, setShow] = useState(false);
+  const [modaldata, setmodaldata] = useState()
+  const handleClose = () => setShow(false);
+  const handleShow = async (data) => {
+      setmodaldata(data)
+      await setShow(true)
+  };
   const dispatch = useDispatch();
   const [pagenumber, setPageNumber] = useState(1);
 
@@ -38,16 +47,16 @@ const News = () => {
       buttons: true,
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        swal("Poof! Your imaginary file has been deleted!", {
-          icon: "success",
-        });
-        dispatch(remove(Id));
-      } else {
-        swal("Your imaginary file is safe!");
-      }
-    });
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+          dispatch(remove(Id));
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
     dispatch(remove(Id));
     history("/news");
   };
@@ -55,9 +64,9 @@ const News = () => {
   if (status === STATUSES.LOADING) {
     return (
       <h2
-      className="loader"
+        className="loader"
       >
-       
+
       </h2>
     );
   }
@@ -75,9 +84,9 @@ const News = () => {
   }
   return (
     <>
-    
+
       <div className="page">
-   
+
         <div className="rightsidedata">
           <div
             style={{
@@ -152,6 +161,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item.id)}
                               />
+                              <button onClick={()=> handleShow(item)}>View</button>
                             </td>
                           </tr>
                         );
@@ -164,7 +174,21 @@ const News = () => {
           </div>
         </div>
       </div>
-  
+      <Modal show={show} onHide={handleClose}   size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered>
+                <Modal.Header closeButton>
+                    <h2>News </h2>
+                </Modal.Header>
+                <Modal.Body>
+                <NewsPopup data={modaldata} />
+                </Modal.Body>
+                <Modal.Footer>
+
+                <button onClick={handleClose}>Close</button>
+                </Modal.Footer>
+            </Modal>
+
     </>
   );
 };
