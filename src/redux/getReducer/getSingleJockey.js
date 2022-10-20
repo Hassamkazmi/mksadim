@@ -8,32 +8,32 @@ export const STATUSES = Object.freeze({
     LOADING:'loading'
 })
 
-const getSponsorSlice = createSlice({
-    name:'sponsor',
+const getSingleJockey = createSlice({
+    name:'singlejockey',
     initialState:{
         data:[],
         status:STATUSES.IDLE
     },
      extraReducers:(builder) => {
         builder
-        .addCase(fetchSponsor.pending, (state, action) => {
+        .addCase(fetchSinglejockey.pending, (state, action) => {
             state.status = STATUSES.LOADING;
         })
-        .addCase(fetchSponsor.fulfilled, (state, action) => {
+        .addCase(fetchSinglejockey.fulfilled, (state, action) => {
             state.data = action.payload;
             state.status = STATUSES.IDLE;
         })
-        .addCase(fetchSponsor.rejected, (state, action) => {
+        .addCase(fetchSinglejockey.rejected, (state, action) => {
             state.status = STATUSES.ERROR;
         })
      },
 });
 
-export const {setSponsor, setStatus} = getSponsorSlice.actions;
-export default getSponsorSlice.reducer;
-// 'https://mksbackend.herokuapp.com/api/v1/Sponsorget'
-export const fetchSponsor = createAsyncThunk('sponsor/fetch', async () => {
-    const res = await axios.get(`${window.env.API_URL}/Sponsorget?keyword=&page=1`);
+export const {setjockey, setStatus} = getSingleJockey.actions;
+export default getSingleJockey.reducer;
+//https://mksbackend.herokuapp.com/api/v1/Jockeyget
+export const fetchSinglejockey = createAsyncThunk('getsinglejockey/fetch', async ({id}) => {
+    const res = await axios.get(`${window.env.API_URL}/singleJockey/${id}`);
     const data = res.data;
     return data.data;
 })

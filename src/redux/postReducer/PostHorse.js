@@ -14,6 +14,7 @@ const postHorse = createSlice({
             const response = axios.delete(`${window.env.API_URL}/deletehorse/${action.payload}`)
            return response;
         }
+        
     }
 })
 

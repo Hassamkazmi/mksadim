@@ -53,6 +53,8 @@ const Statistic = () => {
     dispatch(remove(Id));
     history("/jockey");
   };
+
+  
   if (status === STATUSES.LOADING) {
     return (
         <h2
@@ -128,7 +130,7 @@ const Statistic = () => {
                             </td>
 
                             <td className="table_delete_btn1">
-                              <BiEdit />
+                             <Link to={`/editjockey/${item._id}`}> <BiEdit /></Link>
                               <MdDelete
                                 style={{
                                   fontSize: "22px",

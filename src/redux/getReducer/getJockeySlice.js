@@ -2,7 +2,6 @@ import axios from "axios";
 import env from "react-dotenv";
 const {createSlice,createAsyncThunk} = require('@reduxjs/toolkit');
 
-const API = `${env.API_URL}`
 export const STATUSES = Object.freeze({
     IDLE:'idle',
     ERROR:'error',
@@ -34,7 +33,7 @@ export const {setjockey, setStatus} = getjockeyslice.actions;
 export default getjockeyslice.reducer;
 //https://mksbackend.herokuapp.com/api/v1/Jockeyget
 export const fetchjockey = createAsyncThunk('getjockey/fetch', async () => {
-    const res = await axios.get(`${API}/Jockeyget?keyword=&page=`);
+    const res = await axios.get(`${window.env.API_URL}/Jockeyget?keyword=&page=`);
     const data = res.data;
     return data.data;
 })

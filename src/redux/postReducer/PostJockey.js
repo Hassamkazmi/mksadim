@@ -14,9 +14,13 @@ const postJockey = createSlice({
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deleteJockey/${action.payload}`)
            return response; 
+        },
+        edit(state, action){
+            const response = axios.put(`${window.env.API_URL}/updateJockey/${action.payload}`)
+           return response; 
         }
     }
 })
 
-export const {add , remove} = postJockey.actions;
+export const {add , remove, edit} = postJockey.actions;
 export default postJockey.reducer;
