@@ -478,7 +478,7 @@ const RaceForm = () => {
                       isSearchable={true}
                     />
                   </span>
-                  <span>
+                  <span >
                     {selectedOption2 === "" ? (
                       <p>N/A</p>
                     ) : (

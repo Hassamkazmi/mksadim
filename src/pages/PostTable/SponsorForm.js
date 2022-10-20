@@ -98,8 +98,8 @@ const SponsorForm = () => {
 
                   <div className="col-sm">
                     <textarea
-                      placeholder="Detail"
-                      name="Detail"
+                    
+                      name="Detail" placeholder="التفاصيل"  style={{ direction: "rtl" }}
                       onChange={(e) => setDescriptionAr(e.target.value)}
                       value={DescriptionAr}
                     ></textarea>

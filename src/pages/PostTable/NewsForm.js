@@ -125,7 +125,7 @@ const NewsForm = () => {
 
                   <div className="col-sm">
                     <textarea
-                      placeholder="Detail"
+                      placeholder="التفاصيل"  style={{ direction: "rtl" }}
                       name="Detail"
                       onChange={(e) => setDescriptionAr(e.target.value)}
                       value={DescriptionAr}

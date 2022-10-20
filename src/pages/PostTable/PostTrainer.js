@@ -114,7 +114,7 @@ const TrainerForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <textarea placeholder="Detail"></textarea>
+                    <textarea placeholder="التفاصيل"  style={{ direction: "rtl" }}></textarea>
                   </div>
                 </div>
                 <div className="row ">

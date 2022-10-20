@@ -1,11 +1,11 @@
 import React from 'react'
-import {BsFillBellFill} from 'react-icons/bs'
+import {BsBell} from 'react-icons/bs'
 
 
 const Notification = () => {
   return (
     <div>
-      <BsFillBellFill style={{
+      <BsBell style={{
         width: '25px',
         height: '25px'
       }}/>
