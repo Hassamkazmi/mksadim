@@ -34,6 +34,8 @@ import Slider from "./pages/GetTable/Slider";
 import Header from "./Components/Common/Header";
 import Sidebar from "./Components/Common/Sidebar";
 import { useLocation } from "react-router-dom";
+
+
 function App() {
 
   return (
