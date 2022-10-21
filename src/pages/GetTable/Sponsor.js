@@ -16,7 +16,7 @@ import {BsFillEyeFill} from 'react-icons/bs'
 
 
 const News = () => {
-  const [data ,setdata] = useState()
+ 
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -45,7 +45,7 @@ const News = () => {
           });
           dispatch(remove(Id));
         } else {
-          swal("Your imaginary file is safe!");
+          swal("Your Data is safe!");
         }
       });
 
@@ -170,7 +170,7 @@ const News = () => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
     </>

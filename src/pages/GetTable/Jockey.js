@@ -17,7 +17,7 @@ import {BsFillEyeFill} from 'react-icons/bs'
 
 
 const Statistic = () => {
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -160,7 +160,7 @@ const Statistic = () => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
       

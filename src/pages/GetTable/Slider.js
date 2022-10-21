@@ -2,18 +2,21 @@ import React,{useState , useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useNavigate,Link } from 'react-router-dom';
+import {MdDelete} from 'react-icons/md'
 
 import { Modal } from 'react-bootstrap';
 import SliderPopup from '../../Components/Popup/SliderPopup';
-
+import swal from 'sweetalert';
+import remove from '../../redux/postReducer/PostSlider'
 
 import { fetchSlider,STATUSES } from '../../redux/getReducer/getSliderSlice';
 import '../../Components/CSS/Table.css'
 import {BsFillEyeFill} from 'react-icons/bs'
+import    {BiEdit} from 'react-icons/bi' 
 
 const Slider = () => {
 
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -21,7 +24,27 @@ const Slider = () => {
       setmodaldata(data)
       await setShow(true)
   };
+  const handleRemove = async (Id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+          dispatch(remove(Id));
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
 
+    fetchSlider();
+  };
   
 
     const dispatch = useDispatch();
@@ -63,7 +86,7 @@ const Slider = () => {
         </h2>
       );
     }
-console.log(data,"nhi ")
+
   return (
     <>
    
@@ -122,7 +145,9 @@ console.log(data,"nhi ")
                    
                          
                          <td>
-                         <BsFillEyeFill style={{color:"green", cursor:"pointer"}} onClick={() => handleShow(item)} />
+                         <BiEdit />
+                          <MdDelete onClick={()=> handleRemove(item._id)}/>
+                         <BsFillEyeFill style={{cursor:"pointer"}} onClick={() => handleShow(item)} />
                          </td>
                        </tr>
                      </>
@@ -148,7 +173,7 @@ console.log(data,"nhi ")
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
     </>

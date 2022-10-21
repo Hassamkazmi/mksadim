@@ -13,7 +13,7 @@ import RacecoursePopup from '../../Components/Popup/RacecoursePopup'
 import {BsFillEyeFill} from 'react-icons/bs'
 
 const Racecourse = () => {
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -53,9 +53,11 @@ const Racecourse = () => {
 
 
 
-    fetchracecourse();
+    
 
   };
+  
+  
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -177,7 +179,7 @@ const Racecourse = () => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose} className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
       

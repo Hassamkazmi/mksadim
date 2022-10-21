@@ -14,7 +14,7 @@ import swal from 'sweetalert';
 
 
 const Trainer = () => {
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);

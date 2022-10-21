@@ -10,9 +10,12 @@ import '../../Components/CSS/race.css'
 import {BsFillEyeFill} from "react-icons/bs"
 import { Modal } from "react-bootstrap";
 import RacePopup from "../../Components/Popup/RacePopup";
+import {MdDelete} from 'react-icons/md'
+import swal from "sweetalert";
+
 
 const Races = () => {
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -23,9 +26,26 @@ const Races = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: race, status } = useSelector((state) => state.race);
-  const handleRemove = (Id) => {
-    dispatch(remove(Id));
-    history("/races");
+  const handleRemove = async (Id) => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+          });
+          dispatch(remove(Id));
+        } else {
+          swal("Your Data is safe!");
+        }
+      });
+
+ 
   };
   useEffect(() => {
     dispatch(fetchrace());
@@ -126,7 +146,10 @@ const Races = () => {
                     <td>{item.raceName}</td>
                     <td>{item.Horses.length}</td>
                     <td>{item.RaceStatus}</td>
-                    <td> <BsFillEyeFill onClick={()=> handleShow(item)}/> </td>
+                    <td> 
+                      
+                    <MdDelete onClick={()=> handleRemove(item._id)}/>
+                      <BsFillEyeFill onClick={()=> handleShow(item)}/> </td>
                     
                   </tr>
                        </tbody>
@@ -150,7 +173,7 @@ const Races = () => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
     </>

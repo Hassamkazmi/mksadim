@@ -13,7 +13,7 @@ import {BsFillEyeFill} from "react-icons/bs"
 
 
 const Owner = () => {
-  const [data ,setdata] = useState()
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -137,14 +137,14 @@ const Owner = () => {
       aria-labelledby="contained-modal-title-vcenter"
       centered>
                 <Modal.Header closeButton>
-                    <h2>Slider </h2>
+                    <h2>Owner </h2>
                 </Modal.Header>
                 <Modal.Body>
                 <OwnerPopup data={modaldata} />
                 </Modal.Body>
                 <Modal.Footer>
 
-                <button onClick={handleClose}>Close</button>
+                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
                 </Modal.Footer>
             </Modal>
     </>

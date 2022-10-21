@@ -6,7 +6,6 @@ import store from "./redux/store";
 import Dashboard from "./pages/Dashboard";
 import Races from "./pages/GetTable/Races";
 import Competition from "./pages/GetTable/Competation";
-
 import Statistic from "./pages/GetTable/Statistic";
 import Horse from "./pages/GetTable/Horse";
 import Jockey from "./pages/GetTable/Jockey";
