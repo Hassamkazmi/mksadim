@@ -2,7 +2,6 @@ import axios from "axios";
 import env from "react-dotenv";
 const {createSlice,createAsyncThunk} = require('@reduxjs/toolkit');
 
-const API = `${env.API_URL}`
 export const STATUSES = Object.freeze({
     IDLE:'idle',
     ERROR:'error',
@@ -33,7 +32,7 @@ const getRaceCourseSlice = createSlice({
 export const {setRacecourse, setStatus} = getRaceCourseSlice.actions;
 export default getRaceCourseSlice.reducer;
 export const fetchracecourse = createAsyncThunk('getracecourse/fetch', async () => {
-    const res = await axios.get(`${API}/getracecourse?keyword=&page=`);
+    const res = await axios.get(`${window.env.API_URL}/getracecourse?keyword=&page=`);
     const data = res.data;
     return data.data;
 })
