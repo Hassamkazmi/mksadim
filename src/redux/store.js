@@ -22,6 +22,7 @@ import getOwnerSlice from './getReducer/getOwnerSlice';
 import PostSlider from './postReducer/PostSlider';
 import getSliderSlice from './getReducer/getSliderSlice';
 import getSingleJockey from './getReducer/getSingleJockey';
+import getSingleOwner from './getReducer/getSingleOwner';
 
 
 const store = configureStore({
@@ -48,7 +49,8 @@ const store = configureStore({
         slider:getSliderSlice,
         postslider:PostSlider,
         userProfile: getUserDetails,
-        singlejockey: getSingleJockey
+        singlejockey: getSingleJockey,
+        singleowner:getSingleOwner
 
     },
 });

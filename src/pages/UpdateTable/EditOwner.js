@@ -1,22 +1,31 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { add } from "../../redux/postReducer/PostOwner";
+import React, { useState ,useEffect} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { useNavigate,useParams } from "react-router-dom";
+import { add,edit } from "../../redux/postReducer/PostOwner";
+
 
 import swal from "sweetalert";
+import { fetchSingleOwner } from "../../redux/getReducer/getSingleOwner";
 
-const OwnerForm = () => {
+const EditOwnerForm = () => {
+    const { data: singleowner } = useSelector((state) => state.singleowner);
+    const { id } = useParams()
   const dispatch = useDispatch();
   const history = useNavigate();
   const [Name, setName] = useState("");
   const [image, setImage] = useState();
 
+  console.log(singleowner,"Araha hu")
   const fileSelected = (event) => {
     const image = event.target.files[0];
     setImage(image);
   };
+  useEffect(() => {
+    dispatch(fetchSingleOwner({ id }));
+  }, []);
   const submit = async (event) => {
     event.preventDefault();
+    dispatch(edit)
     try {
       const formData = new FormData();
       formData.append("image", image);
@@ -31,6 +40,7 @@ const OwnerForm = () => {
       });
     } catch (error) {
       alert(error.message);
+      console.log(singleowner,"hai")
     }
   };
   const isSubmitData = Name === "" || image === null || image === undefined;
@@ -44,7 +54,7 @@ const OwnerForm = () => {
               marginTop: "30px",
             }}
           >
-            <div className="Headers">Add Owner</div>
+            <div className="Headers">Edit Owner</div>
             <div className="form">
               <form onSubmit={submit}>
                 <div className="row ">
@@ -68,7 +78,7 @@ const OwnerForm = () => {
 
                 <div className="ButtonSection">
                   <label>
-            
+    
                     <input type="file" size="60" onChange={fileSelected} />
                   </label>
                   <button
@@ -92,4 +102,4 @@ const OwnerForm = () => {
   );
 };
 
-export default OwnerForm;
+export default EditOwnerForm;

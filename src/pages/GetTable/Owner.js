@@ -9,6 +9,7 @@ import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
 import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
 import {BsFillEyeFill} from "react-icons/bs"
+import {BiEdit} from 'react-icons/bi'
 
 
 
@@ -116,7 +117,12 @@ const Owner = () => {
                          <td>
                            <img src={item.image} alt="" />
                          </td>
-                         <td><BsFillEyeFill onClick={()=>handleShow(item) }/></td>
+                        
+                         <td>
+                          <Link to={`/editowner/${item._id}`}>
+                         <BiEdit />
+                         </Link>
+                          <BsFillEyeFill onClick={()=>handleShow(item) }/></td>
                    
                          
                          

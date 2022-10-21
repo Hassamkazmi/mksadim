@@ -44,7 +44,7 @@ const Racecourse = () => {
           });
           dispatch(remove(Id));
         } else {
-          swal("Your file file is safe!");
+          swal("Your data  is safe!");
         }
       });
 
@@ -146,7 +146,7 @@ const Racecourse = () => {
 
 
                           <td className="table_delete_btn1">
-                            <BiEdit />
+                      <Link to ={`/editracecourse/${item._Id}`}      ><BiEdit /></Link>
                             <MdDelete
                               style={{
                                 fontSize: "22px",

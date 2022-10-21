@@ -127,10 +127,7 @@ const Ads = () => {
                                   
                               
                               <BiEdit
-                                style={{
-                                  fontSize: "22px",
-                          
-                                }}
+                               
                                 onClick={() => handleEdit(item._id)}
 
                               />

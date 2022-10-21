@@ -81,7 +81,8 @@ line-height: 19px;
     height: 246.19px;
     left: 638.35px;
     top: 430.19px;
-    background: linear-gradient(89.98deg, #FF0000 23.67%, #A00D0D 97.94%);    border-radius: 20px;
+    background: linear-gradient(89.98deg, #C8C8C8 23.67%, #8D8D8D 97.94%);  
+    border-radius: 20px;
 }
 .CompetitionsRaces{
     display: flex;
@@ -97,7 +98,7 @@ line-height: 19px;
     height: 246.19px;
     left: 638.35px;
     top: 430.19px;
-    background: linear-gradient(89.98deg, #5EC40F 23.67%, #61FF00 97.94%);    border-radius: 20px;
+    background: linear-gradient(89.98deg, #C8C8C8 23.67%, #8D8D8D 97.94%);    border-radius: 20px;
 }
 .TeamsRace{
     display: flex;
@@ -113,7 +114,7 @@ line-height: 19px;
     height: 246.19px;
     left: 638.35px;
     top: 430.19px;
-    background: linear-gradient(89.98deg, #414141 23.67%, #8D8D8D 97.94%);    border-radius: 20px;
+    background: linear-gradient(89.98deg, #C8C8C8 23.67%, #8D8D8D 97.94%);    border-radius: 20px;
 }
 .GenerateReports{
     display: flex;
@@ -129,7 +130,7 @@ line-height: 19px;
     height: 246.19px;
     left: 638.35px;
     top: 430.19px;
-    background: linear-gradient(89.98deg, #414141 23.67%, #8D8D8D 97.94%);    border-radius: 20px;
+    background: linear-gradient(89.98deg, #C8C8C8 23.67%, #8D8D8D 97.94%);   border-radius: 20px;
 }
 .accordion-button:not(.collapsed) {
     color: #fff;

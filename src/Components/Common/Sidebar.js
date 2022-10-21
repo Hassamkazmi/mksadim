@@ -4,6 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import '../CSS/sidebar.css'
 import { useLocation } from 'react-router-dom';
 
+
 const Sidebar = () => {
   let {pathname} = useLocation();
   return (
@@ -96,8 +97,12 @@ const Sidebar = () => {
     <div><Link to='/slider' className='mylink'>View Listing</Link></div>
    <div> <Link to='/sliderform' className='mylink'>Add New</Link></div>
     </Accordion.Body>
+    
   </Accordion.Item>
+<div className='SettingSec'>Setting</div>
+ 
 </Accordion>
+
   </div> : null
 }
 </>

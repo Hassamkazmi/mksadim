@@ -15,8 +15,15 @@ const postowner = createSlice({
         //     const response = axios.delete(`${window.env.API_URL}/deleteJockey/${action.payload}`)
         //    return response; 
         // }
+        edit(state, action){
+            const response = axios.put(`${window.env.API_URL}/updateOwner/${action.payload}`)
+           return response; 
+        }
+
+
+
     }
 })
 
-export const {add , remove} = postowner.actions;
+export const {add , remove ,edit} = postowner.actions;
 export default postowner.reducer;

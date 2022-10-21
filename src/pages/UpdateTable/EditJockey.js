@@ -1,48 +1,66 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import "../../Components/CSS/forms.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { add } from "../../redux/postReducer/PostJockey";
-import { fetchSinglejockey, STATUSES } from "../../redux/getReducer/getSingleJockey";
-import { useParams } from "react-router-dom";
+import { useNavigate ,useParams} from "react-router-dom";
+import { add, edit } from "../../redux/postReducer/PostJockey";
+import { fetchSinglejockey } from "../../redux/getReducer/getSingleJockey";
 import swal from "sweetalert";
-import { useEffect } from "react";
+
 
 const NewsForm = () => {
-    const dispatch = useDispatch();
-    const history = useNavigate();
-    const {id} = useParams()
-    const { data: singlejockey, status } = useSelector((state) => state.singlejockey);
+  const dispatch = useDispatch();
+  const history = useNavigate();
+  const { id } = useParams()
+  const { data: singlejockey } = useSelector((state) => state.singlejockey);
 
-    const [Name,setName] = useState('')
-    const [Age,setAge] = useState('')
-    const [image,setImage] = useState()
-  
-  
-    const fileSelected = event => {
-      const image = event.target.files[0]
-      setImage(image)
+  const [Name, setName] = useState(singlejockey.Name)
+  const [Age, setAge] = useState(singlejockey.Age)
+  const [image, setImage] = useState(singlejockey.image)
+
+  console.log(singlejockey, "sahi hai")
+  const fileSelected = event => {
+    const image = event.target.files[0]
+    setImage(singlejockey.image, image)
+  }
+  useEffect(() => {
+    dispatch(fetchSinglejockey({ id }));
+  }, []);
+  const submit = async event => {
+    event.preventDefault()
+    dispatch(edit)
+    event.preventDefault()
+    try {
+      const formData = new FormData();
+      formData.append("image", image)
+      formData.append("Name", Name)
+      formData.append("Age", Age)
+      dispatch(add(formData));
+      history('/jockey')
+      swal({
+        title: "Success!",
+        text: "Data has been Updated successfully ",
+        icon: "success",
+        button: "OK",
+      });
+    } catch (error) {
+      alert(error.message)
     }
-    useEffect(() => {
-        dispatch(fetchSinglejockey({id}));
-      }, [dispatch]);
-    const submit = async event => {
-      event.preventDefault()
-     
-    }
-    console.log(singlejockey,'singlejockey')
+
+
+  }
+  console.log(singlejockey, 'singlejockey')
   return (
     <>
 
-    <div className="page">
+      <div className="page">
 
-    <div className="rightsidedata">
-      <div
-        style={{
-          marginTop: "30px",
-        }}
-      >
-              <div className='Headers'>
+        <div className="rightsidedata">
+          <div
+            style={{
+              marginTop: "30px",
+            }}
+          >
+            <div className='Headers'>
 
               Edit Jockey
             </div>
@@ -50,7 +68,7 @@ const NewsForm = () => {
               <form onSubmit={submit}>
                 <div className="row ">
                   <div className="col-sm">
-                    <input placeholder=' Name' onChange={e => setName(e.target.value)} name='Name' value={singlejockey.Name}
+                    <input placeholder=' Name' onChange={e => setName(e.target.value)} name='Name' value={Name}
 
                       required
                     ></input>
@@ -65,7 +83,7 @@ const NewsForm = () => {
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <input placeholder='Age' onChange={e => setAge(e.target.value)} name='Name' value={singlejockey.Age}
+                    <input placeholder='Age' onChange={e => setAge(e.target.value)} name='Name' value={Age}
                       required
                       type='number'
                     ></input>
@@ -78,8 +96,8 @@ const NewsForm = () => {
                   </div>
 
                 </div>
-               
-              
+
+
 
 
 
@@ -102,7 +120,7 @@ const NewsForm = () => {
       </div>
 
     </>
-    
+
   );
 };
 

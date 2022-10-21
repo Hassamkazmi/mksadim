@@ -3,7 +3,7 @@ import React, { useEffect,useState } from "react";
 import { fetchrace, STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/postReducer/postRace";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../Components/CSS/Table.css";
 import ScrollContainer from "react-indiana-drag-scroll";
 import '../../Components/CSS/race.css'
@@ -24,7 +24,7 @@ const Races = () => {
     await setShow(true)
 };
   const dispatch = useDispatch();
-  const history = useNavigate();
+
   const { data: race, status } = useSelector((state) => state.race);
   const handleRemove = async (Id) => {
     swal({

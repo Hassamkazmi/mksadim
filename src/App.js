@@ -33,6 +33,8 @@ import Slider from "./pages/GetTable/Slider";
 import Header from "./Components/Common/Header";
 import Sidebar from "./Components/Common/Sidebar";
 import EditJockey from './pages/UpdateTable/EditJockey'
+import EditRacecourse from "./pages/UpdateTable/EditRacecourse";
+import EditOwner from "./pages/UpdateTable/EditOwner"
 
 
 
@@ -75,6 +77,8 @@ function App() {
                 <Route path="/sliderform" element={<SliderForm />} />
                 <Route path="/slider" element={<Slider />} />
                 <Route path="/editjockey/:id" element={<EditJockey />} />
+                <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>
+                <Route path="/editowner/:id" element={<EditOwner/>}/>
               </Route>
             </Routes>
             </div>
