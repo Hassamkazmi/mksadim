@@ -175,7 +175,7 @@ const Horse = () => {
                               <td>
                                 <BiEdit />
                                 <MdDelete onClick={handleRemove} />
-                                <BsFillEyeFill onClick={()=> handleShow(item) }/>
+                         
 
                               </td>
                             </tr>

@@ -21,19 +21,34 @@ font-size: 15.5949px;
     border-color: none;
     box-shadow: none;
 }
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
 .accordion {
     --bs-accordion-bg: #E8E8E8;
     --bs-accordion-border-color:none;
 }
 .accordion-body {
-    background-color: #707070;
-    border-radius: 0 0 20px 0 ;
+    background:   #8D8D8D 97.94%; 
+      border-radius: 0px 0px 50px 0px;
 }
 .SettingSec{
     padding-left: 17px;
-    margin-top: 220px;
     letter-spacing: 0px;
     font-family: 'Inter';
     font-style: normal;
     letter-spacing: 0.6px;
+    margin-top: 132px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15.5949px;
+    line-height: 19px;
+    color: #000000;
+}
+.accordion-button::after {
+   
+    display: none;
 }

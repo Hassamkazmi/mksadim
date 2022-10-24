@@ -19,6 +19,7 @@ border-radius: 0px 20px 0px 20px !important;
   padding-left: 70px;
   padding-top: 24px;
   margin-left: 20px !important;
+  margin-top: -30px;
 
 
 
@@ -27,7 +28,7 @@ border-radius: 0px 20px 0px 20px !important;
 .form  input{
 
 width: 105%;
-height: 57.43px;
+height: 59px;
 border: 1px solid rgba(0, 0, 0, 0.1);
 border-radius: 20px;
 margin-top: 20px;
@@ -35,6 +36,10 @@ border-left: none;
 border-right: none;
 padding-left: 20px;
 padding-right: 20px;
+}
+.form > input::placeholder{
+
+  font-weight: 300;
 }
 .form input:focus{
 
@@ -126,3 +131,77 @@ margin-right: 2.8rem;
       padding: 15px;
   }
 
+  input[type="date"]::before {
+    color: #999999;
+    content: attr(placeholder);
+  }
+  input[type="date"] {
+    color: #ffffff;
+  }
+  input[type="date"]:focus,
+  input[type="date"]:valid {
+    color: #666666;
+  }
+  input[type="date"]:focus::before,
+  input[type="date"]:valid::before {
+    content: "" !important;
+  }
+  .AddAnother{
+
+
+    background: rgba(202, 202, 202, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 250px;
+height: 58px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 21px;
+line-height: 25px;
+
+color: #8C8C8C;
+margin-top: 20px;
+
+margin-left: 17px;
+  }
+  .AddAnother > svg{
+
+
+    color: #8C8C8C;
+    font-weight: 900;
+    margin-left: 15px;
+  }
+  
+  .selectdir{
+direction: rtl;
+margin-left: 48px;
+width: 100%;
+  }
+  label{
+    padding: 10px;
+    margin-top: 1.5rem;
+    width: 186px;
+height: 51px;
+background: linear-gradient(89.98deg, #010306 23.67%, #4d5a62 97.94%);
+border-radius: 20px;
+color: white;
+border: none;
+margin-right: 2.8rem;
+    display: table;
+    color: #fff;
+    padding-left: 3.4rem;
+    font-weight: 600;
+     }
+
+
+
+input[type="file"] {
+    display: none;
+}
+/* .row{
+margin-top: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 57.43px;
+border-radius:20px;
+} */

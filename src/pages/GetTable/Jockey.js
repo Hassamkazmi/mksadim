@@ -135,7 +135,7 @@ const Statistic = () => {
                                 
                                 onClick={() => handleRemove(item._id)}
                               />
-                            <BsFillEyeFill onClick={()=> handleShow(item) }/>
+                         
                             </td>
                           </tr>
                         </>

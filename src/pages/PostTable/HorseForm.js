@@ -116,12 +116,12 @@ const HorseForm = () => {
       formData.append("OverAllRating", OverAllRating);
       dispatch(add(formData));
       history("/horse");
-      // swal({
-      //   title: "Success!",
-      //   text: "Data has been added successfully ",
-      //   icon: "success",
-      //   button: "OK",
-      // });
+       swal({
+         title: "Success!",
+         text: "Data has been added successfully ",
+         icon: "success",
+         button: "OK",
+       });
      
     } catch (error) {
       alert(error.message);
@@ -202,36 +202,11 @@ const HorseForm = () => {
                       value={Age}
                       style={{ direction: "rtl" }}
                       type="number"
-                      placeholder="Age"
+                      placeholder="سن"
                       required
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <Select
-                      placeholder={<div>Select Gender</div>}
-                      defaultValue={Sex}
-                      onChange={setSex}
-                      options={Gender}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
-                  </div>
-                  <div className="col-sm">
-                    <Select
-                      required
-                      placeholder={<div>Select Gender</div>}
-                      style={{ direction: "rtl" }}
-                      defaultValue={Sex}
-                      onChange={setSex}
-                      options={Gender}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
-                  </div>
-                </div>
-
                 <div className="row ">
                   <div className="col-sm">
                     <input
@@ -243,81 +218,85 @@ const HorseForm = () => {
 
                   <div className="col-sm">
                     <input
-                      placeholder="Color"
+                      placeholder="اللون"
                       style={{ direction: "rtl" }}
                     ></input>
                   </div>
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search Sire</div>}
-                      defaultValue={Sire}
-                      onChange={setSire}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="Earning"
+                      type="number"
+                      onChange={(e) => setEarning(e.target.value)}
+                      value={Earning}
+                    ></input>
                   </div>
 
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search Sire</div>}
-                      defaultValue={Sire}
-                      onChange={setSire}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="كسب"
+                      style={{ direction: "rtl" }}
+                      type="number"
+                    ></input>
                   </div>
                 </div>
                 <div className="row ">
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search Dam</div>}
-                      defaultValue={Dam}
-                      onChange={setDam}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="Horse Rating"
+                      type="number"
+                      onChange={(e) => setHorseRating(e.target.value)}
+                      value={HorseRating}
+                    ></input>
                   </div>
 
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search Dam</div>}
-                      defaultValue={Dam}
-                      onChange={setDam}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="تقييم الحصان"
+                      style={{ direction: "rtl" }}
+                      type="number"
+                    ></input>
                   </div>
                 </div>
+
                 <div className="row ">
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search GSire</div>}
-                      defaultValue={GSire}
-                      onChange={setGSire}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="Over All Rating"
+                      type="number"
+                      onChange={(e) => setOverAllRating(e.target.value)}
+                      value={OverAllRating}
+                    ></input>
                   </div>
 
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Type to search GSire</div>}
-                      defaultValue={GSire}
-                      onChange={setGSire}
-                      options={horseoptions}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      placeholder="تقييم عام"
+                      style={{ direction: "rtl" }}
+                      type="number"
+                    ></input>
                   </div>
                 </div>
 
+                <div className="row ">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Remarks"
+                      onChange={(e) => setRemarks(e.target.value)}
+                      name="Remarks"
+                      value={Remarks}
+                      required
+                    ></input>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="طول المسار"
+                    ></input>
+                  </div>
+                </div>
                 <div className="row ">
                   <div className="col-sm">
                     <input
@@ -329,11 +308,128 @@ const HorseForm = () => {
 
                   <div className="col-sm">
                     <input
-                      placeholder="Horse Kind"
+                      placeholder="نوع الحصان"
                       style={{ direction: "rtl" }}
                     ></input>
                   </div>
                 </div>
+                <div className="row ">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Breeder"
+                      onChange={(e) => setBreeder(e.target.value)}
+                      value={Breeder}
+                    ></input>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      placeholder="مربي"
+                      style={{ direction: "rtl" }}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row ">
+                  <div className="col-sm">
+                    <Select
+                    
+                      placeholder={<div>Select Gender</div>}
+                      defaultValue={Sex}
+                      onChange={setSex}
+                      options={Gender}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>Select Gender</div>}
+                      className='selectdir'
+                      defaultValue={Sex}
+                      onChange={setSex}
+                      options={Gender}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+
+                
+                <div className="row ">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search Sire</div>}
+                      defaultValue={Sire}
+                      onChange={setSire}
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search Sire</div>}
+                      defaultValue={Sire}
+                      onChange={setSire}
+                      className='selectdir'
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                <div className="row ">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search Dam</div>}
+                      defaultValue={Dam}
+                      onChange={setDam}
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search Dam</div>}
+                      defaultValue={Dam}
+                      onChange={setDam}
+                      options={horseoptions}
+                      className='selectdir'
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                <div className="row ">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search GSire</div>}
+                      defaultValue={GSire}
+                      onChange={setGSire}
+                      options={horseoptions}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search GSire</div>}
+                      defaultValue={GSire}
+                      onChange={setGSire}
+                      options={horseoptions}
+                      className='selectdir'
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+
+                
 
                 <div className="row ">
                   <div className="col-sm">
@@ -348,15 +444,16 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
                       placeholder={
-                        <div style={{ direction: "rtl" }}>
+                        <div >
                           Type to search Owner
                         </div>
                       }
                       defaultValue={Owner}
                       onChange={setOwner}
                       options={owneroption}
+              
                       isClearable={true}
                       isSearchable={true}
                     />
@@ -376,7 +473,7 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           Type to search Active Owner
@@ -391,22 +488,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Breeder"
-                      onChange={(e) => setBreeder(e.target.value)}
-                      value={Breeder}
-                    ></input>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      placeholder="Breeder"
-                      style={{ direction: "rtl" }}
-                    ></input>
-                  </div>
-                </div>
+               
                 <div className="row ">
                   <div className="col-sm">
                     <Select
@@ -421,7 +503,7 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           Type to search trainer
@@ -449,7 +531,7 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           Type to search Active trainer
@@ -465,9 +547,10 @@ const HorseForm = () => {
                 </div>
 
                 <div className="row ">
-                  <div className="col-sm">
+                  <div className="col-sm " >
                     <Select
                       placeholder={<div>Type to search Jockey</div>}
+                    
                       defaultValue={Jockey}
                       onChange={setJockey}
                       options={jockeyoption}
@@ -477,7 +560,7 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           Type to search Jockey
@@ -498,6 +581,7 @@ const HorseForm = () => {
                       placeholder={<div>Type to search Active Jockey</div>}
                       defaultValue={ActiveJockey}
                       onChange={setActiveJockey}
+                      style
                       options={jockeyoption}
                       isClearable={true}
                       isSearchable={true}
@@ -505,9 +589,10 @@ const HorseForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <Select
+                    <Select         className='selectdir'
+        
                       placeholder={
-                        <div style={{ direction: "rtl" }}>
+                        <div>
                           Type to search Active Jockey
                         </div>
                       }
@@ -519,84 +604,15 @@ const HorseForm = () => {
                     />
                   </div>
                 </div>
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Earning"
-                      type="number"
-                      onChange={(e) => setEarning(e.target.value)}
-                      value={Earning}
-                    ></input>
-                  </div>
+                
 
-                  <div className="col-sm">
-                    <input
-                      placeholder=" Earning"
-                      style={{ direction: "rtl" }}
-                      type="number"
-                    ></input>
-                  </div>
-                </div>
-
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Horse Rating"
-                      type="number"
-                      onChange={(e) => setHorseRating(e.target.value)}
-                      value={HorseRating}
-                    ></input>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      placeholder="Horse Rating "
-                      style={{ direction: "rtl" }}
-                      type="number"
-                    ></input>
-                  </div>
-                </div>
-
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Over All Rating"
-                      type="number"
-                      onChange={(e) => setOverAllRating(e.target.value)}
-                      value={OverAllRating}
-                    ></input>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      placeholder="Over All Rating"
-                      style={{ direction: "rtl" }}
-                      type="number"
-                    ></input>
-                  </div>
-                </div>
-
-                <div className="row ">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Remarks"
-                      onChange={(e) => setRemarks(e.target.value)}
-                      name="Remarks"
-                      value={Remarks}
-                      required
-                    ></input>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="طول المسار"
-                    ></input>
-                  </div>
-                </div>
+             
 
                 <div className="ButtonSection">
+                  <label>
+                    Select File
                   <input type="file" size="60" onChange={fileSelected} />
+                  </label>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
                   </button>

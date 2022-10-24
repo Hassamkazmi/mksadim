@@ -11,7 +11,7 @@
     padding-left: 20px;
     padding-right: 30px;
     margin-left: 20px;
-
+    margin-top: -35px;
 }
 
 .Header button {
@@ -111,11 +111,12 @@ thead {
 .div_maintb th:nth-child(1) {
     width: 15%;
     background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
+    padding-left: 2rem;
 
 }
 .div_maintb th:nth-child(2) {
 
-
+    padding-left: 3rem;
    border-radius: 20px 0 0 20px;
 }
 
@@ -130,13 +131,25 @@ thead {
 thead {
     background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
     border-radius: 20% !important;
+      white-space: nowrap; 
+  width: 50px; 
+  overflow: hidden;
+  text-overflow: "----"; 
+  border: 1px solid #000000;
    
   
 }
 tbody{
+    padding-left: 100px;
     border-width: 2px 0px 2px 0px;
     /* background: #f1f1f1; */
     border-color: #cdcccc;
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: "----"; 
+
+  
 }
 
 
@@ -187,3 +200,9 @@ td:last-child {
     font-size: 20px;
     cursor: pointer;
     }
+    
+
+.div_maintb td:nth-child(2) {
+    padding-left: 3rem;
+    border-radius: 20px 0 0 20px;
+}

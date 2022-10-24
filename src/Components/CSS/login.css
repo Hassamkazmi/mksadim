@@ -12,13 +12,15 @@
 .registrationform > form{
   width: 500px;
   margin: auto;
-  height: 450px;
+  height: 280px;
   background: linear-gradient(180deg, #078BE6 0%, #19469D 100%);
   border-radius: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 58, 17, 0.25) 0px 54px 55px, rgba(144, 142, 142, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .form-group{
-  padding: 20px;
+  padding: 6px 26px;
+  
+
 }
 .form-group > input{
   width: 100%;
@@ -33,7 +35,13 @@
   width: 90%;
   margin: 25px;
 }
+.form-group > input::placeholder {
 
+
+ text-align: center;
+font-weight: 500;
+letter-spacing: 2px;
+}
 .loginheader{
   background: linear-gradient(89.98deg, rgba(25, 70, 157, 0.5) 23.67%, rgba(0, 163, 255, 0.5) 97.94%);
 background-blend-mode: luminosity;
@@ -45,6 +53,7 @@ margin: auto;
 .WelcomeAdmin{
   text-align: center;
   padding-top: 20px;
+color: white;
 }
 .loginheader > H2{
   text-align: center;
@@ -53,4 +62,11 @@ margin: auto;
   font-family: 'Inter';
 font-style: normal;
 font-weight: 500;
+}
+button.buttonRegister {
+  margin-top: 40px;
+ 
+border-radius: 20px;
+color: black;
+font-weight: 700;
 }

@@ -132,10 +132,7 @@ const Ads = () => {
 
                               />
                               
-                              <BsFillEyeFill onClick={()=>handleShow(item)}  style={{
-                                  fontSize: "22px",
-                          marginRight:"100px"
-                                }}/> 
+                           
                             </td>
                           
 

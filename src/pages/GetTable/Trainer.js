@@ -149,7 +149,7 @@ const handlePageClick = async (data) => {
                             }}
                             onClick={() => handleRemove(item._id)}
                           />
-                          <BsFillEyeFill onClick={() => handleShow(item)}/>
+                   
                         </td>
                       </tr>
                     </>

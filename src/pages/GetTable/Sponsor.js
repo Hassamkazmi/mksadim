@@ -145,7 +145,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item._id)}
                               />
-                               <BsFillEyeFill style={{ cursor:"pointer"}} onClick={() => handleShow(item)} />
+                             
                             </td>
                           </tr>
                         </>

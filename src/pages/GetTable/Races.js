@@ -134,11 +134,15 @@ const Races = () => {
                        }}>
                         <tr>
                     <td style={{
-                      "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`}} >{item.raceName}</td>
+                      "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`,
+                      "color": `${RaceStatus === "Cancel" ? '#ffff': RaceStatus === "End" ? '#00000' : RaceStatus === "Live" ? '#00000': '#000000'}`
+                      }} >{item.raceName}</td>
                     <td>{item.raceName}</td>
-                    <td>{item.Description}</td>
+                    <td style={{width: '50px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Description}</td>
                     <td>{item.raceName}</td>
                     <td>{item.raceName}</td>
+                   
+
                     <td>{item.RaceKind}</td>
                     <td>{item.Weather}</td>
                     <td>{item.raceName}</td>
@@ -149,7 +153,7 @@ const Races = () => {
                     <td> 
                       
                     <MdDelete onClick={()=> handleRemove(item._id)}/>
-                      <BsFillEyeFill onClick={()=> handleShow(item)}/> </td>
+              </td>
                     
                   </tr>
                        </tbody>

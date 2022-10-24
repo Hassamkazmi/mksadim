@@ -11,7 +11,7 @@ const Sidebar = () => {
 <>
 {
   pathname !== '/login' ?  <div className='sidebar'>
-  <Link to='/dashboard' className='mylink'>Dashbaord</Link>
+  <Link to='/dashboard' className='mylink'>Dashboard</Link>
   <Accordion>
   <Accordion.Item eventKey="0">
     <Accordion.Header>Races</Accordion.Header>
@@ -22,7 +22,7 @@ const Sidebar = () => {
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="1">
-    <Accordion.Header>RaceCourse</Accordion.Header>
+    <Accordion.Header>Racecourse</Accordion.Header>
     <Accordion.Body className='AccordionBody'>
     <div>  <Link to='/racecourse' className='mylink'>View Listing</Link></div>
    <div>   <Link to='/racecourseform' className='mylink'>Add New</Link></div>

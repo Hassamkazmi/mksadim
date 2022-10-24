@@ -37,21 +37,24 @@
 }
 
 .myselecthorse{
-  width: 100%;
-height: 58px;
-left: 1414px;
-top: 248px;
-background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
-border-radius: 20px;
+  margin-top: 10px;
+    height: 58px;
+    background: linear-gradient(289deg, #19469D 23.67%, #00A3FF 97.94%);
+    border-radius: 20px;
+    width: 97%;
+    margin-left: 18px;
 
 }
 .myselecthorsedata{
-display: flex;
-align-items: center;
-justify-content: space-around;
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+  padding-right: 30rem;
+  padding-left: 1rem;
 }
 .myselecthorsedata > span{
-flex: 1;
+
 color: #fff;
 font-family: 'Inter';
 font-style: normal;
@@ -62,7 +65,7 @@ padding: 18px;
 }
 .myselectdata{
   margin-top: 15px;
-  width: 100%;
+width: 97%;
   height: 58px;
   left: 1414px;
   top: 248px;
@@ -72,7 +75,8 @@ padding: 18px;
 .myselectiondata{
   display: flex;
 align-items: center;
-justify-content: space-around;
+margin-left: 17px;
+
 }
 .myselectiondata > span{
   flex: 1;
@@ -80,18 +84,20 @@ justify-content: space-around;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
-  /* padding: 10px; */
-  margin-top: 18px;
+    margin-top: 18px;
   margin-right: 18px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 24px;
   height: 55px;
   }
   .myselectiondata > span:first-child{
-    width: 116px;
-height: 58.01px;
-left: 398px;
-top: 325.01px;
+
+
+ padding-top: 10px;
+    text-align: center;
+    max-width: 116px;
+
+
 background: rgba(0, 0, 0, 0.5);
 border: 1px solid rgba(0, 0, 0, 0.1);
 border-radius: 20px;
@@ -103,34 +109,35 @@ line-height: 25px;
 color: #FFFFFF;
   }
   .myselectiondata > span:nth-child(3){
-    margin-left: 20px;
+    margin-left: 50px;
     padding: 10px;
+    margin-right: 10px;
   }
-  .myselectiondata > span > Select {
-   /* padding: 10px; */
-  }
+  
   .sbmtbtn > button{
     width: 186px;
 height: 51px;
-left: 1230px;
+
 margin-top: 20px;
 top: 955px;
 background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
 border-radius: 20px;
 border: none;
 float: right;
+color: white;
+margin-right: 25px;
   }
-/* 
+
   .css-1s2u09g-control {
-    border: none !important;
+    outline: none !important;
   }
   .css-1s2u09g-control:focus{
-    border: none !important;
+    outline: none !important;
   }
   .myselectiondata > span > p{
     font-size: 18px;
-    padding: 10px;
-  } */
+    padding: 2px;
+  } 
 
   .col-sm{
     margin: 10px;

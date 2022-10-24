@@ -13,6 +13,31 @@ import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import { Link } from "react-router-dom";
 import Select from "react-select";
 import swal from "sweetalert";
+import {AiOutlinePlus} from "react-icons/ai"
+import Racecourse from "../../GetTable/RaceCourse";
+
+
+const RaceKinds = [
+  { id: "1", value: "Flat", label: "Flat" },
+  { id: "2", value: "Turf", label: "Turf" }
+
+];
+const Weathers = [
+  { id: "1", value: "Sunny", label: "Sunny" },
+  { id: "1", value: "Cloudy", label: "Cloudy" }
+
+];
+const RaceStatuss = [
+  { id: "1", value: "Cancel", label: "Cancel" },
+  { id: "1", value: "Due", label: "Due" }
+
+];
+const GroundTypes = [
+  { id: "1", value: "Cancel", label: "Cancel" },
+  { id: "1", value: "Due", label: "Due" }
+
+];
+
 
 const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
@@ -46,6 +71,7 @@ const RaceForm = () => {
   const [selectedOption4, setSelectedOption4] = useState("");
   const [selectedOption5, setSelectedOption5] = useState("");
   const [selectedOption6, setSelectedOption6] = useState("");
+
 
   // const addTodo = id => {
   //   const newTodos = [...todos, { id }];
@@ -87,6 +113,14 @@ const RaceForm = () => {
       alert(error.message);
     }
   };
+  let racecourses = racecourse.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TrackName,
+      label: item.TrackName,
+    };
+  });
+  console.log(racecourses)
 
   const isSubmitData =
     RaceKind === "" ||
@@ -133,7 +167,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="Race Name "
+                        placeholder="اسم العرق "
                         name="Name"
                       ></input>
                     </div>
@@ -152,69 +186,87 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="Description "
+                        placeholder="وصف "
                         name="Name"
                       ></input>
                     </div>
                   </div>
                   <div className="row ">
                     <div className="col-sm">
-                      <select
-                        onChange={(e) => setRaceKind(e.target.value)}
-                        value={RaceKind}
-                      >
-                        <option value="0">Race Kind</option>
-                        <option value="Flat">Flat</option>
-                        <option value="Turf">Truf</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>RaceKind</div>}
+                    defaultValue={RaceKind}
+                    onChange={setRaceKind}
+                    options={RaceKinds}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
 
                     <div className="col-sm">
-                      <select style={{ direction: "rtl" }}>
-                        <option value="0">Race Type</option>
-                        <option value="Live">Live</option>
-                        <option value="Going">Due</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>RaceKind</div>}
+                    defaultValue={RaceKind}
+                    className='selectdir'
+                    onChange={setRaceKind}
+                    options={RaceKinds}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
                   </div>
                   <div className="row ">
                     <div className="col-sm">
-                      <select
-                        onChange={(e) => setWeather(e.target.value)}
-                        value={Weather}
-                      >
-                        <option value="0">Wheather</option>
-                        <option value="Sunny">Sunny</option>
-                        <option value="Cloudy">Cloudy</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Weather</div>}
+                    defaultValue={Weather}
+                    onChange={setWeather}
+                    
+                    options={Weathers}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
 
                     <div className="col-sm">
-                      <select style={{ direction: "rtl" }}>
-                        <option value="0">Wheather</option>
-                        <option value="RaceKind">Weather</option>
-                        <option value="RaceKind">weather</option>
-                        <option value="RaceKind">weather</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Weather</div>}
+                  
+                    className='selectdir'
+                    options={Weathers}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-sm">
-                      <select
-                        onChange={(e) => setRaceCourse(e.target.value)}
-                        value={RaceCourse}
-                      >
-                        <option>Select RaceCourse </option>
-                        {racecourse.map((course) => (
-                          <option value={course._id}>{course.TrackName}</option>
-                        ))}
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Racecource</div>}
+                    defaultValue={RaceCourse}
+                    onChange={setRaceCourse}
+                    
+                    options={racecourses}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
 
                     <div className="col-sm">
-                      <select style={{ direction: "rtl" }}>
-                        <option value="0">RaceCourse</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Racecource</div>}
+             
+                    className='selectdir'
+                    options={racecourses}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
                   </div>
                   {/* <div className="row ">
@@ -243,44 +295,58 @@ const RaceForm = () => {
                 </div> */}
                   <div className="row ">
                     <div className="col-sm">
-                      <select
-                        onChange={(e) => setRaceStatus(e.target.value)}
-                        value={RaceStatus}
-                      >
-                        <option value="0">Race status</option>
-                        <option value="Cancel">Cancel</option>
-                        <option value="End">End</option>
-                        <option value="Live">Cancel</option>
-                        <option value="Due">Due</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Race Status</div>}
+                    defaultValue={RaceStatus}
+                    onChange={setRaceStatus}
+                    
+                    options={RaceStatuss}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
 
                     <div className="col-sm">
-                      <select style={{ direction: "rtl" }}>
-                        <option value="0">Race status</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Race Status</div>}
+                 
+                    className='selectdir'
+                    options={RaceStatuss}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
                   </div>
                   
 
                   <div className="row ">
                     <div className="col-sm">
-                      <select
-                        // onChange={(e) => setRaceStatus(e.target.value)}
-                        // value={RaceStatus}
-                      >
-                        <option value="0">Ground Type</option>
-                        <option value="Cancel">Good</option>
-                        <option value="End">End</option>
-                        <option value="Live">Cancel</option>
-                        <option value="Due">Due</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Ground Type</div>}
+                    defaultValue={GroundTypes}
+            
+                    
+                    options={GroundTypes}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
                     </div>
 
                     <div className="col-sm">
-                      <select style={{ direction: "rtl" }}>
-                        <option value="0">Ground Type</option>
-                      </select>
+                    <Select
+                    
+                    placeholder={<div>Ground Type</div>}
+                    defaultValue={GroundTypes}
+            
+                    className='selectdir'
+                    options={GroundTypes}
+                    isClearable={true}
+                    isSearchable={true}
+                  
+                  />
                     </div>
                   </div>
 
@@ -318,7 +384,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="1st Prize "
+                        placeholder="الجائزة الأولى"
                         name="Name"
                       ></input>
                     </div>
@@ -338,7 +404,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="2nd Prize "
+                        placeholder="الجائزة الثانية"
                         name="Name"
                       ></input>
                     </div>
@@ -358,7 +424,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="3rd Prize "
+                        placeholder="الجائزة الثالثة "
                         name="Name"
                       ></input>
                     </div>
@@ -378,7 +444,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                       <input
                         style={{ direction: "rtl" }}
-                        placeholder="4th Prize "
+                        placeholder="الجائزة الرابعة"
                         name="Name"
                       ></input>
                     </div>
@@ -413,14 +479,14 @@ const RaceForm = () => {
 
 
                   <div className="RaceButtonDiv">
-                    <button className="updateButton">updated</button>
+                    <button className="updateButton">Update</button>
 
                     <button
                       className="SubmitButton"
                       onClick={handleRace}
                       disabled={isSubmitData}
                     >
-                      Add Horse
+                     Save & Add Horses
                     </button>
                   </div>
                 </form>
@@ -561,9 +627,26 @@ const RaceForm = () => {
                       <p>{selectedOption6.jockeyvalue[0]}</p>
                     )}
                   </span>
+                 
                 </div>
-                <div className="sbmtbtn">
-                  <button onClick={submit}>Save & Publish </button>
+                <div className="addbtn">
+                <button className="AddAnother"> <AiOutlinePlus/> Add Another </button>
+
+                </div>
+                <div className="sbmtbtndiv">
+                 
+                <div className="RaceButtonDiv">
+                    <button className="updateButton">Update</button>
+
+                    <button
+                      className="SubmitButton"
+                     type="submit"
+                     onClick={submit}
+              
+                    >
+                     Save & Add Horses
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

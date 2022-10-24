@@ -162,7 +162,7 @@ const News = () => {
                                 }}
                                 onClick={() => handleRemove(item.id)}
                               />
-                              <BsFillEyeFill onClick={()=> handleShow(item)}/>
+                        
                             </td>
                           </tr>
                         );

@@ -122,7 +122,7 @@ const Owner = () => {
                           <Link to={`/editowner/${item._id}`}>
                          <BiEdit />
                          </Link>
-                          <BsFillEyeFill onClick={()=>handleShow(item) }/></td>
+                </td>
                    
                          
                          
