@@ -20,22 +20,36 @@ border-radius: 0px 20px 0px 20px !important;
   padding-top: 24px;
   margin-left: 20px !important;
   margin-top: -30px;
-
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15.5949px;
+  line-height: 19px;
+  /* identical to box height */
+  padding-top: 29px;
+  
+  color: #000000;
+  
 
 
 }
 
-.form  input{
+.form input {
+  width: 105%;
+  border: none;
+  border-radius: 20px;
 
-width: 105%;
-height: 59px;
-border: 1px solid rgba(0, 0, 0, 0.1);
-border-radius: 20px;
-margin-top: 20px;
-border-left: none;
-border-right: none;
-padding-left: 20px;
-padding-right: 20px;
+  padding-bottom: -10px;
+  padding-left: 20px;
+
+  padding-top: 7px;
+  font-weight: 300;
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 17px;
+padding-right: 50px;
 }
 .form > input::placeholder{
 
@@ -46,10 +60,7 @@ padding-right: 20px;
 outline: none;
 
 }
-.row{
 
-  margin-right:70px;
-}
 .ButtonSection{
 
 display: flex;
@@ -74,9 +85,9 @@ margin-top: 22px;
 }
 .form select{
 
-  width: 104%;
-  height: 57.43px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  height: 54.43px;
+  border: 0.8px solid rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   margin-top: 20px;
   border-left: none;
@@ -84,6 +95,7 @@ margin-top: 22px;
   padding-left: 20px;
   padding-right: 20px;
   color: rgb(100, 98, 98);
+
   }
   .form select:focus{
 
@@ -127,25 +139,7 @@ border: none;
 margin-right: 2.8rem;
     }
     
-    input[type="file"] {
-      padding: 15px;
-  }
-
-  input[type="date"]::before {
-    color: #999999;
-    content: attr(placeholder);
-  }
-  input[type="date"] {
-    color: #ffffff;
-  }
-  input[type="date"]:focus,
-  input[type="date"]:valid {
-    color: #666666;
-  }
-  input[type="date"]:focus::before,
-  input[type="date"]:valid::before {
-    content: "" !important;
-  }
+  
   .AddAnother{
 
 
@@ -199,9 +193,66 @@ margin-right: 2.8rem;
 input[type="file"] {
     display: none;
 }
-/* .row{
-margin-top: 10px;
+ .mainrow{
+margin-top: 15px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   height: 57.43px;
 border-radius:20px;
-} */
+
+width: 96%;
+margin-left: 44px;
+} 
+.selectmain{
+  width: 96%;
+  margin-left: 19px;
+
+
+
+}
+.css-1s2u09g-control:focus {
+  outline: none;
+
+}
+.spanForm  {
+display: flex;
+    justify-content: end;
+    font-size: 2rem;
+    margin-top: -36px;
+    font-weight: 100;
+    color: lightgray;
+}
+
+.css-1s2u09g-control {
+  /* background-color:  none !important;
+  border-color: none !important;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: none;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  min-height: 38px;
+  outline: 0!important;
+  position: relative;
+  -webkit-transition: all 100ms;
+  transition: all 100ms;
+  box-sizing: border-box;
+  border: none !important; */
+}
+.css-1s2u09g-control:active{
+border: none !important;
+outline: none !important;
+}
+.css-1s2u09g-control::before{
+  border: none !important;
+  outline: none !important;
+}
+.css-1s2u09g-control:focus{
+  border: none !important;
+  outline: none !important;
+}

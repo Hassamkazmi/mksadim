@@ -153,7 +153,7 @@ const RaceForm = () => {
               <div className="Headers">Add Race</div>
               <div className="form">
                 <form>
-                  <div className="row ">
+                  <div className="row  mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="Race Name"
@@ -161,8 +161,10 @@ const RaceForm = () => {
                         name="Name"
                         value={raceName}
                         required
-                      ></input>
+                      ></input>  
+                      <span className="spanForm"> |</span>
                     </div>
+               
 
                     <div className="col-sm">
                       <input
@@ -172,7 +174,7 @@ const RaceForm = () => {
                       ></input>
                     </div>
                   </div>
-                  <div className="row ">
+                  <div className="row  mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="Description"
@@ -181,6 +183,7 @@ const RaceForm = () => {
                         value={Description}
                         required
                       ></input>
+                          <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -191,7 +194,7 @@ const RaceForm = () => {
                       ></input>
                     </div>
                   </div>
-                  <div className="row ">
+                  <div className="row selectmain">
                     <div className="col-sm">
                     <Select
                     
@@ -207,7 +210,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                     <Select
                     
-                    placeholder={<div>RaceKind</div>}
+                    placeholder={<div>نوع السباق</div>}
                     defaultValue={RaceKind}
                     className='selectdir'
                     onChange={setRaceKind}
@@ -217,7 +220,7 @@ const RaceForm = () => {
                   />
                     </div>
                   </div>
-                  <div className="row ">
+                  <div className="row selectmain">
                     <div className="col-sm">
                     <Select
                     
@@ -234,7 +237,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                     <Select
                     
-                    placeholder={<div>Weather</div>}
+                    placeholder={<div>طقس</div>}
                   
                     className='selectdir'
                     options={Weathers}
@@ -243,7 +246,7 @@ const RaceForm = () => {
                   />
                     </div>
                   </div>
-                  <div className="row">
+                  <div className="row selectmain">
                     <div className="col-sm">
                     <Select
                     
@@ -260,7 +263,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                     <Select
                     
-                    placeholder={<div>Racecource</div>}
+                    placeholder={<div>دورة السباق</div>}
              
                     className='selectdir'
                     options={racecourses}
@@ -293,7 +296,7 @@ const RaceForm = () => {
                       />
                   </div>
                 </div> */}
-                  <div className="row ">
+                  <div className="row selectmain">
                     <div className="col-sm">
                     <Select
                     
@@ -310,7 +313,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                     <Select
                     
-                    placeholder={<div>Race Status</div>}
+                    placeholder={<div>حالة السباق</div>}
                  
                     className='selectdir'
                     options={RaceStatuss}
@@ -321,7 +324,7 @@ const RaceForm = () => {
                   </div>
                   
 
-                  <div className="row ">
+                  <div className="row selectmain">
                     <div className="col-sm">
                     <Select
                     
@@ -338,7 +341,7 @@ const RaceForm = () => {
                     <div className="col-sm">
                     <Select
                     
-                    placeholder={<div>Ground Type</div>}
+                    placeholder={<div>نوع الأرض</div>}
                     defaultValue={GroundTypes}
             
                     className='selectdir'
@@ -370,7 +373,7 @@ const RaceForm = () => {
                     </div>
                   </div> */}
 
-                   <div className="row ">
+                   <div className="row  mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="1st Prize"
@@ -379,6 +382,7 @@ const RaceForm = () => {
                       
                         required
                       ></input>
+                          <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -390,7 +394,7 @@ const RaceForm = () => {
                     </div>
                   </div>
 
-                  <div className="row ">
+                  <div className="row mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="2nd Prize"
@@ -399,7 +403,8 @@ const RaceForm = () => {
                       
                         required
                       ></input>
-                    </div>
+
+<span className="spanForm"> |</span>                    </div>
 
                     <div className="col-sm">
                       <input
@@ -410,7 +415,7 @@ const RaceForm = () => {
                     </div>
                   </div>
 
-                  <div className="row ">
+                  <div className="row  mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="3rd Prize"
@@ -419,6 +424,7 @@ const RaceForm = () => {
                       
                         required
                       ></input>
+                          <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -427,10 +433,11 @@ const RaceForm = () => {
                         placeholder="الجائزة الثالثة "
                         name="Name"
                       ></input>
+
                     </div>
                   </div>
 
-                  <div className="row ">
+                  <div className="row  mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="4th Prize"
@@ -438,7 +445,7 @@ const RaceForm = () => {
                         name="Name"
                       
                         required
-                      ></input>
+                      ></input>    <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -449,7 +456,7 @@ const RaceForm = () => {
                       ></input>
                     </div>
                   </div>
-                  <div className="row ">
+                  <div className="row mainrow">
                     <div className="col-sm">
                       <input
                         placeholder="Day N Time"
@@ -459,7 +466,7 @@ const RaceForm = () => {
                         
                         onChange={(e) => setDayNTime(e.target.value)}
                         value={DayNTime}
-                      ></input>
+                      ></input>    <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
