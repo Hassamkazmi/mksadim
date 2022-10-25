@@ -43,25 +43,18 @@
     padding: 20px 2px 10PX 1PX;
 }
 .SettingSec {
-
-
-
-
-
-
     font-style: normal;
-
-
- 
     font-family: 'Inter';
-padding-top: 140px;
+    /* padding-top: 240px; */
     font-weight: 300;
+    position: absolute;
     font-size: 15.5949px;
     line-height: 19px;
     color: #000000;
     padding-left: 39px;
-}
- 
+    /* display: none; */
+    bottom: -80px;
+}   
 .accordion-button::after {
    
     display: none;
