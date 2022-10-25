@@ -41,7 +41,7 @@ const Auth = () => {
 
         ) : (
           <div className="auth1 ">
-            <NavLink className="buttonLogin" to="/login">
+            <NavLink className="buttonLogin" to="/">
             Login
           </NavLink>
           </div>
