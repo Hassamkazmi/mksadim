@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
 <>
 {
-  pathname !== '/login' ?  <div className='sidebar'>
+  pathname !== '/' ?  <div className='sidebar'>
   <Link to='/dashboard' className='mylink'>Dashboard</Link>
   <Accordion>
   <Accordion.Item eventKey="0">

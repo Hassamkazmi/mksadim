@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <>
     {
-      pathname !== '/login' ?<div className="header">
+      pathname !== '/' ?<div className="header">
       <div className="innerHeader">
         <div className="logoclass">
           <img src={Logo} alt="" />

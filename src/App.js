@@ -49,7 +49,7 @@ function App() {
             <div style={{display: "flex"}}>
             <Sidebar />
             <Routes>
-                <Route exact path="/login" element={<Login />} />
+                <Route exact path="/" element={<Login />} />
                 <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/racecourse" element={<RaceCourse />} />
