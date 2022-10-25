@@ -155,14 +155,14 @@ line-height: 24px;
     background: linear-gradient(89.98deg, #C8C8C8 23.67%, #8D8D8D 97.94%);   border-radius: 20px;
 }
 .accordion-button:not(.collapsed) {
-    color: #fff;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15.5949px;
-    line-height: 19px;
+  color: #fff;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15.5949px;
+  line-height: 19px;
+  padding-left: 36px;
 }
-
 .loader  {
     animation: rotate 1s infinite;  
     height: 50px;

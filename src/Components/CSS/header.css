@@ -91,8 +91,7 @@ flex: 1;
 justify-content: center;
  }
 
-
- .mylink{
+ .mylink {
     text-decoration: none;
     font-style: normal;
     font-weight: 300;
@@ -100,7 +99,8 @@ justify-content: center;
     line-height: 19px;
     color: #000000;
     padding: 19px;
- }
+    padding-left: 39px;
+}
  .sidebar{
     display: flex;
     flex-direction: column;

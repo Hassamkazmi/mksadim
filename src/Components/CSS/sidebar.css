@@ -2,13 +2,14 @@
     padding: 10px;
  
 }
-.AccordionBody > div > .mylink{
+
+.AccordionBody > div > .mylink {
     color: #fff;
     font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 15.5949px;
- 
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15.5949px;
+    padding-left: 24px;
 }
 .accordion-item:last-of-type .accordion-collapse {
     background-color: #707070;
@@ -16,6 +17,7 @@ font-size: 15.5949px;
 }
 .accordion-button:not(.collapsed) {
     background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
+    border-radius: 0 20px 20px 0;
 }
 .accordion-button:focus {
     border-color: none;
@@ -33,8 +35,9 @@ font-size: 15.5949px;
 .accordion-body {
     background:   #8D8D8D 97.94%; 
       border-radius: 0px 0px 50px 0px;
+      padding: 0;
 }
-.SettingSec{
+.SettingSec {
     padding-left: 17px;
     letter-spacing: 0px;
     font-family: 'Inter';
@@ -47,8 +50,14 @@ font-size: 15.5949px;
     font-size: 15.5949px;
     line-height: 19px;
     color: #000000;
+    padding-left: 38px;
 }
+ 
 .accordion-button::after {
    
     display: none;
+}
+.accordion-button {
+ 
+    padding-left: 37px !important;
 }

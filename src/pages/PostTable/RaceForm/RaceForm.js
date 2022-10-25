@@ -194,7 +194,7 @@ const RaceForm = () => {
                       ></input>
                     </div>
                   </div>
-                  <div className="row selectmain">
+                  <div className="row mainrow">
                     <div className="col-sm">
                     <Select
                     
@@ -204,7 +204,7 @@ const RaceForm = () => {
                     options={RaceKinds}
                     isClearable={true}
                     isSearchable={true}
-                  />
+                  />  <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -220,7 +220,7 @@ const RaceForm = () => {
                   />
                     </div>
                   </div>
-                  <div className="row selectmain">
+                  <div className="row mainrow">
                     <div className="col-sm">
                     <Select
                     
@@ -231,7 +231,7 @@ const RaceForm = () => {
                     options={Weathers}
                     isClearable={true}
                     isSearchable={true}
-                  />
+                  />  <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -246,7 +246,7 @@ const RaceForm = () => {
                   />
                     </div>
                   </div>
-                  <div className="row selectmain">
+                  <div className="row mainrow">
                     <div className="col-sm">
                     <Select
                     
@@ -257,7 +257,7 @@ const RaceForm = () => {
                     options={racecourses}
                     isClearable={true}
                     isSearchable={true}
-                  />
+                  />  <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -296,7 +296,7 @@ const RaceForm = () => {
                       />
                   </div>
                 </div> */}
-                  <div className="row selectmain">
+                  <div className="row mainrow">
                     <div className="col-sm">
                     <Select
                     
@@ -307,7 +307,7 @@ const RaceForm = () => {
                     options={RaceStatuss}
                     isClearable={true}
                     isSearchable={true}
-                  />
+                  />  <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">
@@ -324,7 +324,7 @@ const RaceForm = () => {
                   </div>
                   
 
-                  <div className="row selectmain">
+                  <div className="row mainrow">
                     <div className="col-sm">
                     <Select
                     
@@ -335,7 +335,7 @@ const RaceForm = () => {
                     options={GroundTypes}
                     isClearable={true}
                     isSearchable={true}
-                  />
+                  />  <span className="spanForm"> |</span>
                     </div>
 
                     <div className="col-sm">

@@ -47,7 +47,7 @@ const OwnerForm = () => {
             <div className="Headers">Add Owner</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Name"
@@ -55,7 +55,7 @@ const OwnerForm = () => {
                       name="Name"
                       value={Name}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -68,7 +68,7 @@ const OwnerForm = () => {
 
                 <div className="ButtonSection">
                   <label>
-            
+            Select File
                     <input type="file" size="60" onChange={fileSelected} />
                   </label>
                   <button

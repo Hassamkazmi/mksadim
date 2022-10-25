@@ -65,7 +65,7 @@ const TrainerForm = () => {
             <div className="Headers">Add Trainer</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Name"
@@ -73,7 +73,7 @@ const TrainerForm = () => {
                       name="Name"
                       value={Name}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -83,7 +83,7 @@ const TrainerForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Age"
@@ -92,7 +92,7 @@ const TrainerForm = () => {
                       value={Age}
                       required
                       type="number"
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -103,21 +103,21 @@ const TrainerForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <textarea
+                    <input
                       placeholder="Detail"
                       name="Detail"
                       onChange={(e) => setDetail(e.target.value)}
                       value={Detail}
-                    ></textarea>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <textarea placeholder="التفاصيل"  style={{ direction: "rtl" }}></textarea>
+                    <input placeholder="التفاصيل"  style={{ direction: "rtl" }}></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Remarks"
@@ -125,7 +125,7 @@ const TrainerForm = () => {
                       name="Remarks"
                       value={Remarks}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -137,7 +137,10 @@ const TrainerForm = () => {
                 </div>
 
                 <div className="ButtonSection">
+                  <label>
+                    Select File
                   <input type="file" size="60" onChange={fileSelected} />
+                  </label>
                   <button
                     type="submit"
                     className="SubmitButton"

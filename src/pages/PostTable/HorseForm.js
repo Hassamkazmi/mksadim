@@ -163,7 +163,7 @@ const HorseForm = () => {
             <div className="Headers">Add Horse</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Horse Name"
@@ -171,7 +171,7 @@ const HorseForm = () => {
                       name="Name"
                       value={NameEn}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
                   <div className="col-sm">
                     <input
@@ -183,7 +183,7 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Age"
@@ -192,7 +192,7 @@ const HorseForm = () => {
                       value={Age}
                       required
                       type="number"
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -207,13 +207,13 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Color"
                       onChange={(e) => setColor(e.target.value)}
                       value={Color}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -223,14 +223,14 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Earning"
                       type="number"
                       onChange={(e) => setEarning(e.target.value)}
                       value={Earning}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -241,14 +241,14 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Horse Rating"
                       type="number"
                       onChange={(e) => setHorseRating(e.target.value)}
                       value={HorseRating}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -260,14 +260,14 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Over All Rating"
                       type="number"
                       onChange={(e) => setOverAllRating(e.target.value)}
                       value={OverAllRating}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -279,7 +279,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Remarks"
@@ -287,7 +287,7 @@ const HorseForm = () => {
                       name="Remarks"
                       value={Remarks}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -297,13 +297,13 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Horse Kind"
                       onChange={(e) => setKindOfHorse(e.target.value)}
                       value={KindOfHorse}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -313,13 +313,13 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Breeder"
                       onChange={(e) => setBreeder(e.target.value)}
                       value={Breeder}
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -329,7 +329,7 @@ const HorseForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                     
@@ -339,7 +339,7 @@ const HorseForm = () => {
                       options={Gender}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -356,7 +356,7 @@ const HorseForm = () => {
                 </div>
 
                 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Sire</div>}
@@ -365,7 +365,7 @@ const HorseForm = () => {
                       options={horseoptions}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -380,7 +380,7 @@ const HorseForm = () => {
                     />
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Dam</div>}
@@ -389,7 +389,7 @@ const HorseForm = () => {
                       options={horseoptions}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -404,7 +404,7 @@ const HorseForm = () => {
                     />
                   </div>
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search GSire</div>}
@@ -413,7 +413,7 @@ const HorseForm = () => {
                       options={horseoptions}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -431,7 +431,7 @@ const HorseForm = () => {
 
                 
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Owner</div>}
@@ -440,7 +440,7 @@ const HorseForm = () => {
                       options={owneroption}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -460,7 +460,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Active Owner</div>}
@@ -469,7 +469,7 @@ const HorseForm = () => {
                       options={owneroption}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -489,7 +489,7 @@ const HorseForm = () => {
                 </div>
 
                
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search trainer</div>}
@@ -499,10 +499,10 @@ const HorseForm = () => {
                       isClearable={true}
                       isSearchable={true}
                       
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
-                  <div className="col-sm">
+                  <div className="col-sm ">
                     <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
@@ -518,7 +518,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Active trainer</div>}
@@ -527,7 +527,7 @@ const HorseForm = () => {
                       options={traineroption}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -546,7 +546,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm " >
                     <Select
                       placeholder={<div>Type to search Jockey</div>}
@@ -556,7 +556,7 @@ const HorseForm = () => {
                       options={jockeyoption}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -575,7 +575,7 @@ const HorseForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Active Jockey</div>}
@@ -585,7 +585,7 @@ const HorseForm = () => {
                       options={jockeyoption}
                       isClearable={true}
                       isSearchable={true}
-                    />
+                    /><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">

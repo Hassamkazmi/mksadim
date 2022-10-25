@@ -51,7 +51,7 @@ const SliderForm = () => {
             <div className="Headers">Add Slider</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row  mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Name"
@@ -59,7 +59,7 @@ const SliderForm = () => {
                       name="Name"
                       value={TitleEn}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -74,7 +74,9 @@ const SliderForm = () => {
                 </div>
 
                 <div className="ButtonSection">
-                  <input type="file" size="60" onChange={fileSelected} />
+                  <label> Select File                  <input type="file" size="60" onChange={fileSelected} />
+                  </label>
+
                   <button
                     type="submit"
                     className="SubmitButton"

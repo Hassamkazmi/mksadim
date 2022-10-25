@@ -66,7 +66,7 @@ const AdsForm = () => {
             <div className="Headers">Create Ads</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" TitleEn"
@@ -74,7 +74,7 @@ const AdsForm = () => {
                       name="Name"
                       value={TitleEn}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -88,28 +88,31 @@ const AdsForm = () => {
                   </div>
                 </div>
 
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <textarea
+                    <input
                       placeholder="Detail"
                       name="Detail"
                       onChange={(e) => setDescriptionEn(e.target.value)}
                       value={DescriptionEn}
-                    ></textarea>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <textarea
+                    <input
                      placeholder="التفاصيل"  style={{ direction: "rtl" }} 
                       name="Detail"
                       onChange={(e) => setDescriptionAr(e.target.value)}
                       value={DescriptionAr}
-                    ></textarea>
+                    ></input>
                   </div>
                 </div>
 
                 <div className="ButtonSection">
+                  <label>
+                    Select File
                   <input type="file" size="60" onChange={fileSelected} />
+                  </label>
                   <button
                     type="submit"
                     className="SubmitButton"

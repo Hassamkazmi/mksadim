@@ -9,6 +9,22 @@ import { add } from "../../redux/postReducer/PostRaceCourse";
 import { Country_Name } from '../../Data/Country'
 import { Country_NameAr } from '../../Data/Country'
 import swal from "sweetalert";
+import Select from 'react-select'
+
+let CountryEn = Country_Name.map(function (item) {
+  return {
+    id: item._id,
+    value: item.country_name,
+    label: item.country_name,
+  };
+});
+let CountryAr = Country_NameAr.map(function (item) {
+  return {
+    id: item._id,
+    value: item.name,
+    label: item.name,
+  };
+});
 
 const RaceCourseForm = () => {
 
@@ -23,6 +39,7 @@ const RaceCourseForm = () => {
   const fileSelected = event => {
     const image = event.target.files[0]
     setImage(image)
+    console.log(image)
   }
   const submit = async event => {
     event.preventDefault()
@@ -84,11 +101,11 @@ const RaceCourseForm = () => {
             </div>
             <div className='form'>
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder='Track Name' onChange={e => setTrackName(e.target.value)} value={TrackName}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -98,11 +115,11 @@ const RaceCourseForm = () => {
                   </div>
 
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder='Track Length'  onChange={e => setTrackLength(e.target.value)} value={TrackLength}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -111,40 +128,31 @@ const RaceCourseForm = () => {
                   </div>
 
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <select onChange={e => setCountry(e.target.value)} value={Country} required>
-                      <option value='0' style={EnglishDirection}>Select Country</option>
-                      {
-                        Country_Name.map((countryName) => (
-
-
-                          <option>{countryName.country_name} </option>
-
-                        ))
-
-
-
-                      }
-                    </select>
+                  <Select
+                      placeholder={<div>Type to search Country</div>}
+                    
+                      defaultValue={Country}
+                      onChange={setCountry}
+                      options={CountryEn}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
 
                   </div>
 
                   <div className="col-sm">
-                    <select style={ArbicDirection}>
-                      <option value='0'>حدد الدولة</option>
-                      {
-                        Country_NameAr.map((countryName) => (
-
-
-                          <option>{countryName.name} </option>
-
-                        ))
-
-                      }
-
-
-                    </select>
+                  <Select
+                      placeholder={<div>اكتب للبحث عن الدولة</div>}
+                    
+               
+                    
+                      options={CountryAr}
+                      isClearable={true}
+                      isSearchable={true}
+                      className='selectdir'
+                    />
                   </div>
 
                 </div>
@@ -156,12 +164,16 @@ const RaceCourseForm = () => {
 
 
                 <div className='ButtonSection'>
+<label>          Select File        <input type="file" size="60" onChange={fileSelected}
 
-                  <input type="file" size="60" onChange={fileSelected}
-                  />
+       
+      
+/>
+</label>
                   <button type='submit' className='SubmitButton'>Add Race Course</button>
 
                 </div>
+               
               </form>
             </div>
           </div>

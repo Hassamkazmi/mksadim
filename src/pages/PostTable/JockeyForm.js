@@ -60,12 +60,12 @@ const NewsForm = () => {
             </div>
             <div className='form'>
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder=' Name' onChange={e => setName(e.target.value)} name='Name' value={Name}
 
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -75,12 +75,12 @@ const NewsForm = () => {
                   </div>
 
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder='Age' onChange={e => setAge(e.target.value)} name='Name' value={Age}
                       required
                       type='number'
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -100,8 +100,10 @@ const NewsForm = () => {
 
 
                 <div className='ButtonSection'>
-
+                  <label>
+Select File
                   <input type="file" size="60" onChange={fileSelected} />
+                  </label>
                   <button type='submit' className='SubmitButton' >Add Jockey</button>
 
                 </div>
