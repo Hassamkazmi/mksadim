@@ -117,7 +117,7 @@ const News = () => {
                       <th>Description En</th>
                       <th>Description Ar</th>
                       <th>Image</th>
-                      <th>Action</th>
+                      <th style={{textAlign: 'center'}}>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,7 +137,7 @@ const News = () => {
                                 width: '30px', height: '30px'
                               }} />
                             </td>
-                            <td className="table_delete_btn1">
+                            <td className="table_delete_btn1" style={{textAlign: 'center'}}>
                               <BiEdit />
                               <MdDelete
                                 style={{

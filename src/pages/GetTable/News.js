@@ -130,7 +130,7 @@ const News = () => {
                         <th>Image</th>
 
                         <th>Action</th>
-                        <th></th>
+                    
                       </tr>
                     </thead>
                     <tbody>
@@ -154,7 +154,7 @@ const News = () => {
                                 height: "30px",
                               }}
                             />
-                            <td className="table_delete_btn1">
+                            <td>
                               <BiEdit />
                               <MdDelete
                                 style={{

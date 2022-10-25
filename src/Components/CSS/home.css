@@ -13,9 +13,9 @@ overflow-x: hidden;
 margin-bottom: 80px;
 }
 .tr_table_class td img {
-    border-radius: 50%;
-    height: 50px;
-    width: 80px;
+  border-radius: 50%;
+  height: 35px;
+  width: 80px;
 }
 
 .table_delete_btn1{

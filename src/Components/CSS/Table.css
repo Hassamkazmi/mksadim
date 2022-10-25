@@ -13,24 +13,41 @@
     margin-left: 20px;
     margin-top: -35px;
 }
+.Header h4 {
+    font-size: 1.5rem;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18.5949px;
+    line-height: 19px;
+    padding-top: 7px;
+    color: #000000;
+    padding-left: 6px;
+}
 
 .Header button {
-
     background: linear-gradient(89.98deg, #19469D 23.67%, #00A3FF 97.94%);
     border-radius: 40px;
     width: 186px;
     height: 51px;
     color: white;
     border: none;
-
-
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15.5949px;
+    line-height: 19px;
 }
 
 .Header h6 {
     cursor: pointer;
-
+    padding-top: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
 }
-
 .Header>div {
 
     display: flex;
@@ -69,13 +86,32 @@ tbody, td, tfoot, th, thead, tr {
     padding: 6px;
 
     font-weight: normal;
+    
+    padding: 10px 35px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
 }
 
 .div_maintb td {
-    padding: 6px;
-    color: black;
+ 
+    padding: 10px 35px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
 }
 
+.div_maintb th {
+ 
+
+    padding: 10px 35px;
+}
 .div_maintb th:nth-child(1),
 .div_maintb td:nth-child(1) {
     position: sticky;
@@ -87,11 +123,9 @@ tbody, td, tfoot, th, thead, tr {
 
 
 .div_maintb td:nth-child(1) {
-
     height: 58px;
     padding-left: 29px;
-
-
+    padding-right: 88px;
 }
 
 .div_maintb th:nth-child(1) {
@@ -192,17 +226,28 @@ td.table_delete_btn1 {
 }
 
 td:last-child {
-  color: #19469D;
-  
-  }
-  td:last-child >svg {
+    color: #19469D;
+    text-align: inherit;
+}
+.div_maintb >td:last-child >svg {
     margin-left: 5px;
     font-size: 20px;
     cursor: pointer;
     }
+ .div_maintb thead:last-child{
+
+        text-align: center;
+        
+    }
+
     
 
 .div_maintb td:nth-child(2) {
     padding-left: 3rem;
     border-radius: 20px 0 0 20px;
+}
+.div_maintb td:last-child svg {
+    vertical-align: middle;
+    font-size: 18px;
+    color: darkblue;
 }

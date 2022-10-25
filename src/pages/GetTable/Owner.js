@@ -102,7 +102,7 @@ const Owner = () => {
                 
                    
                    <th>Image</th>
-                   <th >Action</th>
+                   <th style={{textAlign: 'center'}}>Action</th>
                  </tr>
                </thead>
                <tbody>
@@ -118,7 +118,7 @@ const Owner = () => {
                            <img src={item.image} alt="" />
                          </td>
                         
-                         <td>
+                         <td style={{textAlign: 'center'}}>
                           <Link to={`/editowner/${item._id}`}>
                          <BiEdit />
                          </Link>

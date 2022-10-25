@@ -137,7 +137,7 @@ const Horse = () => {
                         <th>Remarks</th>
                          <th>Image</th>
                         <th>Actions</th>
-                        <th></th>
+                  
                       </tr>
                     </thead>
 

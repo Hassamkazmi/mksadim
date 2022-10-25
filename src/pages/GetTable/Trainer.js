@@ -142,7 +142,7 @@ const handlePageClick = async (data) => {
                         <td>
                           <img src={item.image} alt="" />
                         </td>                        
-                        <td className="table_delete_btn1">
+                        <td className="table_delete_btn1 ">
                           <MdDelete
                             style={{
                               fontSize: "22px",

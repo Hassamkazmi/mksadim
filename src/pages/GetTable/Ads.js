@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import AdsPopup from "../../Components/Popup/AdsPopup";
 import {BsFillEyeFill} from 'react-icons/bs'
+import ScrollContainer from 'react-indiana-drag-scroll'
 
 const Ads = () => {
 
@@ -87,6 +88,7 @@ const Ads = () => {
                 </div>
               </div>
               <div className="div_maintb">
+              <ScrollContainer className="scroll-container">
                 <table striped bordered hover>
                   <thead>
                     <tr>
@@ -97,7 +99,7 @@ const Ads = () => {
                       <th>Description En</th>
                       <th>Description Ar</th>
                       <th>Image</th>
-                      <th>Action</th>
+                      <th >Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -115,7 +117,7 @@ const Ads = () => {
                               <img src={item.image} alt="" />
                             </td>
 
-                            <td className="table_delete_btn1">
+                            <td     >
 
 
                               <MdDelete
@@ -145,6 +147,7 @@ const Ads = () => {
 
                   </tbody>
                 </table>
+                </ScrollContainer>
               </div>
             </>
           </div>
