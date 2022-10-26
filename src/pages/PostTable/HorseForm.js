@@ -85,10 +85,8 @@ const HorseForm = () => {
   const [Earning, setEarning] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
   const [HorseImage, setHorseImage] = useState();
-  const fileSelected = (event) => {
-    const image = event.target.files[0];
-    setHorseImage(image);
-  };
+  const [preview, setPreview] = useState()
+ 
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -127,6 +125,26 @@ const HorseForm = () => {
       alert(error.message);
     }
   };
+  useEffect(() => {
+    if (!HorseImage) {
+        setPreview(undefined)
+        return
+    }
+
+    const objectUrl = URL.createObjectURL(HorseImage)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [HorseImage])
+
+const onSelectFile = e => {
+
+    // I've kept this example simple by using the first image instead of multiple
+    setHorseImage(e.target.files[0])
+  console.log(HorseImage,'image')
+
+  }
   const isSubmitData =
   ActiveOwner === "" ||
   Jockey === "" ||
@@ -609,10 +627,10 @@ const HorseForm = () => {
              
 
                 <div className="ButtonSection">
-                  <label>
-                    Select File
-                  <input type="file" size="60" onChange={fileSelected} />
-                  </label>
+              <div>
+                <input type='file' onChange={onSelectFile} className="formInput"/>
+            {HorseImage &&  <img src={preview} /> }
+            </div>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
                   </button>

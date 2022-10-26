@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment,useEffect } from "react";
 import "../../Components/CSS/forms.css";
 
 
@@ -15,12 +15,10 @@ const TrainerForm = () => {
   const [Age, setAge] = useState("");
   const [Detail, setDetail] = useState("");
   const [Remarks, setRemarks] = useState("");
+  const [preview, setPreview] = useState()
 
   const [image, setImage] = useState();
-  const fileSelected = (event) => {
-    const image = event.target.files[0];
-    setImage(image);
-  };
+  
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -44,6 +42,26 @@ const TrainerForm = () => {
       alert(error.message);
     }
   };
+  useEffect(() => {
+    if (!image) {
+        setPreview(undefined)
+        return
+    }
+
+    const objectUrl = URL.createObjectURL(image)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [image])
+
+const onSelectFile = e => {
+
+  
+    setImage(e.target.files[0])
+  console.log(image,'image')
+
+  }
   const isSubmitData =
     Name === "" ||
     Age === "" ||
@@ -136,18 +154,14 @@ const TrainerForm = () => {
                   </div>
                 </div>
 
-                <div className="ButtonSection">
-                  <label>
-                    Select File
-                  <input type="file" size="60" onChange={fileSelected} />
-                  </label>
-                  <button
-                    type="submit"
-                    className="SubmitButton"
-                    disabled={isSubmitData}
-                  >
-                    Add Trainer
-                  </button>
+                <div className='ButtonSection'>
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview} /> }
+        </div>
+
+                  <button type='submit' className='SubmitButton'>Add Race Course</button>
+
                 </div>
               </form>
             </div>

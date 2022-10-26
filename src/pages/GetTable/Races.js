@@ -155,7 +155,7 @@ const Races = () => {
                     <MdDelete onClick={()=> handleRemove(item._id)}/>
               </td>
                     
-                  </tr>
+                       </tr>
                        </tbody>
                       )
                     })

@@ -25,7 +25,6 @@ form {
   font-weight: 700;
   font-size: 15.5949px;
   line-height: 19px;
-  /* identical to box height */
   padding-top: 29px;
   margin-bottom: 30px;
   color: #000000;
@@ -35,21 +34,22 @@ form {
 }
 
 .form input {
-  margin-top: -10px;
+
+  margin-top: -6px;
   width: 97%;
   height: 50px;
   border: none;
   border-radius: 20px;
-  padding-bottom: -10px;
+
   padding-left: 20px;
-  padding-top: 7px;
+
   font-weight: 300;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
   line-height: 17px;
-  
+
 }
 
 .form>input::placeholder {
@@ -69,7 +69,6 @@ form {
   justify-content: space-between;
   margin-right: 27px;
   margin-top: 4rem;
-  margin-left: 17px;
 
 }
 
@@ -88,33 +87,6 @@ form {
 }
 
 
-
-
-
-.form textarea {
-
-  margin-top: -10px;
-  width: 97%;
-  height: 50px;
-  border: none;
-  border-radius: 20px;
-  padding-bottom: -10px;
-  padding-left: 20px;
-  padding-top: 7px;
-  font-weight: 300;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 17px;
-
-}
-
-.form textarea:focus {
-
-
-  outline: none;
-}
 
 .RaceButtonDiv {
 
@@ -171,27 +143,22 @@ form {
   width: 100%;
 }
 
-label {
-  padding:12px ;
-  margin-top: 1.5rem;
+
+
+
+
+input::file-selector-button {
+
+  color: white;
+  background: linear-gradient(89.98deg, #010306 23.67%, #4d5a62 97.94%);
+  ;
+  border-radius: 20px;
+
+  border: none;
   width: 186px;
   height: 51px;
-  background: linear-gradient(89.98deg, #010306 23.67%, #4d5a62 97.94%);
-  border-radius: 20px;
-  color: white;
-  border: none;
-  margin-right: 2.8rem;
-  display: table;
-  color: #fff;
+  padding: 10px 20px;
   cursor: pointer;
-  padding-left: 3.4rem;
-  font-weight: 600;
-}
-
-
-
-input[type="file"] {
-  display: none;
 }
 
 .mainrow {
@@ -202,6 +169,7 @@ input[type="file"] {
 
   width: 98%;
   margin-left: 19px;
+
 }
 
 
@@ -236,46 +204,49 @@ input[type="file"] {
   outline: none !important;
 }
 
-.singleButtonSection{
-  
+.singleButtonSection {
+
   display: flex;
   justify-content: end;
   margin-right: 30px;
   margin-top: 5rem;
-margin-left: 30px;
+  margin-left: 30px;
 }
-.css-1pahdxg-control{
+
+.css-1pahdxg-control {
 
 
-border: transparent !important;
-box-shadow: none !important;
+  border: transparent !important;
+  box-shadow: none !important;
 }
-.css-1s2u09g-control{
+
+.css-1s2u09g-control {
 
   border: transparent !important;
   box-shadow: none !important;
 
 }
+
 .css-1s2u09g-control {
   border-radius: 30px !important;
-  /* width: 105% !important; */
+
   height: 37px;
   border: 1px solid #fff !important;
 }
+
 .css-b62m3t-container {
   position: relative;
   box-sizing: border-box;
-  /* border: 1px solid; */
-  /* border-radius: 20px; */
+
   padding: 0px 10px !important;
 }
-.css-tlfecz-indicatorContainer {
- 
 
-}
+.css-tlfecz-indicatorContainer {}
+
 .css-1okebmr-indicatorSeparator {
   display: none;
 }
+
 .css-b62m3t-container {
   position: relative;
   box-sizing: border-box;
@@ -296,17 +267,21 @@ box-shadow: none !important;
   font-size: 14px;
   line-height: 17px;
 }
+
 .css-1s2u09g-control {
-  -webkit-align-items: center;
-  height: 11px !important;}
-  .css-14el2xx-placeholder {
-    color: hsl(0, 0%, 50%);
-    grid-area: 1/1/2/3;
-    margin-left: 2px;
-    margin-right: 2px;
-    box-sizing: border-box;
-    padding-right: 2px !important;
+
+  height: 11px !important;
 }
+
+.css-14el2xx-placeholder {
+  color: hsl(0, 0%, 50%);
+  grid-area: 1/1/2/3;
+  margin-left: 2px;
+  margin-right: 2px;
+  box-sizing: border-box;
+  padding-right: 2px !important;
+}
+
 .css-tj5bde-Svg {
   display: inline-block;
   fill: currentColor;
@@ -314,4 +289,46 @@ box-shadow: none !important;
   stroke: currentColor;
   stroke-width: 0;
   margin-left: -54px;
+}
+
+.formInput {
+
+  width: 97%;
+  height: 50px;
+  border: none;
+  border-radius: 20px;
+margin-top: 10px;
+  padding-left: 20px;
+
+  font-weight: 300;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+
+
+
+}
+.css-6j8wv5-Input {
+  margin: -3px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  visibility: visible;
+  color: hsl(0, 0%, 20%);
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: inline-grid;
+  grid-area: 1/1/2/3;
+  grid-template-columns: 0 min-content;
+  box-sizing: border-box;
+}
+.css-14el2xx-placeholder {
+  color: hsl(0, 0%, 50%);
+  grid-area: 1/1/2/3;
+  margin-left: 2px;
+  margin-right: 2px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }

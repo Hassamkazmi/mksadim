@@ -1,5 +1,5 @@
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
 
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { add } from "../../redux/postReducer/PostRaceCourse";
 
 import { Country_Name } from '../../Data/Country'
 import { Country_NameAr } from '../../Data/Country'
+
 import swal from "sweetalert";
 import Select from 'react-select'
 
@@ -33,14 +34,12 @@ const RaceCourseForm = () => {
   const [TrackName, setTrackName] = useState('')
   const [TrackLength, setTrackLength] = useState('')
   const [Country, setCountry] = useState('')
+    const [preview, setPreview] = useState()
+
 
 
   const [image, setImage] = useState()
-  const fileSelected = event => {
-    const image = event.target.files[0]
-    setImage(image)
-    console.log(image)
-  }
+ 
   const submit = async event => {
     event.preventDefault()
     try {
@@ -62,23 +61,27 @@ const RaceCourseForm = () => {
       alert(error.message)
     }
   }
-  const ArbicDirection = {
+  
+  useEffect(() => {
+    if (!image) {
+        setPreview(undefined)
+        return
+    }
 
-    direction: 'rtl',
-    marginRight: '0px',
-    paddingLeft: '220px',
-    width: '105%'
+    const objectUrl = URL.createObjectURL(image)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [image])
+
+const onSelectFile = e => {
+
+  
+    setImage(e.target.files[0])
+  console.log(image,'image')
 
   }
-  const EnglishDirection = {
-
-
-    marginRight: '0px',
-    paddingLeft: '220px',
-    width: '105%'
-
-  }
-
 
   return (
     <Fragment>
@@ -164,12 +167,11 @@ const RaceCourseForm = () => {
 
 
                 <div className='ButtonSection'>
-<label>          Select File        <input type="file" size="60" onChange={fileSelected}
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview} /> }
+        </div>
 
-       
-      
-/>
-</label>
                   <button type='submit' className='SubmitButton'>Add Race Course</button>
 
                 </div>

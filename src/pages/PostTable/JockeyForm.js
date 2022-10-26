@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
 
 import { useDispatch } from "react-redux";
@@ -13,12 +13,10 @@ const NewsForm = () => {
     const [Name,setName] = useState('')
     const [Age,setAge] = useState('')
     const [image,setImage] = useState()
+    const [preview, setPreview] = useState()
   
   
-    const fileSelected = event => {
-      const image = event.target.files[0]
-      setImage(image)
-    }
+  
     const submit = async event => {
       event.preventDefault()
      try {
@@ -39,6 +37,23 @@ const NewsForm = () => {
      }
     }
     const areAllFieldsFilled = (image !== undefined) && (Age !== "")
+    useEffect(() => {
+    
+  
+      const objectUrl = URL.createObjectURL(image)
+      setPreview(objectUrl)
+  
+      // free memory when ever this component is unmounted
+      return () => URL.revokeObjectURL(objectUrl)
+  }, [image])
+  
+  const onSelectFile = e => {
+  
+      // I've kept this example simple by using the first image instead of multiple
+      setImage(e.target.files[0])
+    console.log(image,'image')
+  
+    }
   return (
     <>
 
@@ -100,11 +115,12 @@ const NewsForm = () => {
 
 
                 <div className='ButtonSection'>
-                  <label>
-Select File
-                  <input type="file" size="60" onChange={fileSelected} />
-                  </label>
-                  <button type='submit' className='SubmitButton' >Add Jockey</button>
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview} /> }
+        </div>
+
+                  <button type='submit' className='SubmitButton'>Add Race Course</button>
 
                 </div>
               </form>

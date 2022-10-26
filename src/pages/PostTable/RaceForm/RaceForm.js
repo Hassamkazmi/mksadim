@@ -33,8 +33,8 @@ const RaceStatuss = [
 
 ];
 const GroundTypes = [
-  { id: "1", value: "Cancel", label: "Cancel" },
-  { id: "1", value: "Due", label: "Due" }
+  { id: "1", value: "Green", label: "Green" },
+  { id: "1", value: "Flat", label: "Flat" }
 
 ];
 
@@ -329,7 +329,7 @@ const RaceForm = () => {
                     <Select
                     
                     placeholder={<div>Ground Type</div>}
-                    defaultValue={GroundTypes}
+                    
             
                     
                     options={GroundTypes}
@@ -342,7 +342,7 @@ const RaceForm = () => {
                     <Select
                     
                     placeholder={<div>نوع الأرض</div>}
-                    defaultValue={GroundTypes}
+                 
             
                     className='selectdir'
                     options={GroundTypes}
