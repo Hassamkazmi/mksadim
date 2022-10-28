@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -11,11 +11,8 @@ const SliderForm = () => {
   const [TitleEn, setTitleEn] = useState("");
   const [TitleAr, setTitleAr] = useState("");
   const [image, setImage] = useState();
+const [preview,setPreview] = useState()
 
-  const fileSelected = (event) => {
-    const image = event.target.files[0];
-    setImage(image);
-  };
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -35,8 +32,28 @@ const SliderForm = () => {
       alert(error.message);
     }
   };
+  useEffect(() => {
+    if (!image) {
+        setPreview(undefined)
+        return
+    }
+
+    const objectUrl = URL.createObjectURL(image)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [image])
+
+const onSelectFile = e => {
+
+  
+    setImage(e.target.files[0])
+  console.log(image,'image')
+
+  }
   const isSubmitData =
-    TitleAr === "" || TitleEn === "" || image === null || image === undefined;
+    TitleAr === "" || TitleEn === "" ;
   return (
     <>
      
@@ -73,25 +90,22 @@ const SliderForm = () => {
                   </div>
                 </div>
 
-                <div className="ButtonSection">
-                  <label> Select File                  <input type="file" size="60" onChange={fileSelected} />
-                  </label>
+       
+        
+         <div className='ButtonSection'>
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview} className="PreviewImage" alt="" /> }
+        </div>
 
-                  <button
-                    type="submit"
-                    className="SubmitButton"
-                    disabled={isSubmitData}
-                  >
-                    Add Slider
-                  </button>
+                  <button type='submit' onClick={submit} className='SubmitButton'>Add Slider</button>
+
                 </div>
-              </form>
-            </div>
-          </div>
+        </form>
+                </div>
+                </div>
         </div>
-        <div className="ImgDiv">
-          <img src={image} alt="" />
-        </div>
+        
       </div>
     </>
   );

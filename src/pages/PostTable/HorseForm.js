@@ -629,7 +629,7 @@ const onSelectFile = e => {
                 <div className="ButtonSection">
               <div>
                 <input type='file' onChange={onSelectFile} className="formInput"/>
-            {HorseImage &&  <img src={preview} /> }
+            {HorseImage &&  <img src={preview}  alt="" className="PreviewImage" /> }
             </div>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse

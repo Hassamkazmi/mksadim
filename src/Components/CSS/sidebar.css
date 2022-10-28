@@ -16,6 +16,7 @@
 
 .AccordionBody > div > .mylink:focus {
     font-weight: 700;
+   
   
 }
 .accordion-item:last-of-type .accordion-collapse {
@@ -50,16 +51,13 @@
 .SettingSec {
     font-style: normal;
     font-family: 'Inter';
-  
     font-weight: 300;
- 
     font-size: 15.5949px;
-    line-height: 19px;
-    color: #000000;
     padding-left: 33px;
-margin-top: 146px;
+    position: absolute;
+    top: 103%;
+}
 
-}   
 .accordion-button::after {
    
     display: none;

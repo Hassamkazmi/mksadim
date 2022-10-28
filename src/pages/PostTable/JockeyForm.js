@@ -117,7 +117,7 @@ const NewsForm = () => {
                 <div className='ButtonSection'>
                 <div>
             <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} /> }
+            {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
         </div>
 
                   <button type='submit' className='SubmitButton'>Add Race Course</button>

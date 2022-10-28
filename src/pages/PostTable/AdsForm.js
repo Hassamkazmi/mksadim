@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
 
 import { useDispatch } from "react-redux";
@@ -16,11 +16,8 @@ const AdsForm = () => {
   const [DescriptionAr, setDescriptionAr] = useState("");
   const [DescriptionEn, setDescriptionEn] = useState("");
   const [image, setImage] = useState();
+const [preview,setPreview] = useState()
 
-  const fileSelected = (event) => {
-    const image = event.target.files[0];
-    setImage(image);
-  };
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -51,6 +48,28 @@ const AdsForm = () => {
     DescriptionEn === "" ||
     image === null ||
     image === undefined;
+
+    useEffect(() => {
+      if (!image) {
+        setPreview(undefined)
+        return
+    }
+      
+  
+      const objectUrl = URL.createObjectURL(image)
+      setPreview(objectUrl)
+  
+      // free memory when ever this component is unmounted
+      return () => URL.revokeObjectURL(objectUrl)
+  }, [image])
+  
+  const onSelectFile = e => {
+  
+    
+      setImage(e.target.files[0])
+    console.log(image,'image')
+  
+    }
 
   return (
     <>
@@ -108,19 +127,14 @@ const AdsForm = () => {
                   </div>
                 </div>
 
-                <div className="ButtonSection">
-                  <label>
-                    Select File
-                  <input type="file" size="60" onChange={fileSelected} />
-                  </label>
-                  <button
-                    type="submit"
-                    className="SubmitButton"
-                    disabled={isSubmitData}
-                    onClick={submit}
-                  >
-                    Create Ads
-                  </button>
+                <div className='ButtonSection'>
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview}  className="PreviewImage" alt=""/> }
+        </div>
+
+                  <button type='submit' className='SubmitButton'>Add Owner</button>
+
                 </div>
               </form>
             </div>

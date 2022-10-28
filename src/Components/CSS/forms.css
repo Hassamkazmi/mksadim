@@ -241,7 +241,7 @@ input::file-selector-button {
   padding: 0px 10px !important;
 }
 
-.css-tlfecz-indicatorContainer {}
+
 
 .css-1okebmr-indicatorSeparator {
   display: none;
@@ -331,4 +331,12 @@ margin-top: 10px;
   margin-right: 2px;
   box-sizing: border-box;
   margin-bottom: 10px;
+}
+.PreviewImage{
+
+  width: 31rem;
+  height: 31rem;
+  margin: 19px;
+  border-radius: 50px;
+
 }

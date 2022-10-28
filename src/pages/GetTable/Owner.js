@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
 import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
-import {BsFillEyeFill} from "react-icons/bs"
+
 import {BiEdit} from 'react-icons/bi'
 
 
@@ -32,7 +32,7 @@ const Owner = () => {
     setPageNumber((pagenumber) => pagenumber + 1);
   };
   const { data: owner, status } = useSelector((state) => state.owner);
-  const history = useNavigate();
+ 
  
   useEffect(() => {
     dispatch(fetchOwner({pagenumber}));

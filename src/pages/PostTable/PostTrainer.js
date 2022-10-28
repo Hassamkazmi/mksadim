@@ -157,10 +157,10 @@ const onSelectFile = e => {
                 <div className='ButtonSection'>
                 <div>
             <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} /> }
+            {image &&  <img src={preview} className="PreviewImage" alt="" /> }
         </div>
 
-                  <button type='submit' className='SubmitButton'>Add Race Course</button>
+                  <button type='submit' disabled={isSubmitData} className='SubmitButton'>Add Race Course</button>
 
                 </div>
               </form>

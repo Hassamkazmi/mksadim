@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostOwner";
@@ -10,11 +10,8 @@ const OwnerForm = () => {
   const history = useNavigate();
   const [Name, setName] = useState("");
   const [image, setImage] = useState();
-
-  const fileSelected = (event) => {
-    const image = event.target.files[0];
-    setImage(image);
-  };
+  const [preview, setPreview] = useState()
+ 
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -34,6 +31,28 @@ const OwnerForm = () => {
     }
   };
   const isSubmitData = Name === "" || image === null || image === undefined;
+  useEffect(() => {
+    if (!image) {
+      setPreview(undefined)
+      return
+  }
+    
+
+    const objectUrl = URL.createObjectURL(image)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
+}, [image])
+
+const onSelectFile = e => {
+
+  
+    setImage(e.target.files[0])
+  console.log(image,'image')
+
+  }
+
   return (
     <>
            <div className="page">
@@ -66,18 +85,14 @@ const OwnerForm = () => {
                   </div>
                 </div>
 
-                <div className="ButtonSection">
-                  <label>
-            Select File
-                    <input type="file" size="60" onChange={fileSelected} />
-                  </label>
-                  <button
-                    type="submit"
-                    className="SubmitButton"
-                    disabled={isSubmitData}
-                  >
-                    Add Owner
-                  </button>
+                <div className='ButtonSection'>
+                <div>
+            <input type='file' onChange={onSelectFile} className="formInput"/>
+            {image &&  <img src={preview} /> }
+        </div>
+
+                  <button type='submit' className='SubmitButton'>Add Owner</button>
+
                 </div>
               </form>
             </div>

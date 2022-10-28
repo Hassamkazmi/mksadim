@@ -15,7 +15,7 @@ const Sidebar = () => {
   <Accordion>
   <Accordion.Item eventKey="0">
     <Accordion.Header>Races</Accordion.Header>
-    <Accordion.Body className='AccordionBody'>
+    <Accordion.Body className='AccordionBody' style={{height:"157px"}}>
     <div><Link to='/races' className='mylink'>View Listings</Link></div>
    <div> <Link to='/raceform' className='mylink'>Add New</Link></div>
    <div> <Link to='/dashboard' className='mylink'>Add Results</Link></div>
@@ -99,6 +99,7 @@ const Sidebar = () => {
     </Accordion.Body>
     
   </Accordion.Item>
+
 <div className='SettingSec'>Setting</div>
  
 </Accordion>

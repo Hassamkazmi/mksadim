@@ -103,13 +103,16 @@ const Races = () => {
             </div>
 
             <div class="div_maintb">
-              <ScrollContainer className="scroll-container">
+            <ScrollContainer className="scroll-container">
+              
                 <table className="Sc">
+             
                   <thead style={{
                     marginTop:'30px'
                   }}>
                     <tr className="trtabletd">
                       <th>Race Name</th>
+             
                       <th>Racecource</th>
                       <th>Description</th>
                       <th>Sponsor Logo</th>
@@ -138,9 +141,10 @@ const Races = () => {
                       "color": `${RaceStatus === "Cancel" ? '#ffff': RaceStatus === "End" ? '#00000' : RaceStatus === "Live" ? '#00000': '#000000'}`
                       }} >{item.raceName}</td>
                     <td>{item.raceName}</td>
-                    <td style={{width: '50px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Description}</td>
+                    <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Description}</td>
                     <td>{item.raceName}</td>
                     <td>{item.raceName}</td>
+            
                    
 
                     <td>{item.RaceKind}</td>
@@ -155,13 +159,15 @@ const Races = () => {
                     <MdDelete onClick={()=> handleRemove(item._id)}/>
               </td>
                     
-                       </tr>
+                  </tr>
                        </tbody>
                       )
                     })
                   }
+                  
                 </table>
-              </ScrollContainer>
+                </ScrollContainer> 
+             
             </div>
           </div>
         </div>

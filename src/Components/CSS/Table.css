@@ -163,7 +163,12 @@ thead {
 }
 
 thead {
-    background: linear-gradient(273deg, #19469D 23.67%, #00A3FF 97.94%);
+   
+    background: url('../../assets/Rectangle\ 12.jpg');
+    background-size: cover;
+  
+    background-attachment: fixed;
+ background-repeat: no-repeat;
     border-radius: 20% !important;
       white-space: nowrap; 
   width: 50px; 
@@ -195,6 +200,11 @@ tbody{
 /* Track */
 .div_maintb::-webkit-scrollbar-track {
   background: transparent !important;
+}
+.thirdChild{
+    text-overflow: " [..]";
+   white-space: nowrap;
+max-width: 400px;
 }
 
 /* Handle */
@@ -250,4 +260,38 @@ td:last-child {
     vertical-align: middle;
     font-size: 18px;
     color: darkblue;
+}
+
+.div_maintb th {
+    padding: 10px 35px;
+    position: relative !important;
+    left: -35px !important ;
+}
+.div_maintb th:nth-child(1), .div_maintb td:nth-child(1) {
+    left: 0 !important;
+    border-radius: 0 20px 20px 0 !important;
+    position: sticky !IMPORTANT;
+}
+.div_maintb td {
+    position: relative;
+    left: -35px !important;
+}
+.div_maintb td:nth-child(1) {
+    z-index: 2;
+}
+.div_maintb th:nth-child(2) {
+    padding-left: 6rem !important;
+    border-radius: 20px 0 0 20px;
+}
+.div_maintb th {
+    padding: 10px 65px;
+    position: relative !important;
+    left: -35px !important;
+}
+.div_maintb td:nth-child(2) {
+    padding-left: 6rem !important;
+    border-radius: 20px 0 0 20px;
+}
+.div_maintb td{
+    padding: 10px 65px;
 }

@@ -11,7 +11,7 @@ import { MdDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
 import swal from 'sweetalert';
-import {BsFillEyeFill} from 'react-icons/bs'
+
 import { Modal } from "react-bootstrap";
 import HorsePopup from "../../Components/Popup/HorsePopup";
 
@@ -137,7 +137,6 @@ const Horse = () => {
                         <th>Remarks</th>
                          <th>Image</th>
                         <th>Actions</th>
-                  
                       </tr>
                     </thead>
 

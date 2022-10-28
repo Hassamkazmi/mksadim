@@ -5,15 +5,22 @@ import { useNavigate  } from 'react-router-dom'
 import Error from '../Components/Common/Error'
 import { userLogin } from '../redux/postReducer/UserPost'
 import '../Components/CSS/login.css'
+import {useform} from 'react-hook-form'
+import {BsEyeFill} from 'react-icons/bs'
+
 
 const Login = () => {
   const { loading, userInfo, error ,success} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [customError, setCustomError] = useState(null)
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const { register, handleSubmit } = useForm()
   const navigate = useNavigate()
 
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   // redirect authenticated user to profile screen
   useEffect(() => {
     if (userInfo) {
@@ -56,12 +63,12 @@ const Login = () => {
       <div className='form-group'>
       
         <input
-          type='text'
+           type={passwordShown ? "text" : "password"}
           placeholder='Password'
           className='form-input'
           {...register('password')}
           required
-        />
+        /><div className='showIcon'> <i onClick={togglePasswordVisiblity}><BsEyeFill/></i></div>
       </div>
       <button type='submit' className='buttonRegister' 
       disabled={loading}>

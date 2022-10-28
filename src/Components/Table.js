@@ -2,8 +2,8 @@ import React from "react";
 import Header from "./Common/Header";
 import Sidebar from "./Common/Sidebar";
 import { BsPlusCircleFill } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { remove } from "../redux/postReducer/PostTrainer";
 const Table = ({ data, column }) => {
 
