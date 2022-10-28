@@ -56,7 +56,7 @@
 
 .div_maintb {
     /* height: calc(100vh - 180px); */
-    /* width: calc(100vw - 100px); */
+width: calc(100vw - 100px);
     overflow: scroll;
     margin-left: 20px;
 }
@@ -125,8 +125,11 @@ tbody, td, tfoot, th, thead, tr {
 .div_maintb td:nth-child(1) {
     height: 58px;
     padding-left: 29px;
-    padding-right: 88px;
+  
+    
+    padding-right: 100px;
 }
+
 
 .div_maintb th:nth-child(1) {
     z-index: 300;
@@ -163,7 +166,7 @@ thead {
 }
 
 thead {
-    background: linear-gradient(274deg, #19469D 23.67%, #00A3FF 97.94%);
+ background: linear-gradient(274deg, #19469D 23.67%, #00A3FF 97.94%);
     border-radius: 20% !important;
     white-space: nowrap;
     width: 50px;

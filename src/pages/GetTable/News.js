@@ -154,7 +154,7 @@ const News = () => {
                                 height: "30px",
                               }}
                             />
-                            <td>
+                            <td style={{paddingRight:"200px"}}>
                               <BiEdit />
                               <MdDelete
                                 style={{
