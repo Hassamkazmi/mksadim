@@ -163,12 +163,11 @@ thead {
 }
 
 thead {
-   
-    background: url('../../assets/Rectangle\ 12.jpg');
-    background-size: cover;
-  
-    background-attachment: fixed;
- background-repeat: no-repeat;
+    background: linear-gradient(274deg, #19469D 23.67%, #00A3FF 97.94%);
+    border-radius: 20% !important;
+    white-space: nowrap;
+    width: 50px;
+    overflow: hidden;
     border-radius: 20% !important;
       white-space: nowrap; 
   width: 50px; 

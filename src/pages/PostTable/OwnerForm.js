@@ -88,7 +88,7 @@ const onSelectFile = e => {
                 <div className='ButtonSection'>
                 <div>
             <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} /> }
+            {image &&  <img src={preview} alt="" className="PreviewImage"/> }
         </div>
 
                   <button type='submit' className='SubmitButton'>Add Owner</button>
@@ -98,8 +98,8 @@ const onSelectFile = e => {
             </div>
           </div>
           <div>
-            {" "}
-            <img src={image} alt="" />{" "}
+
+       
           </div>
         </div>
       </div>
