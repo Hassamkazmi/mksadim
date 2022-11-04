@@ -1,16 +1,13 @@
-
-import React, { Fragment, useState,useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostRaceCourse";
-
-import { Country_Name } from '../../Data/Country'
-import { Country_NameAr } from '../../Data/Country'
-
+import { Country_Name } from "../../Data/Country";
+import { Country_NameAr } from "../../Data/Country";
+import axios from "axios";
 import swal from "sweetalert";
-import Select from 'react-select'
+import Select from "react-select";
 
 let CountryEn = Country_Name.map(function (item) {
   return {
@@ -19,177 +16,230 @@ let CountryEn = Country_Name.map(function (item) {
     label: item.country_name,
   };
 });
+
 let CountryAr = Country_NameAr.map(function (item) {
   return {
-    id: item._id,
+    id: item.country_id,
     value: item.name,
     label: item.name,
   };
 });
 
 const RaceCourseForm = () => {
-
   const dispatch = useDispatch();
   const history = useNavigate();
-  const [TrackName, setTrackName] = useState('')
-  const [TrackLength, setTrackLength] = useState('')
-  const [Country, setCountry] = useState('')
-    const [preview, setPreview] = useState()
+  const [TrackName, setTrackName] = useState("");
+  const [TrackLength, setTrackLength] = useState("");
+  const [WeatherType, setWeatherType] = useState("");
+  const [WeatherDegree, setWeatherDegree] = useState("");
+  const [WeatherIcon, setWeatherIcon] = useState("");
+  const [Country, setCountry] = useState("");
+  const [preview, setPreview] = useState();
 
+  const [image, setImage] = useState();
 
-
-  const [image, setImage] = useState()
- 
-  const submit = async event => {
-    event.preventDefault()
+  const submit = async (event) => {
+    event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("image", image)
-      formData.append("TrackName", TrackName)
-      formData.append("TrackLength", TrackLength)
-      formData.append("Country", Country)
-
-      dispatch(add(formData));
-      history('/racecourse');
+      formData.append("image", image);
+      formData.append("TrackName", TrackName);
+      formData.append("TrackLength", TrackLength);
+      formData.append("WeatherType", WeatherType);
+      formData.append("WeatherDegree", WeatherDegree);
+      formData.append("WeatherIcon", WeatherIcon);
+      formData.append("Country", Country.value);
+      const response = await axios.post(`${window.env.API_URL}/createcourse?keyword=&page=`,formData);
       swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
+        title: "success!",
+        text: 'Data Submitted !',
         icon: "success",
         button: "OK",
       });
-    } catch (error) {
-      alert(error.message)
+      history("/racecourse");
+      console.log(CountryEn,'CountryEn')
+    } 
+    catch (error) {
+      console.log(error.response.data.message,'error')
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
+      
     }
-  }
-  
+  };
+
   useEffect(() => {
     if (!image) {
-        setPreview(undefined)
-        return
+      setPreview(undefined);
+      return;
     }
 
-    const objectUrl = URL.createObjectURL(image)
-    setPreview(objectUrl)
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [image])
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [image]);
 
-const onSelectFile = e => {
-
-  
-    setImage(e.target.files[0])
-  console.log(image,'image')
-
-  }
+  const onSelectFile = (e) => {
+    setImage(e.target.files[0]);
+    console.log(image, "image");
+  };
 
   return (
     <Fragment>
-
       <div className="page">
-   
         <div className="rightsidedata">
           <div
             style={{
               marginTop: "30px",
             }}
           >
-            <div className='Headers'>
-
-
-            New Race Course 
-
-
-
-            </div>
-            <div className='form'>
+            <div className="Headers">New Race Course</div>
+            <div className="form">
               <form onSubmit={submit}>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input placeholder='Track Name' onChange={e => setTrackName(e.target.value)} value={TrackName}
+                    <input
+                      placeholder="Track Name"
+                      onChange={(e) => setTrackName(e.target.value)}
+                      value={TrackName}
                       required
-                    ></input><span className="spanForm"> |</span>
-
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <input style={{ direction: "rtl" }} placeholder="اسم المسار"></input>
-
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم المسار"
+                    ></input>
                   </div>
-
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input placeholder='Track Length'  onChange={e => setTrackLength(e.target.value)} value={TrackLength}
+                    <input
+                      placeholder="Track Length"
+                      onChange={(e) => setTrackLength(e.target.value)}
+                      value={TrackLength}
                       required
-                    ></input><span className="spanForm"> |</span>
-
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <input style={{ direction: "rtl" }} placeholder="طول المسار"></input>
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="طول المسار"
+                    ></input>
+                  </div>
+                </div>
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Weather Type"
+                      onChange={(e) => setWeatherType(e.target.value)}
+                      value={WeatherType}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم المسار"
+                    ></input>
+                  </div>
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                  <Select
+                    <input
+                      placeholder="Weather Degree"
+                      onChange={(e) => setWeatherDegree(e.target.value)}
+                      value={WeatherDegree}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم المسار"
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Weather Icon"
+                      onChange={(e) => setWeatherIcon(e.target.value)}
+                      value={WeatherIcon}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم المسار"
+                    ></input>
+                  </div>
+                </div>
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
                       placeholder={<div>Type to search Country</div>}
-                    
                       defaultValue={Country}
                       onChange={setCountry}
                       options={CountryEn}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
-
+                    />
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                  <Select
+                    <Select
                       placeholder={<div>اكتب للبحث عن الدولة</div>}
-                    
-               
-                    
                       options={CountryAr}
                       isClearable={true}
                       isSearchable={true}
-                      className='selectdir'
+                      className="selectdir"
                     />
                   </div>
-
                 </div>
+                <div className="ButtonSection">
+                  <div>
+                    <input
+                      type="file"
+                      onChange={onSelectFile}
+                      className="formInput"
+                    />
+                    {image && (
+                      <img src={preview} className="PreviewImage" alt="" />
+                    )}
+                  </div>
 
-
-
-
-
-
-
-                <div className='ButtonSection'>
-                <div>
-            <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} className="PreviewImage" alt="" /> }
-        </div>
-
-                  <button type='submit' className='SubmitButton'>Add Race Course</button>
-
+                  <button type="submit" className="SubmitButton">
+                    Add Race Course
+                  </button>
                 </div>
-               
               </form>
             </div>
           </div>
-
-
         </div>
       </div>
-
-
-
     </Fragment>
-  )
-}
+  );
+};
 
 export default RaceCourseForm;
-
-

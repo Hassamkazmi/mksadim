@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from "react";
-
 import { fetchTrainer } from "../../redux/getReducer/getTrainerSlice";
 import { add } from "../../redux/postReducer/PostHorse";
 import { useDispatch } from "react-redux";
@@ -10,6 +9,7 @@ import Select from "react-select";
 import { fetchOwner } from "../../redux/getReducer/getOwnerSlice";
 import { fetchHorse } from "../../redux/getReducer/getHorseSlice";
 import swal from "sweetalert";
+import axios from "axios";
 
 const Gender = [
   { id: "1", value: "Male", label: "Male" },
@@ -64,6 +64,7 @@ const HorseForm = () => {
     };
   });
 
+  console.log(trainer,'trainer')
   const [ActiveOwner, setActiveOwner] = useState("");
   const [Jockey, setJockey] = useState("");
   const [Age, setAge] = useState("");
@@ -112,17 +113,27 @@ const HorseForm = () => {
       formData.append("GSire", GSire.id);
       formData.append("Earning", Earning);
       formData.append("OverAllRating", OverAllRating);
-      dispatch(add(formData));
+      const response = await axios.post(`${window.env.API_URL}/createhorse?keyword=&page=`,formData);
+      swal({
+        title: "success!",
+        text: 'Data Submitted !',
+        icon: "success",
+        button: "OK",
+      });
       history("/horse");
-       swal({
-         title: "Success!",
-         text: "Data has been added successfully ",
-         icon: "success",
-         button: "OK",
-       });
+       
      
-    } catch (error) {
-      alert(error.message);
+    } 
+    catch (error) {
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
+      
+    
     }
   };
   useEffect(() => {
@@ -152,9 +163,9 @@ const onSelectFile = e => {
   NameEn === "" ||
   NameAr === "" ||
   Owner === "" ||
-  ActiveTrainer === "" ||
+  // ActiveTrainer === "" ||
   ActiveJockey === "" ||
-  Trainer === "" ||
+  // Trainer === "" ||
   Remarks === "" ||
   HorseRating === "" ||
   Sex === "" ||

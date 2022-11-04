@@ -100,7 +100,7 @@ const Sidebar = () => {
     
   </Accordion.Item>
 
-<div className='SettingSec'>Setting</div>
+<div className='SettingSec'><Link to='/setting' className='mylink'>Setting</Link></div>
  
 </Accordion>
 

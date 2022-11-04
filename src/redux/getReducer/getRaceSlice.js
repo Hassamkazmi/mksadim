@@ -34,5 +34,5 @@ export default getRaceSlice.reducer;
 export const fetchrace = createAsyncThunk('getrace/fetch', async () => {
     const res = await axios.get(`${window.env.API_URL}/getrace?keyword=&limit=&page=`);
     const data = res.data;
-    return data.RenderData;
+    return data.data;
 })

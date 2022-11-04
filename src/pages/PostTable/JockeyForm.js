@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostJockey";
@@ -14,9 +14,6 @@ const NewsForm = () => {
     const [Age,setAge] = useState('')
     const [image,setImage] = useState()
     const [preview, setPreview] = useState()
-  
-  
-  
     const submit = async event => {
       event.preventDefault()
      try {
@@ -24,27 +21,38 @@ const NewsForm = () => {
         formData.append("image", image)
         formData.append("Name", Name)
         formData.append("Age", Age)
-        dispatch(add(formData));
-        history('/jockey')
+        const response = await axios.post(`${window.env.API_URL}/uploadJockey?keyword=&page=`,formData);
         swal({
-          title: "Success!",
-          text: "Data has been added successfully ",
+          title: "success!",
+          text: 'Data Submitted !',
           icon: "success",
           button: "OK",
         });
+        history('/jockey')
+        
      } catch (error) {
-        alert(error.message)
-     }
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
+      
+    }
     }
     const areAllFieldsFilled = (image !== undefined) && (Age !== "")
     useEffect(() => {
     
-  
+      if (!image) {
+        setPreview(undefined)
+        return
+    }
       const objectUrl = URL.createObjectURL(image)
-      setPreview(objectUrl)
-  
-      // free memory when ever this component is unmounted
-      return () => URL.revokeObjectURL(objectUrl)
+    setPreview(objectUrl)
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl)
   }, [image])
   
   const onSelectFile = e => {

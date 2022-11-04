@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from "react";
-
 import { fetchrace, STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/postReducer/postRace";
@@ -25,6 +24,7 @@ const Races = () => {
 };
   const dispatch = useDispatch();
 
+  
   const { data: race, status } = useSelector((state) => state.race);
   const handleRemove = async (Id) => {
     swal({
@@ -50,7 +50,7 @@ const Races = () => {
   useEffect(() => {
     dispatch(fetchrace());
   }, []);
-
+  console.log(race,'race')
   if (status === STATUSES.LOADING) {
     return (
       <h2
@@ -71,6 +71,8 @@ const Races = () => {
       </h2>
     );
   }
+  
+
   return (
     <>
  
@@ -112,7 +114,6 @@ const Races = () => {
                   }}>
                     <tr className="trtabletd">
                       <th>Race Name</th>
-             
                       <th>Racecource</th>
                       <th>Description</th>
                       <th>Sponsor Logo</th>
@@ -122,13 +123,17 @@ const Races = () => {
                       <th>Prize</th>
                       <th>Day & Time</th>
                       <th>Ground</th>
-                      <th># of Horse</th>
+                      {/* <th># of Horse</th> */}
                       <th>Status</th>
                       <th>Action</th>
                       
                     </tr>
                   </thead>
                   {
+                    race === undefined ? <h3 style={{
+                      textAlign:'center'
+                    }}>No Data</h3> : <>
+                    {
                     race.map((item) => {
                       const {RaceStatus} = item;
                       return(
@@ -140,7 +145,7 @@ const Races = () => {
                       "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`,
                       "color": `${RaceStatus === "Cancel" ? '#ffff': RaceStatus === "End" ? '#00000' : RaceStatus === "Live" ? '#00000': '#000000'}`
                       }} >{item.raceName}</td>
-                    <td>{item.raceName}</td>
+                    <td>{item.RaceCourseData === null ? <>N/A</> : item.RaceCourseData.TrackName}</td>
                     <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Description}</td>
                     <td>{item.raceName}</td>
                     <td>{item.raceName}</td>
@@ -152,7 +157,7 @@ const Races = () => {
                     <td>{item.raceName}</td>
                     <td>{item.DayNTime}</td>
                     <td>{item.raceName}</td>
-                    <td>{item.Horses.length}</td>
+                    {/* <td>{item.Horses.length}</td> */}
                     <td>{item.RaceStatus}</td>
                     <td> 
                       
@@ -163,7 +168,9 @@ const Races = () => {
                        </tbody>
                       )
                     })
+                  }</>
                   }
+                  
                   
                 </table>
                 </ScrollContainer> 

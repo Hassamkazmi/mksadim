@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import { remove } from "../../redux/postReducer/PostHorse";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useEffect } from "react";
 import { fetchHorse, STATUSES } from "../../redux/getReducer/getHorseSlice";
 import { MdDelete } from "react-icons/md";
@@ -150,10 +147,10 @@ const Horse = () => {
                               <td>{item.Sex}</td>
                               <td>{item.Color}</td>
                               <td>{item.KindOfHorse}</td>
-
-                              {item.Owner.map((data) => (
+                              <td>{item.KindOfHorse}</td>
+                              {/* {item.Owner.map((data) => (
                                 <td>{data.Name}</td>
-                              ))}
+                              ))} */}
 
                               <td>
                                 {item.Breeder === null ? (

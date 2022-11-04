@@ -1,23 +1,21 @@
-import React, { useState, Fragment,useEffect } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
-
-import { useDispatch } from "react-redux";
+import axios from "axios";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { add } from "../../redux/postReducer/PostTrainer";
-
+// import { add } from "../../redux/postReducer/PostTrainer";
 import swal from "sweetalert";
-
 const TrainerForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useNavigate();
   const [Name, setName] = useState("");
   const [Age, setAge] = useState("");
   const [Detail, setDetail] = useState("");
   const [Remarks, setRemarks] = useState("");
-  const [preview, setPreview] = useState()
-
+  const [Rating, setRating] = useState("");
+  const [preview, setPreview] = useState();
   const [image, setImage] = useState();
+
   
   const submit = async (event) => {
     event.preventDefault();
@@ -28,52 +26,55 @@ const TrainerForm = () => {
       formData.append("Age", Age);
       formData.append("Detail", Detail);
       formData.append("Remarks", Remarks);
-      formData.append("Remarks", Remarks);
-
-      dispatch(add(formData));
-      history("/trainer");
+      formData.append("Rating", Rating);
+      const response = await axios.post(
+        `${window.env.API_URL}/uploadtrainer?keyword=&page=`,
+        formData
+      );
       swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
+        title: "success!",
+        text: "Data Submitted !",
         icon: "success",
         button: "OK",
       });
+      history("/trainer");
     } catch (error) {
-      alert(error.message);
+      const err = error.response.data.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
   useEffect(() => {
     if (!image) {
-        setPreview(undefined)
-        return
+      setPreview(undefined);
+      return;
     }
-
-    const objectUrl = URL.createObjectURL(image)
-    setPreview(objectUrl)
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [image])
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [image]);
 
-const onSelectFile = e => {
-
-  
-    setImage(e.target.files[0])
-  console.log(image,'image')
-
-  }
+  const onSelectFile = (e) => {
+    setImage(e.target.files[0]);
+    console.log(image, "image");
+  };
   const isSubmitData =
     Name === "" ||
     Age === "" ||
     Detail === "" ||
     Remarks === "" ||
+    Rating === "" ||
     image === null ||
     image === undefined;
   return (
     <Fragment>
-
       <div className="page">
-  
         <div className="rightsidedata">
           <div
             style={{
@@ -91,7 +92,8 @@ const onSelectFile = e => {
                       name="Name"
                       value={Name}
                       required
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -110,7 +112,8 @@ const onSelectFile = e => {
                       value={Age}
                       required
                       type="number"
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -128,11 +131,15 @@ const onSelectFile = e => {
                       name="Detail"
                       onChange={(e) => setDetail(e.target.value)}
                       value={Detail}
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <input placeholder="التفاصيل"  style={{ direction: "rtl" }}></input>
+                    <input
+                      placeholder="التفاصيل"
+                      style={{ direction: "rtl" }}
+                    ></input>
                   </div>
                 </div>
                 <div className="row mainrow">
@@ -143,7 +150,8 @@ const onSelectFile = e => {
                       name="Remarks"
                       value={Remarks}
                       required
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -153,15 +161,44 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Rating"
+                      onChange={(e) => setRating(e.target.value)}
+                      name="Rating"
+                      value={Rating}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
 
-                <div className='ButtonSection'>
-                <div>
-            <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} className="PreviewImage" alt="" /> }
-        </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="طول المسار"
+                    ></input>
+                  </div>
+                </div>
+                <div className="ButtonSection">
+                  <div>
+                    <input
+                      type="file"
+                      onChange={onSelectFile}
+                      className="formInput"
+                    />
+                    {image && (
+                      <img src={preview} className="PreviewImage" alt="" />
+                    )}
+                  </div>
 
-                  <button type='submit' disabled={isSubmitData} className='SubmitButton'>Add Race Course</button>
-
+                  <button
+                    type="submit"
+                    disabled={isSubmitData}
+                    className="SubmitButton"
+                  >
+                    Add Race Course
+                  </button>
                 </div>
               </form>
             </div>

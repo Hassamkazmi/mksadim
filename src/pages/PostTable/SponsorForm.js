@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostSponsor";
@@ -31,16 +31,25 @@ const SponsorForm = () => {
 
       formData.append("DescriptionAr", DescriptionAr);
       formData.append("DescriptionEn", DescriptionEn);
-      dispatch(add(formData));
-      history("/sponsor");
+      const response = await axios.post(`${window.env.API_URL}/uploadSponsor?keyword=&page=`,formData);
       swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
+        title: "success!",
+        text: 'Data Submitted !',
         icon: "success",
         button: "OK",
       });
+      history("/sponsor");
+      
     } catch (error) {
-      alert(error.message);
+      console.log(error.response.data.message,'error')
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
+      
     }
   };
   useEffect(() => {
@@ -90,7 +99,7 @@ const onSelectFile = e => {
                     <input
                       placeholder=" TitleEn"
                       onChange={(e) => setTitleEn(e.target.value)}
-                      name="Name"
+                      name="TitleEn"
                       value={TitleEn}
                       required
                     ></input><span className="spanForm"> |</span>
@@ -111,7 +120,7 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       placeholder="Detail"
-                      name="Detail"
+                      name="DescriptionEn"
                       onChange={(e) => setDescriptionEn(e.target.value)}
                       value={DescriptionEn}
                     ></input><span className="spanForm"> |</span>
@@ -120,7 +129,7 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                     
-                      name="Detail" placeholder="التفاصيل"  style={{ direction: "rtl" }}
+                      name="DescriptionAr" placeholder="التفاصيل"  style={{ direction: "rtl" }}
                       onChange={(e) => setDescriptionAr(e.target.value)}
                       value={DescriptionAr}
                     ></input>

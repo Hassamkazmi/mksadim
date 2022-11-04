@@ -35,5 +35,5 @@ export default getHorseSlice.reducer;
 export const fetchHorse = createAsyncThunk('/horseget/fetch', async() => {
     const res = await axios.get(`${window.env.API_URL}gethorse?keyword=&page=&limit=`);
     const horseData = res.data;
-    return horseData.RenderData;
+    return horseData.data;
 })

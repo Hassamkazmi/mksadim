@@ -53,15 +53,13 @@
     font-family: 'Inter';
     font-weight: 300;
     font-size: 15.5949px;
-    padding-left: 33px;
     position: absolute;
     top: 103%;
 }
-
 .accordion-button::after {
-   
     display: none;
 }
+
 .accordion-button {
     padding-left: 37px !important;
     font-family: 'Inter';

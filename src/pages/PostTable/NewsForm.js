@@ -1,14 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
-import { useDispatch } from "react-redux";
+import axios from "axios";
+// import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostNewsSlice";
 
 import swal from "sweetalert";
 
 const NewsForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useNavigate();
   const [TitleEn, setTitleEn] = useState("");
   const [TitleAr, setTitleAr] = useState("");
@@ -17,8 +17,8 @@ const NewsForm = () => {
   const [DescriptionAr, setDescriptionAr] = useState("");
   const [DescriptionEn, setDescriptionEn] = useState("");
   const [image, setImage] = useState();
-  const [preview, setPreview] = useState()
-  
+  const [preview, setPreview] = useState();
+
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -30,40 +30,44 @@ const NewsForm = () => {
       formData.append("SecondTitleAr", SecondTitleAr);
       formData.append("DescriptionAr", DescriptionAr);
       formData.append("DescriptionEn", DescriptionEn);
-      dispatch(add(formData));
+      const response = await axios.post(
+        `${window.env.API_URL}/uploadnews?keyword=&page=`,
+        formData
+      );
       swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
+        title: "success!",
+        text: "Data Submitted !",
         icon: "success",
         button: "OK",
       });
       history("/news");
-      console.log("Araha hu ", formData);
     } catch (error) {
-      alert(error.message);
+      const err = error.response.data.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
   useEffect(() => {
     if (!image) {
-      setPreview(undefined)
-      return
-  }
-    
+      setPreview(undefined);
+      return;
+    }
 
-    const objectUrl = URL.createObjectURL(image)
-    setPreview(objectUrl)
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl)
-}, [image])
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [image]);
 
-const onSelectFile = e => {
-
-  
-    setImage(e.target.files[0])
-  console.log(image,'image')
-
-  }
+  const onSelectFile = (e) => {
+    setImage(e.target.files[0]);
+    console.log(image, "image");
+  };
   const isSubmitData =
     TitleAr === "" ||
     TitleEn === "" ||
@@ -76,9 +80,7 @@ const onSelectFile = e => {
 
   return (
     <>
-    
       <div className="page">
-  
         <div className="rightsidedata">
           <div
             style={{
@@ -93,10 +95,11 @@ const onSelectFile = e => {
                     <input
                       placeholder=" TitleEn"
                       onChange={(e) => setTitleEn(e.target.value)}
-                      name="Name"
+                      name="TitleEn"
                       value={TitleEn}
                       required
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -104,7 +107,7 @@ const onSelectFile = e => {
                       style={{ direction: "rtl" }}
                       placeholder="اسم "
                       onChange={(e) => setTitleAr(e.target.value)}
-                      name="Name"
+                      name="TitleAr"
                       value={TitleAr}
                     ></input>
                   </div>
@@ -114,11 +117,12 @@ const onSelectFile = e => {
                     <input
                       placeholder="SecondTitleEn"
                       onChange={(e) => setSecondTitleEn(e.target.value)}
-                      name="Name"
+                      name="SecondTitleEn"
                       value={SecondTitleEn}
                       required
                       type="text"
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -127,7 +131,7 @@ const onSelectFile = e => {
                       type="text"
                       placeholder="اسم المسار"
                       onChange={(e) => setSecondTitleAr(e.target.value)}
-                      name="Name"
+                      name="SecondTitleAr"
                       value={SecondTitleAr}
                     ></input>
                   </div>
@@ -136,30 +140,39 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       placeholder="Detail"
-                      name="Detail"
+                      name="DescriptionEn"
                       onChange={(e) => setDescriptionEn(e.target.value)}
                       value={DescriptionEn}
-                    ></input><span className="spanForm"> |</span>
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
                     <input
-                      placeholder="التفاصيل"  style={{ direction: "rtl" }}
-                      name="Detail"
+                      placeholder="التفاصيل"
+                      style={{ direction: "rtl" }}
+                      name="DescriptionAr"
                       onChange={(e) => setDescriptionAr(e.target.value)}
                       value={DescriptionAr}
-                    ></input  >
+                    ></input>
                   </div>
                 </div>
 
-                <div className='ButtonSection'>
-                <div>
-            <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview} alt="" className="PreviewImage"/> }
-        </div>
+                <div className="ButtonSection">
+                  <div>
+                    <input
+                      type="file"
+                      onChange={onSelectFile}
+                      className="formInput"
+                    />
+                    {image && (
+                      <img src={preview} alt="" className="PreviewImage" />
+                    )}
+                  </div>
 
-                  <button type='submit' className='SubmitButton'>Add Owner</button>
-
+                  <button type="submit" className="SubmitButton">
+                    Add Owner
+                  </button>
                 </div>
               </form>
             </div>
