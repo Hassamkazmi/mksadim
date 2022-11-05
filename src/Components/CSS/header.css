@@ -106,17 +106,17 @@ font-weight: 300;
 font-size: 15.5949px;
 line-height: 19px;
 }
- .sidebar{
+.sidebar {
     display: flex;
     flex-direction: column;
-    width: 227px;
-    height: 91vh;
+
+    width: 50% impo;
     background-color: #E8E8E8;
     border-radius: 1px 39px 50px 0px;
     margin-top: 20px;
-    /* gap: 22px; */
+ 
+    width: 15%;
 }
-
 .logoutclass{
     width: 260px;
     height: 80px;
