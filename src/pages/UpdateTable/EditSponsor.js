@@ -7,7 +7,7 @@ import { add } from "../../redux/postReducer/PostJockey";
 
 import swal from "sweetalert";
 
-const NewsForm = () => {
+const EditSponsor = () => {
     const dispatch = useDispatch();
     const history = useNavigate();
     const [Name,setName] = useState('')
@@ -123,7 +123,7 @@ const NewsForm = () => {
             {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
         </div>
 
-                  <button type='submit' className='SubmitButton'>Add Race Course</button>
+                  <button type='submit' disabled={areAllFieldsFilled} className='SubmitButton'>Add Race Course</button>
 
                 </div>
               </form>
@@ -139,4 +139,4 @@ const NewsForm = () => {
   );
 };
 
-export default NewsForm;
+export default EditSponsor;

@@ -138,11 +138,10 @@ const News = () => {
                               }} />
                             </td>
                             <td className="table_delete_btn1" style={{textAlign: 'center'}}>
-                              <BiEdit />
+                            <Link to ={`/editsponsor/${item._Id}`}      ><BiEdit /></Link> 
+                          
                               <MdDelete
-                                style={{
-                                  fontSize: "22px",
-                                }}
+                              
                                 onClick={() => handleRemove(item._id)}
                               />
                              

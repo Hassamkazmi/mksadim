@@ -8,12 +8,13 @@ import swal from "sweetalert";
 import { fetchSingleOwner } from "../../redux/getReducer/getSingleOwner";
 
 const EditOwnerForm = () => {
+
     const { data: singleowner } = useSelector((state) => state.singleowner);
     const { id } = useParams()
   const dispatch = useDispatch();
   const history = useNavigate();
-  const [Name, setName] = useState("");
-  const [image, setImage] = useState();
+  const [Name, setName] = useState(singleowner.Name);
+  const [image, setImage] = useState(singleowner.image);
 
   console.log(singleowner,"Araha hu")
   const fileSelected = (event) => {
@@ -57,7 +58,7 @@ const EditOwnerForm = () => {
             <div className="Headers">Edit Owner</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Name"
@@ -65,7 +66,7 @@ const EditOwnerForm = () => {
                       name="Name"
                       value={Name}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">

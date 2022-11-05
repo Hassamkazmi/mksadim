@@ -110,9 +110,9 @@ line-height: 19px;
     display: flex;
     flex-direction: column;
     width: 227px;
-    height: 964px; 
+    height: 91vh;
     background-color: #E8E8E8;
-    border-radius: 0px 39px 50px 0px;
+    border-radius: 1px 39px 50px 0px;
     margin-top: 20px;
     /* gap: 22px; */
 }

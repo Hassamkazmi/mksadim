@@ -13,6 +13,10 @@ const postSponsor = createSlice({
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deleteSponsor/${action.payload}`)
            return response;
+        },
+        edit(state, action){
+            const response = axios.put(`${window.env.API_URL}/updateSponsor/${action.payload}`)
+           return response; 
         }
     }
 })

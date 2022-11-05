@@ -147,7 +147,7 @@ const Racecourse = () => {
 
 
                           <td className="table_delete_btn1">
-                      <Link to ={`/editracecourse/${item._Id}`}      ><BiEdit /></Link>
+                      <Link to ={`/editracecourse/${item._Id}`}      ><BiEdit /></Link> 
                             <MdDelete
                               style={{
                                 fontSize: "22px",

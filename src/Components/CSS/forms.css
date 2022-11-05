@@ -40,7 +40,7 @@ form {
   height: 50px;
   border: none;
   border-radius: 20px;
-
+  border: none !important;
   padding-left: 20px;
 
   font-weight: 300;

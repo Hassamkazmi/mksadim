@@ -14,9 +14,13 @@ const postRaceCourse = createSlice({
         remove(state, action){
             const response = axios.delete(`${window.env.API_URL}/deletecourse/${action.payload}`)
            return response; 
+        },
+        edit(state, action){
+            const response = axios.put(`${window.env.API_URL}/singleracecourse/${action.payload}`)
+           return response; 
         }
     }
 })
 
-export const {add , remove} = postRaceCourse.actions;
+export const {add , remove, edit} = postRaceCourse.actions;
 export default postRaceCourse.reducer;

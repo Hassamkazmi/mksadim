@@ -35,6 +35,9 @@ import Sidebar from "./Components/Common/Sidebar";
 import EditJockey from './pages/UpdateTable/EditJockey'
 import EditRacecourse from "./pages/UpdateTable/EditRacecourse";
 import EditOwner from "./pages/UpdateTable/EditOwner"
+import EditSlider from "./pages/UpdateTable/EditSlider"
+import EditSponsor from "./pages/UpdateTable/EditSponsor"
+import '.././src/Components/CSS/mediaquery.css'
 
 
 
@@ -79,6 +82,8 @@ function App() {
                 <Route path="/editjockey/:id" element={<EditJockey />} />
                 <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>
                 <Route path="/editowner/:id" element={<EditOwner/>}/>
+                <Route path="/editslider/:id" element={<EditSlider/>}/>
+                <Route path="/editsponsor/:id" element={<EditSponsor/>}/>
               </Route>
             </Routes>
             </div>

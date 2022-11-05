@@ -126,7 +126,7 @@ const handlePageClick = async (data) => {
               
                   
                   <th>Action</th>
-                  <th></th>
+           
                 </tr>
               </thead>
               <tbody>
@@ -138,7 +138,7 @@ const handlePageClick = async (data) => {
                     
                         <td>{item.Name}</td>
                         <td>{item.Age}</td>
-                        <td style={{marginRight:"100px"}}>{item.Detail}</td>
+                        <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Detail}</td>
                         <td>
                           <img src={item.image} alt="" />
                         </td>                        

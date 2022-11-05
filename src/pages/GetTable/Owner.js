@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
 import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
+import {MdDelete} from "react-icons/md"
 
 import {BiEdit} from 'react-icons/bi'
 
@@ -117,12 +118,13 @@ const Owner = () => {
                          <td>
                            <img src={item.image} alt="" />
                          </td>
+                        <td style={{textAlign: 'center'}}><MdDelete/>
                         
-                         <td style={{textAlign: 'center'}}>
-                          <Link to={`/editowner/${item._id}`}>
+                        <Link to={`/editowner/${item._id}`}>
                          <BiEdit />
                          </Link>
-                </td>
+                        </td>
+
                    
                          
                          

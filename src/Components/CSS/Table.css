@@ -56,15 +56,16 @@
 
 .div_maintb {
     /* height: calc(100vh - 180px); */
-width: calc(100vw - 100px);
+    width: calc(100v);
     overflow: scroll;
     margin-left: 20px;
+    width: 101%;
 }
 
 table {
     caption-side: bottom;
     border-collapse: inherit;
-    width: 100vw;
+    width: 92vw;
 } 
 tbody, td, tfoot, th, thead, tr {
     border-color: inherit;
@@ -240,6 +241,7 @@ td.table_delete_btn1 {
 td:last-child {
     color: #19469D;
     text-align: inherit;
+    font-size: 22px;
 }
 .div_maintb >td:last-child >svg {
     margin-left: 5px;
@@ -296,4 +298,8 @@ td:last-child {
 }
 .div_maintb td{
     padding: 10px 65px;
+}
+.div_maintb th:last-child {
+  
+ margin-right: 100px;
 }

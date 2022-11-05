@@ -145,7 +145,7 @@ const Slider = () => {
                    
                          
                          <td>
-                         <BiEdit />
+                         <Link to ={`/editslider/${item._Id}`}      ><BiEdit /></Link> 
                           <MdDelete onClick={()=> handleRemove(item._id)}/>
                   
                          </td>

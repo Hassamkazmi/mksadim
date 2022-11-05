@@ -1,29 +1,51 @@
 
 import React, { Fragment, useState } from "react";
 import "../../Components/CSS/forms.css";
-
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { add } from "../../redux/postReducer/PostRaceCourse";
-
+import { edit } from "../../redux/postReducer/PostRaceCourse";
 import { Country_Name } from '../../Data/Country'
 import { Country_NameAr } from '../../Data/Country'
 import swal from "sweetalert";
+import Select from 'react-select'
+import { fetchsingleracecourse } from "../../redux/getReducer/getSingleRacecourse";
+import { useEffect } from "react";
+import {useParams} from "react-router-dom"
 
+
+
+let CountryEn = Country_Name.map(function (item) {
+  return {
+    id: item._id,
+    value: item.country_name,
+    label: item.country_name,
+  };
+});
+let CountryAr = Country_NameAr.map(function (item) {
+  return {
+    id: item._id,
+    value: item.name,
+    label: item.name,
+  };
+});
 const EditRacecourse = () => {
+  
+  const {data : singleracecourse }=useSelector((state)=> state.singleracecourse) 
 
   const dispatch = useDispatch();
+  const {id} = useParams()
   const history = useNavigate();
-  const [TrackName, setTrackName] = useState('')
-  const [TrackLength, setTrackLength] = useState('')
-  const [Country, setCountry] = useState('')
+  const [TrackName, setTrackName] = useState(singleracecourse.TrackName)
+  const [TrackLength, setTrackLength] = useState(singleracecourse.TrackLength)
+  const [Country, setCountry] = useState(singleracecourse.Country)
 
 
-  const [image, setImage] = useState()
+  const [image, setImage] = useState(singleracecourse.image)
   const fileSelected = event => {
     const image = event.target.files[0]
     setImage(image)
   }
+
   const submit = async event => {
     event.preventDefault()
     try {
@@ -33,7 +55,7 @@ const EditRacecourse = () => {
       formData.append("TrackLength", TrackLength)
       formData.append("Country", Country)
 
-      dispatch(add(formData));
+      dispatch(edit);
       history('/racecourse');
       swal({
         title: "Success!",
@@ -45,23 +67,13 @@ const EditRacecourse = () => {
       alert(error.message)
     }
   }
-  const ArbicDirection = {
+  useEffect(()=>{
 
-    direction: 'rtl',
-    marginRight: '0px',
-    paddingLeft: '220px',
-    width: '105%'
-
-  }
-  const EnglishDirection = {
+dispatch(fetchsingleracecourse({id}))
 
 
-    marginRight: '0px',
-    paddingLeft: '220px',
-    width: '105%'
-
-  }
-
+  })
+console.log(singleracecourse)
 
   return (
     <Fragment>
@@ -84,11 +96,11 @@ const EditRacecourse = () => {
             </div>
             <div className='form'>
               <form onSubmit={submit}>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder='Track Name' onChange={e => setTrackName(e.target.value)} value={TrackName}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -98,11 +110,11 @@ const EditRacecourse = () => {
                   </div>
 
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <input placeholder='Track Length'  onChange={e => setTrackLength(e.target.value)} value={TrackLength}
                       required
-                    ></input>
+                    ></input><span className="spanForm"> |</span>
 
                   </div>
 
@@ -111,40 +123,31 @@ const EditRacecourse = () => {
                   </div>
 
                 </div>
-                <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <select onChange={e => setCountry(e.target.value)} value={Country} required>
-                      <option value='0' style={EnglishDirection}>Select Country</option>
-                      {
-                        Country_Name.map((countryName) => (
-
-
-                          <option>{countryName.country_name} </option>
-
-                        ))
-
-
-
-                      }
-                    </select>
+                  <Select
+                      placeholder={<div>Type to search Country</div>}
+                    
+                      defaultValue={Country}
+                      onChange={setCountry}
+                      options={CountryEn}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
 
                   </div>
 
                   <div className="col-sm">
-                    <select style={ArbicDirection}>
-                      <option value='0'>حدد الدولة</option>
-                      {
-                        Country_NameAr.map((countryName) => (
-
-
-                          <option>{countryName.name} </option>
-
-                        ))
-
-                      }
-
-
-                    </select>
+                  <Select
+                      placeholder={<div>اكتب للبحث عن الدولة</div>}
+                    
+               
+                    
+                      options={CountryAr}
+                      isClearable={true}
+                      isSearchable={true}
+                      className='selectdir'
+                    />
                   </div>
 
                 </div>

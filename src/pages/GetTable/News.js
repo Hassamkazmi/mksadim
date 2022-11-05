@@ -146,20 +146,17 @@ const News = () => {
                             <td>{item.TitleAr}</td>
                             <td>{item.DescriptionAr}</td>
                             <td>{item.SecondTitleAr}</td>
+                            <td>
                             <img
                               src={item.image}
                               alt=""
-                              style={{
-                                width: "30px",
-                                height: "30px",
-                              }}
+                             
                             />
+                            </td> 
                             <td style={{paddingRight:"200px"}}>
-                              <BiEdit />
+                          
                               <MdDelete
-                                style={{
-                                  fontSize: "22px",
-                                }}
+                               
                                 onClick={() => handleRemove(item.id)}
                               />
                         

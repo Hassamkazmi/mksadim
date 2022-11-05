@@ -15,7 +15,13 @@ const postslider = createSlice({
             const response = axios.delete(`${window.env.API_URL}/deleteSlider/${action.payload}`)
             return response; 
          }
+    },
+    edit(state, action){
+        const response = axios.put(`${window.env.API_URL}/updateOwner/${action.payload}`)
+       return response; 
     }
+
+    
 })
 
 export const {add , remove} = postslider.actions;

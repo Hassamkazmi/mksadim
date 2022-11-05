@@ -23,7 +23,7 @@ import PostSlider from './postReducer/PostSlider';
 import getSliderSlice from './getReducer/getSliderSlice';
 import getSingleJockey from './getReducer/getSingleJockey';
 import getSingleOwner from './getReducer/getSingleOwner';
-
+import getSingleRacecourse from './getReducer/getSingleRacecourse';
 
 const store = configureStore({
     reducer: {
@@ -50,7 +50,8 @@ const store = configureStore({
         postslider:PostSlider,
         userProfile: getUserDetails,
         singlejockey: getSingleJockey,
-        singleowner:getSingleOwner
+        singleowner:getSingleOwner,
+        singleracecourse:getSingleRacecourse
 
     },
 });

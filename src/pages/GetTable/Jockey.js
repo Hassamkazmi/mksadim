@@ -18,6 +18,7 @@ import {BsFillEyeFill} from 'react-icons/bs'
 
 const Statistic = () => {
 
+
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState()
   const handleClose = () => setShow(false);
@@ -130,7 +131,7 @@ const Statistic = () => {
                             </td>
 
                             <td className="table_delete_btn1">
-                             <Link to={`/editjockey/${item._id}`}> <BiEdit /></Link>
+                       <Link to={`/editjockey/${item._id}`}> <BiEdit /></Link> 
                               <MdDelete
                                 
                                 onClick={() => handleRemove(item._id)}

@@ -10,11 +10,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { fetchHorse, setHorse } from "../../../redux/getReducer/getHorseSlice";
 import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
-import { Link } from "react-router-dom";
 import Select from "react-select";
 import swal from "sweetalert";
 import {AiOutlinePlus} from "react-icons/ai"
-import Racecourse from "../../GetTable/RaceCourse";
+
 
 
 const RaceKinds = [

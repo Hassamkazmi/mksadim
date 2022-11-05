@@ -128,11 +128,7 @@ const Ads = () => {
                               />
                                   
                               
-                              <BiEdit
-                               
-                                onClick={() => handleEdit(item._id)}
-
-                              />
+                             
                               
                            
                             </td>
