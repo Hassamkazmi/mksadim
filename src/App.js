@@ -70,7 +70,7 @@ function App() {
                 <Route path="/sponsorform" element={<SponsorForm />} />
                 <Route path="/trainerform" element={<PostTrainer />} />
                 <Route path="/horseform" element={<PostHorse />} />
-                <Route path="/test" element={<Test />} />
+                {/* <Route path="/test" element={<Test />} /> */}
                 <Route path="/racecourseform" element={<RaceCourseForm />} />
                 <Route path="/jockeyform" element={<JockeyForm />} />
                 <Route path="/raceform" element={<RaceForm />} />

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostOwner";
-
+import axios from "axios";
 import swal from "sweetalert";
 
 const OwnerForm = () => {
@@ -19,15 +19,26 @@ const OwnerForm = () => {
       formData.append("image", image);
       formData.append("Name", Name);
       dispatch(add(formData));
-      history("/owner");
+      const response = await axios.post(`${window.env.API_URL}/createowner?keyword=&page=`,formData);
       swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
+        title: "success!",
+        text: 'Data Submitted !',
         icon: "success",
         button: "OK",
       });
-    } catch (error) {
-      alert(error.message);
+      history("/owner");
+      
+    }
+     catch (error) {
+      console.log(error.response.data.message,'error')
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
+      
     }
   };
   const isSubmitData = Name === "" || image === null || image === undefined;

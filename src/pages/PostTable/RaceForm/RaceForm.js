@@ -42,7 +42,6 @@ const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: horse } = useSelector((state) => state.horse);
   const history = useNavigate();
-
   const [data, setData] = useState(true);
 
   let horseoptions = horse.map(function (item) {
@@ -50,7 +49,8 @@ const RaceForm = () => {
       id: item._id,
       value: item.NameEn,
       label: item.NameEn,
-      jockeyvalue: item.JockeyData.map((item) => item.Name),
+      jockeyvalue: item.JockeyData === undefined  ? <>N/A</> : item.JockeyData.map((item) => item.Name)
+      // jockeyvalue: item.JockeyData.map((item) => item.Name),
     };
   });
 
@@ -481,12 +481,8 @@ const RaceForm = () => {
                       ></input>
                     </div>
                   </div>
-
-
-
                   <div className="RaceButtonDiv">
                     <button className="updateButton">Update</button>
-
                     <button
                       className="SubmitButton"
                       onClick={handleRace}

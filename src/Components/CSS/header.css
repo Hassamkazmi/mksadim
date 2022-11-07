@@ -110,12 +110,11 @@ line-height: 19px;
     display: flex;
     flex-direction: column;
 
-    width: 50% impo;
+ width: 240px;
     background-color: #E8E8E8;
     border-radius: 1px 39px 50px 0px;
     margin-top: 20px;
- 
-    width: 15%;
+
 }
 .logoutclass{
     width: 260px;
