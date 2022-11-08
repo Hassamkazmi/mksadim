@@ -1,4 +1,5 @@
 import "./App.css";
+import '.././src/Components/CSS/mediaquery.css'
 import "./Components/CSS/home.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -37,7 +38,12 @@ import EditRacecourse from "./pages/UpdateTable/EditRacecourse";
 import EditOwner from "./pages/UpdateTable/EditOwner"
 import EditSlider from "./pages/UpdateTable/EditSlider"
 import EditSponsor from "./pages/UpdateTable/EditSponsor"
-import '.././src/Components/CSS/mediaquery.css'
+import Result from "./pages/PostTable/Result";
+import Color from "./pages/PostTable/Color";
+import Nationality from "./pages/PostTable/Nationality";
+import Currency from "./pages/PostTable/Currency";
+import Breeder from "./pages/PostTable/Breeder";
+
 
 
 
@@ -78,12 +84,19 @@ function App() {
                 <Route path="/owner" element={<Owner />} />
                 <Route path="/ownerform" element={<OwnerForm />} />
                 <Route path="/sliderform" element={<SliderForm />} />
+                <Route path="/result" element={<Result/>}/>
+                <Route path="/color" element={<Color/>}/>
+                <Route path="/nationality" element={<Nationality/>}/>
+                <Route path="/currency" element={<Currency/>}/>
+                <Route path="/breeder" element={<Breeder/>}/>
+              
                 <Route path="/slider" element={<Slider />} />
                 <Route path="/editjockey/:id" element={<EditJockey />} />
                 <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>
                 <Route path="/editowner/:id" element={<EditOwner/>}/>
                 <Route path="/editslider/:id" element={<EditSlider/>}/>
                 <Route path="/editsponsor/:id" element={<EditSponsor/>}/>
+                
               </Route>
             </Routes>
             </div>

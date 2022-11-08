@@ -5,6 +5,7 @@ import '../CSS/sidebar.css'
 import { useLocation } from 'react-router-dom';
 
 
+
 const Sidebar = () => {
   let {pathname} = useLocation();
   return (
@@ -18,7 +19,7 @@ const Sidebar = () => {
     <Accordion.Body className='AccordionBody' style={{height:"157px"}}>
     <div><Link to='/races' className='mylink'>View Listings</Link></div>
    <div> <Link to='/raceform' className='mylink'>Add New</Link></div>
-   <div> <Link to='/dashboard' className='mylink'>Add Results</Link></div>
+   <div> <Link to='/result' className='mylink'>Add Results</Link></div>
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="1">
@@ -98,12 +99,25 @@ const Sidebar = () => {
    <div> <Link to='/sliderform' className='mylink'>Add New</Link></div>
     </Accordion.Body>
     
-  </Accordion.Item>
+    
+  </Accordion.Item >
+<Accordion.Item eventKey="12">
+  <Accordion.Header>Features</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/color' className='mylink'>Add Color</Link></div>
+   <div> <Link to='/currency' className='mylink'>Add Currency</Link></div>
+   <div> <Link to='/breeder' className='mylink'>Add Breeder</Link></div>
+   <div> <Link to='/nationality' className='mylink'>Add Nationality</Link></div>
+ 
+  
+    </Accordion.Body>
+    </Accordion.Item>
 
-<div className='SettingSec'><Link to='/setting' className='mylink'>Setting</Link></div>
+
  
 </Accordion>
 
+<div className='SettingSec' ><Link to='/setting' className='mylink'>Setting</Link></div>
   </div> : null
 }
 </>

@@ -16,7 +16,7 @@ const AdsForm = () => {
   const [DescriptionAr, setDescriptionAr] = useState("");
   const [DescriptionEn, setDescriptionEn] = useState("");
   const [image, setImage] = useState();
-const [preview,setPreview] = useState()
+const [preview,setPreview] = useState();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -88,7 +88,7 @@ const [preview,setPreview] = useState()
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder=" TitleEn"
+                      placeholder=" Title"
                       onChange={(e) => setTitleEn(e.target.value)}
                       name="Name"
                       value={TitleEn}
@@ -133,7 +133,7 @@ const [preview,setPreview] = useState()
             {image &&  <img src={preview}  className="PreviewImage" alt=""/> }
         </div>
 
-                  <button type='submit' className='SubmitButton'>Add Owner</button>
+                  <button type='submit' className='SubmitButton' disabled={isSubmitData}>Add Owner</button>
 
                 </div>
               </form>

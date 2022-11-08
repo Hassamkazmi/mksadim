@@ -24,6 +24,10 @@ import getSliderSlice from './getReducer/getSliderSlice';
 import getSingleJockey from './getReducer/getSingleJockey';
 import getSingleOwner from './getReducer/getSingleOwner';
 import getSingleRacecourse from './getReducer/getSingleRacecourse';
+import getColor from './getReducer/getColor';
+import getNationality from './getReducer/getNationality';
+import getBreeder from './getReducer/getBreeder';
+import getCurrency from './getReducer/getCurrency';
 
 const store = configureStore({
     reducer: {
@@ -35,24 +39,27 @@ const store = configureStore({
         PostAds: PostAds,
         horse: getHorseSlice,
         trainer: getTrainerSlice,
-        race:getRaceSlice,
+        race: getRaceSlice,
         postTrainer: PostTrainer,
         racecourse: getRaceCourseSlice,
-        postracecourse:PostRaceCourse,
-        jockey:getJockeySlice,
-        postjockey:PostJockey,
-        postHorse:PostHorse,
-        postrace:postRace,
-        user:userReducer,
-        owner:getOwnerSlice,
+        postracecourse: PostRaceCourse,
+        jockey: getJockeySlice,
+        postjockey: PostJockey,
+        postHorse: PostHorse,
+        postrace: postRace,
+        user: userReducer,
+        owner: getOwnerSlice,
         postowner: PostOwner,
-        slider:getSliderSlice,
-        postslider:PostSlider,
+        slider: getSliderSlice,
+        postslider: PostSlider,
         userProfile: getUserDetails,
         singlejockey: getSingleJockey,
-        singleowner:getSingleOwner,
-        singleracecourse:getSingleRacecourse
-
+        singleowner: getSingleOwner,
+        singleracecourse: getSingleRacecourse,
+        color: getColor,
+        nationality: getNationality,
+        breeder: getBreeder,
+        currency: getCurrency,
     },
 });
 

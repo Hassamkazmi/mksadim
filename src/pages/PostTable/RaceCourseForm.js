@@ -33,7 +33,9 @@ const RaceCourseForm = () => {
   const [WeatherType, setWeatherType] = useState("");
   const [WeatherDegree, setWeatherDegree] = useState("");
   const [WeatherIcon, setWeatherIcon] = useState("");
+  const [GroundType,setGroundType] =useState("")
   const [Country, setCountry] = useState("");
+  const [shortCode, setshortCode] = useState('')
   const [preview, setPreview] = useState();
 
   const [image, setImage] = useState();
@@ -48,7 +50,9 @@ const RaceCourseForm = () => {
       formData.append("WeatherType", WeatherType);
       formData.append("WeatherDegree", WeatherDegree);
       formData.append("WeatherIcon", WeatherIcon);
+      formData.append("GroundType" ,GroundType); 
       formData.append("Country", Country.value);
+      formData.append("shortCode" ,shortCode)
       const response = await axios.post(`${window.env.API_URL}/createcourse?keyword=&page=`,formData);
       swal({
         title: "success!",
@@ -178,6 +182,24 @@ const RaceCourseForm = () => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
+                      placeholder="Ground Type"
+                      onChange={(e) => setGroundType(e.target.value)}
+                      value={GroundType}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="نوع الأرض"
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
                       placeholder="Weather Icon"
                       onChange={(e) => setWeatherIcon(e.target.value)}
                       value={WeatherIcon}
@@ -194,6 +216,24 @@ const RaceCourseForm = () => {
                   </div>
                 </div>
 
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Short Code"
+                      onChange={(e) => setshortCode(e.target.value)}
+                      value={shortCode}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder=" رمز قصير"
+                    ></input>
+                  </div>
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
