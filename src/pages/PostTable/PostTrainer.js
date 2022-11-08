@@ -19,7 +19,6 @@ const TrainerForm = () => {
   const [TrainerLicenseDate,setTrainerLicenseDate] = useState('');
   const [ShortNameEn,setShortNameEn] =useState("");
   const [ShortNameAr,setShortNameAr] =useState("");
-  
 
   const [preview, setPreview] = useState();
   const [image, setImage] = useState();

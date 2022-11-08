@@ -8,7 +8,10 @@ import swal from "sweetalert";
 const OwnerForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  const [Name, setName] = useState("");
+  const [NameEn, setNameEn] = useState("");
+  const [NameAr,setNameAr] = useState();
+  const [TitleEn , setTitleEn] = useState("");
+  const [TitleAr,setTitleAr] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState()
  
@@ -17,9 +20,11 @@ const OwnerForm = () => {
     try {
       const formData = new FormData();
       formData.append("image", image);
-      formData.append("Name", Name);
+      formData.append("NameEn", NameEn);
+      formData.append("NameAr",NameAr)
+
       dispatch(add(formData));
-      const response = await axios.post(`${window.env.API_URL}/createowner?keyword=&page=`,formData);
+    await axios.post(`${window.env.API_URL}/createowner`,formData);
       swal({
         title: "success!",
         text: 'Data Submitted !',
@@ -41,7 +46,7 @@ const OwnerForm = () => {
       
     }
   };
-  const isSubmitData = Name === "" || image === null || image === undefined;
+  const isSubmitData = NameEn === "" || image === null || image === undefined;
   useEffect(() => {
     if (!image) {
       setPreview(undefined)
@@ -81,9 +86,9 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       placeholder=" Name"
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setNameEn(e.target.value)}
                       name="Name"
-                      value={Name}
+                      value={NameEn}
                       required
                     ></input><span className="spanForm"> |</span>
                   </div>
@@ -91,7 +96,30 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       style={{ direction: "rtl" }}
+                      onChange={e => setNameAr(e.target.value)}
+                      value={NameAr}
                       placeholder="اسم "
+                    ></input>
+                  </div>
+                </div>
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder=" Title"
+                      onChange={(e) => setTitleEn(e.target.value)}
+                      name="Name"
+                      value={TitleEn}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      onChange={e => setTitleAr(e.target.value)}
+                      value={NameAr}
+                      placeholder=" "
                     ></input>
                   </div>
                 </div>
