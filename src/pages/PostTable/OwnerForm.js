@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostOwner";
 import axios from "axios";
 import swal from "sweetalert";
+import DatePicker from "react-date-picker";
 
 const OwnerForm = () => {
   const dispatch = useDispatch();
@@ -12,7 +13,11 @@ const OwnerForm = () => {
   const [NameAr,setNameAr] = useState();
   const [TitleEn , setTitleEn] = useState("");
   const [TitleAr,setTitleAr] = useState("");
+  const [ShortEn,setShortEn] =useState("");
+  const [ShortAr ,setShortAr] = useState("");
+  const [RegistrationDate , setRegistrationDate] =useState("")
   const [image, setImage] = useState();
+
   const [preview, setPreview] = useState()
  
   const submit = async (event) => {
@@ -21,7 +26,11 @@ const OwnerForm = () => {
       const formData = new FormData();
       formData.append("image", image);
       formData.append("NameEn", NameEn);
-      formData.append("NameAr",NameAr)
+      formData.append("NameAr",NameAr);
+      formData.append("TitleEn",TitleEn);
+      formData.append("TitleAr",TitleAr);
+      formData.append("ShortEn",ShortEn);
+      formData.append("ShortAr",ShortAr);
 
       dispatch(add(formData));
     await axios.post(`${window.env.API_URL}/createowner`,formData);
@@ -123,6 +132,53 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div>
+
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder=" Title"
+                      onChange={(e) => setShortEn(e.target.value)}
+                      name="Name"
+                      value={ShortEn}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      onChange={e => setShortAr(e.target.value)}
+                      value={ShortAr}
+                      placeholder=" "
+                    ></input>
+                  </div>
+                </div>
+
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                  <DatePicker
+                      onChange={setRegistrationDate}
+                      value={RegistrationDate}
+                      dayPlaceholder=''
+                      monthPlaceholder='Registration Date'
+                      yearPlaceholder=''
+                     
+                    /><span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                 style={{direction:"rtl"}}
+                      placeholder="اسم "
+                    ></input>
+                  </div>
+                </div>
+
+
+
+            
 
                 <div className='ButtonSection'>
                 <div>
