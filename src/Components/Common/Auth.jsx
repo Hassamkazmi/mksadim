@@ -20,6 +20,7 @@ const Auth = () => {
     dispatch(logout())
     navigate('/')
   }
+  console.log('data')
   return (
     <>
       <div className="cta">
@@ -28,7 +29,7 @@ const Auth = () => {
           <div className="userprofile">
           <div className="logoutclass">
           <button className="buttonLogout"  onClick={handleLogout}>
-             Logout
+              Logout
           </button>
         </div>
            
