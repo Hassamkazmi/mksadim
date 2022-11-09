@@ -4,35 +4,46 @@ import { add } from "../../redux/postReducer/PostHorse";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchjockey } from "../../redux/getReducer/getJockeySlice";
 import Select from "react-select";
 import { fetchOwner } from "../../redux/getReducer/getOwnerSlice";
 import { fetchHorse } from "../../redux/getReducer/getHorseSlice";
+import { fetchcolor } from "../../redux/getReducer/getColor";
+import { fetchbreeder } from "../../redux/getReducer/getBreeder";
+import { fetchnationality } from "../../redux/getReducer/getNationality";
+
 import swal from "sweetalert";
 import axios from "axios";
 
 const Gender = [
   { id: "1", value: "Male", label: "Male" },
-  { id: "1", value: "Female", label: "Female" },
-  { id: "1", value: "Cross Gender", label: "Cross Gender" },
+  { id: "2", value: "Female", label: "Female" },
+  { id: "3", value: "Cross Gender", label: "Cross Gender" },
+];
+const Gelted = [
+  { id: "1", value: "false", label: "false" },
+  { id: "2", value: "true", label: "true" },
 ];
 
 const HorseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: trainer } = useSelector((state) => state.trainer);
-  const { data: jockey } = useSelector((state) => state.jockey);
   const { data: owner } = useSelector((state) => state.owner);
   const { data: horse } = useSelector((state) => state.horse);
+  const {data: color} = useSelector((state) => state.color);
+  const {data: breeder} = useSelector((state) => state.breeder);
+  const {data: nationality} = useSelector((state) => state.nationality);
 
   useEffect(() => {
     dispatch(fetchOwner());
     dispatch(fetchTrainer());
-    dispatch(fetchjockey());
     dispatch(fetchHorse());
+    dispatch(fetchcolor());
+    dispatch(fetchbreeder());
+    dispatch(fetchnationality());
   }, [dispatch]);
 
-  let horseoptions = horse.map(function (item) {
+  let horseoptions = horse === undefined ? <></> : horse.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
@@ -40,7 +51,7 @@ const HorseForm = () => {
     };
   });
 
-  let traineroption = trainer.map(function (item) {
+  let traineroption =  trainer === undefined ? <></> : trainer.map(function (item) {
     return {
       id: item._id,
       value: item.Name,
@@ -48,7 +59,7 @@ const HorseForm = () => {
     };
   });
 
-  let owneroption = owner.map(function (item) {
+  let owneroption =   owner === undefined ? <></> : owner.map(function (item) {
     return {
       id: item._id,
       value: item.Name,
@@ -56,36 +67,70 @@ const HorseForm = () => {
     };
   });
 
-  let jockeyoption = jockey.map(function (item) {
+  let AllColor = color === undefined ? <></> : color.map(function (item) {
     return {
       id: item._id,
-      value: item.Name,
-      label: item.Name,
+      value: item.NameEn,
+      label: item.NameEn,
     };
   });
+
+  let AllBreeder = breeder === undefined ? <></> : breeder.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
+  let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
+
+
+  // let jockeyoption =  jockey === undefined ? <></> : jockey.map(function (item) {
+  //   return {
+  //     id: item._id,
+  //     value: item.Name,
+  //     label: item.Name,
+  //   };
+  // });
 
   console.log(trainer,'trainer')
   const [ActiveOwner, setActiveOwner] = useState("");
-  const [Jockey, setJockey] = useState("");
+  // const [Jockey, setJockey] = useState("");
   const [Age, setAge] = useState("");
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState("");
   const [Owner, setOwner] = useState("");
   const [ActiveTrainer, setActiveTrainer] = useState("");
-  const [ActiveJockey, setActiveJockey] = useState("");
-  const [Breeder, setBreeder] = useState("");
-  const [Trainer, setTrainer] = useState("");
+  // const [ActiveJockey, setActiveJockey] = useState("");
+  const [Breeder, setBreeder] = useState(""); 
+  // const [Trainer, setTrainer] = useState("");
   const [Remarks, setRemarks] = useState("");
-  const [HorseRating, setHorseRating] = useState("");
+  // const [HorseRating, setHorseRating] = useState("");
   const [Sex, setSex] = useState("");
   const [Color, setColor] = useState("");
   const [KindOfHorse, setKindOfHorse] = useState("");
   const [Dam, setDam] = useState("");
   const [Sire, setSire] = useState("");
   const [GSire, setGSire] = useState("");
-  const [Earning, setEarning] = useState("");
+  const [WinningAmount, setWinningAmount] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
-  const [HorseImage, setHorseImage] = useState();
+  const [HorseImage, setHorseImage] = useState("");
+  const [Foal, setFoal] = useState("");
+  const [Cap, setCap] = useState("");
+  const [Star, setStar] = useState("");
+  const [isGelted, setisGelted] = useState(false);
+  const [NationalityId, setNationalityId] = useState("");
+  const [PurchasePrice, setPurchasePrice] = useState("");
+  const [Rds, setRds] = useState("");
+
   const [preview, setPreview] = useState()
  
   const submit = async (event) => {
@@ -98,11 +143,11 @@ const HorseForm = () => {
       formData.append("NameAr", "هريلو");
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
-      formData.append("ActiveJockey", ActiveJockey.id);
+      // formData.append("ActiveJockey", ActiveJockey.id);
       formData.append("Owner", Owner.id);
-      formData.append("HorseRating", HorseRating);
-      formData.append("Jockey", Jockey.id);
-      formData.append("Trainer", Trainer.id);
+      // formData.append("HorseRating", HorseRating);
+      // formData.append("Jockey", Jockey.id);
+      // formData.append("Trainer", Trainer.id);
       formData.append("ActiveTrainer", ActiveTrainer.id);
       formData.append("Sex", Sex.value);
       formData.append("Breeder", Breeder);
@@ -111,8 +156,15 @@ const HorseForm = () => {
       formData.append("Dam", Dam.id);
       formData.append("Sire", Sire.id);
       formData.append("GSire", GSire.id);
-      formData.append("Earning", Earning);
+      formData.append("WinningAmount", WinningAmount);
       formData.append("OverAllRating", OverAllRating);
+      formData.append("Foal", Foal);
+      formData.append("Cap", Cap);
+      formData.append("Rds", Rds);
+      formData.append("Star", Star);
+      formData.append("isGelted", isGelted);
+      formData.append("NationalityId", NationalityId);
+      formData.append("PurchasePrice", PurchasePrice);
       const response = await axios.post(`${window.env.API_URL}/createhorse?keyword=&page=`,formData);
       swal({
         title: "success!",
@@ -148,7 +200,7 @@ const HorseForm = () => {
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
 }, [HorseImage])
-
+console.log(color,'color')
 const onSelectFile = e => {
 
     // I've kept this example simple by using the first image instead of multiple
@@ -158,23 +210,19 @@ const onSelectFile = e => {
   }
   const isSubmitData =
   ActiveOwner === "" ||
-  Jockey === "" ||
   Age === "" ||
   NameEn === "" ||
   NameAr === "" ||
   Owner === "" ||
-  // ActiveTrainer === "" ||
-  ActiveJockey === "" ||
-  // Trainer === "" ||
+  ActiveTrainer === "" ||
   Remarks === "" ||
-  HorseRating === "" ||
   Sex === "" ||
   Color === "" ||
   KindOfHorse === "" ||
   Dam === "" ||
   Sire === "" ||
   GSire === "" ||
-  Earning === "" ||
+  WinningAmount === "" ||
   OverAllRating === "" ||
   HorseImage === null ||
   HorseImage === undefined
@@ -236,29 +284,14 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div>
+                
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder="Color"
-                      onChange={(e) => setColor(e.target.value)}
-                      value={Color}
-                    ></input><span className="spanForm"> |</span>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      placeholder="اللون"
-                      style={{ direction: "rtl" }}
-                    ></input>
-                  </div>
-                </div>
-                <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Earning"
+                      placeholder="Winning Amount"
                       type="number"
-                      onChange={(e) => setEarning(e.target.value)}
-                      value={Earning}
+                      onChange={(e) => setWinningAmount(e.target.value)}
+                      value={WinningAmount}
                     ></input><span className="spanForm"> |</span>
                   </div>
 
@@ -273,10 +306,10 @@ const onSelectFile = e => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder="Horse Rating"
-                      type="number"
-                      onChange={(e) => setHorseRating(e.target.value)}
-                      value={HorseRating}
+                      placeholder="Foal"
+                      type="text"
+                      onChange={(e) => setFoal(e.target.value)}
+                      value={Foal}
                     ></input><span className="spanForm"> |</span>
                   </div>
 
@@ -284,11 +317,10 @@ const onSelectFile = e => {
                     <input
                       placeholder="تقييم الحصان"
                       style={{ direction: "rtl" }}
-                      type="number"
+                      type="text"
                     ></input>
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -307,7 +339,6 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -345,19 +376,135 @@ const onSelectFile = e => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder="Breeder"
-                      onChange={(e) => setBreeder(e.target.value)}
-                      value={Breeder}
+                      placeholder="Enter Cap"
+                      onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      value={Cap}
+                      required
                     ></input><span className="spanForm"> |</span>
                   </div>
-
                   <div className="col-sm">
                     <input
-                      placeholder="مربي"
                       style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      value={Cap}
                     ></input>
                   </div>
                 </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter Star"
+                      onChange={(e) => setStar(e.target.value)}
+                      name="Name"
+                      value={Star}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      onChange={(e) => setStar(e.target.value)}
+                      name="Name"
+                      value={Star}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Purchase Price"
+                      onChange={(e) => setPurchasePrice(e.target.value)}
+                      name="Name"
+                      value={PurchasePrice}
+                      text='number'
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      onChange={(e) => setPurchasePrice(e.target.value)}
+                      name="Name"
+                      value={PurchasePrice}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter Rds"
+                      onChange={(e) => setRds(e.target.value)}
+                      name="Name"
+                      value={Rds}
+                      text='texr'
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      onChange={(e) => setRds(e.target.value)}
+                      name="Name"
+                      value={Rds}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                    
+                      placeholder={<div>Select Breeder</div>}
+                      defaultValue={Breeder}
+                      onChange={setBreeder}
+                      options={AllBreeder}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد نوع الجنس</div>}
+                      className='selectdir'
+                      defaultValue={Breeder}
+                      onChange={setBreeder}
+                      options={AllBreeder}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                    
+                      placeholder={<div>Select Color</div>}
+                      defaultValue={Color}
+                      onChange={setColor}
+                      options={AllColor}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد نوع الجنس</div>}
+                      className='selectdir'
+                      defaultValue={Color}
+                      onChange={setColor}
+                      options={AllColor}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>  
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -373,7 +520,7 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <Select
                       required
-                      placeholder={<div>Select Gender</div>}
+                      placeholder={<div>حدد نوع الجنس</div>}
                       className='selectdir'
                       defaultValue={Sex}
                       onChange={setSex}
@@ -382,9 +529,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
-
-                
+                </div>            
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -399,7 +544,7 @@ const onSelectFile = e => {
 
                   <div className="col-sm">
                     <Select
-                      placeholder={<div>Type to search Sire</div>}
+                      placeholder={<div>اكتب للبحث عن مواليد</div>}
                       defaultValue={Sire}
                       onChange={setSire}
                       className='selectdir'
@@ -423,7 +568,7 @@ const onSelectFile = e => {
 
                   <div className="col-sm">
                     <Select
-                      placeholder={<div>Type to search Dam</div>}
+                      placeholder={<div>اكتب للبحث عن السد</div>}
                       defaultValue={Dam}
                       onChange={setDam}
                       options={horseoptions}
@@ -447,7 +592,7 @@ const onSelectFile = e => {
 
                   <div className="col-sm">
                     <Select
-                      placeholder={<div>Type to search GSire</div>}
+                      placeholder={<div>اكتب للبحث عن مواليد</div>}
                       defaultValue={GSire}
                       onChange={setGSire}
                       options={horseoptions}
@@ -457,9 +602,6 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div>
-
-                
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -476,7 +618,7 @@ const onSelectFile = e => {
                     <Select         className='selectdir'
                       placeholder={
                         <div >
-                          Type to search Owner
+                          اكتب للبحث عن المالك
                         </div>
                       }
                       defaultValue={Owner}
@@ -488,7 +630,6 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -505,7 +646,7 @@ const onSelectFile = e => {
                     <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
-                          Type to search Active Owner
+                         اكتب للبحث عن المالك النشط
                         </div>
                       }
                       defaultValue={ActiveOwner}
@@ -515,13 +656,63 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
-
-               
+                </div>              
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                      placeholder={<div>Type to search trainer</div>}
+                    
+                      placeholder={<div>Select Gelted</div>}
+                      defaultValue={isGelted}
+                      onChange={setisGelted}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد جيلتي</div>}
+                      className='selectdir'
+                      defaultValue={isGelted}
+                      onChange={setisGelted}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>              
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search Nationality</div>}
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select         className='selectdir'
+                      placeholder={
+                        <div style={{ direction: "rtl" }}>
+                          اكتب للبحث عن الجنسية
+                        </div>
+                      }
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
+                {/* <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Enter Cap</div>}
                       defaultValue={Trainer}
                       onChange={setTrainer}
                       options={traineroption}
@@ -545,8 +736,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
-
+                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -563,7 +753,7 @@ const onSelectFile = e => {
                     <Select         className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
-                          Type to search Active trainer
+                          اكتب للبحث عن المدرب النشط
                         </div>
                       }
                       defaultValue={ActiveTrainer}
@@ -574,8 +764,7 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div>
-
-                <div className="row mainrow">
+                {/* <div className="row mainrow">
                   <div className="col-sm " >
                     <Select
                       placeholder={<div>Type to search Jockey</div>}
@@ -602,9 +791,8 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
-
-                <div className="row mainrow">
+                </div> */}
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Active Jockey</div>}
@@ -632,7 +820,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
+                </div> */}
                 
 
              

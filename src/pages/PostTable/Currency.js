@@ -18,9 +18,9 @@ const [Rate,setRate]= useState("");
      
       formData.append("NameEn", NameEn);
       formData.append("NameAr" , NameAr)
-formData.append("shortCode",shortCode);
-formData.append("Rate",Rate)
-await axios.post(`${window.env.API_URL}/CreateCurrency`,formData);
+      formData.append("shortCode",shortCode);
+      formData.append("Rate",Rate)
+      await axios.post(`${window.env.API_URL}/CreateCurrency`,formData);
       swal({
         title: "Success!",
         text: "Data has been added successfully ",

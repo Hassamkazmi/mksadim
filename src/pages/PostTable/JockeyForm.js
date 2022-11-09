@@ -59,7 +59,6 @@ const NewsForm = () => {
     }
   };
 
-  console.log(DOB, "DOB");
   const areAllFieldsFilled = image !== undefined && DOB !== "";
   useEffect(() => {
     if (!image) {
@@ -74,7 +73,6 @@ const NewsForm = () => {
   }, [image]);
 
   const onSelectFile = (e) => {
-    // I've kept this example simple by using the first image instead of multiple
     setImage(e.target.files[0]);
     console.log(image, "image");
   };

@@ -12,27 +12,23 @@ const Color = () => {
 
 
   const submit = async (event) => {
-
     event.preventDefault();
     try {
       const formData = new FormData();
-     
       formData.append("NameEn", NameEn);
-      FormData.append("NameAr" , NameAr)
-formData.append("shortCode",shortCode);
+      formData.append("NameAr" , NameAr)
+      formData.append("shortCode",shortCode);
 
-await axios.post(`${window.env.API_URL}/CreateColor`, formData)
+      await axios.post(`${window.env.API_URL}/uploadColor`, formData)
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
         icon: "success",
         button: "OK",
       });
-
-    
+      
     } catch (error) {
-      console.log(error.response.data.message,'error')
-      const err = error.response.data.message
+      const err = error.message;
       swal({
         title: "Error!",
         text: err,

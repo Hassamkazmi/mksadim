@@ -126,8 +126,6 @@ const Horse = () => {
                         <th>KindOfHorse</th>
                         <th>Owner</th>
                         <th>Breeder</th>
-                 
-                 
                         <th>Dam</th>
                         <th>Sire</th>
                         <th>GSire</th>
@@ -136,8 +134,9 @@ const Horse = () => {
                         <th>Actions</th>
                       </tr>
                     </thead>
-
-                    {horse.map((item) => {
+                    {
+                      horse === undefined ? <></> : <>
+                      {horse.map((item) => {
                       return (
                         <>
                           <tbody>
@@ -179,6 +178,8 @@ const Horse = () => {
                         </>
                       );
                     })}
+                      </>
+                    }
                   </table>
                 </ScrollContainer>
               </div>

@@ -15,11 +15,9 @@ const [image, setImage] = useState();
 const [preview,setPreview] = useState()
 
   const submit = async (event) => {
-
     event.preventDefault();
     try {
       const formData = new FormData();
-
       formData.append("NameEn", NameEn);
       formData.append("NameAr", NameAr)
       formData.append("shortCode", shortCode);
@@ -28,11 +26,8 @@ const [preview,setPreview] = useState()
       formData.append("Label", Label);
       formData.append("Offset",Offset);
       formData.append("Value" ,Value);
-      await axios.post(`${window.env.API_URL}/CreateNationality`,formData);
-      
-     
-
-
+      formData.append("image" ,image);
+      await axios.post(`${window.env.API_URL}/uploadNationality`,formData);
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -42,7 +37,13 @@ const [preview,setPreview] = useState()
 
 
     } catch (error) {
-      alert(error.message);
+      const err = error.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
   useEffect(() => {
@@ -75,7 +76,7 @@ const onSelectFile = e => {
             marginTop: "30px",
           }}
         >
-          <div className="Headers">Add Currency</div>
+          <div className="Headers">Add Nationality</div>
           <div className="form">
             <form onSubmit={submit}>
               <div className="row mainrow">
