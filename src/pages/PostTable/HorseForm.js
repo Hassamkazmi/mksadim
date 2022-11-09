@@ -20,8 +20,8 @@ const Gender = [
   { id: "3", value: "Cross Gender", label: "Cross Gender" },
 ];
 const Gelted = [
-  { id: "1", value: "false", label: "false" },
-  { id: "2", value: "true", label: "true" },
+  { id: "0", value: "false", label: "false" },
+  { id: "1", value: "true", label: "true" },
 ];
 
 const HorseForm = () => {
@@ -54,16 +54,16 @@ const HorseForm = () => {
   let traineroption =  trainer === undefined ? <></> : trainer.map(function (item) {
     return {
       id: item._id,
-      value: item.Name,
-      label: item.Name,
+      value: item.NameEn,
+      label: item.NameEn,
     };
   });
 
   let owneroption =   owner === undefined ? <></> : owner.map(function (item) {
     return {
       id: item._id,
-      value: item.Name,
-      label: item.Name,
+      value: item.NameEn,
+      label: item.NameEn,
     };
   });
 
@@ -92,7 +92,6 @@ const HorseForm = () => {
   });
 
 
-
   // let jockeyoption =  jockey === undefined ? <></> : jockey.map(function (item) {
   //   return {
   //     id: item._id,
@@ -115,32 +114,31 @@ const HorseForm = () => {
   const [Remarks, setRemarks] = useState("");
   // const [HorseRating, setHorseRating] = useState("");
   const [Sex, setSex] = useState("");
-  const [Color, setColor] = useState("");
+  const [ColorID, setColor] = useState("");
   const [KindOfHorse, setKindOfHorse] = useState("");
   const [Dam, setDam] = useState("");
   const [Sire, setSire] = useState("");
   const [GSire, setGSire] = useState("");
   const [WinningAmount, setWinningAmount] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
-  const [HorseImage, setHorseImage] = useState("");
+  const [image, setimage] = useState();
   const [Foal, setFoal] = useState("");
   const [Cap, setCap] = useState("");
-  const [Star, setStar] = useState("");
+  const [STARS, setSTARS] = useState("");
   const [isGelted, setisGelted] = useState(false);
   const [NationalityId, setNationalityId] = useState("");
   const [PurchasePrice, setPurchasePrice] = useState("");
   const [Rds, setRds] = useState("");
-
   const [preview, setPreview] = useState()
  
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("HorseImage", HorseImage);
+      formData.append("image", image);
       formData.append("NameEn", NameEn);
       formData.append("Age", Age);
-      formData.append("NameAr", "هريلو");
+      formData.append("NameAr", NameAr);
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
       // formData.append("ActiveJockey", ActiveJockey.id);
@@ -150,8 +148,8 @@ const HorseForm = () => {
       // formData.append("Trainer", Trainer.id);
       formData.append("ActiveTrainer", ActiveTrainer.id);
       formData.append("Sex", Sex.value);
-      formData.append("Breeder", Breeder);
-      formData.append("Color", Color);
+      formData.append("Breeder", Breeder.id);
+      formData.append("ColorID", ColorID.id);
       formData.append("KindOfHorse", KindOfHorse);
       formData.append("Dam", Dam.id);
       formData.append("Sire", Sire.id);
@@ -161,11 +159,11 @@ const HorseForm = () => {
       formData.append("Foal", Foal);
       formData.append("Cap", Cap);
       formData.append("Rds", Rds);
-      formData.append("Star", Star);
-      formData.append("isGelted", isGelted);
-      formData.append("NationalityId", NationalityId);
+      formData.append("STARS", STARS);
+      formData.append("isGelted", isGelted.id);
+      formData.append("NationalityId", NationalityId.id);
       formData.append("PurchasePrice", PurchasePrice);
-      const response = await axios.post(`${window.env.API_URL}/createhorse?keyword=&page=`,formData);
+      const response = await axios.post(`${window.env.API_URL}createhorse?keyword=&page=`,formData);
       swal({
         title: "success!",
         text: 'Data Submitted !',
@@ -189,43 +187,43 @@ const HorseForm = () => {
     }
   };
   useEffect(() => {
-    if (!HorseImage) {
+    if (!image) {
         setPreview(undefined)
         return
     }
 
-    const objectUrl = URL.createObjectURL(HorseImage)
+    const objectUrl = URL.createObjectURL(image)
     setPreview(objectUrl)
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-}, [HorseImage])
+}, [image])
 console.log(color,'color')
 const onSelectFile = e => {
 
     // I've kept this example simple by using the first image instead of multiple
-    setHorseImage(e.target.files[0])
-  console.log(HorseImage,'image')
+    setimage(e.target.files[0])
+  console.log(image,'image')
 
   }
   const isSubmitData =
-  ActiveOwner === "" ||
-  Age === "" ||
-  NameEn === "" ||
-  NameAr === "" ||
-  Owner === "" ||
-  ActiveTrainer === "" ||
-  Remarks === "" ||
-  Sex === "" ||
-  Color === "" ||
-  KindOfHorse === "" ||
-  Dam === "" ||
-  Sire === "" ||
-  GSire === "" ||
-  WinningAmount === "" ||
-  OverAllRating === "" ||
-  HorseImage === null ||
-  HorseImage === undefined
+  // ActiveOwner === "" ||
+  // Age === "" ||
+  // NameEn === "" ||
+  // NameAr === "" ||
+  // Owner === "" ||
+  // ActiveTrainer === "" ||
+  // Remarks === "" ||
+  // Sex === "" ||
+  // Color === "" ||
+  // KindOfHorse === "" ||
+  // Dam === "" ||
+  // Sire === "" ||
+  // GSire === "" ||
+  // WinningAmount === "" ||
+  // OverAllRating === "" ||
+  image === null ||
+  image === undefined
   return (
     <Fragment>
  
@@ -396,10 +394,10 @@ const onSelectFile = e => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder="Enter Star"
-                      onChange={(e) => setStar(e.target.value)}
+                      placeholder="Enter STARS"
+                      onChange={(e) => setSTARS(e.target.value)}
                       name="Name"
-                      value={Star}
+                      value={STARS}
                       required
                     ></input><span className="spanForm"> |</span>
                   </div>
@@ -407,9 +405,9 @@ const onSelectFile = e => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="اسم "
-                      onChange={(e) => setStar(e.target.value)}
+                      onChange={(e) => setSTARS(e.target.value)}
                       name="Name"
-                      value={Star}
+                      value={STARS}
                     ></input>
                   </div>
                 </div>
@@ -485,7 +483,7 @@ const onSelectFile = e => {
                     <Select
                     
                       placeholder={<div>Select Color</div>}
-                      defaultValue={Color}
+                      defaultValue={ColorID}
                       onChange={setColor}
                       options={AllColor}
                       isClearable={true}
@@ -497,7 +495,7 @@ const onSelectFile = e => {
                       required
                       placeholder={<div>حدد نوع الجنس</div>}
                       className='selectdir'
-                      defaultValue={Color}
+                      defaultValue={ColorID}
                       onChange={setColor}
                       options={AllColor}
                       isClearable={true}
@@ -828,7 +826,7 @@ const onSelectFile = e => {
                 <div className="ButtonSection">
               <div>
                 <input type='file' onChange={onSelectFile} className="formInput"/>
-            {HorseImage &&  <img src={preview}  alt="" className="PreviewImage" /> }
+            {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
             </div>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
