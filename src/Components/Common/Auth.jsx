@@ -22,7 +22,6 @@ const Auth = () => {
   }
   return (
     <>
-     
       <div className="cta">
         {userInfo || userToken ? (
           <div className="auth">
