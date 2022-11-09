@@ -26,8 +26,6 @@ const RaceThree = ({ formData, setFormData, page, setPage, x, setX }) => {
       Weather: "",
       Horses: '',
       KindOfHorse: "",
-
-
     });
 
   };

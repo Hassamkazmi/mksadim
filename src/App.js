@@ -43,7 +43,7 @@ import Color from "./pages/PostTable/Color";
 import Nationality from "./pages/PostTable/Nationality";
 import Currency from "./pages/PostTable/Currency";
 import Breeder from "./pages/PostTable/Breeder";
-
+import HorseData from './pages/PostTable/HorseData'
 
 
 
@@ -76,7 +76,7 @@ function App() {
                 <Route path="/sponsorform" element={<SponsorForm />} />
                 <Route path="/trainerform" element={<PostTrainer />} />
                 <Route path="/horseform" element={<PostHorse />} />
-                {/* <Route path="/test" element={<Test />} /> */}
+                <Route path="/publishrace" element={<HorseData />} />
                 <Route path="/racecourseform" element={<RaceCourseForm />} />
                 <Route path="/jockeyform" element={<JockeyForm />} />
                 <Route path="/raceform" element={<RaceForm />} />
@@ -89,7 +89,6 @@ function App() {
                 <Route path="/nationality" element={<Nationality/>}/>
                 <Route path="/currency" element={<Currency/>}/>
                 <Route path="/breeder" element={<Breeder/>}/>
-              
                 <Route path="/slider" element={<Slider />} />
                 <Route path="/editjockey/:id" element={<EditJockey />} />
                 <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>

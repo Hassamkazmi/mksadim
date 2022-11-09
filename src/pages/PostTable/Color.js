@@ -5,7 +5,7 @@ import axios from 'axios';
 const Color = () => {
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState("");
-const [shortCode,setshortCode]= useState("") 
+  const [shortCode,setshortCode]= useState("") 
 
 
 
@@ -31,7 +31,14 @@ await axios.post(`${window.env.API_URL}/CreateColor`, formData)
 
     
     } catch (error) {
-      alert(error.message);
+      console.log(error.response.data.message,'error')
+      const err = error.response.data.message
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
   return (

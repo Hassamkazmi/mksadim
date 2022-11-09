@@ -12,9 +12,9 @@ const TrainerForm = () => {
   const [Detail, setDetail] = useState("");
   const [Remarks, setRemarks] = useState("");
   const [NameAr,setNameAr] = useState("");
- const [DOB,setDOB]=useState("")
- const [TitleAr,setTitleAr] = useState("")
- const [TitleEn,setTitleEn] = useState("")
+  const [DOB,setDOB]=useState("")
+  const [TitleAr,setTitleAr] = useState("")
+  const [TitleEn,setTitleEn] = useState("")
   const [Rating, setRating] = useState("");
   const [TrainerLicenseDate,setTrainerLicenseDate] = useState('');
   const [ShortNameEn,setShortNameEn] =useState("");
@@ -31,25 +31,25 @@ const TrainerForm = () => {
       const formData = new FormData();
       formData.append("image", image);
       formData.append("NameEn", NameEn);
-      formData.append("NameAr",NameAr);
-    formData.append("TitleEn" ,TitleEn)
-    formData.append("TitleAr", TitleAr)
-   
+      formData.append("NameAr",NameAr);   
+      formData.append("TitleEn" ,TitleEn)
+      formData.append("TitleAr", TitleAr)
       formData.append("Detail", Detail);
       formData.append("Remarks", Remarks);
       formData.append("Rating", Rating);
       formData.append("TrainerLicenseDate",TrainerLicenseDate);
-    await axios.post(`${window.env.API_URL}/uploadtrainer?keyword=&page=`,
-        formData
-      );
+    await axios.post(`${window.env.API_URL}/uploadtrainer?keyword=&page=`,formData);
+      
       swal({
         title: "success!",
         text: "Data Submitted !",
         icon: "success",
         button: "OK",
       });
+      console.log(formData,'NameEn')
       history("/trainer");
     } catch (error) {
+      console.log(error,'NameEn')
       const err = error.response.data.message;
       swal({
         title: "Error!",
@@ -229,6 +229,7 @@ const TrainerForm = () => {
                       onChange={(e) => setRating(e.target.value)}
                       name="Rating"
                       value={Rating}
+                      type='number'
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -238,6 +239,7 @@ const TrainerForm = () => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="طول المسار"
+                      type='number'
                     ></input>
                   </div>
                 </div>

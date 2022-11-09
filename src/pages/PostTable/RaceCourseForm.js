@@ -25,6 +25,11 @@ let CountryAr = Country_NameAr.map(function (item) {
   };
 });
 
+const Weathers = [
+  { id: "1", value: "Sunny", label: "Sunny" },
+  { id: "1", value: "Cloudy", label: "Cloudy" }
+
+];
 const RaceCourseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -112,6 +117,7 @@ const RaceCourseForm = () => {
                       placeholder="Track Name"
                       onChange={(e) => setTrackName(e.target.value)}
                       value={TrackName}
+                      type='number'
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -144,23 +150,29 @@ const RaceCourseForm = () => {
                 </div>
 
                 <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Weather Type"
-                      onChange={(e) => setWeatherType(e.target.value)}
-                      value={WeatherType}
-                      required
-                    ></input>
-                    <span className="spanForm"> |</span>
-                  </div>
+                    <div className="col-sm">
+                    <Select
+                    placeholder={<div>Weather</div>}
+                    defaultValue={setWeatherType}
+                    onChange={setWeatherType}
+                    options={Weathers}
+                    isClearable={true}
+                    isSearchable={true}
+                  />  <span className="spanForm"> |</span>
+                    </div>
 
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="اسم المسار"
-                    ></input>
+                    <div className="col-sm">
+                    <Select
+                    
+                    placeholder={<div>طقس</div>}
+                  
+                    className='selectdir'
+                    options={Weathers}
+                    isClearable={true}
+                    isSearchable={true}
+                  />
+                    </div>
                   </div>
-                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -168,6 +180,7 @@ const RaceCourseForm = () => {
                       onChange={(e) => setWeatherDegree(e.target.value)}
                       value={WeatherDegree}
                       required
+                      type='number'
                     ></input>
                     <span className="spanForm"> |</span>
                   </div>

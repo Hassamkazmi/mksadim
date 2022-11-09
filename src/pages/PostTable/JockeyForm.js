@@ -21,7 +21,7 @@ const NewsForm = () => {
   const [JockeyLicenseDate, setJockeyLicenseDate] = useState("");
   const [Rating, setRating] = useState("");
   const [MiniumumJockeyWeight, setMiniumumJockeyWeight] = useState("");
-  const [JockeyAllowance, setJockeyAllowance] = useState('')
+  const [JockeyAllowance, setJockeyAllowance] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const submit = async (event) => {
@@ -33,7 +33,7 @@ const NewsForm = () => {
 
       formData.append("ShortNameEn", ShortNameEn);
       formData.append("ShortNameAr", ShortNameAr);
-      formData.append("JockeyAllowance",JockeyAllowance);
+      formData.append("JockeyAllowance", JockeyAllowance);
       formData.append("NameAr", NameAr);
       formData.append("DOB", DOB);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
@@ -58,9 +58,8 @@ const NewsForm = () => {
       });
     }
   };
- 
 
-  console.log(DOB,'DOB')
+  console.log(DOB, "DOB");
   const areAllFieldsFilled = image !== undefined && DOB !== "";
   useEffect(() => {
     if (!image) {
@@ -165,10 +164,9 @@ const NewsForm = () => {
                     <DatePicker
                       onChange={setDOB}
                       value={DOB}
-                      dayPlaceholder='  '
-                      monthPlaceholder='Date Of Birth'
-                      yearPlaceholder=''
-                     
+                      dayPlaceholder="  "
+                      monthPlaceholder="Date Of Birth"
+                      yearPlaceholder=""
                     />
 
                     <span className="spanForm"> |</span>
@@ -181,13 +179,12 @@ const NewsForm = () => {
 
                 <div className="row mainrow">
                   <div className="col-sm">
-                  <DatePicker
+                    <DatePicker
                       onChange={setJockeyLicenseDate}
                       value={JockeyLicenseDate}
-                      dayPlaceholder='  '
-                      monthPlaceholder='Jockey License Date'
-                      yearPlaceholder=''
-                     
+                      dayPlaceholder="  "
+                      monthPlaceholder="Jockey License Date"
+                      yearPlaceholder=""
                     />
 
                     <span className="spanForm"> |</span>
@@ -229,7 +226,7 @@ const NewsForm = () => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      type="text"
+                      type="number"
                       onChange={(e) => setMiniumumJockeyWeight(e.target.value)}
                       value={MiniumumJockeyWeight}
                       placeholder="Jockey Minimum Weight"
@@ -254,7 +251,6 @@ const NewsForm = () => {
                       onChange={(e) => setJockeyAllowance(e.target.value)}
                       value={JockeyAllowance}
                       placeholder="Jockey Allowance"
-
                     />
 
                     <span className="spanForm"> |</span>
