@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import "../../Components/CSS/forms.css";
-
+import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostAds";
@@ -12,11 +12,10 @@ const AdsForm = () => {
   const history = useNavigate();
   const [TitleEn, setTitleEn] = useState("");
   const [TitleAr, setTitleAr] = useState("");
-
   const [DescriptionAr, setDescriptionAr] = useState("");
   const [DescriptionEn, setDescriptionEn] = useState("");
   const [image, setImage] = useState();
-const [preview,setPreview] = useState();
+  const [preview,setPreview] = useState();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -27,7 +26,7 @@ const [preview,setPreview] = useState();
       formData.append("TitleAr", TitleAr);
       formData.append("DescriptionAr", DescriptionAr);
       formData.append("DescriptionEn", DescriptionEn);
-      dispatch(add(formData));
+      await axios.post(`${window.env.API_URL}/uploadAds`, formData);
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -37,7 +36,13 @@ const [preview,setPreview] = useState();
 
       history("/ads");
     } catch (error) {
-      alert(error.message);
+      const err = error.response.data.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
 

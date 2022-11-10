@@ -38,6 +38,7 @@ const NewsForm = () => {
       formData.append("DOB", DOB);
       formData.append("Remarks", Remarks);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
+      formData.append("MaximumJockeyWeight", '2');
       formData.append("Rating", Rating);
       formData.append("JockeyLicenseDate", JockeyLicenseDate);
 

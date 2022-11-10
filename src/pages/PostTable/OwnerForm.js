@@ -66,7 +66,6 @@ const OwnerForm = () => {
       formData.append("SilkColor", SilkColor.id);
       formData.append("NationalityID", NationalityID.id);
       formData.append("RegistrationDate", RegistrationDate);
-
       dispatch(add(formData));
       await axios.post(`${window.env.API_URL}/createowner`, formData);
       swal({
