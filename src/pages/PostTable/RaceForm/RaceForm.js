@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { add } from "../../../redux/postReducer/postRace";
 import Moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchTrainer } from "../../../redux/getReducer/getTrainerSlice";
 import { fetchjockey } from "../../../redux/getReducer/getJockeySlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,8 @@ import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import Select from "react-select";
 import swal from "sweetalert";
 import { AiOutlinePlus } from "react-icons/ai";
+import DateTimePicker from 'react-datetime-picker';
+import axios from "axios";
 
 const RaceKinds = [
   { id: "1", value: "Flat", label: "Flat" },
@@ -19,54 +20,100 @@ const RaceKinds = [
 ];
 const WeatherTypes = [
   { id: "1", value: "Sunny", label: "Sunny" },
-  { id: "1", value: "Cloudy", label: "Cloudy" },
+  { id: "2", value: "Cloudy", label: "Cloudy" },
 ];
 const RaceStatuss = [
   { id: "1", value: "Cancel", label: "Cancel" },
-  { id: "1", value: "Due", label: "Due" },
+  { id: "2", value: "Due", label: "Due" },
 ];
 const GroundTypes = [
   { id: "1", value: "Green", label: "Green" },
-  { id: "1", value: "Flat", label: "Flat" },
+  { id: "2", value: "Flat", label: "Flat" },
 ];
 
 const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
-  const history = useNavigate();
-  const [data, setData] = useState(true);
+  const { data: jockey } = useSelector((state) => state.jockey);
 
+  const history = useNavigate();
   const dispatch = useDispatch();
-  
-  const [raceName, setraceName] = useState("");
+  let racecourses = racecourse === undefined ? <></> : racecourse.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TrackNameEn,
+      label: item.TrackNameEn,
+    };
+  });
+
+  let JockeyForTheRace = jockey === undefined ? <></> : jockey.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
+  const [RaceNameEn, setRaceNameEn] = useState("");
+  const [RaceNameAr, setRaceNameAr] = useState("");
   const [RaceKind, setRaceKind] = useState("");
-  const [TrackLength, setTrackLength] = useState("");
-  const [Description, setDescription] = useState("");
+  const [DescriptionEn, setDescriptionEn] = useState("");
+  const [DescriptionAr, setDescriptionAr] = useState("");
   const [DayNTime, setDayNTime] = useState("");
   const [WeatherType, setWeatherType] = useState("");
   const [RaceStatus, setRaceStatus] = useState("");
   const [RaceCourse, setRaceCourse] = useState("");
-  
+  const [WeatherIcon, setWeatherIcon] = useState("");
+  const [WeatherDegree, setWeatherDegree] = useState("");
+  const [RaceType, setRaceType] = useState("");
+  const [TrackLength, setTrackLength] = useState("");
+  const [ActiveJockeyForTheRace, setActiveJockeyForTheRace] = useState("");
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState();
+
 
   useEffect(() => {
     dispatch(fetchracecourse());
-  }, [dispatch]);
+    dispatch(fetchjockey());
+    if (!image) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [image,dispatch]);
 
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("RaceKind", RaceKind);
-      formData.append("raceName", raceName);
-      formData.append("Description", Description);
+      formData.append("RaceNameEn", RaceNameEn);
+      formData.append("RaceNameAr", RaceNameAr);
+      formData.append("RaceType", RaceType);
+      formData.append("RaceKind", RaceKind.value)
+      formData.append("DescriptionEn", DescriptionEn);
+      formData.append("DescriptionAr", DescriptionAr);
       formData.append("DayNTime", DayNTime);
-      formData.append("WeatherType", WeatherType);
-      formData.append("RaceStatus", RaceStatus);
-      formData.append("RaceCourse", RaceCourse);
+      formData.append("WeatherType", WeatherType.value);
+      formData.append("RaceStatus", RaceStatus.value);
+      formData.append("RaceCourse", RaceCourse.id);
+      formData.append("WeatherIcon", WeatherIcon);
+      formData.append("WeatherDegree", WeatherDegree);
+      formData.append("TrackLength", TrackLength);
+      formData.append("ActiveJockeyForTheRace", ActiveJockeyForTheRace.id);
+      formData.append("image", image);
+      await axios.post(`${window.env.API_URL}/createrace`, formData);
+      swal({
+        title: "success!",
+        text: "Data Submitted !",
+        icon: "success",
+        button: "OK",
+      });
       history("/publishrace", {
         state: {
           RaceKind: RaceKind,
-          raceName: raceName,
-          Description: Description,
+          RaceNameEn: RaceNameEn,
+          DescriptionEn: DescriptionEn,
           DayNTime,
           DayNTime,
           WeatherType: WeatherType,
@@ -74,32 +121,32 @@ const RaceForm = () => {
         },
       });
     } catch (error) {
-      alert(error.message);
+      const err = error.response.data.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
-  let racecourses = racecourse.map(function (item) {
-    return {
-      id: item._id,
-      value: item.TrackName,
-      label: item.TrackName,
-    };
-  });
+  
 
   const isSubmitData =
     RaceKind === "" ||
-    raceName === "" ||
-    Description === "" ||
+    RaceNameEn === "" ||
+    DescriptionEn === "" ||
     DayNTime === "" ||
     WeatherType === "" ||
     RaceStatus === "" ||
     RaceCourse === "";
 
-  function handleRace() {
-    setData(false);
-  }
+  const onSelectFile = (e) => {
+    setImage(e.target.files[0]);
+    console.log(image, "image");
+  };
 
-  const formatDate = Moment().format("YYYY-MM-DD");
-
+  console.log(jockey,'jockey')
   return (
     <>
       <div className="page">
@@ -116,9 +163,9 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Race Name"
-                      onChange={(e) => setraceName(e.target.value)}
+                      onChange={(e) => setRaceNameEn(e.target.value)}
                       name="Name"
-                      value={raceName}
+                      value={RaceNameEn}
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -128,6 +175,8 @@ const RaceForm = () => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="اسم العرق "
+                      onChange={(e) => setRaceNameAr(e.target.value)}
+                      value={RaceNameAr}
                       name="Name"
                     ></input>
                   </div>
@@ -136,9 +185,9 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Description"
-                      onChange={(e) => setDescription(e.target.value)}
+                      onChange={(e) => setDescriptionEn(e.target.value)}
                       name="Name"
-                      value={Description}
+                      value={DescriptionEn}
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -148,7 +197,108 @@ const RaceForm = () => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="وصف "
+                      onChange={(e) => setDescriptionAr(e.target.value)}
                       name="Name"
+                      value={DescriptionAr}
+                      required
+                    ></input>
+                  </div>
+                </div>
+                <div className="row  mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Weather Icon"
+                      onChange={(e) => setWeatherIcon(e.target.value)}
+                      name="Name"
+                      value={WeatherIcon}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="وصف "
+                      onChange={(e) => setWeatherIcon(e.target.value)}
+                      name="Name"
+                      value={WeatherIcon}
+                      required
+                      
+                    ></input>
+                  </div>
+                </div>
+                <div className="row  mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Weather Degree"
+                      onChange={(e) => setWeatherDegree(e.target.value)}
+                      name="Name"
+                      value={WeatherDegree}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="وصف "
+                      onChange={(e) => setWeatherDegree(e.target.value)}
+                      name="Name"
+                      value={WeatherDegree}
+                      required
+                      
+                    ></input>
+                  </div>
+                </div>
+                <div className="row  mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Race Type"
+                      onChange={(e) => setRaceType(e.target.value)}
+                      name="Name"
+                      value={RaceType}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="وصف "
+                      onChange={(e) => setRaceType(e.target.value)}
+                      name="Name"
+                      value={RaceType}
+                      required
+                      
+                    ></input>
+                  </div>
+                </div>
+                <div className="row  mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Track Length"
+                      onChange={(e) => setTrackLength(e.target.value)}
+                      name="Name"
+                      value={TrackLength}
+                      required
+                      text='number'
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="وصف "
+                      onChange={(e) => setTrackLength(e.target.value)}
+                      name="Name"
+                      value={TrackLength}
+                      text='number'
+                      required
+                      
                     ></input>
                   </div>
                 </div>
@@ -203,7 +353,7 @@ const RaceForm = () => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                      placeholder={<div>Racecource</div>}
+                      placeholder={<div>Race Course</div>}
                       defaultValue={RaceCourse}
                       onChange={setRaceCourse}
                       options={racecourses}
@@ -223,30 +373,31 @@ const RaceForm = () => {
                     />
                   </div>
                 </div>
-                {/* <div className="row ">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <Select placeholder={<div>Type to Add Horses</div>}
-                        defaultValue={Horses}
-                        onChange={setHorses}
-                        options={horseoptions}
-                        isClearable={true}
-                        isSearchable={true}
-                        isMulti
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                      />
+                    <Select
+                      placeholder={<div>Active Jockey For The Race</div>}
+                      defaultValue={ActiveJockeyForTheRace}
+                      onChange={setActiveJockeyForTheRace}
+                      options={JockeyForTheRace}
+                      isClearable={true}
+                      isSearchable={true}
+                    />{" "}
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                  <Select placeholder={<div>Type to Add Horses</div>}
-                        defaultValue={Horses}
-                        onChange={setHorses}
-                        options={horseoptions}
-                        isClearable={true}
-                        isSearchable={true}
-                      />
+                    <Select
+                      placeholder={<div>دورة السباق</div>}
+                      className="selectdir"
+                      defaultValue={ActiveJockeyForTheRace}
+                      onChange={ActiveJockeyForTheRace}
+                      options={JockeyForTheRace}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
-                </div> */}
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -270,50 +421,7 @@ const RaceForm = () => {
                     />
                   </div>
                 </div>
-
-                <div className="row mainrow">
-                  <div className="col-sm">
-                    <Select
-                      placeholder={<div>Ground Type</div>}
-                      options={GroundTypes}
-                      isClearable={true}
-                      isSearchable={true}
-                    />{" "}
-                    <span className="spanForm"> |</span>
-                  </div>
-
-                  <div className="col-sm">
-                    <Select
-                      placeholder={<div>نوع الأرض</div>}
-                      className="selectdir"
-                      options={GroundTypes}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
-                  </div>
-                </div>
-
-                {/* <div className="row ">
-                    <div className="col-sm">
-                      <input
-                        placeholder="Sponsor Logo"
-                        type="file"
-                        
-                        
-                      
-                      ></input>
-                    </div>
-
-                    <div className="col-sm">
-                      <input
-                        placeholder="Sponsor Logo"
-                        type="file"
-                        style={{ direction: "rtl" }}
-                      ></input>
-                    </div>
-                  </div> */}
-
-                <div className="row  mainrow">
+                {/* <div className="row  mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="1st Prize"
@@ -332,7 +440,6 @@ const RaceForm = () => {
                     ></input>
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -352,7 +459,6 @@ const RaceForm = () => {
                     ></input>
                   </div>
                 </div>
-
                 <div className="row  mainrow">
                   <div className="col-sm">
                     <input
@@ -372,7 +478,6 @@ const RaceForm = () => {
                     ></input>
                   </div>
                 </div>
-
                 <div className="row  mainrow">
                   <div className="col-sm">
                     <input
@@ -391,39 +496,46 @@ const RaceForm = () => {
                       name="Name"
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Day N Time"
-                      type="date"
-                      min={formatDate}
-                      max="2025-08-31"
-                      onChange={(e) => setDayNTime(e.target.value)}
+                    <DateTimePicker
+                      onChange={setDayNTime}
                       value={DayNTime}
-                    ></input>{" "}
+                      monthPlaceholder="Date "
+                      dayPlaceholder="&"
+                      yearPlaceholder="Time"
+                    />
+
                     <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <input
-                      placeholder="Day N Time"
-                      type="date"
-                      style={{ direction: "rtl" }}
-                      min={formatDate}
-                      max="2025-08-31"
-                      onChange={(e) => setDayNTime(e.target.value)}
+                  <DateTimePicker
+                      onChange={setDayNTime}
                       value={DayNTime}
-                    ></input>
+                      monthPlaceholder="Date "
+                      dayPlaceholder="&"
+                      yearPlaceholder="Time"
+                      style={{ direction: "rtl" }}
+                    />
                   </div>
                 </div>
-                <div className="RaceButtonDiv">
-                  <button className="updateButton">Update</button>
-                  <button
-                    className="SubmitButton"
-                    // disabled={isSubmitData}
-                  >
-                    Save & Add Horses
+                
+                <div className="ButtonSection">
+                  <div>
+                    <input
+                      type="file"
+                      onChange={onSelectFile}
+                      className="formInput"
+                    />
+                    {image && (
+                      <img src={preview} alt="" className="PreviewImage" />
+                    )}
+                  </div>
+
+                  <button type="submit" className="SubmitButton">
+                  Save & Add Horses
                   </button>
                 </div>
               </form>

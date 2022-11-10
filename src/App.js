@@ -20,7 +20,6 @@ import PostTrainer from "./pages/PostTable/PostTrainer";
 import PostHorse from "./pages/PostTable/HorseForm";
 import Trainer from "./pages/GetTable/Trainer";
 import Login from "./Components/Login";
-import Test from "./pages/GetTable/Test";
 import RaceCourse from "./pages/GetTable/RaceCourse";
 import RaceCourseForm from "./pages/PostTable/RaceCourseForm";
 import JockeyForm from "./pages/PostTable/JockeyForm";
@@ -43,7 +42,7 @@ import Color from "./pages/PostTable/Color";
 import Nationality from "./pages/PostTable/Nationality";
 import Currency from "./pages/PostTable/Currency";
 import Breeder from "./pages/PostTable/Breeder";
-import HorseData from './pages/PostTable/HorseData'
+import HorseData from './pages/PostTable/RaceForm/RaceOne'
 
 
 

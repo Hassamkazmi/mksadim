@@ -357,3 +357,22 @@ border: none !important;
   box-sizing: content-box;
   width: 687px;
 }
+.react-datetime-picker.react-datetime-picker--closed.react-datetime-picker--enabled {
+  width: 100%;
+}
+.react-datetime-picker.react-datetime-picker--open.react-datetime-picker--enabled {
+  width: 100%;
+}
+.react-datetime-picker__wrapper {
+  border: none;
+}
+.react-datetime-picker__inputGroup__input {
+  min-width: 2.54em;
+}
+
+.react-datetime-picker__inputGroup__divider{
+  display: none;
+}
+.react-datetime-picker__wrapper {
+  border: thin solid #fff !important;
+}

@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import "../../Components/CSS/forms.css";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 // import { add } from "../../redux/postReducer/PostRaceCourse";
 // import { Country_Name } from "../../Data/Country";
@@ -10,69 +10,77 @@ import swal from "sweetalert";
 import Select from "react-select";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
 
-
 const RaceCourseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  const {data: nationality} = useSelector((state) => state.nationality);
+  const { data: nationality } = useSelector((state) => state.nationality);
 
-  let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
-    return {
-      id: item._id,
-      value: item.NameEn,
-      label: item.NameEn,
-    };
-  });
+  let AllNationality =
+    nationality === undefined ? (
+      <></>
+    ) : (
+      nationality.map(function (item) {
+        return {
+          id: item._id,
+          value: item.NameEn,
+          label: item.NameEn,
+        };
+      })
+    );
   // const [TrackLength, setTrackLength] = useState("");
   // const [WeatherType, setWeatherType] = useState("");
   // const [WeatherDegree, setWeatherDegree] = useState("");
   // const [WeatherIcon, setWeatherIcon] = useState("");
-  
+
   // const [Country, setCountry] = useState("");
-  const [GroundType,setGroundType] =useState("")
-  const [TrackName, setTrackName] = useState("");
-  const [shortCode, setshortCode] = useState('');
-  const [NationalityId, setNationalityId] = useState('');
-  const [ColorCode, setColorCode] = useState('');
+  const [GroundTypeEn, setGroundTypeEn] = useState("");
+  const [GroundTypeAr, setGroundTypeAr] = useState("");
+  const [TrackNameEn, setTrackNameEn] = useState("");
+  const [TrackNameAr, setTrackNameAr] = useState("");
+  const [shortCode, setshortCode] = useState("");
+  const [NationalityId, setNationalityId] = useState("");
+  const [ColorCode, setColorCode] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
-  
 
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
       formData.append("image", image);
-      formData.append("TrackName", TrackName);
+      formData.append("TrackNameEn", TrackNameEn);
+      formData.append("TrackNameAr", TrackNameAr);
       // formData.append("TrackLength", TrackLength);
       // formData.append("WeatherType", WeatherType);
       // formData.append("WeatherDegree", WeatherDegree);
       // formData.append("WeatherIcon", WeatherIcon);
-      formData.append("GroundType" ,GroundType);
-      formData.append("ColorCode" ,ColorCode); 
-      formData.append("NationalityId" ,NationalityId.id); 
+      formData.append("GroundTypeEn", GroundTypeEn);
+      formData.append("GroundTypeAr", setGroundTypeAr);
+      formData.append("ColorCode", ColorCode);
+
+      formData.append("NationalityId", NationalityId.id);
       // formData.append("Country", Country.value);
-      formData.append("shortCode" ,shortCode)
-      const response = await axios.post(`${window.env.API_URL}/createcourse?keyword=&page=`,formData);
+      formData.append("shortCode", shortCode);
+      const response = await axios.post(
+        `${window.env.API_URL}/createcourse?keyword=&page=`,
+        formData
+      );
       swal({
         title: "success!",
-        text: 'Data Submitted !',
+        text: "Data Submitted !",
         icon: "success",
         button: "OK",
       });
       history("/racecourse");
-      
-    } 
-    catch (error) {
-      console.log(error.response.data.message,'error')
-      const err = error.response.data.message
+    } catch (error) {
+      console.log(error.response.data.message, "error");
+      const err = error.response.data.message;
       swal({
         title: "Error!",
         text: err,
         icon: "error",
         button: "OK",
       });
-      
     }
   };
 
@@ -111,9 +119,8 @@ const RaceCourseForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Track Name"
-                      onChange={(e) => setTrackName(e.target.value)}
-                      value={TrackName}
-                      
+                      onChange={(e) => setTrackNameEn(e.target.value)}
+                      value={TrackNameEn}
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -121,6 +128,8 @@ const RaceCourseForm = () => {
 
                   <div className="col-sm">
                     <input
+                      onChange={(e) => setTrackNameAr(e.target.value)}
+                      value={TrackNameAr}
                       style={{ direction: "rtl" }}
                       placeholder="اسم المسار"
                     ></input>
@@ -192,8 +201,8 @@ const RaceCourseForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Ground Type"
-                      onChange={(e) => setGroundType(e.target.value)}
-                      value={GroundType}
+                      onChange={(e) => setGroundTypeEn(e.target.value)}
+                      value={GroundTypeEn}
                       required
                     ></input>
                     <span className="spanForm"> |</span>
@@ -201,6 +210,8 @@ const RaceCourseForm = () => {
 
                   <div className="col-sm">
                     <input
+                      onChange={(e) => setGroundTypeAr(e.target.value)}
+                      value={GroundTypeAr}
                       style={{ direction: "rtl" }}
                       placeholder="نوع الأرض"
                     ></input>
@@ -284,7 +295,7 @@ const RaceCourseForm = () => {
                     />
                   </div>
                 </div> */}
-                 <div className="row mainrow">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Nationality</div>}
@@ -293,11 +304,13 @@ const RaceCourseForm = () => {
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    />
+                    <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select
+                      className="selectdir"
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           اكتب للبحث عن الجنسية
@@ -310,7 +323,7 @@ const RaceCourseForm = () => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
+                </div>
                 <div className="ButtonSection">
                   <div>
                     <input
