@@ -19,7 +19,7 @@ const TrainerForm = () => {
   const [TrainerLicenseDate,setTrainerLicenseDate] = useState('');
   const [ShortNameEn,setShortNameEn] =useState("");
   const [ShortNameAr,setShortNameAr] =useState("");
-
+  const [Age, setAge] = useState("");
   const [preview, setPreview] = useState();
   const [image, setImage] = useState();
 
@@ -31,13 +31,17 @@ const TrainerForm = () => {
       const formData = new FormData();
       formData.append("image", image);
       formData.append("NameEn", NameEn);
-      formData.append("NameAr",NameAr);   
-      formData.append("TitleEn" ,TitleEn)
-      formData.append("TitleAr", TitleAr)
-      formData.append("Detail", Detail);
-      formData.append("Remarks", Remarks);
+      formData.append("Detail",Detail);   
+      formData.append("Remarks",'2')
+      formData.append("NameAr", NameAr)
+      formData.append("DOB", DOB);
+      formData.append("Age", Age);
+      formData.append("TitleAr", TitleAr);
       formData.append("Rating", Rating);
-      formData.append("TrainerLicenseDate",TrainerLicenseDate);
+      formData.append("TitleEn",TitleEn);
+      formData.append("TrainerLicenseDate", TrainerLicenseDate);
+      formData.append("ShortNameEn", ShortNameEn);
+      formData.append("ShortNameAr", ShortNameAr);
     await axios.post(`${window.env.API_URL}/uploadtrainer?keyword=&page=`,formData);
       
       swal({
@@ -116,7 +120,6 @@ const TrainerForm = () => {
                     ></input>
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -154,14 +157,13 @@ const TrainerForm = () => {
                   <div className="col-sm">
                     <input
                       style={{ direction: "rtl" }}
-                      type="number"
+                      type="text"
                       onChange={e => setTitleAr(e.target.value)}
                       value={TitleAr}
                       placeholder="اسم المسار"
                     ></input>
                   </div>
                 </div>
-
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -182,6 +184,30 @@ const TrainerForm = () => {
                       onChange={e => setShortNameAr(e.target.value)}
                       value={ShortNameAr}
                       placeholder="اسم المسار"
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder=" Age"
+                      onChange={(e) => setAge(e.target.value)}
+                      name="Name"
+                      value={Age}
+                      type='number'
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                    onChange={(e) => setAge(e.target.value)}
+                    name="Name"
+                    type='number'
+                    value={Age}
+                    style={{ direction: "rtl" }}
+                    placeholder="اسم "
                     ></input>
                   </div>
                 </div>
@@ -246,7 +272,7 @@ const TrainerForm = () => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
-                      placeholder="Age"
+                      placeholder="Trainer License Date"
                       onChange={(e) => setTrainerLicenseDate(e.target.value)}
                       name="Name"
                       value={TrainerLicenseDate}

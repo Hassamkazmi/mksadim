@@ -24,18 +24,19 @@ const NewsForm = () => {
   const [JockeyAllowance, setJockeyAllowance] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
+
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
       formData.append("image", image);
       formData.append("NameEn", NameEn);
-
       formData.append("ShortNameEn", ShortNameEn);
       formData.append("ShortNameAr", ShortNameAr);
       formData.append("JockeyAllowance", JockeyAllowance);
       formData.append("NameAr", NameAr);
       formData.append("DOB", DOB);
+      formData.append("Remarks", Remarks);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
       formData.append("Rating", Rating);
       formData.append("JockeyLicenseDate", JockeyLicenseDate);
