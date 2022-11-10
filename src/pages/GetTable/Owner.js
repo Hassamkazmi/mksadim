@@ -9,6 +9,7 @@ import  {STATUSES}  from '../../redux/getReducer/getOwnerSlice';
 import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
 import {MdDelete} from "react-icons/md"
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 import {BiEdit} from 'react-icons/bi'
 
@@ -95,13 +96,20 @@ const Owner = () => {
                </div>
              </div>
            <>
-           <div className="div_maintb">            <table >
+           <div className="div_maintb">    
+           <ScrollContainer className="scroll-container">
+                   <table >
                <thead>
                  <tr>
                  <th>Owner Name</th>
-                  
-                
-                   
+                  <th>NameAr</th>
+                <th>Title</th>
+                <th>Title Arabic</th>
+                <th>Short Name</th>
+                <th>Short Name Arabic</th>
+                   <th>Registeration</th>
+                   <th>Nationality</th>
+                   <th>Silk Color</th>
                    <th>Image</th>
                    <th style={{textAlign: 'center'}}>Action</th>
                  </tr>
@@ -111,10 +119,15 @@ const Owner = () => {
                    return (
                      <>
                        <tr className="tr_table_class">
-                       <td>{item.Name}</td>
-                        
-                     
-                   
+                       <td>{item.NameEn}</td>
+                        <td>{item.NameAr}</td>
+                        <td>{item.TitleEn}</td>
+                        <td>{item.TitleAr}</td>
+                        <td>{item.ShortEn}</td>
+                     <td>{item.ShortAr}</td>
+                  <td>{item.RegistrationDate}</td>
+                  <td>{item.NationalityID}</td> 
+                         <td>{item.SilkColorData.NameEn === null ? <>NoData</> :<>{item.SilkColorData.NameEn}</> }</td>
                          <td>
                            <img src={item.image} alt="" />
                          </td>
@@ -134,6 +147,7 @@ const Owner = () => {
                  })}
                </tbody>
              </table>
+             </ScrollContainer>
              </div>
  
            </>

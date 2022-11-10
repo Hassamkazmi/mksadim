@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import TrainerPopup from "../../Components/Popup/TrainerPopup";
 import {BsFillEyeFill} from 'react-icons/bs';
+import ScrollContainer from "react-indiana-drag-scroll";
 
 import swal from 'sweetalert';
 
@@ -115,11 +116,23 @@ const handlePageClick = async (data) => {
 
           <>
           <div className="div_maintb">
+          <ScrollContainer className="scroll-container">
             <table >
               <thead>
                 <tr>              
                 <th>Name</th>
+                <th>Name Arabic</th>
                 <th>Age</th>
+                <th>Title</th>
+                <th>Title Arabic</th>
+                <th>Date Of Birth</th>
+                <th>Licence Date</th>
+                <th>Short Name</th>
+                <th>Short Name Arabic </th>
+                <th>Rating</th>
+            
+               
+                  <th>Remarks</th>
                   <th>Detail</th>
                                    <th>Image</th>
                
@@ -136,8 +149,18 @@ const handlePageClick = async (data) => {
                       <tr className="tr_table_class">
         
                     
-                        <td>{item.Name}</td>
+                        <td>{item.NameEn}</td>
+                        <td>{item.NameAr}</td>
                         <td>{item.Age}</td>
+                        <td>{item.TitleEn}</td>
+                        <td>{item.TitleAr}</td>
+                       <td>{item.DOB} </td>
+                       <td>{item.TrainerLicenseDate}</td>
+                       <td>{item.ShortNameEn}</td>
+                       <td>{item.ShortNameAr} </td>
+                       
+                       <td>{item.Rating}</td>
+                       <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}  >{item.Remarks}</td>
                         <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Detail}</td>
                         <td>
                           <img src={item.image} alt="" />
@@ -157,6 +180,7 @@ const handlePageClick = async (data) => {
                 })}
               </tbody>
             </table>
+            </ScrollContainer>
             </div>
           </>
         </div>

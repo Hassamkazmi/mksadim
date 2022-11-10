@@ -120,12 +120,19 @@ const Horse = () => {
               
                       <tr>
                         <th>Name</th>
+                        <th>Name Ar</th>
+
                         <th>Age</th>
+                        <th>Owner</th>
                         <th>Sex</th>
                         <th>Color</th>
                         <th>KindOfHorse</th>
                         <th>Owner</th>
                         <th>Breeder</th>
+                 <th>Active Owner</th>
+                 <th>Active Jockey </th>
+                 <th>Horse Rating </th>
+                 
                         <th>Dam</th>
                         <th>Sire</th>
                         <th>GSire</th>
@@ -134,19 +141,21 @@ const Horse = () => {
                         <th>Actions</th>
                       </tr>
                     </thead>
-                    {
-                      horse === undefined ? <></> : <>
-                      {horse.map((item) => {
+
+                    {horse.map((item) => {
                       return (
                         <>
                           <tbody>
                             <tr>
                               <td>{item.NameEn}</td>
+                              <td>{item.NameAr}</td>
                               <td>{item.Age}</td>
+                              <td>{item.Owner}</td>
                               <td>{item.Sex}</td>
                               <td>{item.Color}</td>
                               <td>{item.KindOfHorse}</td>
                               <td>{item.KindOfHorse}</td>
+                              <td>{item.Breeder} </td>
                               {/* {item.Owner.map((data) => (
                                 <td>{data.Name}</td>
                               ))} */}
@@ -178,8 +187,6 @@ const Horse = () => {
                         </>
                       );
                     })}
-                      </>
-                    }
                   </table>
                 </ScrollContainer>
               </div>

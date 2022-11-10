@@ -64,13 +64,6 @@ const RaceForm = () => {
   const [RaceStatus, setRaceStatus] = useState("");
   const [RaceCourse, setRaceCourse] = useState("");
   const [Horses, setHorses] = useState("");
-  const [selectedOption1, setSelectedOption1] = useState("");
-  const [selectedOption2, setSelectedOption2] = useState("");
-  const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedOption4, setSelectedOption4] = useState("");
-  const [selectedOption5, setSelectedOption5] = useState("");
-  const [selectedOption6, setSelectedOption6] = useState("");
-
 
   // const addTodo = id => {
   //   const newTodos = [...todos, { id }];
@@ -94,12 +87,12 @@ const RaceForm = () => {
       formData.append("Weather", Weather);
       formData.append("RaceStatus", RaceStatus);
       formData.append("RaceCourse", RaceCourse);
-      formData.append("Horses", selectedOption1.id);
-      formData.append("Horses", selectedOption2.id);
-      formData.append("Horses", selectedOption3.id);
-      formData.append("Horses", selectedOption4.id);
-      formData.append("Horses", selectedOption5.id);
-      formData.append("Horses", selectedOption6.id);
+      // formData.append("Horses", selectedOption1.id);
+      // formData.append("Horses", selectedOption2.id);
+      // formData.append("Horses", selectedOption3.id);
+      // formData.append("Horses", selectedOption4.id);
+      // formData.append("Horses", selectedOption5.id);
+      // formData.append("Horses", selectedOption6.id);
       dispatch(add(formData));
       history("/races");
       swal({

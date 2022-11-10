@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { BiEdit } from 'react-icons/bi'
 import { Modal } from "react-bootstrap";
 import RacecoursePopup from '../../Components/Popup/RacecoursePopup'
+import ScrollContainer from "react-indiana-drag-scroll";
 
 
 const Racecourse = () => {
@@ -113,15 +114,18 @@ const Racecourse = () => {
             </div>
 
             <div class="div_maintb">
+              <ScrollContainer>
               <table striped bordered hover>
                 <thead>
                   <tr>
                     <th>TrackName</th>
+<th>Ground Type</th>
+                  
 
-                    <th>TrackLength</th>
-
-
-                    <th>Country</th>
+<th>Nationality Id</th>
+<th>Color Code</th>
+<th>Short Code</th>
+                
                     <th>Image</th>
 
 
@@ -135,8 +139,12 @@ const Racecourse = () => {
                         <tr className="tr_table_class">
 
                           <td>{item.TrackName}</td>
-                          <td>{item.TrackLength}</td>
-                          <td>{item.Country}</td>
+                          <td>{item.GroundType}</td>
+                       
+                          <td>{item.NationalityId}</td>
+                          <td>{item.ColorCode}</td>
+                          <td>{item.shortCode} </td>
+                     
                           <td>
 
                             <img src={item.image} alt="" />
@@ -162,7 +170,7 @@ const Racecourse = () => {
                   })}
                 </tbody>
               </table>
-
+              </ScrollContainer>  
             </div>
 
           </div>

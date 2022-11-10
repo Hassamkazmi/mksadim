@@ -12,6 +12,7 @@ import swal from 'sweetalert';
 import JockeyPopup from "../../Components/Popup/JockeyPopup";
 import { Modal } from "react-bootstrap";
 import {BsFillEyeFill} from 'react-icons/bs'
+import ScrollContainer from "react-indiana-drag-scroll";
 
 
 
@@ -108,11 +109,21 @@ const Statistic = () => {
             </div>
             <>
               <div className="div_maintb">
+                <ScrollContainer >
                 <table>
                   <thead>
                     <tr>
-                      <th>JockeyName</th>
-                      <th>Age</th>
+                      <th>Jockey Name</th>
+                      <th>Name Arabic </th>
+                      <th>Short Name </th>
+                      <th>Short Name Arabic</th>
+                      <th>Date Of Birth</th>
+                      <th>Rating</th>
+                      <th>License Date </th>
+                      <th>Remarks</th>
+                      <th>Min Weight</th>
+                      <th>Max Weight</th>
+                    
                       <th>Image</th>
                       <th>Action</th>
                     </tr>
@@ -122,10 +133,16 @@ const Statistic = () => {
                       return (
                         <>
                           <tr className="tr_table_class">
-                            <td>{item.Name}</td>
-
-                            <td>{item.Age}</td>
-
+                            <td>{item.NameEn}</td>
+                            <td>{item.NameAr}</td>
+<td>{item.ShortNameEn}</td>
+<td>{item.ShortNameAr}</td>
+<td>{item.DOB} </td>
+<td>{item.Rating} </td>
+<td>{item.JockeyLicenseDate} </td>
+<td>{item.Remarks}</td>
+                            <td>{item.MiniumumJockeyWeight}</td>
+<td>{item.MaximumJockeyWeight}</td>
                             <td>
                               <img src={item.image} alt="" />
                             </td>
@@ -143,7 +160,9 @@ const Statistic = () => {
                       );
                     })}
                   </tbody>
+
                 </table>
+                </ScrollContainer>
               </div>
             </>
           </div>
