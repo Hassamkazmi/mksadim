@@ -120,14 +120,13 @@ const Horse = () => {
               
                       <tr>
                         <th>Name</th>
-                        <th>Name Ar</th>
+                        <th>Name Arabic</th>
                         <th>Age</th>
                         
                         <th>Sex</th>
                         <th>Remarks</th>
                         <th>Color</th>
-                        <th>KindOfHorse</th>
-                       
+                        <td>KindOfHorse</td>
                         <th>Breeder</th>
 
                  <th>Active Owner</th>
@@ -144,7 +143,7 @@ const Horse = () => {
                         <th>Cap</th>
                         <th>Rds</th>
                         <th>  Color</th>
-                        
+                   
                          <th>Image</th>
                         <th>Actions</th>
                       </tr>
@@ -169,7 +168,7 @@ const Horse = () => {
                             <td>{item.Rds} </td>
                               <td>{item.ColorIDData.NameEn}</td>
                               <td>{item.KindOfHorse}</td>
-                         
+                         <td>{item.PurchasePrice}</td>
 
                               {/* {item.Owner.map((data) => (
                                 <td>{data.Name}</td>

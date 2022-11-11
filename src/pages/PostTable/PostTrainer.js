@@ -307,7 +307,7 @@ const TrainerForm = () => {
                     disabled={isSubmitData}
                     className="SubmitButton"
                   >
-                    Add Race Course
+                    Add Trainer
                   </button>
                 </div>
               </form>

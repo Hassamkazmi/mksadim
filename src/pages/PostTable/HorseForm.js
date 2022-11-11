@@ -305,7 +305,7 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       placeholder="Foal"
-                      type="text"
+                      type="number"
                       onChange={(e) => setFoal(e.target.value)}
                       value={Foal}
                     ></input><span className="spanForm"> |</span>
@@ -315,7 +315,7 @@ const onSelectFile = e => {
                     <input
                       placeholder="تقييم الحصان"
                       style={{ direction: "rtl" }}
-                      type="text"
+                      type="number"
                     ></input>
                   </div>
                 </div>
@@ -418,7 +418,7 @@ const onSelectFile = e => {
                       onChange={(e) => setPurchasePrice(e.target.value)}
                       name="Name"
                       value={PurchasePrice}
-                      text='number'
+                      type='number'
                       required
                     ></input><span className="spanForm"> |</span>
                   </div>
@@ -426,9 +426,9 @@ const onSelectFile = e => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="اسم "
-                      onChange={(e) => setPurchasePrice(e.target.value)}
+                   type='number'
                       name="Name"
-                      value={PurchasePrice}
+                   
                     ></input>
                   </div>
                 </div>
