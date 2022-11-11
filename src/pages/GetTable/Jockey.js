@@ -121,6 +121,7 @@ const Statistic = () => {
                       <th>Rating</th>
                       <th>License Date </th>
                       <th>Remarks</th>
+                      <th>Remarks Arabic </th>
                       <th>Min Weight</th>
                       <th>Max Weight</th>
                     
@@ -140,7 +141,8 @@ const Statistic = () => {
 <td>{item.DOB} </td>
 <td>{item.Rating} </td>
 <td>{item.JockeyLicenseDate} </td>
-<td>{item.Remarks}</td>
+<td>{item.RemarksEn}</td>
+<td>{item.RemarksAr} </td>
                             <td>{item.MiniumumJockeyWeight}</td>
 <td>{item.MaximumJockeyWeight}</td>
                             <td>

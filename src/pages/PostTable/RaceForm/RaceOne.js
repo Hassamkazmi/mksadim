@@ -1,91 +1,99 @@
 import React, { useEffect } from "react";
-import { add } from "../../../redux/postReducer/postRace";
 import Moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchTrainer } from "../../../redux/getReducer/getTrainerSlice";
 import { fetchjockey } from "../../../redux/getReducer/getJockeySlice";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchHorse, setHorse } from "../../../redux/getReducer/getHorseSlice";
-import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
+import { fetchHorse } from "../../../redux/getReducer/getHorseSlice";
 import Select from "react-select";
 import swal from "sweetalert";
 import { AiOutlinePlus } from "react-icons/ai";
-
+import axios from "axios";
 
 const RaceForm = () => {
-  const { data: racecourse } = useSelector((state) => state.racecourse);
+  const { data: jockey } = useSelector((state) => state.jockey);
   const { data: horse } = useSelector((state) => state.horse);
+
+
   const history = useNavigate();
-  const [data, setData] = useState(true);
+  const { state } = useLocation();
+
+  const { RaceId } = state;
 
   let horseoptions = horse.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
       label: item.NameEn,
-      jockeyvalue:
-        item.JockeyData === undefined ? (
-          <>N/A</>
-        ) : (
-          item.JockeyData.map((item) => item.Name)
-        ),
+    };
+  });
+  let jockeyoptions = jockey.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+      weight: item.MaximumJockeyWeight
     };
   });
 
+
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [selectedOption1, setSelectedOption1] = useState("");
   const [selectedOption2, setSelectedOption2] = useState("");
-  const [selectedOption3, setSelectedOption3] = useState("");
-  const [selectedOption4, setSelectedOption4] = useState("");
-  const [selectedOption5, setSelectedOption5] = useState("");
-  const [selectedOption6, setSelectedOption6] = useState("");
+
+  const HorseEntry = [`1,${selectedOption1.id},${selectedOption2.id},${selectedOption2.weight}`];
 
   useEffect(() => {
     dispatch(fetchHorse());
-    dispatch(fetchracecourse());
+    dispatch(fetchjockey());
   }, [dispatch]);
 
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("Horses", selectedOption1.id);
-      formData.append("Horses", selectedOption2.id);
-      formData.append("Horses", selectedOption3.id);
-      formData.append("Horses", selectedOption4.id);
-      formData.append("Horses", selectedOption5.id);
-      formData.append("Horses", selectedOption6.id);
-      dispatch(add(formData));
+      formData.append("HorseEntry", HorseEntry);
+      formData.append("HorseEntry", HorseEntry);
+      formData.append("HorseEntry", HorseEntry);
+      console.log(formData);
+      const response = await axios.post(`${window.env.API_URL}addracehorses/${RaceId}`, formData);
+      const response1 = await axios.put(`${window.env.API_URL}/publishrace/${RaceId}`);
+
       history("/races");
       swal({
-        title: "Success!",
+        title: "Success",
         text: "Data has been added successfully ",
         icon: "success",
         button: "OK",
       });
     } catch (error) {
-      alert(error.message);
+      const err = error.response.data.message;
+      swal({
+        title: "Error!",
+        text: err,
+        icon: "error",
+        button: "OK",
+      });
     }
   };
-  let racecourses = racecourse.map(function (item) {
-    return {
-      id: item._id,
-      value: item.TrackName,
-      label: item.TrackName,
-    };
-  });
-  console.log(racecourses);
-  const formatDate = Moment().format("YYYY-MM-DD");
+  const [items, setitems] = useState('');
 
-  console.log(formatDate);
+  const addItem = () => {
+    const formData = new FormData();
+    formData.append("HorseEntry", HorseEntry);
+    formData.append("HorseEntry", HorseEntry);
+    formData.append("HorseEntry", HorseEntry);
+    setitems(items, formData);
+    console.log(formData, 'MyData');
+  };
+  console.log(selectedOption2.weight, '33224');
   return (
     <>
       <div className="page">
         <div className="rightsidedata">
+          <h3>Data :{items}</h3>
           <div
             style={{
               marginTop: "30px",
@@ -99,6 +107,7 @@ const RaceForm = () => {
                 <span>Gate #</span>
                 <span>Horse Name</span>
                 <span>Jockey Name</span>
+                <span>Jockey Weight</span>
               </div>
             </div>
             <div className="myselectdata">
@@ -111,114 +120,24 @@ const RaceForm = () => {
                     options={horseoptions}
                     isClearable={true}
                     isSearchable={true}
+                    name="color"
+                    
                   />
                 </span>
-                <span>
-                  {selectedOption1 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption1.jockeyvalue[0]}</p>
-                  )}
-                </span>
-              </div>
-              <div className="myselectiondata">
-                <span>#2</span>
                 <span>
                   <Select
                     defaultValue={selectedOption2}
                     onChange={setSelectedOption2}
-                    options={horseoptions}
+                    options={jockeyoptions}
                     isClearable={true}
                     isSearchable={true}
                   />
                 </span>
-                <span>
-                  {selectedOption2 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption2.jockeyvalue[0]}</p>
-                  )}
-                </span>
+                <span>{selectedOption2.weight === undefined ? <></> : <>{selectedOption2.weight} KG</>} </span>
               </div>
-              <div className="myselectiondata">
-                <span>#3</span>
-                <span>
-                  <Select
-                    defaultValue={selectedOption3}
-                    onChange={setSelectedOption3}
-                    options={horseoptions}
-                    isClearable={true}
-                    isSearchable={true}
-                  />
-                </span>
-                <span>
-                  {selectedOption3 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption3.jockeyvalue[0]}</p>
-                  )}
-                </span>
-              </div>
-              <div className="myselectiondata">
-                <span>#4</span>
-                <span>
-                  <Select
-                    defaultValue={selectedOption4}
-                    onChange={setSelectedOption4}
-                    options={horseoptions}
-                    isClearable={true}
-                    isSearchable={true}
-                  />
-                </span>
-                <span>
-                  {selectedOption4 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption4.jockeyvalue[0]}</p>
-                  )}
-                </span>
-              </div>
-              <div className="myselectiondata">
-                <span>#5</span>
-                <span>
-                  <Select
-                    defaultValue={selectedOption5}
-                    onChange={setSelectedOption5}
-                    options={horseoptions}
-                    isClearable={true}
-                    isSearchable={true}
-                  />
-                </span>
-                <span>
-                  {selectedOption5 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption5.jockeyvalue[0]}</p>
-                  )}
-                </span>
-              </div>
-              <div className="myselectiondata">
-                <span>#6</span>
-                <span>
-                  <Select
-                    defaultValue={selectedOption6}
-                    onChange={setSelectedOption6}
-                    options={horseoptions}
-                    isClearable={true}
-                    isSearchable={true}
-                  />
-                </span>
-                <span>
-                  {selectedOption6 === "" ? (
-                    <p>N/A</p>
-                  ) : (
-                    <p>{selectedOption6.jockeyvalue[0]}</p>
-                  )}
-                </span>
-              </div>
+
               <div className="addbtn">
-                <button className="AddAnother">
-                  {" "}
+                <button className="AddAnother" onClick={addItem}>
                   <AiOutlinePlus /> Add Another{" "}
                 </button>
               </div>

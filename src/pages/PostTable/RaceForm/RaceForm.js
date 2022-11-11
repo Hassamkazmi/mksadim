@@ -102,22 +102,17 @@ const RaceForm = () => {
       formData.append("TrackLength", TrackLength);
       formData.append("ActiveJockeyForTheRace", ActiveJockeyForTheRace.id);
       formData.append("image", image);
-      await axios.post(`${window.env.API_URL}/createrace`, formData);
+      const response = await axios.post(`${window.env.API_URL}/createrace`, formData);
       swal({
         title: "success!",
         text: "Data Submitted !",
         icon: "success",
         button: "OK",
       });
+      const RaceId = response.data.data._id
       history("/publishrace", {
         state: {
-          RaceKind: RaceKind,
-          RaceNameEn: RaceNameEn,
-          DescriptionEn: DescriptionEn,
-          DayNTime,
-          DayNTime,
-          WeatherType: WeatherType,
-          RaceStatus: RaceStatus,
+          RaceId: RaceId
         },
       });
     } catch (error) {
@@ -236,6 +231,7 @@ const RaceForm = () => {
                       name="Name"
                       value={WeatherDegree}
                       required
+                      type='number'
                     ></input>
                     <span className="spanForm"> |</span>
                   </div>
@@ -247,6 +243,7 @@ const RaceForm = () => {
                       onChange={(e) => setWeatherDegree(e.target.value)}
                       name="Name"
                       value={WeatherDegree}
+                      type='number'
                       required
                       
                     ></input>
@@ -284,7 +281,7 @@ const RaceForm = () => {
                       name="Name"
                       value={TrackLength}
                       required
-                      text='number'
+                      type='number'
                     ></input>
                     <span className="spanForm"> |</span>
                   </div>
@@ -296,7 +293,7 @@ const RaceForm = () => {
                       onChange={(e) => setTrackLength(e.target.value)}
                       name="Name"
                       value={TrackLength}
-                      text='number'
+                      type='number'
                       required
                       
                     ></input>
@@ -421,82 +418,6 @@ const RaceForm = () => {
                     />
                   </div>
                 </div>
-                {/* <div className="row  mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="1st Prize"
-                      type="number"
-                      name="Name"
-                      required
-                    ></input>
-                    <span className="spanForm"> |</span>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="الجائزة الأولى"
-                      name="Name"
-                    ></input>
-                  </div>
-                </div>
-                <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="2nd Prize"
-                      type="number"
-                      name="Name"
-                      required
-                    ></input>
-                    <span className="spanForm"> |</span>{" "}
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="الجائزة الثانية"
-                      name="Name"
-                    ></input>
-                  </div>
-                </div>
-                <div className="row  mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="3rd Prize"
-                      type="number"
-                      name="Name"
-                      required
-                    ></input>
-                    <span className="spanForm"> |</span>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="الجائزة الثالثة "
-                      name="Name"
-                    ></input>
-                  </div>
-                </div>
-                <div className="row  mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="4th Prize"
-                      type="number"
-                      name="Name"
-                      required
-                    ></input>{" "}
-                    <span className="spanForm"> |</span>
-                  </div>
-
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="الجائزة الرابعة"
-                      name="Name"
-                    ></input>
-                  </div>
-                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
                     <DateTimePicker
@@ -506,10 +427,8 @@ const RaceForm = () => {
                       dayPlaceholder="&"
                       yearPlaceholder="Time"
                     />
-
                     <span className="spanForm"> |</span>
                   </div>
-
                   <div className="col-sm">
                   <DateTimePicker
                       onChange={setDayNTime}
@@ -521,7 +440,6 @@ const RaceForm = () => {
                     />
                   </div>
                 </div>
-                
                 <div className="ButtonSection">
                   <div>
                     <input

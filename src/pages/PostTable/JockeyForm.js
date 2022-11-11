@@ -15,11 +15,13 @@ const NewsForm = () => {
   const [NameAr, setNameAr] = useState("");
   const [ShortNameEn, setShortNameEn] = useState("");
   const [ShortNameAr, setShortNameAr] = useState("");
-  const [Remarks, setRemarks] = useState("");
+  const [RemarksEn, setRemarksEn] = useState("");
+  const [RemarksAr, setRemarksAr] = useState("");
   const [DOB, setDOB] = useState("");
   const [JockeyLicenseDate, setJockeyLicenseDate] = useState("");
   const [Rating, setRating] = useState("");
   const [MiniumumJockeyWeight, setMiniumumJockeyWeight] = useState("");
+  const [MaximumJockeyWeight, setMaximumJockeyWeight] = useState("");
   const [JockeyAllowance, setJockeyAllowance] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -35,9 +37,10 @@ const NewsForm = () => {
       formData.append("JockeyAllowance", JockeyAllowance);
       formData.append("NameAr", NameAr);
       formData.append("DOB", DOB);
-      formData.append("Remarks", Remarks);
+      formData.append("RemarksEn", RemarksEn);
+      formData.append("RemarksAr", RemarksAr);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
-      formData.append("MaximumJockeyWeight", '2');
+      formData.append("MaximumJockeyWeight", MaximumJockeyWeight);
       formData.append("Rating", Rating);
       formData.append("JockeyLicenseDate", JockeyLicenseDate);
 
@@ -140,9 +143,9 @@ const NewsForm = () => {
                   <div className="col-sm">
                     <input
                       placeholder="Remarks "
-                      onChange={(e) => setRemarks(e.target.value)}
+                      onChange={(e) => setRemarksEn(e.target.value)}
                       name="Name"
-                      value={Remarks}
+                      value={RemarksEn}
                       required
                       type="text"
                     ></input>
@@ -152,6 +155,10 @@ const NewsForm = () => {
                   <div className="col-sm">
                     <input
                       style={{ direction: "rtl" }}
+                      onChange={(e) => setRemarksAr(e.target.value)}
+                      name="Name"
+                      value={RemarksAr}
+                      required
                       type="text"
                       placeholder="اسم قصير"
                     ></input>
@@ -243,6 +250,28 @@ const NewsForm = () => {
                   </div>
                 </div>
 
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      type="number"
+                      onChange={(e) => setMaximumJockeyWeight(e.target.value)}
+                      value={MaximumJockeyWeight}
+                      placeholder="Jockey Maximum Weight"
+                    />
+
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      type="number"
+                      style={{ direction: "rtl" }}
+                      placeholder="الحد الأدنى لوزن الجوكي"
+                      onChange={(e) => setMaximumJockeyWeight(e.target.value)}
+                      value={MaximumJockeyWeight}
+                    />
+                  </div>
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input

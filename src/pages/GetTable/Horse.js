@@ -121,14 +121,15 @@ const Horse = () => {
                       <tr>
                         <th>Name</th>
                         <th>Name Ar</th>
-
                         <th>Age</th>
-                        <th>Owner</th>
+                        
                         <th>Sex</th>
+                        <th>Remarks</th>
                         <th>Color</th>
                         <th>KindOfHorse</th>
-                        <th>Owner</th>
+                       
                         <th>Breeder</th>
+
                  <th>Active Owner</th>
                  <th>Active Jockey </th>
                  <th>Horse Rating </th>
@@ -137,6 +138,13 @@ const Horse = () => {
                         <th>Sire</th>
                         <th>GSire</th>
                         <th>Remarks</th>
+                        <th>Over All Rating</th>
+                        <th>Purchase Price</th>
+                        <th>Winning Amount</th>
+                        <th>Cap</th>
+                        <th>Rds</th>
+                        <th>  Color</th>
+                        
                          <th>Image</th>
                         <th>Actions</th>
                       </tr>
@@ -150,12 +158,19 @@ const Horse = () => {
                               <td>{item.NameEn}</td>
                               <td>{item.NameAr}</td>
                               <td>{item.Age}</td>
-                              <td>{item.Owner}</td>
+                            
                               <td>{item.Sex}</td>
-                              <td>{item.Color}</td>
+                            <td>{item.Remarks}</td>
+                            <td>{item.OverAllRating} </td>
+                            <td>{item.PurchasePrice}</td>
+                            <td>{item.WinningAmount}</td>
+                            <td>{item.Cap} </td>
+                            <td>{item.STARS} </td>
+                            <td>{item.Rds} </td>
+                              <td>{item.ColorIDData.NameEn}</td>
                               <td>{item.KindOfHorse}</td>
-                              <td>{item.KindOfHorse}</td>
-                              <td>{item.Breeder} </td>
+                         
+
                               {/* {item.Owner.map((data) => (
                                 <td>{data.Name}</td>
                               ))} */}

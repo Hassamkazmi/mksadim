@@ -113,18 +113,22 @@ const Races = () => {
                     marginTop:'30px'
                   }}>
                     <tr className="trtabletd">
-                      <th>Race Name</th>
+                    <th>Race Name</th>
+                      <th>Race Name Arabic </th>
+                      <th>Race Kind </th>
+                      <th>Track Length</th>
+                      <th>Description </th>
+                      <th>Description Arabic</th>
+                      <th>Race Status</th>
+                        <th>Day and Time</th>
                       <th>Racecource</th>
-                      <th>Description</th>
-                      <th>Sponsor Logo</th>
                       <th>Race Type</th>
-                      <th>Race Kind</th>
-                      <th>Weather</th>
-                      <th>Prize</th>
-                      <th>Day & Time</th>
-                      <th>Ground</th>
-                      {/* <th># of Horse</th> */}
-                      <th>Status</th>
+                      <th>Weather Type </th>
+                      <th>Weather Degree </th>
+                      <th> Weather Icon</th> 
+                    
+                 
+                     
                       <th >Action</th>
                       
                     </tr>
@@ -144,10 +148,10 @@ const Races = () => {
                     <td style={{
                       "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`,
                       "color": `${RaceStatus === "Cancel" ? '#ffff': RaceStatus === "End" ? '#00000' : RaceStatus === "Live" ? '#00000': '#000000'}`
-                      }} >{item.raceName}</td>
+                      }} >{item.RaceNameEn}</td>
                     <td>{item.RaceCourseData === null ? <>N/A</> : item.RaceCourseData.TrackName}</td>
                     <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.Description}</td>
-                    <td>{item.raceName}</td>
+                    <td>{item.RaceNameEn}</td>
                     <td>{item.raceName}</td>
             
                    
@@ -157,12 +161,15 @@ const Races = () => {
                     <td>{item.raceName}</td>
                     <td>{item.DayNTime}</td>
                     <td>{item.raceName}</td>
+                    <td>{item.raceName}</td>
+                    <td>{item.raceName}</td>
+                    
                     {/* <td>{item.Horses.length}</td> */}
                     <td>{item.RaceStatus}</td>
                     <td> 
                       
                     <MdDelete onClick={()=> handleRemove(item._id)}/>
-              </td>
+                   </td>
                     
                   </tr>
                        </tbody>
