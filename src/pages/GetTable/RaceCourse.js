@@ -50,7 +50,9 @@ const Racecourse = () => {
   };
 
   if (status === STATUSES.LOADING) {
-    return <h2 className="loader"></h2>;
+    return <h2 className="loader">
+      
+    </h2>;
   }
 
   if (status === STATUSES.ERROR) {

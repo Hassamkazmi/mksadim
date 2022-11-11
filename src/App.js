@@ -43,6 +43,12 @@ import Nationality from "./pages/PostTable/Nationality";
 import Currency from "./pages/PostTable/Currency";
 import Breeder from "./pages/PostTable/Breeder";
 import HorseData from './pages/PostTable/RaceForm/RaceOne'
+import NationalityTable from "./pages/GetTable/NationalityTable";
+import ColorTable from "./pages/GetTable/ColorTable";
+import BreederTable from "./pages/GetTable/BreederTable";
+import CurrencyTable from "./pages/GetTable/CurrencyTable";
+import Gender from "./pages/PostTable/Gender";
+import GenderTable from "./pages/GetTable/GenderTable";
 
 
 
@@ -85,6 +91,12 @@ function App() {
                 <Route path="/sliderform" element={<SliderForm />} />
                 <Route path="/result" element={<Result/>}/>
                 <Route path="/color" element={<Color/>}/>
+                <Route path="/Nationalitylist"element={<NationalityTable/>} />
+                <Route path="/colorlist"element={<ColorTable/>} />
+                <Route path="/breederlist"element={<BreederTable/>} />
+                <Route path="/currencylist"element={<CurrencyTable/>} />
+                <Route path='/gender' element={<Gender/>} />
+                <Route path='/genderlist' element={<GenderTable/>} />
                 <Route path="/nationality" element={<Nationality/>}/>
                 <Route path="/currency" element={<Currency/>}/>
                 <Route path="/breeder" element={<Breeder/>}/>
@@ -94,7 +106,7 @@ function App() {
                 <Route path="/editowner/:id" element={<EditOwner/>}/>
                 <Route path="/editslider/:id" element={<EditSlider/>}/>
                 <Route path="/editsponsor/:id" element={<EditSponsor/>}/>
-                
+             
               </Route>
             </Routes>
             </div>

@@ -3,42 +3,41 @@ import swal from 'sweetalert';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Color = () => {
-  const [NameEn, setNameEn] = useState("");
-  const [NameAr, setNameAr] = useState("");
-  const [shortCode,setshortCode]= useState("") 
-const history = useNavigate()
-
-
-
-
-  const submit = async (event) => {
-    event.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append("NameEn", NameEn);
-      formData.append("NameAr" , NameAr)
-      formData.append("shortCode",shortCode);
-
-      await axios.post(`${window.env.API_URL}/uploadColor`, formData)
-      history('/colorlist')
-      swal({
-        title: "Success!",
-        text: "Data has been added successfully ",
-        icon: "success",
-        button: "OK",
-      });
-      
-    } catch (error) {
-      const err = error.message;
-      swal({
-        title: "Error!",
-        text: err,
-        icon: "error",
-        button: "OK",
-      });
-    }
-  };
+const Gender = () => {
+    const [NameEn, setNameEn] = useState("");
+    const [NameAr, setNameAr] = useState("");
+    const [shortCode,setshortCode]= useState("") 
+  
+  const history =useNavigate()
+  
+  
+  
+    const submit = async (event) => {
+      event.preventDefault();
+      try {
+        const formData = new FormData();
+        formData.append("NameEn", NameEn);
+        formData.append("NameAr" , NameAr)
+        formData.append("shortCode",shortCode);
+  
+        await axios.post(`${window.env.API_URL}/uploadSex`, formData)
+        swal({
+          title: "Success!",
+          text: "Data has been added successfully ",
+          icon: "success",
+          button: "OK",
+        });
+        history('/genderlist')
+      } catch (error) {
+        const err = error.message;
+        swal({
+          title: "Error!",
+          text: err,
+          icon: "error",
+          button: "OK",
+        });
+      }
+    };
   return (
     <div className="page">
    
@@ -48,7 +47,7 @@ const history = useNavigate()
           marginTop: "30px",
         }}
       >
-        <div className="Headers">Create Color</div>
+        <div className="Headers">Create Gender</div>
         <div className="form">
           
           <form onSubmit={submit}>
@@ -98,7 +97,7 @@ const history = useNavigate()
             <div className='ButtonSection ' style={{justifyContent:"end"}}>
      
 
-              <button type='submit' className='SubmitButton'>Add Color</button>
+              <button type='submit' className='SubmitButton'>Add Gender</button>
 
             </div>
           </form>
@@ -109,4 +108,4 @@ const history = useNavigate()
   )
 }
 
-export default Color
+export default Gender

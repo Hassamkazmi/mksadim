@@ -102,12 +102,25 @@ const Sidebar = () => {
     
   </Accordion.Item >
 <Accordion.Item eventKey="12">
-  <Accordion.Header>Features</Accordion.Header>
+  <Accordion.Header>Create Features </Accordion.Header>
     <Accordion.Body className='AccordionBody'>
     <div><Link to='/color' className='mylink'>Add Color</Link></div>
    <div> <Link to='/currency' className='mylink'>Add Currency</Link></div>
    <div> <Link to='/breeder' className='mylink'>Add Breeder</Link></div>
    <div> <Link to='/nationality' className='mylink'>Add Nationality</Link></div>
+   <div> <Link to='/gender' className='mylink'>Add Gender</Link></div>
+  
+    </Accordion.Body>
+    </Accordion.Item>
+
+    <Accordion.Item eventKey="13">
+  <Accordion.Header>Features Listing</Accordion.Header>
+    <Accordion.Body className='AccordionBody'>
+    <div><Link to='/colorlist' className='mylink'>Color List</Link></div>
+   <div> <Link to='/currencylist' className='mylink'>Currency List</Link></div>
+   <div> <Link to='/breederlist' className='mylink'>Breeder List</Link></div>
+   <div> <Link to='/nationalitylist' className='mylink'>Nationality List</Link></div>
+   <div> <Link to='/genderlist' className='mylink'>Gender List</Link></div>
  
   
     </Accordion.Body>

@@ -1,6 +1,7 @@
 import React, { useState ,useEffect} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Nationality = () => {
   const [NameEn, setNameEn] = useState("");
@@ -14,6 +15,7 @@ const [Value , setValue] =useState("");
 const [image, setImage] = useState();
 const [preview,setPreview] = useState()
 
+const history = useNavigate()
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -28,6 +30,7 @@ const [preview,setPreview] = useState()
       formData.append("Value" ,Value);
       formData.append("image" ,image);
       await axios.post(`${window.env.API_URL}/uploadNationality`,formData);
+    history("/nationalitlist")
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -242,7 +245,7 @@ const onSelectFile = e => {
               <input type='file' onChange={onSelectFile} className="formInput"/>
             {image &&  <img src={preview}  className="PreviewImage" alt=""/> }
         </div>
-                <button type='submit' className='SubmitButton'>Add Currency</button>
+                <button type='submit' className='SubmitButton'>Add Nationality</button>
 
               </div>
             </form>
@@ -253,4 +256,4 @@ const onSelectFile = e => {
   )
 }
 
-export default Nationality
+export default Nationality;

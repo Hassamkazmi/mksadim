@@ -28,6 +28,7 @@ import getColor from './getReducer/getColor';
 import getNationality from './getReducer/getNationality';
 import getBreeder from './getReducer/getBreeder';
 import getCurrency from './getReducer/getCurrency';
+import getGenderSlice from './getReducer/getGenderSlice';
 
 const store = configureStore({
     reducer: {
@@ -60,6 +61,7 @@ const store = configureStore({
         nationality: getNationality,
         breeder: getBreeder,
         currency: getCurrency,
+        gender:getGenderSlice,
     },
 });
 

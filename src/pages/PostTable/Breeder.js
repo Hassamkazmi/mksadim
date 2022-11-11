@@ -1,6 +1,7 @@
 import React,{useState ,useEffect} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Breeder = () => {
   const [NameEn, setNameEn] = useState("");
@@ -10,6 +11,7 @@ const Breeder = () => {
   const [DescriptionEn, setDescriptionEn] = useState("");
   const [image, setImage] = useState()
   const [preview, setPreview] = useState();
+const history = useNavigate()
 
   const submit = async (event) => {
 
@@ -25,6 +27,8 @@ const Breeder = () => {
       formData.append("image", image);
 
       await axios.post(`${window.env.API_URL}/uploadBreeder`, formData)
+
+      history('/breederlist')
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -143,15 +147,10 @@ const Breeder = () => {
                   </div>
 
                   <button type="submit" className="SubmitButton">
-                    Add Jockey
+                    Add Breeder
                   </button>
                 </div>
-            <div className='ButtonSection' style={{justifyContent:"end"}}>
-         
-
-              <button type='submit' className='SubmitButton'>Add Breeder</button>
-
-            </div>
+            
           </form>
         </div>
       </div>

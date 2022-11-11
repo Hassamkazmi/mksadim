@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Currency = () => {
   const [NameEn, setNameEn] = useState("");
@@ -8,7 +9,7 @@ const Currency = () => {
 const [shortCode,setshortCode]= useState("");
 const [Rate,setRate]= useState("");
 
-
+const history = useNavigate()
 
   const submit = async (event) => {
 
@@ -21,6 +22,7 @@ const [Rate,setRate]= useState("");
       formData.append("shortCode",shortCode);
       formData.append("Rate",Rate)
       await axios.post(`${window.env.API_URL}/CreateCurrency`,formData);
+history('/currencylist')
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -94,13 +96,13 @@ const [Rate,setRate]= useState("");
                
                   onChange={(e) => setRate(e.target.value)}
                   value={Rate}
-                  type="text"
+                  type="number"
                 ></input><span className="spanForm"> |</span>
               </div>
 
               <div className="col-sm">
                 <input
-                 type="text"
+                 type="number"
                  placeholder="معدل"  style={{ direction: "rtl" }} 
                   name="Detail"
          
