@@ -146,6 +146,7 @@ const HorseForm = () => {
       // formData.append("HorseRating", HorseRating);
       // formData.append("Jockey", Jockey.id);
       // formData.append("Trainer", Trainer.id);
+      formData.append("Trainer", ActiveTrainer.id);
       formData.append("ActiveTrainer", ActiveTrainer.id);
       formData.append("Sex", Sex.value);
       formData.append("Breeder", Breeder.id);
@@ -305,7 +306,7 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input
                       placeholder="Foal"
-                      type="number"
+                      type="text"
                       onChange={(e) => setFoal(e.target.value)}
                       value={Foal}
                     ></input><span className="spanForm"> |</span>
@@ -315,7 +316,7 @@ const onSelectFile = e => {
                     <input
                       placeholder="تقييم الحصان"
                       style={{ direction: "rtl" }}
-                      type="number"
+                      type="text"
                     ></input>
                   </div>
                 </div>
@@ -418,7 +419,7 @@ const onSelectFile = e => {
                       onChange={(e) => setPurchasePrice(e.target.value)}
                       name="Name"
                       value={PurchasePrice}
-                      type='number'
+                      text='number'
                       required
                     ></input><span className="spanForm"> |</span>
                   </div>
@@ -426,9 +427,9 @@ const onSelectFile = e => {
                     <input
                       style={{ direction: "rtl" }}
                       placeholder="اسم "
-                   type='number'
+                      onChange={(e) => setPurchasePrice(e.target.value)}
                       name="Name"
-                   
+                      value={PurchasePrice}
                     ></input>
                   </div>
                 </div>
@@ -762,6 +763,33 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Type to search trainer</div>}
+                      defaultValue={ActiveTrainer}
+                      onChange={setActiveTrainer}
+                      options={traineroption}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select         className='selectdir'
+                      placeholder={
+                        <div style={{ direction: "rtl" }}>
+                          اكتب للبحث عن المدرب النشط
+                        </div>
+                      }
+                      defaultValue={ActiveTrainer}
+                      onChange={setActiveTrainer}
+                      options={traineroption}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
                 {/* <div className="row mainrow">
                   <div className="col-sm " >
                     <Select
@@ -825,9 +853,9 @@ const onSelectFile = e => {
 
                 <div className="ButtonSection">
               <div>
-                <input type='file' onChange={onSelectFile} className="formInput"/>
-            {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
-            </div>
+                  <input type='file' onChange={onSelectFile} className="formInput"/>
+                  {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
+                  </div>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
                   </button>

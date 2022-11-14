@@ -1,31 +1,24 @@
-import React, { useEffect,useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import { fetchjockey, STATUSES } from "../../redux/getReducer/getJockeySlice";
 import { useDispatch, useSelector } from "react-redux";
-
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostJockey";
 import { Link, useNavigate } from "react-router-dom";
-
 import { BiEdit } from "react-icons/bi";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import JockeyPopup from "../../Components/Popup/JockeyPopup";
 import { Modal } from "react-bootstrap";
-import {BsFillEyeFill} from 'react-icons/bs'
+import { BsFillEyeFill } from "react-icons/bs";
 import ScrollContainer from "react-indiana-drag-scroll";
-
-
-
+import Moment from "react-moment";
 
 const Statistic = () => {
-
-
   const [show, setShow] = useState(false);
-  const [modaldata, setmodaldata] = useState()
+  const [modaldata, setmodaldata] = useState();
   const handleClose = () => setShow(false);
   const handleShow = async (data) => {
-      setmodaldata(data)
-      await setShow(true)
+    setmodaldata(data);
+    await setShow(true);
   };
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -40,8 +33,7 @@ const Statistic = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-    .then((willDelete) => {
+    }).then((willDelete) => {
       if (willDelete) {
         swal("Poof! Your imaginary file has been deleted!", {
           icon: "success",
@@ -56,15 +48,11 @@ const Statistic = () => {
     history("/jockey");
   };
 
-  
   if (status === STATUSES.LOADING) {
     return (
-        <h2
-        className="loader"
-        >
-          <div class="inner">
-    </div>
-        </h2>
+      <h2 className="loader">
+        <div class="inner"></div>
+      </h2>
     );
   }
 
@@ -109,61 +97,71 @@ const Statistic = () => {
             </div>
             <>
               <div className="div_maintb">
-                <ScrollContainer >
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Jockey Name</th>
-                      <th>Name Arabic </th>
-                      <th>Short Name </th>
-                      <th>Short Name Arabic</th>
-                      <th>Date Of Birth</th>
-                      <th>Rating</th>
-                      <th>License Date </th>
-                      <th>Remarks</th>
-                      <th>Remarks Arabic </th>
-                      <th>Min Weight</th>
-                      <th>Max Weight</th>
-                    
-                      <th>Image</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {jockey.map((item, index) => {
-                      return (
-                        <>
-                          <tr className="tr_table_class">
-                            <td>{item.NameEn}</td>
-                            <td>{item.NameAr}</td>
-<td>{item.ShortNameEn}</td>
-<td>{item.ShortNameAr}</td>
-<td>{item.DOB} </td>
-<td>{item.Rating} </td>
-<td>{item.JockeyLicenseDate} </td>
-<td>{item.RemarksEn}</td>
-<td>{item.RemarksAr} </td>
-                            <td>{item.MiniumumJockeyWeight}</td>
-<td>{item.MaximumJockeyWeight}</td>
-                            <td>
-                              <img src={item.image} alt="" />
-                            </td>
+                <ScrollContainer>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Jockey Name</th>
+                        <th>Name Arabic </th>
+                        <th>Short Name </th>
+                        <th>Short Name Arabic</th>
+                        <th>Date Of Birth</th>
+                        <th>Rating</th>
+                        <th>License Date </th>
+                        <th>Remarks</th>
+                        <th>Remarks Arabic </th>
+                        <th>Min Weight</th>
+                        <th>Max Weight</th>
 
-                            <td className="table_delete_btn1">
-                       <Link to={`/editjockey/${item._id}`}> <BiEdit /></Link> 
-                              <MdDelete
-                                
-                                onClick={() => handleRemove(item._id)}
-                              />
-                         
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </tbody>
+                        <th>Image</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {jockey.map((item, index) => {
+                        return (
+                          <>
+                            <tr className="tr_table_class">
+                              <td>{item.NameEn}</td>
+                              <td>{item.NameAr}</td>
+                              <td>{item.ShortNameEn}</td>
+                              <td>{item.ShortNameAr}</td>
+                              <td>
+                                {" "}
+                                <Moment fromNow ago>
+                                  {item.DOB}
+                                </Moment>
+                              </td>
+                              <td>{item.Rating} </td>
 
-                </table>
+                              <td>
+                                <Moment format="YYYY/MM/DD">
+                                  {item.JockeyLicenseDate}
+                                </Moment>{" "}
+                              </td>
+                              <td>{item.RemarksEn}</td>
+                              <td>{item.RemarksAr} </td>
+                              <td>{item.MiniumumJockeyWeight} KG</td>
+                              <td>{item.MaximumJockeyWeight} KG</td>
+                              <td>
+                                <img src={item.image} alt="" />
+                              </td>
+
+                              <td className="table_delete_btn1">
+                                <Link to={`/editjockey/${item._id}`}>
+                                  {" "}
+                                  <BiEdit />
+                                </Link>
+                                <MdDelete
+                                  onClick={() => handleRemove(item._id)}
+                                />
+                              </td>
+                            </tr>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </ScrollContainer>
               </div>
             </>
@@ -171,21 +169,25 @@ const Statistic = () => {
           <span className="plusIconStyle"></span>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}   size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered>
-                <Modal.Header closeButton>
-                    <h2>Jockey </h2>
-                </Modal.Header>
-                <Modal.Body>
-                <JockeyPopup data={modaldata} />
-                </Modal.Body>
-                <Modal.Footer>
-
-                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
-                </Modal.Footer>
-            </Modal>
-      
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <h2>Jockey </h2>
+        </Modal.Header>
+        <Modal.Body>
+          <JockeyPopup data={modaldata} />
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={handleClose} className="modalClosebtn">
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

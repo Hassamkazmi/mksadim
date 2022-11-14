@@ -81,6 +81,23 @@ const NewsForm = () => {
     console.log(image, "image");
   };
   const ref = useRef();
+
+  const convert = (num) => {
+
+    var date = new Date(num);
+    var months = ["يناير", "فبراير", "مارس", "إبريل", "مايو", "يونيو",
+      "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+    ];
+    var days = ["اﻷحد", "اﻷثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
+    var delDateString = days[date.getDay()] + ', ' + date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear();
+
+    console.log(delDateString);
+
+  
+
+    return delDateString;
+  };
+
   return (
     <>
       <div className="page">
@@ -179,7 +196,12 @@ const NewsForm = () => {
                   </div>
 
                   <div className="col-sm">
-                    <input type="text" placeholder="Date Of Birth" />
+                    <input type="text"
+                     placeholder="Date Of Birth" 
+                     onChange={setDOB}
+                     value={convert(DOB)}
+                     style={{ direction: "rtl" }}
+                     />
                   </div>
                 </div>
 
@@ -199,10 +221,9 @@ const NewsForm = () => {
                   <div className="col-sm">
                     <input
                       type="text"
-                      ref={ref}
-                      onChange={(e) => console.log(e.target.value)}
-                      onFocus={() => (ref.current.type = "date")}
-                      onBlur={() => (ref.current.type = "text")}
+                      onChange={setJockeyLicenseDate}
+                      value={convert(JockeyLicenseDate)}
+                      style={{ direction: "rtl" }}
                       placeholder="Jockey Licence Date"
                     />
                   </div>

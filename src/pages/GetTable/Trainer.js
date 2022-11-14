@@ -9,6 +9,7 @@ import { Modal } from "react-bootstrap";
 import TrainerPopup from "../../Components/Popup/TrainerPopup";
 import {BsFillEyeFill} from 'react-icons/bs';
 import ScrollContainer from "react-indiana-drag-scroll";
+import Moment from 'react-moment';
 
 import swal from 'sweetalert';
 
@@ -58,7 +59,7 @@ const Trainer = () => {
       setItems(trainer);
   }, []);
   
-const handlePageClick = async (data) => {
+    const handlePageClick = async (data) => {
     console.log(data.selected);
 
     let currentPage = data.selected + 1;
@@ -83,6 +84,12 @@ const handlePageClick = async (data) => {
       </h2>
     );
   }
+  const dob = new Date().toLocaleString()
+  const age =' 2022-11-14T00:00:00.000Z'
+  console.log(trainer,'trainer data');
+  console.log(dob,'age data')
+
+
   return (
    <>
 
@@ -154,8 +161,9 @@ const handlePageClick = async (data) => {
                         <td>{item.Age}</td>
                         <td>{item.TitleEn}</td>
                         <td>{item.TitleAr}</td>
-                       <td>{item.DOB} </td>
-                       <td>{item.TrainerLicenseDate}</td>
+                        <td> <Moment fromNow ago>{item.DOB}</Moment></td>
+                       {/* <td>{item.DOB} </td> */}
+                       <td> <Moment format="YYYY/MM/DD">{item.TrainerLicenseDate}</Moment></td>  
                        <td>{item.ShortNameEn}</td>
                        <td>{item.ShortNameAr} </td>
                        

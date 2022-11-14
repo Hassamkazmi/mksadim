@@ -120,30 +120,24 @@ const Horse = () => {
               
                       <tr>
                         <th>Name</th>
-                        <th>Name Arabic</th>
+                        <th>Name Ar</th>
                         <th>Age</th>
-                        
                         <th>Sex</th>
-                        <th>Remarks</th>
                         <th>Color</th>
-                        <td>KindOfHorse</td>
-                        <th>Breeder</th>
-
-                 <th>Active Owner</th>
-                 <th>Active Jockey </th>
-                 <th>Horse Rating </th>
-                 
-                        <th>Dam</th>
-                        <th>Sire</th>
-                        <th>GSire</th>
-                        <th>Remarks</th>
-                        <th>Over All Rating</th>
                         <th>Purchase Price</th>
+                        <th>Breeder</th>
+                        <th>Active Owner</th>
+                        <th>Over All Rating</th>
+                        {/* <th>Dam</th>
+                        <th>Sire</th>
+                        <th>GSire</th> */}
+                        <th>Remarks</th>
                         <th>Winning Amount</th>
-                        <th>Cap</th>
                         <th>Rds</th>
-                        <th>  Color</th>
-                   
+                        <th>Cap</th>
+                       
+                        
+                        
                          <th>Image</th>
                         <th>Actions</th>
                       </tr>
@@ -159,32 +153,35 @@ const Horse = () => {
                               <td>{item.Age}</td>
                             
                               <td>{item.Sex}</td>
-                            <td>{item.Remarks}</td>
-                            <td>{item.OverAllRating} </td>
+                            
+                            <td>{item.ColorIDData.NameEn} </td>
+                            {/* <td>{item.KindOfHorse === '' ? <>N/A</>: item.KindOfHorse}</td> */}
                             <td>{item.PurchasePrice}</td>
-                            <td>{item.WinningAmount}</td>
-                            <td>{item.Cap} </td>
-                            <td>{item.STARS} </td>
-                            <td>{item.Rds} </td>
-                              <td>{item.ColorIDData.NameEn}</td>
-                              <td>{item.KindOfHorse}</td>
-                         <td>{item.PurchasePrice}</td>
-
-                              {/* {item.Owner.map((data) => (
-                                <td>{data.Name}</td>
-                              ))} */}
-
-                              <td>
-                                {item.Breeder === null ? (
+                            <td>
+                                {item.BreederData === null ? (
                                   <>No Data</>
                                 ) : (
-                                  <>{item.Breeder}</>
+                                  <>{item.BreederData.NameEn}</>
                                 )}
                               </td>
-                              <td>{item.Dam}</td>
-                              <td>{item.Sire}</td>
-                              <td>{item.GSire}</td>
+                              <td>
+                                {item.OwnerModels === undefined ? (
+                                  <>No Data</>
+                                ) : (
+                                  <>{item.OwnerModels.map((data) => data.NameEn)}</>
+                                )}
+                              </td>
+                            <td>{item.OverAllRating}</td>
+                          
+                          
+                            
+                              {/* <td>{item.DamData.NameEn === undefined ? <>N/A</>: <> {item.DamData.NameEn}</>}</td> */}
+                              {/* <td>{item.SireData.NameEn}</td>
+                              <td>{item.GSireData.NameEn}</td> */}
                               <td>{item.Remarks}</td>
+                              <td>{item.WinningAmount}</td>
+                              <td>{item.Rds}</td>
+                              <td>{item.Cap}</td>
                               <td>
                                 <img src={item.HorseImage} alt="" style={{
                                   width:'30px',height:'30px'

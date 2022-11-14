@@ -10,6 +10,7 @@ import OwnerPopup from '../../Components/Popup/OwnerPopup';
 import { Modal } from 'react-bootstrap';
 import {MdDelete} from "react-icons/md"
 import ScrollContainer from 'react-indiana-drag-scroll';
+import Moment from "react-moment";
 
 import {BiEdit} from 'react-icons/bi'
 
@@ -124,9 +125,12 @@ const Owner = () => {
                         <td>{item.TitleEn}</td>
                         <td>{item.TitleAr}</td>
                         <td>{item.ShortEn}</td>
-                     <td>{item.ShortAr}</td>
-                  <td>{item.RegistrationDate}</td>
-                  <td>{item.NationalityID}</td> 
+                      <td>{item.ShortAr}</td>
+                      <td>   <Moment format="YYYY/MM/DD">
+                      {item.RegistrationDate}
+                             </Moment></td>
+                    
+                      <td>{item.NationalityID}</td> 
                          <td>{item.SilkColorData.NameEn === null ? <>NoData</> :<>{item.SilkColorData.NameEn}</> }</td>
                          <td>
                            <img src={item.image} alt="" />

@@ -1,30 +1,28 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchrace, STATUSES } from "../../redux/getReducer/getRaceSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { remove } from "../../redux/postReducer/postRace";
 import { Link } from "react-router-dom";
 import "../../Components/CSS/Table.css";
 import ScrollContainer from "react-indiana-drag-scroll";
-import '../../Components/CSS/race.css'
-import {BsFillEyeFill} from "react-icons/bs"
+import "../../Components/CSS/race.css";
+import { BsFillEyeFill } from "react-icons/bs";
 import { Modal } from "react-bootstrap";
 import RacePopup from "../../Components/Popup/RacePopup";
-import {MdDelete} from 'react-icons/md'
+import { MdDelete } from "react-icons/md";
 import swal from "sweetalert";
-
+import Moment from "react-moment";
 
 const Races = () => {
-
   const [show, setShow] = useState(false);
-  const [modaldata, setmodaldata] = useState()
+  const [modaldata, setmodaldata] = useState();
   const handleClose = () => setShow(false);
   const handleShow = async (data) => {
-    setmodaldata(data)
-    await setShow(true)
-};
+    setmodaldata(data);
+    await setShow(true);
+  };
   const dispatch = useDispatch();
 
-  
   const { data: race, status } = useSelector((state) => state.race);
   const handleRemove = async (Id) => {
     swal({
@@ -33,31 +31,23 @@ const Races = () => {
       icon: "warning",
       buttons: true,
       dangerMode: true,
-    })
-      .then((willDelete) => {
-        if (willDelete) {
-          swal("Poof! Your imaginary file has been deleted!", {
-            icon: "success",
-          });
-          dispatch(remove(Id));
-        } else {
-          swal("Your Data is safe!");
-        }
-      });
-
- 
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Poof! Your imaginary file has been deleted!", {
+          icon: "success",
+        });
+        dispatch(remove(Id));
+      } else {
+        swal("Your Data is safe!");
+      }
+    });
   };
   useEffect(() => {
     dispatch(fetchrace());
   }, []);
-  console.log(race,'race')
+  console.log(race, "race");
   if (status === STATUSES.LOADING) {
-    return (
-      <h2
-      className="loader"
-      >
-      </h2>
-    );
+    return <h2 className="loader"></h2>;
   }
 
   if (status === STATUSES.ERROR) {
@@ -71,13 +61,10 @@ const Races = () => {
       </h2>
     );
   }
-  
 
   return (
     <>
- 
       <div className="page">
-  
         <div className="rightsidedata">
           <div
             style={{
@@ -105,103 +92,156 @@ const Races = () => {
             </div>
 
             <div class="div_maintb">
-            <ScrollContainer className="scroll-container">
-              
+              <ScrollContainer className="scroll-container">
                 <table className="Sc">
-             
-                  <thead style={{
-                    marginTop:'30px'
-                  }}>
+                  <thead
+                    style={{
+                      marginTop: "30px",
+                    }}
+                  >
                     <tr className="trtabletd">
-                    <th>Race Name</th>
+                      <th>Race Name</th>
                       <th>Race Name Arabic </th>
                       <th>Race Kind </th>
                       <th>Racecource</th>
                       <th>Description </th>
                       <th>Description Arabic</th>
                       <th>Track Length </th>
-<th>Weather in Degree </th>
-<th>Weather Type </th>
+                      <th>Weather in Degree </th>
+                      <th>Weather Type </th>
+                      <th>Day and Time</th>
                       <th>Race Type</th>
-                        <th>Day and Time</th>
-                      
-                      <th>Race Type</th>
-                 <th>image </th>
-                    
-                 
-                     
-                      <th >Action</th>
-                      
+                      <th>image </th>
+                      <th>Action</th>
                     </tr>
                   </thead>
-                  {
-                    race === undefined ? <h3 style={{
-                      textAlign:'center'
-                    }}>No Data</h3> : <>
-                    {
-                    race.map((item) => {
-                      const {RaceStatus} = item;
-                      return(
-                       <tbody  key={item._id}  style={{
-                        marginTop:'20px'
-                       }}>
-                        <tr>
-                    <td style={{
-                      "backgroundColor": `${RaceStatus === "Cancel" ? '#000000': RaceStatus === "End" ? '#FF0000' : RaceStatus === "Live" ? '#5EC30F': '#FF9900'}`,
-                      "color": `${RaceStatus === "Cancel" ? '#ffff': RaceStatus === "End" ? '#00000' : RaceStatus === "Live" ? '#00000': '#000000'}`
-                      }} >{item.RaceNameEn}</td>
-                      <td>{item.RaceNameAr} </td>
-                      <td>{item.RaceKind} </td>
-                    <td>{item.RaceCourseData === null ? <>N/A</> : item.RaceCourseData.TrackName}</td>
-                    <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.DescriptionEn}</td>
-                    <td style={{maxWidth: '400px',  overflow: 'hidden',textOverflow: "ellipsis", whiteSpace: "nowrap"    }}>{item.DescriptionAr}</td>
-                    <td>{item.RaceCourseData === null ? <>N/A</> : item.RaceCourseData.TrackLength}</td>
-                    
-                    <td>{item.WeatherDegree}</td>
-                    <td>{item.WeatherType}</td>
-                    <td>{item.RaceType}</td>
-            
-                   
+                  {race === undefined ? (
+                    <h3
+                      style={{
+                        textAlign: "center",
+                      }}
+                    >
+                      No Data
+                    </h3>
+                  ) : (
+                    <>
+                      {race.map((item) => {
+                        const { RaceStatus } = item;
+                        return (
+                          <tbody
+                            key={item._id}
+                            style={{
+                              marginTop: "20px",
+                            }}
+                          >
+                            <tr>
+                              <td
+                                style={{
+                                  backgroundColor: `${
+                                    RaceStatus === "Cancel"
+                                      ? "#000000"
+                                      : RaceStatus === "End"
+                                      ? "#FF0000"
+                                      : RaceStatus === "Live"
+                                      ? "#5EC30F"
+                                      : "#FF9900"
+                                  }`,
+                                  color: `${
+                                    RaceStatus === "Cancel"
+                                      ? "#ffff"
+                                      : RaceStatus === "End"
+                                      ? "#00000"
+                                      : RaceStatus === "Live"
+                                      ? "#00000"
+                                      : "#000000"
+                                  }`,
+                                }}
+                              >
+                                {item.RaceNameEn}
+                              </td>
+                              <td>{item.RaceNameAr} </td>
+                              <td>{item.RaceKind} </td>
+                              <td>
+                                {item.RaceCourseData === null ? (
+                                  <>N/A</>
+                                ) : (
+                                  item.RaceCourseData.TrackNameEn
 
-                    
-                    
-                    {/* <td>{item.Horses.length}</td> */}
-                    <td>{item.RaceStatus}</td>
-                    <td> <img src={item.image} alt=''/> </td>
-                    <td> 
-                      
-                    <MdDelete onClick={()=> handleRemove(item._id)}/>
-                   </td>
-                    
-                  </tr>
-                       </tbody>
-                      )
-                    })
-                  }</>
-                  }
-                  
-                  
+                                )}
+                              </td>
+                              <td
+                                style={{
+                                  maxWidth: "400px",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
+                                {item.DescriptionEn}
+                              </td>
+                              <td
+                                style={{
+                                  maxWidth: "400px",
+                                  overflow: "hidden",
+                                  textOverflow: "ellipsis",
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
+                                {item.DescriptionAr}
+                              </td>
+                              <td>
+                                {item.TrackLength}
+                              </td>
+
+                              <td>{item.WeatherDegree}</td>
+                              <td>{item.WeatherType}</td>
+                              <td> <Moment parse="YYYY-MM-DD HH:mm">
+                              {item.DayNTime}
+                             </Moment></td>
+                              {/* <td>{item.Horses.length}</td> */}
+                              <td>{item.RaceStatus}</td>
+                              <td>
+                                {" "}
+                                <img src={item.image} alt=""  style={{
+                                  width:"50px"
+                                }}/>{" "}
+                              </td>
+                              <td>
+                                <MdDelete
+                                  onClick={() => handleRemove(item._id)}
+                                />
+                              </td>
+                            </tr>
+                          </tbody>
+                        );
+                      })}
+                    </>
+                  )}
                 </table>
-                </ScrollContainer> 
-             
+              </ScrollContainer>
             </div>
           </div>
         </div>
       </div>
-      <Modal show={show} onHide={handleClose}   size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered>
-                <Modal.Header closeButton>
-                    <h2>Race Course </h2>
-                </Modal.Header>
-                <Modal.Body>
-                <RacePopup data={modaldata} />
-                </Modal.Body>
-                <Modal.Footer>
-
-                <button onClick={handleClose}  className='modalClosebtn'>Close</button>
-                </Modal.Footer>
-            </Modal>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <h2>Race Course </h2>
+        </Modal.Header>
+        <Modal.Body>
+          <RacePopup data={modaldata} />
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={handleClose} className="modalClosebtn">
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

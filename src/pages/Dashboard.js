@@ -48,7 +48,7 @@ console.log(race)
        <div className='DashboardCard'>
         <div className='OngoingRaces'>
           <p>Ongoing Races </p>
-          {/* <h3>{race.length}</h3> */}
+          <h3>{race.length}</h3>
         </div>
         <div className='ResultAwaited'>
         <p>Result Awaited</p>

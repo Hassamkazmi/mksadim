@@ -189,7 +189,7 @@ const TrainerForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row mainrow">
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder=" Age"
@@ -212,7 +212,7 @@ const TrainerForm = () => {
                     placeholder="اسم "
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
