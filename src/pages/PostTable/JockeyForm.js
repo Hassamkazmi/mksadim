@@ -5,12 +5,18 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { add } from "../../redux/postReducer/PostJockey";
-
+import { fetchnationality } from "../../redux/getReducer/getNationality";
 import swal from "sweetalert";
+import { useSelector } from "react-redux";
+import Select from "react-select";
 
 const NewsForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+
+  const {data: nationality} = useSelector((state) => state.nationality);
+
+
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState("");
   const [ShortNameEn, setShortNameEn] = useState("");
@@ -24,6 +30,7 @@ const NewsForm = () => {
   const [MaximumJockeyWeight, setMaximumJockeyWeight] = useState("");
   const [JockeyAllowance, setJockeyAllowance] = useState("");
   const [image, setImage] = useState();
+  const [NationalityId, setNationalityId] = useState("");
   const [preview, setPreview] = useState();
 
   const submit = async (event) => {
@@ -65,6 +72,7 @@ const NewsForm = () => {
 
   const areAllFieldsFilled = image !== undefined && DOB !== "";
   useEffect(() => {
+    dispatch(fetchnationality());
     if (!image) {
       setPreview(undefined);
       return;
@@ -74,7 +82,7 @@ const NewsForm = () => {
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [image]);
+  }, [image,dispatch]);
 
   const onSelectFile = (e) => {
     setImage(e.target.files[0]);
@@ -97,7 +105,13 @@ const NewsForm = () => {
 
     return delDateString;
   };
-
+  let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
   return (
     <>
       <div className="page">
@@ -293,6 +307,30 @@ const NewsForm = () => {
                     />
                   </div>
                 </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Select Nationality</div>}
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد جيلتي</div>}
+                      className='selectdir'
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input

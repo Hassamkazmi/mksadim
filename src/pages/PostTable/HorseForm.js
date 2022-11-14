@@ -10,9 +10,11 @@ import { fetchHorse } from "../../redux/getReducer/getHorseSlice";
 import { fetchcolor } from "../../redux/getReducer/getColor";
 import { fetchbreeder } from "../../redux/getReducer/getBreeder";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
-
+import DatePicker from "react-date-picker";
+import Moment from "react-moment";
 import swal from "sweetalert";
 import axios from "axios";
+import Rating from "react-rating";
 
 const Gender = [
   { id: "1", value: "Male", label: "Male" },
@@ -22,6 +24,19 @@ const Gender = [
 const Gelted = [
   { id: "0", value: "false", label: "false" },
   { id: "1", value: "true", label: "true" },
+];
+
+const Foals = [
+  { id: "0", value: "1", label: "1" },
+  { id: "1", value: "2", label: "2" },
+  { id: "2", value: "3", label: "3" },
+  { id: "3", value: "4", label: "4" },
+  { id: "4", value: "5", label: "5" },
+  { id: "5", value: "6", label: "6" },
+  { id: "6", value: "7", label: "7" },
+  { id: "7", value: "8", label: "8" },
+  { id: "8", value: "9", label: "9" },
+  { id: "9", value: "10", label: "10" },
 ];
 
 const HorseForm = () => {
@@ -124,7 +139,7 @@ const HorseForm = () => {
   const [image, setimage] = useState();
   const [Foal, setFoal] = useState("");
   const [Cap, setCap] = useState("");
-  const [STARS, setSTARS] = useState("");
+  const [STARS, setSTARS] = useState(0);
   const [isGelted, setisGelted] = useState(false);
   const [NationalityId, setNationalityId] = useState("");
   const [PurchasePrice, setPurchasePrice] = useState("");
@@ -225,6 +240,22 @@ const onSelectFile = e => {
   // OverAllRating === "" ||
   image === null ||
   image === undefined
+
+  const convert = (num) => {
+
+    var date = new Date(num);
+    var months = ["يناير", "فبراير", "مارس", "إبريل", "مايو", "يونيو",
+      "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+    ];
+    var days = ["اﻷحد", "اﻷثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
+    var delDateString = days[date.getDay()] + ', ' + date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear();
+
+    console.log(delDateString);
+
+  
+
+    return delDateString;
+  };
   return (
     <Fragment>
  
@@ -261,6 +292,28 @@ const onSelectFile = e => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
+                    <DatePicker
+                      onChange={setAge}
+                      value={Age}
+                      dayPlaceholder="  "
+                      monthPlaceholder="Date Of Birth"
+                      yearPlaceholder=""
+                    />
+
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input type="text"
+                     placeholder="Date Of Birth" 
+                     onChange={setAge}
+                     value={convert(Age)}
+                     style={{ direction: "rtl" }}
+                     />
+                  </div>
+                </div>
+                {/* <div className="row mainrow">
+                  <div className="col-sm">
                     <input
                       placeholder="Age"
                       onChange={(e) => setAge(e.target.value)}
@@ -282,9 +335,9 @@ const onSelectFile = e => {
                       required
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 
-                <div className="row mainrow">
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Winning Amount"
@@ -301,26 +354,35 @@ const onSelectFile = e => {
                       type="number"
                     ></input>
                   </div>
-                </div>
-                <div className="row mainrow">
+                </div> */}
+                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Foal"
-                      type="text"
-                      onChange={(e) => setFoal(e.target.value)}
+                    <Select
+                      placeholder={<div>Select Foal</div>}
+                      defaultValue={Foal}
                       value={Foal}
-                    ></input><span className="spanForm"> |</span>
+                      onChange={setFoal}
+                      options={Foals}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
                   </div>
-
                   <div className="col-sm">
-                    <input
+                    <Select
+                      required
                       placeholder="تقييم الحصان"
-                      style={{ direction: "rtl" }}
-                      type="text"
-                    ></input>
+                      className='selectdir'
+                      defaultValue={Foal}
+                      value={Foal}
+                      onChange={setFoal}
+                      options={Foals}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
-                </div>
-                <div className="row mainrow">
+                </div> 
+                
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Over All Rating"
@@ -337,7 +399,7 @@ const onSelectFile = e => {
                       type="number"
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -356,60 +418,42 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div>
-                <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder=" Horse Kind"
-                      onChange={(e) => setKindOfHorse(e.target.value)}
-                      value={KindOfHorse}
-                    ></input><span className="spanForm"> |</span>
-                  </div>
 
+                
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="نوع الحصان"
-                      style={{ direction: "rtl" }}
-                    ></input>
+                    <Select
+                      placeholder={<div>Select Horse Kind</div>}
+                      defaultValue={KindOfHorse}
+                      onChange={setKindOfHorse}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد جيلتي</div>}
+                      className='selectdir'
+                      defaultValue={KindOfHorse}
+                      onChange={setKindOfHorse}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
                 </div>
                 <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Enter Cap"
-                      onChange={(e) => setCap(e.target.value)}
-                      name="Name"
-                      value={Cap}
-                      required
-                    ></input><span className="spanForm"> |</span>
+                  <div className="starstyle">
+                    <p>Rating</p>
+                  <div>
+                  <Rating
+                    
+                    initialRating={STARS}
+                    onClick={rate => setSTARS(rate)}
+                  />
                   </div>
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="اسم "
-                      onChange={(e) => setCap(e.target.value)}
-                      name="Name"
-                      value={Cap}
-                    ></input>
-                  </div>
-                </div>
-                <div className="row mainrow">
-                  <div className="col-sm">
-                    <input
-                      placeholder="Enter STARS"
-                      onChange={(e) => setSTARS(e.target.value)}
-                      name="Name"
-                      value={STARS}
-                      required
-                    ></input><span className="spanForm"> |</span>
-                  </div>
-                  <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="اسم "
-                      onChange={(e) => setSTARS(e.target.value)}
-                      name="Name"
-                      value={STARS}
-                    ></input>
                   </div>
                 </div>
                 <div className="row mainrow">
@@ -435,29 +479,32 @@ const onSelectFile = e => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Enter Rds"
-                      onChange={(e) => setRds(e.target.value)}
-                      name="Name"
-                      value={Rds}
-                      text='texr'
-                      required
-                    ></input><span className="spanForm"> |</span>
+                    <Select
+                      placeholder={<div>Select Rds</div>}
+                      defaultValue={Rds}
+                      onChange={setRds}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
                   </div>
                   <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="اسم "
-                      onChange={(e) => setRds(e.target.value)}
-                      name="Name"
-                      value={Rds}
-                    ></input>
+                    <Select
+                      required
+                      placeholder={<div>حدد جيلتي</div>}
+                      className='selectdir'
+                      defaultValue={Rds}
+                      onChange={setRds}
+                      options={Gelted}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
-                </div>
+                </div> 
+                
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                    
                       placeholder={<div>Select Breeder</div>}
                       defaultValue={Breeder}
                       onChange={setBreeder}

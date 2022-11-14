@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
+import { fetchSponsor } from '../../../redux/getReducer/getSponsorSlice'
 import Select from "react-select";
 import swal from "sweetalert";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -34,6 +35,7 @@ const GroundTypes = [
 const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: jockey } = useSelector((state) => state.jockey);
+  const { data: sponsor } = useSelector((state) => state.sponsor);
 
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -53,6 +55,23 @@ const RaceForm = () => {
     };
   });
 
+  let SponsorForTheRace = sponsor === undefined ? <></> : sponsor.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TitleEn,
+      label: item.TitleEn,
+    };
+  });
+
+  let SponsorForTheRaceAr = sponsor === undefined ? <></> : sponsor.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TitleAr,
+      label: item.TitleAr,
+    };
+  });
+
+  console.log(SponsorForTheRace,'SponsorForTheRace')
   const [RaceNameEn, setRaceNameEn] = useState("");
   const [RaceNameAr, setRaceNameAr] = useState("");
   const [RaceKind, setRaceKind] = useState("");
@@ -74,6 +93,7 @@ const RaceForm = () => {
   useEffect(() => {
     dispatch(fetchracecourse());
     dispatch(fetchjockey());
+    dispatch(fetchSponsor());
     if (!image) {
       setPreview(undefined);
       return;
@@ -154,6 +174,52 @@ const RaceForm = () => {
             <div className="Headers">Add Race</div>
             <div className="form">
               <form onSubmit={submit}>
+              <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Meeting Type</div>}
+                      defaultValue={WeatherType}
+                      onChange={setWeatherType}
+                      options={WeatherTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />{" "}
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>طقس</div>}
+                      className="selectdir"
+                      options={WeatherTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Meeting Code</div>}
+                      defaultValue={WeatherType}
+                      onChange={setWeatherType}
+                      options={WeatherTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />{" "}
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>طقس</div>}
+                      className="selectdir"
+                      options={WeatherTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
                 <div className="row  mainrow">
                   <div className="col-sm">
                     <input
@@ -273,7 +339,59 @@ const RaceForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row  mainrow">
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Select Track Length</div>}
+                      defaultValue={TrackLength}
+                      onChange={setTrackLength}
+                      options={GroundTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      className="selectdir"
+                      placeholder={
+                        <div style={{ direction: "rtl" }}>
+                          اكتب للبحث عن الجنسية
+                        </div>
+                      }
+                      defaultValue={TrackLength}
+                      onChange={setTrackLength}
+                      options={GroundTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Ground type</div>}
+                      defaultValue={WeatherType}
+                      onChange={setWeatherType}
+                      options={GroundTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />{" "}
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>طقس</div>}
+                      className="selectdir"
+                      options={GroundTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                {/* <div className="row  mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Track Length"
@@ -298,7 +416,7 @@ const RaceForm = () => {
                       
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -420,6 +538,51 @@ const RaceForm = () => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
+                    <Select
+                      placeholder={<div>Sponsor Image</div>}
+                      defaultValue={RaceKind}
+                      onChange={setRaceKind}
+                      options={SponsorForTheRace}
+                      isClearable={true}
+                      isSearchable={true}
+                    />{" "}
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>نوع السباق</div>}
+                      defaultValue={RaceKind}
+                      onChange={setRaceKind}
+                      options={SponsorForTheRaceAr}
+                      className="selectdir"
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter Cap"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
                     <DateTimePicker
                       onChange={setDayNTime}
                       value={DayNTime}
@@ -438,6 +601,126 @@ const RaceForm = () => {
                       yearPlaceholder="Time"
                       style={{ direction: "rtl" }}
                     />
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 1st Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 2nd Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 3rd Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 4th Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 5th Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
+                  </div>
+                </div>
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder="Enter 6th Prize"
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                      required
+                    ></input><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="اسم "
+                      // onChange={(e) => setCap(e.target.value)}
+                      name="Name"
+                      // value={Cap}
+                    ></input>
                   </div>
                 </div>
                 <div className="ButtonSection">

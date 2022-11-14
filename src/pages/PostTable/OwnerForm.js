@@ -24,7 +24,6 @@ const OwnerForm = () => {
       label: item.NameEn,
     };
   });
-
   let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
     return {
       id: item._id,
@@ -32,6 +31,9 @@ const OwnerForm = () => {
       label: item.NameEn,
     };
   });
+
+
+  
 
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState();
@@ -252,6 +254,27 @@ const OwnerForm = () => {
                     />
                   </div>
                 </div> 
+                {/* <div className="row mainrow">
+                  <div className="col-sm">
+                    <input
+                      placeholder=" Rating"
+                      onChange={(e) => setNameEn(e.target.value)}
+                      name="Name"
+                      value={NameEn}
+                      required
+                    ></input>
+                    <span className="spanForm"> |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <input
+                      style={{ direction: "rtl" }}
+                      onChange={(e) => setNameAr(e.target.value)}
+                      value={NameAr}
+                      placeholder="اسم "
+                    ></input>
+                  </div>
+                </div> */}
                 <div className="ButtonSection">
                   <div>
                     <input

@@ -8,7 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
 import ScrollContainer from "react-indiana-drag-scroll";
 import swal from 'sweetalert';
-
+import Moment from "react-moment";
 import { Modal } from "react-bootstrap";
 import HorsePopup from "../../Components/Popup/HorsePopup";
 
@@ -150,8 +150,10 @@ const Horse = () => {
                             <tr>
                               <td>{item.NameEn}</td>
                               <td>{item.NameAr}</td>
-                              <td>{item.Age}</td>
-                            
+                              <td> <Moment fromNow ago>
+                                  {item.Age}
+                                </Moment></td>
+                             
                               <td>{item.Sex}</td>
                             
                             <td>{item.ColorIDData.NameEn} </td>

@@ -30,6 +30,7 @@ const Racecourse = () => {
     dispatch(fetchracecourse());
   }, [dispatch]);
 
+  console.log(racecourse);
   const handleRemove = (Id) => {
     swal({
       title: "Are you sure?",
@@ -51,7 +52,7 @@ const Racecourse = () => {
 
   if (status === STATUSES.LOADING) {
     return <h2 className="loader">
-      
+
     </h2>;
   }
 

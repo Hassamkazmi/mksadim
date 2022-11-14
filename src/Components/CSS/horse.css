@@ -161,3 +161,12 @@ margin-right: 25px;
 /* .css-1s2u09g-control{
 grid-area: none !important;  
 } */
+
+.starstyle {
+  text-align: center;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 18px;
+  color: #8f8d8d;
+}

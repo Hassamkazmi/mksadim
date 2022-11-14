@@ -1,6 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "../../Components/CSS/forms.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import Select from "react-select";
+
 // import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-date-picker";
@@ -9,6 +12,7 @@ import swal from "sweetalert";
 const TrainerForm = () => {
   // const dispatch = useDispatch();
   const history = useNavigate();
+  const {data: nationality} = useSelector((state) => state.nationality);
   const [NameEn, setNameEn] = useState("");
   const [Detail, setDetail] = useState("");
   const [Remarks, setRemarks] = useState("");
@@ -23,6 +27,7 @@ const TrainerForm = () => {
   const [Age, setAge] = useState("");
   const [preview, setPreview] = useState();
   const [image, setImage] = useState();
+  const [NationalityId, setNationalityId] = useState("");
 
 
 
@@ -80,6 +85,14 @@ const TrainerForm = () => {
     setImage(e.target.files[0]);
     console.log(image, "image");
   };
+
+  let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
   const isSubmitData =
   NameEn === "" ||
     DOB === "" ||
@@ -88,6 +101,9 @@ const TrainerForm = () => {
     Rating === "" ||
     image === null ||
     image === undefined;
+
+
+
   return (
     <Fragment>
       <div className="page">
@@ -250,7 +266,7 @@ const TrainerForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row mainrow">
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Rating"
@@ -270,7 +286,31 @@ const TrainerForm = () => {
                       type='number'
                     ></input>
                   </div>
-                </div>
+                </div> */}
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Select Nationality</div>}
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder={<div>حدد جيلتي</div>}
+                      className='selectdir'
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
                 <div className="row mainrow">
                   <div className="col-sm">
                   <DatePicker
