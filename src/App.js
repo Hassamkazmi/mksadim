@@ -50,6 +50,15 @@ import CurrencyTable from "./pages/GetTable/CurrencyTable";
 import Gender from "./pages/PostTable/Gender";
 import GenderTable from "./pages/GetTable/GenderTable";
 
+import HorseKind from "./pages/GetTable/HorseKind";
+import Horsekindform from "./pages/PostTable/Horsekindform";
+import Racetype from "./pages/GetTable/Racetype";
+import Racetypeform from "./pages/PostTable/Racetypeform";
+import Tracklengthform from "./pages/PostTable/Tracklengthform";
+import Tracklength from "./pages/GetTable/Tracklength";
+import Racename from "./pages/GetTable/Racename";
+import Racenameform from "./pages/PostTable/Racenameform";
+
 
 
 function App() {
@@ -95,7 +104,15 @@ function App() {
                 <Route path="/colorlist"element={<ColorTable/>} />
                 <Route path="/breederlist"element={<BreederTable/>} />
                 <Route path="/currencylist"element={<CurrencyTable/>} />
+                <Route path="/racetype" element={<Racetype/>}/>
+                <Route path="/racetypeform" element={<Racetypeform/>}/>
                 <Route path='/gender' element={<Gender/>} />
+                <Route path='/racename' element={<Racename/>} />
+                <Route path="racenameform" element={<Racenameform/>}/>
+                <Route path='/horsekindform' element={<Horsekindform/>}/>
+                <Route path="tracklength" element={<Tracklength/>} />
+                <Route path='/tracklengthform' element={<Tracklengthform/>}/>
+                <Route path='/horsekind' element={<HorseKind/>}/>
                 <Route path='/genderlist' element={<GenderTable/>} />
                 <Route path="/nationality" element={<Nationality/>}/>
                 <Route path="/currency" element={<Currency/>}/>

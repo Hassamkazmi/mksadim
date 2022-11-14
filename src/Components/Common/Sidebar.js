@@ -109,19 +109,26 @@ const Sidebar = () => {
    <div> <Link to='/breeder' className='mylink'>Add Breeder</Link></div>
    <div> <Link to='/nationality' className='mylink'>Add Nationality</Link></div>
    <div> <Link to='/gender' className='mylink'>Add Gender</Link></div>
-  
+   <div><Link to='/horsekindform' className='mylink'>Add Horse Kind  </Link>  </div>
+   <div><Link to='/racetypeform' className='mylink'>Add Race Type</Link>  </div>
+   <div><Link to='/tracklengthform' className='mylink'>Add Track Length</Link>  </div>
+   <div><Link to='/racenameform' className='mylink'>Add Race Name</Link>  </div>
+
     </Accordion.Body>
     </Accordion.Item>
 
     <Accordion.Item eventKey="13">
   <Accordion.Header>Features Listing</Accordion.Header>
     <Accordion.Body className='AccordionBody'>
-    <div><Link to='/colorlist' className='mylink'>Color List</Link></div>
-   <div> <Link to='/currencylist' className='mylink'>Currency List</Link></div>
-   <div> <Link to='/breederlist' className='mylink'>Breeder List</Link></div>
-   <div> <Link to='/nationalitylist' className='mylink'>Nationality List</Link></div>
-   <div> <Link to='/genderlist' className='mylink'>Gender List</Link></div>
- 
+    <div><Link to='/colorlist' className='mylink'>Color </Link></div>
+   <div> <Link to='/currencylist' className='mylink'>Currency </Link></div>
+   <div> <Link to='/breederlist' className='mylink'>Breeder </Link></div>
+   <div> <Link to='/nationalitylist' className='mylink'>Nationality </Link></div>
+   <div> <Link to='/genderlist' className='mylink'>Gender </Link></div>
+   <div> <Link to='/horsekind' className='mylink'>Horse Kind </Link></div>
+   <div><Link to='/racetype' className='mylink'>Race Type</Link> </div>
+   <div><Link to='/tracklength' className='mylink'>Track Length</Link> </div>
+   <div><Link to='/racename' className='mylink'>Race Name</Link> </div>
   
     </Accordion.Body>
     </Accordion.Item>
