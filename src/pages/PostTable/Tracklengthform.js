@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Tracklengthform = () => {
   const dispatch = useDispatch();
   const { data: racecourse } = useSelector((state) => state.racecourse);
-
   const [TrackLength, setTrackLength] = useState();
   const [RaceCourse, setRaceCourse] = useState("");
   const [RaceCourseImage, setRaceCourseImage] = useState();
@@ -59,6 +58,13 @@ const Tracklengthform = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [RaceCourseImage]);
 
+  let courseoptions = racecourse === undefined ? <></> : racecourse.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TrackNameEn,
+      label: item.TrackNameEn,
+    };
+  });
   return (
     <div className="page">
       <div className="rightsidedata">
@@ -95,10 +101,10 @@ const Tracklengthform = () => {
               <div className="row mainrow">
                 <div className="col-sm">
                   <Select
-                    placeholder={<div>Select Nationality</div>}
+                    placeholder={<div>Select RaceCourse</div>}
                     defaultValue={RaceCourse}
                     onChange={setRaceCourse}
-                    options={racecourse}
+                    options={courseoptions}
                     isClearable={true}
                     isSearchable={true}
                   />
@@ -111,7 +117,7 @@ const Tracklengthform = () => {
                     className="selectdir"
                     defaultValue={RaceCourse}
                     onChange={setRaceCourse}
-                    options={racecourse}
+                    options={courseoptions}
                     isClearable={true}
                     isSearchable={true}
                   />

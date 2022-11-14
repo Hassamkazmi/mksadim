@@ -1,6 +1,6 @@
 
 import React, { useEffect ,Fragment } from "react";
-import { fetchgender , STATUSES } from "../../redux/getReducer/getGenderSlice";
+import { fetchTrackLength,STATUSES } from "../../redux/getReducer/getTracklength";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostJockey";
@@ -14,9 +14,9 @@ import ScrollContainer from "react-indiana-drag-scroll";
 const Tracklength = () => {
     
 const dispatch =useDispatch() 
-const { data: gender, status } = useSelector((state) => state.gender);
+const { data: trackLength, status } = useSelector((state) => state.trackLength);
 useEffect(() => {
-  dispatch(fetchgender());
+  dispatch(fetchTrackLength());
 }, [dispatch]);
 const handleRemove = (Id) => {
   swal({
@@ -92,7 +92,7 @@ if (status === STATUSES.ERROR) {
                     </h6>
     
                     <Link to="/racetypeform">
-                      <button>Add Race Type</button>
+                      <button>Add Track Length</button>
                     </Link>
                   </div>
                 </div>
@@ -111,14 +111,14 @@ if (status === STATUSES.ERROR) {
                         </tr>
                       </thead>
                       <tbody>
-                        {gender.map((item, index) => {
+                        {trackLength.map((item, index) => {
                           return (
                             <>
                               <tr className="tr_table_class">
                                 <td>{item.NameEn}</td>
                                 <td>{item.NameAr}</td>
     
-    <td>{item.shortCode} </td>
+                                <td>{item.shortCode} </td>
   
     
     
