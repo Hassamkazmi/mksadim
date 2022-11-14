@@ -376,3 +376,13 @@ border: none !important;
 .react-datetime-picker__wrapper {
   border: thin solid #fff !important;
 }
+.react-date-picker__calendar .react-calendar {
+  border-width: 3px !important;
+  border-radius: 20px;
+  font-size: 12px;
+  border-color:#19469D;
+}
+.react-date-picker, .react-date-picker *, .react-date-picker *:before, .react-date-picker *:after {
+  font-size: 12px;
+  box-sizing: border-box;
+}

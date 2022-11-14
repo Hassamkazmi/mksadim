@@ -3,6 +3,7 @@ import "../../Components/CSS/forms.css";
 import axios from "axios";
 // import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-date-picker";
 // import { add } from "../../redux/postReducer/PostTrainer";
 import swal from "sweetalert";
 const TrainerForm = () => {
@@ -122,14 +123,15 @@ const TrainerForm = () => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Age"
-                      onChange={(e) => setDOB(e.target.value)}
-                      name="Name"
-                      value={DOB}
-                      required
-                      type="date"
-                    ></input>
+                   <DatePicker 
+                     onChange={setDOB}
+                     value={DOB}
+                     dayPlaceholder=" "
+                     monthPlaceholder="Date of Birth "
+                     yearPlaceholder=""
+                   
+                   
+                   />
                     <span className="spanForm"> |</span>
                   </div>
 
@@ -271,14 +273,14 @@ const TrainerForm = () => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Trainer License Date"
-                      onChange={(e) => setTrainerLicenseDate(e.target.value)}
-                      name="Name"
+                  <DatePicker
+                      onChange={setTrainerLicenseDate}
                       value={TrainerLicenseDate}
-                      required
-                      type="date"
-                    ></input>
+                      dayPlaceholder="  "
+                      monthPlaceholder="License Date"
+                      yearPlaceholder=""
+                    />
+
                     <span className="spanForm"> |</span>
                   </div>
 
