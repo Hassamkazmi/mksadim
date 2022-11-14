@@ -170,3 +170,23 @@ grid-area: none !important;
   font-size: 18px;
   color: #8f8d8d;
 }
+
+.col-sm {
+  position: relative;
+  font-family: sans-serif;
+  font-size: 14px;
+  width: max-content;
+}
+
+.placeholder {
+  position: absolute;
+  right: 4px;
+  top: 2px;
+  pointer-events: none;
+  opacity: .5;
+}
+
+.input:placeholder-shown + .placeholder {
+  /* if real placeholder is shown - hide fake placeholder */
+  opacity: 0;
+}

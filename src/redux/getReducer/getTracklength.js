@@ -7,8 +7,8 @@ export const STATUSES = Object.freeze({
     LOADING: 'loading',
 });
 
-const getGenderSlice = createSlice({
-    name: 'gender',
+const getTrackLengthSlice = createSlice({
+    name: 'TrackLength',
     initialState: {
         data:[],
         status : STATUSES.IDLE,
@@ -16,24 +16,24 @@ const getGenderSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-        .addCase(fetchgender.pending, (state, action) => {
+        .addCase(fetchTrackLength.pending, (state, action) => {
             state.status = STATUSES.LOADING;
         })
-        .addCase(fetchgender.fulfilled, (state, action) => {
+        .addCase(fetchTrackLength.fulfilled, (state, action) => {
             state.data = action.payload;
             state.status = STATUSES.IDLE
         }) 
-        .addCase(fetchgender.rejected , (state,action) => {
+        .addCase(fetchTrackLength.rejected , (state,action) => {
             state.status = STATUSES.ERROR;
         })
     }
 });
 
-export const {setgender , setStatus} = getGenderSlice.actions;
-export default getGenderSlice.reducer;
+export const {setTrackLength , setStatus} = getTrackLengthSlice.actions;
+export default getTrackLengthSlice.reducer;
 
-export const fetchgender = createAsyncThunk('/Sexget/fetch', async() => {
-    const res = await axios.get(`${window.env.API_URL}/Sexget?keyword=&page=`);
-    const genderData = res.data;
-    return genderData.data;
+export const fetchTrackLength = createAsyncThunk('/TrackLength/fetch', async() => {
+    const res = await axios.get(`${window.env.API_URL}/uploadTrackLength?keyword=&page=`);
+    const TrackLengthData = res.data;
+    return TrackLengthData.data;
 })  

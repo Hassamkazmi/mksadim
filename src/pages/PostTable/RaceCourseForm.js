@@ -9,11 +9,16 @@ import axios from "axios";
 import swal from "sweetalert";
 import Select from "react-select";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
+import { fetchcolor } from "../../redux/getReducer/getColor";
+import { fetchTrackLength } from "../../redux/getReducer/getTracklength";
+
 
 const RaceCourseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const { data: nationality } = useSelector((state) => state.nationality);
+  const { data: color } = useSelector((state) => state.color);
+  const { data: trackLength } = useSelector((state) => state.trackLength);
 
   let AllNationality =
     nationality === undefined ? (
@@ -27,6 +32,34 @@ const RaceCourseForm = () => {
         };
       })
     );
+
+    let AllColor=
+    color === undefined ? (
+      <></>
+    ) : (
+      color.map(function (item) {
+        return {
+          id: item._id,
+          value: item.NameEn,
+          label: item.NameEn,
+        };
+      })
+    );
+
+    let AllTrack=
+    trackLength === undefined ? (
+      <></>
+    ) : (
+      trackLength.map(function (item) {
+        return {
+          id: item._id,
+          value: item.TrackNameEn,
+          label: item.TrackNameEn,
+        };
+      })
+    );
+
+
   // const [TrackLength, setTrackLength] = useState("");
   // const [WeatherType, setWeatherType] = useState("");
   // const [WeatherDegree, setWeatherDegree] = useState("");
@@ -86,6 +119,8 @@ const RaceCourseForm = () => {
 
   useEffect(() => {
     dispatch(fetchnationality());
+    dispatch(fetchcolor());
+    dispatch(fetchTrackLength());
     if (!image) {
       setPreview(undefined);
       return;
@@ -115,7 +150,33 @@ const RaceCourseForm = () => {
             <div className="Headers">New Race Course</div>
             <div className="form">
               <form onSubmit={submit}>
-                <div className="row mainrow">
+              <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Select Track Name</div>}
+                      defaultValue={TrackNameEn}
+                      value={TrackNameEn}
+                      onChange={setTrackNameEn}
+                      options={AllTrack}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
+                  </div>
+                  <div className="col-sm">
+                    <Select
+                      required
+                      placeholder="تقييم الحصان"
+                      className='selectdir'
+                      defaultValue={TrackNameEn}
+                      value={TrackNameEn}
+                      onChange={setTrackNameEn}
+                      options={AllTrack}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
                       placeholder="Track Name"
@@ -134,7 +195,7 @@ const RaceCourseForm = () => {
                       placeholder="اسم المسار"
                     ></input>
                   </div>
-                </div>
+                </div> */}
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -256,22 +317,31 @@ const RaceCourseForm = () => {
                 </div>
                 <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Color Code"
-                      onChange={(e) => setColorCode(e.target.value)}
+                    <Select
+                      placeholder={<div>Select Color</div>}
+                      defaultValue={ColorCode}
                       value={ColorCode}
-                      required
-                    ></input>
-                    <span className="spanForm"> |</span>
+                      onChange={setColorCode}
+                      options={AllColor}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> |</span>
                   </div>
-
                   <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder=" رمز قصير"
-                    ></input>
+                    <Select
+                      required
+                      placeholder="تقييم الحصان"
+                      className='selectdir'
+                      defaultValue={ColorCode}
+                      value={ColorCode}
+                      onChange={setColorCode}
+                      options={AllColor}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
-                </div>
+                </div> 
+                
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <Select

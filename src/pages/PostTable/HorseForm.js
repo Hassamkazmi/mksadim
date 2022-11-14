@@ -10,6 +10,7 @@ import { fetchHorse } from "../../redux/getReducer/getHorseSlice";
 import { fetchcolor } from "../../redux/getReducer/getColor";
 import { fetchbreeder } from "../../redux/getReducer/getBreeder";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
+import { fetchgender } from "../../redux/getReducer/getGenderSlice";
 import DatePicker from "react-date-picker";
 import Moment from "react-moment";
 import swal from "sweetalert";
@@ -48,6 +49,7 @@ const HorseForm = () => {
   const {data: color} = useSelector((state) => state.color);
   const {data: breeder} = useSelector((state) => state.breeder);
   const {data: nationality} = useSelector((state) => state.nationality);
+  const {data: gender} = useSelector((state) => state.gender);
 
   useEffect(() => {
     dispatch(fetchOwner());
@@ -56,6 +58,7 @@ const HorseForm = () => {
     dispatch(fetchcolor());
     dispatch(fetchbreeder());
     dispatch(fetchnationality());
+    dispatch(fetchgender());
   }, [dispatch]);
 
   let horseoptions = horse === undefined ? <></> : horse.map(function (item) {
@@ -99,6 +102,14 @@ const HorseForm = () => {
   });
 
   let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
+  let AllGender = gender === undefined ? <></> : gender.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
@@ -161,7 +172,7 @@ const HorseForm = () => {
       // formData.append("HorseRating", HorseRating);
       // formData.append("Jockey", Jockey.id);
       // formData.append("Trainer", Trainer.id);
-      formData.append("Trainer", ActiveTrainer.id);
+      // formData.append("Trainer", ActiveTrainer.id);
       formData.append("ActiveTrainer", ActiveTrainer.id);
       formData.append("Sex", Sex.value);
       formData.append("Breeder", Breeder.id);
@@ -270,6 +281,7 @@ const onSelectFile = e => {
             <div className="Headers">Add Horse</div>
             <div className="form">
               <form onSubmit={submit}>
+              
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -278,7 +290,7 @@ const onSelectFile = e => {
                       name="Name"
                       value={NameEn}
                       required
-                    ></input><span className="spanForm"> |</span>
+                    /><span className="spanForm">|</span>
                   </div>
                   <div className="col-sm">
                     <input
@@ -449,7 +461,8 @@ const onSelectFile = e => {
                     <p>Rating</p>
                   <div>
                   <Rating
-                    
+                    fractions={2}
+                    stop={5}
                     initialRating={STARS}
                     onClick={rate => setSTARS(rate)}
                   />
@@ -558,7 +571,7 @@ const onSelectFile = e => {
                       placeholder={<div>Select Gender</div>}
                       defaultValue={Sex}
                       onChange={setSex}
-                      options={Gender}
+                      options={AllGender}
                       isClearable={true}
                       isSearchable={true}
                     /><span className="spanForm"> |</span>
@@ -810,7 +823,7 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div>
-                <div className="row mainrow">
+                {/* <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search trainer</div>}
@@ -836,7 +849,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>
+                </div> */}
                 {/* <div className="row mainrow">
                   <div className="col-sm " >
                     <Select

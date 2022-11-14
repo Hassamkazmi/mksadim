@@ -107,7 +107,7 @@ const Racecourse = () => {
                       <th>Ground Type</th>
                       <th>Ground Type Arabic</th>
 
-                      <th>Nationality Id</th>
+                      <th>Nationality</th>
                       <th>Color Code</th>
                       <th>Short Code</th>
 
@@ -125,7 +125,7 @@ const Racecourse = () => {
                             <td>{item.TrackNameAr}</td>
                             <td>{item.GroundTypeEn}</td>
                             <td>{item.GroundTypeAr}</td>
-                            <td>{item.NationalityId}</td>
+                            <td>{item.NationalityDataRaceCourse === null ? <></>: <>{item.NationalityDataRaceCourse.NameEn}</>}</td>
                             <td>{item.ColorCode}</td>
                             <td>{item.shortCode} </td>
 

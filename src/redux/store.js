@@ -29,7 +29,7 @@ import getNationality from './getReducer/getNationality';
 import getBreeder from './getReducer/getBreeder';
 import getCurrency from './getReducer/getCurrency';
 import getGenderSlice from './getReducer/getGenderSlice';
-
+import getTracklength from './getReducer/getTracklength';
 const store = configureStore({
     reducer: {
         news: getNewsSlice,
@@ -62,6 +62,7 @@ const store = configureStore({
         breeder: getBreeder,
         currency: getCurrency,
         gender:getGenderSlice,
+        trackLength : getTracklength
     },
 });
 
