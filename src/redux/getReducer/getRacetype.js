@@ -7,8 +7,8 @@ export const STATUSES = Object.freeze({
     LOADING: 'loading',
 });
 
-const getGenderSlice = createSlice({
-    name: 'gender',
+const getRaceTypeSlice = createSlice({
+    name: 'RaceType',
     initialState: {
         data:[],
         status : STATUSES.IDLE,
@@ -16,24 +16,24 @@ const getGenderSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-        .addCase(fetchgender.pending, (state, action) => {
+        .addCase(fetchRaceType.pending, (state, action) => {
             state.status = STATUSES.LOADING;
         })
-        .addCase(fetchgender.fulfilled, (state, action) => {
+        .addCase(fetchRaceType.fulfilled, (state, action) => {
             state.data = action.payload;
             state.status = STATUSES.IDLE
         }) 
-        .addCase(fetchgender.rejected , (state,action) => {
+        .addCase(fetchRaceType.rejected , (state,action) => {
             state.status = STATUSES.ERROR;
         })
     }
 });
 
-export const {setgender , setStatus} = getGenderSlice.actions;
-export default getGenderSlice.reducer;
+export const {setRaceType , setStatus} = getRaceTypeSlice.actions;
+export default getRaceTypeSlice.reducer;
 
-export const fetchgender = createAsyncThunk('/Sexget/fetch', async() => {
-    const res = await axios.get(`${window.env.API_URL}/Sexget?keyword=&page=`);
-    const genderData = res.data;
-    return genderData.data;
+export const fetchRaceType = createAsyncThunk('/RaceTypeget/fetch', async() => {
+    const res = await axios.get(`${window.env.API_URL}/RaceTypeget?keyword=&page=`);
+    const RaceTypeData = res.data;
+    return RaceTypeData.data;
 })  

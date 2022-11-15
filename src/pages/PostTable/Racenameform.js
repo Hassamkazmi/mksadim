@@ -21,14 +21,14 @@ const Racenameform = () => {
         formData.append("NameAr" , NameAr)
         formData.append("shortCode",shortCode);
   
-        await axios.post(`${window.env.API_URL}/uploadSex`, formData)
+        await axios.post(`${window.env.API_URL}/uploadRaceName`, formData)
         swal({
           title: "Success!",
           text: "Data has been added successfully ",
           icon: "success",
           button: "OK",
         });
-        history('/genderlist')
+        history('/racename')
       } catch (error) {
         const err = error.message;
         swal({

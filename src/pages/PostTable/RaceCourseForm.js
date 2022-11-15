@@ -152,30 +152,25 @@ const RaceCourseForm = () => {
               <form onSubmit={submit}>
               <div className="row mainrow">
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Select Track Name</div>}
-                      defaultValue={TrackNameEn}
+                    <input
+                      placeholder="Track Name"
+                      onChange={(e) => setTrackNameEn(e.target.value)}
                       value={TrackNameEn}
-                      onChange={setTrackNameEn}
-                      options={AllTrack}
-                      isClearable={true}
-                      isSearchable={true}
-                    /><span className="spanForm"> |</span>
-                  </div>
-                  <div className="col-sm">
-                    <Select
                       required
-                      placeholder="تقييم الحصان"
-                      className='selectdir'
-                      defaultValue={TrackNameEn}
-                      value={TrackNameEn}
-                      onChange={setTrackNameEn}
-                      options={AllTrack}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    ></input>
+                    <span className="spanForm"> |</span>
                   </div>
-                </div> 
+
+                  <div className="col-sm">
+                    <input
+                      onChange={(e) => setTrackNameAr(e.target.value)}
+                      value={TrackNameAr}
+                      style={{ direction: "rtl" }}
+                      placeholder="نوع الأرض"
+                    ></input>
+                  </div>
+                </div>
+            
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input

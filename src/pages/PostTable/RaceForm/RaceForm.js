@@ -9,9 +9,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import { fetchSponsor } from '../../../redux/getReducer/getSponsorSlice'
+import { fetchMeeting } from "../../../redux/getReducer/getMeeting";
+import { fetchRaceType } from "../../../redux/getReducer/getRacetype";
 import Select from "react-select";
 import swal from "sweetalert";
-import { AiOutlinePlus } from "react-icons/ai";
 import DateTimePicker from 'react-datetime-picker';
 import axios from "axios";
 
@@ -32,10 +33,13 @@ const GroundTypes = [
   { id: "2", value: "Flat", label: "Flat" },
 ];
 
+
 const RaceForm = () => {
   const { data: racecourse } = useSelector((state) => state.racecourse);
   const { data: jockey } = useSelector((state) => state.jockey);
   const { data: sponsor } = useSelector((state) => state.sponsor);
+  const { data: meeting } = useSelector((state) => state.meeting);
+  const { data: RaceType } = useSelector((state) => state.RaceType);
 
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -58,8 +62,8 @@ const RaceForm = () => {
   let SponsorForTheRace = sponsor === undefined ? <></> : sponsor.map(function (item) {
     return {
       id: item._id,
-      value: item.TitleEn,
-      label: item.TitleEn,
+      value: item.image,
+      label: <div><img src={item.image} height="30px" width="30px"/> </div>,
     };
   });
 
@@ -71,8 +75,27 @@ const RaceForm = () => {
     };
   });
 
+  let MeetingTypes =  meeting === undefined ? <></> : meeting.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
+  let RaceTypes =  RaceType === undefined ? <></> : RaceType.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+    };
+  });
+
   console.log(SponsorForTheRace,'SponsorForTheRace')
+  const [MeetingType , setMeetingType ] = useState("");
   const [RaceNameEn, setRaceNameEn] = useState("");
+  const [MeetingCode, setMeetingCode] = useState("");
+  const [Ground, setGround] = useState("");
   const [RaceNameAr, setRaceNameAr] = useState("");
   const [RaceKind, setRaceKind] = useState("");
   const [DescriptionEn, setDescriptionEn] = useState("");
@@ -83,17 +106,21 @@ const RaceForm = () => {
   const [RaceCourse, setRaceCourse] = useState("");
   const [WeatherIcon, setWeatherIcon] = useState("");
   const [WeatherDegree, setWeatherDegree] = useState("");
-  const [RaceType, setRaceType] = useState("");
+  const [Sponsor, setSponsor] = useState("");
   const [TrackLength, setTrackLength] = useState("");
   const [ActiveJockeyForTheRace, setActiveJockeyForTheRace] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
+  const [RaceTyp, setRaceType] = useState("");
+
 
 
   useEffect(() => {
     dispatch(fetchracecourse());
     dispatch(fetchjockey());
     dispatch(fetchSponsor());
+    dispatch(fetchMeeting());
+    dispatch(fetchRaceType());
     if (!image) {
       setPreview(undefined);
       return;
@@ -107,9 +134,12 @@ const RaceForm = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("RaceNameEn", RaceNameEn);
+      formData.append("RaceName", RaceNameEn);
+      formData.append("MeetingType ",MeetingType.id );
+      formData.append("MeetingCode ", MeetingCode);
+      formData.append("Ground ", Ground.id);
       formData.append("RaceNameAr", RaceNameAr);
-      formData.append("RaceType", RaceType);
+      formData.append("RaceType", RaceTyp.id);
       formData.append("RaceKind", RaceKind.value)
       formData.append("DescriptionEn", DescriptionEn);
       formData.append("DescriptionAr", DescriptionAr);
@@ -118,6 +148,7 @@ const RaceForm = () => {
       formData.append("RaceStatus", RaceStatus.value);
       formData.append("RaceCourse", RaceCourse.id);
       formData.append("WeatherIcon", WeatherIcon);
+      formData.append("Sponsor", Sponsor.id);
       formData.append("WeatherDegree", WeatherDegree);
       formData.append("TrackLength", TrackLength);
       formData.append("ActiveJockeyForTheRace", ActiveJockeyForTheRace.id);
@@ -178,9 +209,9 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Meeting Type</div>}
-                      defaultValue={WeatherType}
-                      onChange={setWeatherType}
-                      options={WeatherTypes}
+                      defaultValue={MeetingType}
+                      onChange={setMeetingType}
+                      options={MeetingTypes}
                       isClearable={true}
                       isSearchable={true}
                     />{" "}
@@ -191,33 +222,33 @@ const RaceForm = () => {
                     <Select
                       placeholder={<div>طقس</div>}
                       className="selectdir"
-                      options={WeatherTypes}
+                      options={MeetingTypes}
                       isClearable={true}
                       isSearchable={true}
                     />
                   </div>
                 </div>
-                <div className="row mainrow">
+                <div className="row  mainrow">
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>Meeting Code</div>}
-                      defaultValue={WeatherType}
-                      onChange={setWeatherType}
-                      options={WeatherTypes}
-                      isClearable={true}
-                      isSearchable={true}
-                    />{" "}
+                    <input
+                      placeholder="Meeting Code"
+                      onChange={(e) => setMeetingCode(e.target.value)}
+                      name="Name"
+                      value={MeetingCode}
+                      required
+                    ></input>
                     <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select
-                      placeholder={<div>طقس</div>}
-                      className="selectdir"
-                      options={WeatherTypes}
-                      isClearable={true}
-                      isSearchable={true}
-                    />
+                    <input
+                      style={{ direction: "rtl" }}
+                      placeholder="وصف "
+                      onChange={(e) => setDescriptionAr(e.target.value)}
+                      name="Name"
+                      value={DescriptionAr}
+                      required
+                    ></input>
                   </div>
                 </div>
                 <div className="row  mainrow">
@@ -315,28 +346,33 @@ const RaceForm = () => {
                     ></input>
                   </div>
                 </div>
-                <div className="row  mainrow">
+                <div className="row mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Race Type"
-                      onChange={(e) => setRaceType(e.target.value)}
-                      name="Name"
-                      value={RaceType}
-                      required
-                    ></input>
+                    <Select
+                      placeholder={<div>Select Race Type</div>}
+                      defaultValue={RaceType}
+                      onChange={setRaceType}
+                      options={RaceTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                     <span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
-                    <input
-                      style={{ direction: "rtl" }}
-                      placeholder="وصف "
-                      onChange={(e) => setRaceType(e.target.value)}
-                      name="Name"
-                      value={RaceType}
-                      required
-                      
-                    ></input>
+                    <Select
+                      className="selectdir"
+                      placeholder={
+                        <div style={{ direction: "rtl" }}>
+                          اكتب للبحث عن الجنسية
+                        </div>
+                      }
+                      defaultValue={RaceType}
+                      onChange={setRaceType}
+                      options={RaceTypes}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                   </div>
                 </div>
                 <div className="row mainrow">
@@ -372,12 +408,14 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Ground type</div>}
-                      defaultValue={WeatherType}
-                      onChange={setWeatherType}
+                      defaultValue={Ground}
+                      onChange={setGround}
                       options={GroundTypes}
                       isClearable={true}
                       isSearchable={true}
+                      
                     />{" "}
+                   
                     <span className="spanForm"> |</span>
                   </div>
 
@@ -540,9 +578,11 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Sponsor Image</div>}
-                      defaultValue={RaceKind}
-                      onChange={setRaceKind}
-                      options={SponsorForTheRace}
+                      defaultValue={Sponsor}
+                      onChange={setSponsor}
+                      options={
+                        SponsorForTheRace
+                      }
                       isClearable={true}
                       isSearchable={true}
                     />{" "}
@@ -552,8 +592,8 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>نوع السباق</div>}
-                      defaultValue={RaceKind}
-                      onChange={setRaceKind}
+                      defaultValue={Sponsor}
+                      onChange={setSponsor}
                       options={SponsorForTheRaceAr}
                       className="selectdir"
                       isClearable={true}

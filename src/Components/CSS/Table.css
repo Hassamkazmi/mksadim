@@ -304,3 +304,27 @@ td:last-child {
   
  margin-right: 100px;
 }
+
+.nav-tabs .nav-link {
+    margin-bottom: calc(var(--bs-nav-tabs-border-width) * -1);
+    background: 0 0;
+    border: var(--bs-nav-tabs-border-width) solid transparent;
+    border-top-left-radius: var(--bs-nav-tabs-border-radius);
+    border-top-right-radius: var(--bs-nav-tabs-border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin: 0 3px;
+}    
+.mb-3 {
+    
+    margin: 15px 15px 10px 17px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: var(--bs-nav-tabs-link-active-color);
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+    transition: all ease-in-out 0.5s ;
+    width: 247px;
+    background: #00A3FF;
+    color: white;
+}

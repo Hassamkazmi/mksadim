@@ -30,7 +30,7 @@ const history = useNavigate()
       formData.append("Value" ,Value);
       formData.append("image" ,image);
       await axios.post(`${window.env.API_URL}/uploadNationality`,formData);
-    history("/nationalitlist")
+    history("/nationalitylist")
       swal({
         title: "Success!",
         text: "Data has been added successfully ",
@@ -200,13 +200,13 @@ const onSelectFile = e => {
 
                     onChange={(e) => setOffset(e.target.value)}
                     value={Offset}
-                    type="text"
+                    type="number"
                   ></input><span className="spanForm"> |</span>
                 </div>
 
                 <div className="col-sm">
                   <input
-                    type="text"
+                    type="number"
                     placeholder="معدل" style={{ direction: "rtl" }}
                     name="Detail"
 

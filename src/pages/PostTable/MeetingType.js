@@ -3,7 +3,8 @@ import React,{useState} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const Racetypeform = () => {
+
+const MeetingType = () => {
     const [NameEn, setNameEn] = useState("");
     const [NameAr, setNameAr] = useState("");
     const [shortCode,setshortCode]= useState("") 
@@ -20,14 +21,14 @@ const Racetypeform = () => {
         formData.append("NameAr" , NameAr)
         formData.append("shortCode",shortCode);
   
-        await axios.post(`${window.env.API_URL}/uploadRaceType`, formData)
+        await axios.post(`${window.env.API_URL}/uploadMeetingType`, formData)
         swal({
           title: "Success!",
           text: "Data has been added successfully ",
           icon: "success",
           button: "OK",
         });
-        history('/racetype')
+        history('/getmeeting')
       } catch (error) {
         const err = error.message;
         swal({
@@ -50,7 +51,7 @@ const Racetypeform = () => {
           marginTop: "30px",
         }}
       >
-        <div className="Headers">Create Race type</div>
+        <div className="Headers">Create Meeting Type</div>
         <div className="form">
           
           <form onSubmit={submit}>
@@ -100,7 +101,7 @@ const Racetypeform = () => {
             <div className='ButtonSection ' style={{justifyContent:"end"}}>
      
 
-              <button type='submit' className='SubmitButton'>Add Race type</button>
+              <button Name='submit' className='SubmitButton'>Add Race Name</button>
 
             </div>
           </form>
@@ -111,4 +112,4 @@ const Racetypeform = () => {
   )
 }
 
-export default Racetypeform
+export default MeetingType

@@ -9,6 +9,7 @@ import { fetchnationality } from "../../redux/getReducer/getNationality";
 import swal from "sweetalert";
 import { useSelector } from "react-redux";
 import Select from "react-select";
+import Rating from "react-rating";
 
 const NewsForm = () => {
   const dispatch = useDispatch();

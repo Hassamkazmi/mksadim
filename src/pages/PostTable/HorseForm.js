@@ -38,11 +38,14 @@ const Foals = [
   { id: "7", value: "8", label: "8" },
   { id: "8", value: "9", label: "9" },
   { id: "9", value: "10", label: "10" },
+  
 ];
 
 const HorseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
+    const [isClearable, setIsClearable] = useState(true);
+
   const { data: trainer } = useSelector((state) => state.trainer);
   const { data: owner } = useSelector((state) => state.owner);
   const { data: horse } = useSelector((state) => state.horse);
@@ -375,6 +378,8 @@ const onSelectFile = e => {
                       value={Foal}
                       onChange={setFoal}
                       options={Foals}
+                      className="basic-single"
+                      classNamePrefix="select"
                       isClearable={true}
                       isSearchable={true}
                     /><span className="spanForm"> |</span>
@@ -458,7 +463,7 @@ const onSelectFile = e => {
                 </div>
                 <div className="row mainrow">
                   <div className="starstyle">
-                    <p>Rating</p>
+                    <p>Stars</p>
                   <div>
                   <Rating
                     fractions={2}

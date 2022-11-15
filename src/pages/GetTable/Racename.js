@@ -1,5 +1,5 @@
 import React, { useEffect ,Fragment } from "react";
-import { fetchgender , STATUSES } from "../../redux/getReducer/getGenderSlice";
+import { fetchRaceName ,STATUSES} from "../../redux/getReducer/getRaceName";
 import { useDispatch, useSelector } from "react-redux";
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostJockey";
@@ -10,9 +10,9 @@ import ScrollContainer from "react-indiana-drag-scroll";
 
 const Racename = () => {
     const dispatch = useDispatch( )
-    const { data: gender, status } = useSelector((state) => state.gender);
+    const { data: RaceName, status } = useSelector((state) => state.RaceName);
     useEffect(() => {
-      dispatch(fetchgender());
+      dispatch(fetchRaceName());
     }, [dispatch]);
     const handleRemove = (Id) => {
       swal({
@@ -107,7 +107,7 @@ const Racename = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {gender.map((item, index) => {
+                        {RaceName.map((item, index) => {
                           return (
                             <>
                               <tr className="tr_table_class">

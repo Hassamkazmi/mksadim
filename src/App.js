@@ -49,7 +49,6 @@ import BreederTable from "./pages/GetTable/BreederTable";
 import CurrencyTable from "./pages/GetTable/CurrencyTable";
 import Gender from "./pages/PostTable/Gender";
 import GenderTable from "./pages/GetTable/GenderTable";
-
 import HorseKind from "./pages/GetTable/HorseKind";
 import Horsekindform from "./pages/PostTable/Horsekindform";
 import Racetype from "./pages/GetTable/Racetype";
@@ -58,8 +57,10 @@ import Tracklengthform from "./pages/PostTable/Tracklengthform";
 import Tracklength from "./pages/GetTable/Tracklength";
 import Racename from "./pages/GetTable/Racename";
 import Racenameform from "./pages/PostTable/Racenameform";
-
-
+import MeetingType from "./pages/PostTable/MeetingType";
+import GetMeetingType from "./pages/GetTable/GetMeetingType";
+// import Racetype from "./pages/GetTable/Racetype";
+import Verdict from "./pages/PostTable/Verdict";
 
 function App() {
   return (
@@ -116,8 +117,12 @@ function App() {
                 <Route path='/genderlist' element={<GenderTable/>} />
                 <Route path="/nationality" element={<Nationality/>}/>
                 <Route path="/currency" element={<Currency/>}/>
+                <Route path="/meeting" element={<MeetingType/>}/>
                 <Route path="/breeder" element={<Breeder/>}/>
+                <Route path="/getmeeting" element={<GetMeetingType/>}/>
+                <Route path="/meeting" element={<MeetingType/>}/>
                 <Route path="/slider" element={<Slider />} />
+                <Route path="/addverdict" element={<Verdict />} />
                 <Route path="/editjockey/:id" element={<EditJockey />} />
                 <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>
                 <Route path="/editowner/:id" element={<EditOwner/>}/>
