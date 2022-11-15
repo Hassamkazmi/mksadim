@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import '.././src/Components/CSS/mediaquery.css'
 import "./Components/CSS/home.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -61,8 +62,22 @@ import MeetingType from "./pages/PostTable/MeetingType";
 import GetMeetingType from "./pages/GetTable/GetMeetingType";
 // import Racetype from "./pages/GetTable/Racetype";
 import Verdict from "./pages/PostTable/Verdict";
+import Setting from "./pages/GetTable/Setting";
+import AdminProfile from "./pages/Setting/AdminProfile";
+import SubscriberList from "./pages/Setting/SubscriberList";
+import AdminRole from "./pages/Setting/AdminRole";
 
 function App() {
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+      return "";
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
   return (
     <>
       <Provider store={store}>
@@ -76,6 +91,11 @@ function App() {
                 <Route exact path="/" element={<Login />} />
                 <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path='/setting' element={<Setting/>} />
+                <Route path='/AdminProfile' element={<AdminProfile />} />
+                <Route path='/subscriberlist' element={<SubscriberList />} />
+                <Route path='/AddRole' element={<AdminRole />} />
+
                 <Route path="/racecourse" element={<RaceCourse />} />
                 <Route path="/races" element={<Races />} />
                 <Route path="/competition" element={<Competition />} />

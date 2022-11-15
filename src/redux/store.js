@@ -33,6 +33,7 @@ import getTracklength from './getReducer/getTracklength';
 import getMeeting from './getReducer/getMeeting';
 import getRacetype from './getReducer/getRacetype';
 import getRaceName from './getReducer/getRaceName';
+import getSubscriber from './getReducer/getSubscriber';
 
 const store = configureStore({
     reducer: {
@@ -69,7 +70,8 @@ const store = configureStore({
         trackLength : getTracklength,
         meeting: getMeeting,
         RaceType: getRacetype,
-        RaceName: getRaceName
+        RaceName: getRaceName,
+        subscriber: getSubscriber
     },
 });
 

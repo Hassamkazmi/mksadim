@@ -2,14 +2,13 @@ import React,{useState} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Color = () => {
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState("");
   const [shortCode,setshortCode]= useState("") 
-const history = useNavigate()
-
-
+  const history = useNavigate()
 
 
   const submit = async (event) => {

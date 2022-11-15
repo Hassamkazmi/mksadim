@@ -171,7 +171,7 @@ const HorseForm = () => {
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
       // formData.append("ActiveJockey", ActiveJockey.id);
-      formData.append("Owner", Owner.id);
+      // formData.append("Owner", Owner.id);
       // formData.append("HorseRating", HorseRating);
       // formData.append("Jockey", Jockey.id);
       // formData.append("Trainer", Trainer.id);
@@ -186,9 +186,9 @@ const HorseForm = () => {
       formData.append("GSire", GSire.id);
       formData.append("WinningAmount", WinningAmount);
       formData.append("OverAllRating", OverAllRating);
-      formData.append("Foal", Foal);
+      formData.append("Foal", Foal.value);
       formData.append("Cap", Cap);
-      formData.append("Rds", Rds);
+      formData.append("Rds", Rds.value);
       formData.append("STARS", STARS);
       formData.append("isGelted", isGelted.id);
       formData.append("NationalityId", NationalityId.id);

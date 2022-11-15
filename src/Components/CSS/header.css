@@ -131,3 +131,9 @@ line-height: 19px;
     height: 40px;
     border-radius: 10px;
 }
+.OngoingRaces{
+    cursor: pointer;
+}
+.ResultAwaited{
+    cursor: pointer;
+}

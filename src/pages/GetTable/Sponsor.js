@@ -1,8 +1,6 @@
 import React, { useEffect,useState } from "react";
-
 import { fetchSponsor, STATUSES } from "../../redux/getReducer/getSponsorSlice";
 import { useDispatch, useSelector } from "react-redux";
-
 import { MdDelete } from "react-icons/md";
 import { remove } from "../../redux/postReducer/PostSponsor";
 import swal from 'sweetalert';

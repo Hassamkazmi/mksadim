@@ -42,7 +42,7 @@ const OwnerForm = () => {
   const [ShortEn, setShortEn] = useState("");
   const [SilkColor, setSilkColor] = useState("");
   const [ShortAr, setShortAr] = useState("");
-  const [NationalityID, setNationalityID] = useState("");
+  const [NationalityId, setNationalityId] = useState("");
   const [RegistrationDate, setRegistrationDate] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -66,7 +66,7 @@ const OwnerForm = () => {
       formData.append("ShortEn", ShortEn);
       formData.append("ShortAr", ShortAr);
       formData.append("SilkColor", SilkColor.id);
-      formData.append("NationalityID", NationalityID.id);
+      formData.append("NationalityId ", NationalityId.id);
       formData.append("RegistrationDate", RegistrationDate);
       dispatch(add(formData));
       await axios.post(`${window.env.API_URL}/createowner`, formData);
@@ -231,8 +231,8 @@ const OwnerForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Type to search Nationality</div>}
-                      defaultValue={NationalityID}
-                      onChange={setNationalityID}
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
@@ -246,8 +246,8 @@ const OwnerForm = () => {
                           اكتب للبحث عن الجنسية
                         </div>
                       }
-                      defaultValue={NationalityID}
-                      onChange={setNationalityID}
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
