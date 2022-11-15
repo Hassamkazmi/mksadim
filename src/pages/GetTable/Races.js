@@ -13,7 +13,9 @@ import { MdDelete } from "react-icons/md";
 import swal from "sweetalert";
 import Moment from "react-moment";
 
+
 const Races = () => {
+console.log(Math.max)
   const [show, setShow] = useState(false);
   const [modaldata, setmodaldata] = useState();
   const handleClose = () => setShow(false);

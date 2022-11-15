@@ -11,10 +11,12 @@ import { fetchracecourse } from "../../../redux/getReducer/getRaceCourseSlice";
 import { fetchSponsor } from '../../../redux/getReducer/getSponsorSlice'
 import { fetchMeeting } from "../../../redux/getReducer/getMeeting";
 import { fetchRaceType } from "../../../redux/getReducer/getRacetype";
+import {fetchRaceName}  from '../../../redux/getReducer/getRaceName'
 import Select from "react-select";
 import swal from "sweetalert";
 import DateTimePicker from 'react-datetime-picker';
 import axios from "axios";
+
 
 const RaceKinds = [
   { id: "1", value: "Flat", label: "Flat" },
@@ -40,6 +42,7 @@ const RaceForm = () => {
   const { data: sponsor } = useSelector((state) => state.sponsor);
   const { data: meeting } = useSelector((state) => state.meeting);
   const { data: RaceType } = useSelector((state) => state.RaceType);
+  const {data : RaceName} = useSelector((state)=> state.RaceName );
 
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -51,13 +54,26 @@ const RaceForm = () => {
     };
   });
 
+  
+
   let JockeyForTheRace = jockey === undefined ? <></> : jockey.map(function (item) {
+    return {
+      id: item._id,
+      value: item.NameEn,
+      label: item.NameEn,
+      
+    };
+  });
+
+  let Racename = RaceName === undefined ? <></> : RaceName.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
       label: item.NameEn,
     };
   });
+  console.log(RaceName,"racce")
+
 
   let SponsorForTheRace = sponsor === undefined ? <></> : sponsor.map(function (item) {
     return {
@@ -121,6 +137,7 @@ const RaceForm = () => {
     dispatch(fetchSponsor());
     dispatch(fetchMeeting());
     dispatch(fetchRaceType());
+    dispatch(fetchRaceName());
     if (!image) {
       setPreview(undefined);
       return;
@@ -214,6 +231,7 @@ const RaceForm = () => {
                       options={MeetingTypes}
                       isClearable={true}
                       isSearchable={true}
+                      option ={<div> Hello</div> }
                     />{" "}
                     <span className="spanForm"> |</span>
                   </div>
@@ -223,6 +241,7 @@ const RaceForm = () => {
                       placeholder={<div>طقس</div>}
                       className="selectdir"
                       options={MeetingTypes}
+                
                       isClearable={true}
                       isSearchable={true}
                     />
@@ -253,13 +272,14 @@ const RaceForm = () => {
                 </div>
                 <div className="row  mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Race Name"
-                      onChange={(e) => setRaceNameEn(e.target.value)}
-                      name="Name"
-                      value={RaceNameEn}
-                      required
-                    ></input>
+                  <Select
+                      placeholder={<div>Race Name</div>}
+                      defaultValue={RaceName}
+                      onChange={setRaceNameEn}
+                      options={Racename}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
                     <span className="spanForm"> |</span>
                   </div>
 
