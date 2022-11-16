@@ -46,6 +46,7 @@ const NewsForm = () => {
       formData.append("NameAr", NameAr);
       formData.append("DOB", DOB);
       formData.append("RemarksEn", RemarksEn);
+      formData.append("NationalityId ", NationalityId.id);
       formData.append("RemarksAr", RemarksAr);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
       formData.append("MaximumJockeyWeight", MaximumJockeyWeight);

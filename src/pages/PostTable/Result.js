@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
 import Select from "react-select";
+import { fetchSponsor } from "../../redux/getReducer/getSponsorSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const LocalItem = () => {
+
+ 
+
+
   const list = localStorage.getItem("lists");
-
-  console.log(list);
-
   if (list) {
     return JSON.parse(localStorage.getItem("lists"));
   } else {
@@ -17,19 +19,32 @@ const LocalItem = () => {
 const Todo = () => {
   const [InputData, SetinputData] = useState("");
   const [items, setitems] = useState(LocalItem());
+  const dispatch = useDispatch();
 
+  const { data: sponsor } = useSelector((state) => state.sponsor);
+
+  useEffect(() => {
+    dispatch(fetchSponsor())
+  },[dispatch])
+  const HorseEntry = [`1,${InputData.id},qweqwe,44`];
   const addItem = () => {
-    setitems([...items, InputData]);
-    console.log(InputData);
+    
+    if (!InputData) {
+    } else {
+      setitems([...items, HorseEntry]);
     SetinputData("");
     console.log(items, "data is");
-    // if (!InputData) {
-    // } else {
-    //   setitems([...items, InputData]);
-    //   console.log(InputData);
-    //   SetinputData("");
-    // }
+    }
   };
+
+  let sponsoroptions = sponsor.map(function (item) {
+    return {
+      id: item._id,
+      value: item.TitleEn,
+      label: item.TitleEn,
+    };
+  });
+  // console.log(items,'InputData')
 
   const deleteItems = (id) => {
     const updateItems = items.filter((elem, ind) => {
@@ -48,9 +63,17 @@ const Todo = () => {
 
   return (
     <>
-      {" "}
-      <div className="main-div">
-      <div className="myselecthorse">
+     <div className="page">
+        <div className="rightsidedata">
+          <div
+            style={{
+              marginTop: "30px",
+            }}
+          >
+            <div className="Header ">
+              <h4>Add Horse</h4>
+            </div>
+            <div className="myselecthorse">
               <div className="myselecthorsedata">
                 <span>Gate #</span>
                 <span>Horse Name</span>
@@ -58,27 +81,49 @@ const Todo = () => {
                 <span>Jockey Weight</span>
               </div>
             </div>
-        {items.map((e, i) => {
-          return (
+            <div className="myselectdata">
             <div className="myselectiondata">
-              <span>#1</span>
+              <span>0</span>
               <span>
                 <Select
                   defaultValue={InputData}
                   onChange={SetinputData}
-                  // options={horseoptions}
-                  isClearable={true}
+                  options={sponsoroptions}
+                  isClearable={false}
                   isSearchable={true}
                 />
               </span>
               <span>
                 <p>N/A</p>
               </span>
+              <span>
+                <p>KG</p>
+              </span>
+            </div>
+            {items.map((e, i) => {
+            return (
+            <div className="myselectiondata">
+              <span>{i+1}</span>
+              <span>
+                <Select
+                  defaultValue={InputData}
+                  onChange={SetinputData}
+                  options={sponsoroptions}
+                  isClearable={false}
+                  isSearchable={true}
+                />
+              </span>
+              <span>
+                <p>N/A</p>
+              </span>
+              <span>
+                <p>KG</p>
+              </span>
             </div>
           );
         })}
-        <div>
-          <div className="sbmtbtndiv">
+
+<div className="sbmtbtndiv">
             <div className="RaceButtonDiv">
               <button className="updateButton" onClick={Remove}>
                 Update
@@ -89,8 +134,12 @@ const Todo = () => {
               </button>
             </div>
           </div>
+              
+            </div>
+          </div>
         </div>
       </div>
+     
     </>
   );
 };

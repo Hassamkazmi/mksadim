@@ -38,7 +38,7 @@ const GenderTable = () => {
         }
       });
       dispatch(remove(Id));
-      history("/currency");
+      history("/gender");
     };
   
     

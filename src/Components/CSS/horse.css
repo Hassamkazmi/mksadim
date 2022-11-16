@@ -48,9 +48,8 @@
 .myselecthorsedata{
   display: flex;
   align-items: center;
-
   justify-content: space-between;
-  padding-right: 30rem;
+  padding-right: 21rem;
   padding-left: 1rem;
 }
 .myselecthorsedata > span{
