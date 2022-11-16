@@ -9,6 +9,7 @@ import axios from "axios";
 
 const SubscriberList = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { data: subscriber, status } = useSelector((state) => state.subscriber);
 
   useEffect(() => {
@@ -124,6 +125,12 @@ const SubscriberList = () => {
                     </tbody>
                   </table>
                 </ScrollContainer>
+              </div>
+              <div className="ButtonSection">
+                   
+                  <button type="submit" className="SubmitButton" onClick={() => navigate(-1)}>
+                    Back
+                  </button>
               </div>
             </>
           </div>

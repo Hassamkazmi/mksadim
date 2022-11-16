@@ -1,8 +1,9 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "../../Components/CSS/forms.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import Select from "react-select";
+import { fetchnationality } from "../../redux/getReducer/getNationality";
 
 // import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +13,8 @@ import swal from "sweetalert";
 const TrainerForm = () => {
   // const dispatch = useDispatch();
   const history = useNavigate();
+  const dispatch = useDispatch();
+
   const {data: nationality} = useSelector((state) => state.nationality);
   const [NameEn, setNameEn] = useState("");
   const [Detail, setDetail] = useState("");
@@ -44,6 +47,7 @@ const TrainerForm = () => {
       formData.append("Age", Age);
       formData.append("TitleAr", TitleAr);
       formData.append("Rating", Rating);
+      formData.append("NationalityId", NationalityId.id);
       formData.append("TitleEn",TitleEn);
       formData.append("TrainerLicenseDate", TrainerLicenseDate);
       formData.append("ShortNameEn", ShortNameEn);
@@ -70,6 +74,7 @@ const TrainerForm = () => {
     }
   };
   useEffect(() => {
+    dispatch(fetchnationality());
     if (!image) {
       setPreview(undefined);
       return;
@@ -94,15 +99,7 @@ const TrainerForm = () => {
     };
   });
   const isSubmitData =
-  NameEn === "" ||
-    DOB === "" ||
-    Detail === "" ||
-    Remarks === "" ||
-    Rating === "" ||
-    image === null ||
-    image === undefined;
-
-
+  NameEn === ""
 
   return (
     <Fragment>

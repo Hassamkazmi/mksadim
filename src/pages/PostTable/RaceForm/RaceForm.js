@@ -151,13 +151,13 @@ const RaceForm = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("RaceName", RaceNameEn);
-      formData.append("MeetingType ",MeetingType.id );
-      formData.append("MeetingCode ", MeetingCode);
-      formData.append("Ground ", Ground.id);
+      formData.append("RaceName", RaceNameEn.id);
+      formData.append("MeetingType",MeetingType.id );
+      formData.append("MeetingCode", MeetingCode);
+      formData.append("Ground", Ground.id);
       formData.append("RaceNameAr", RaceNameAr);
       formData.append("RaceType", RaceTyp.id);
-      formData.append("RaceKind", RaceKind.value)
+      // formData.append("RaceKind", RaceTyp.id)
       formData.append("DescriptionEn", DescriptionEn);
       formData.append("DescriptionAr", DescriptionAr);
       formData.append("DayNTime", DayNTime);
@@ -167,7 +167,7 @@ const RaceForm = () => {
       formData.append("WeatherIcon", WeatherIcon);
       formData.append("Sponsor", Sponsor.id);
       formData.append("WeatherDegree", WeatherDegree);
-      formData.append("TrackLength", TrackLength);
+      formData.append("TrackLength", TrackLength.id);
       formData.append("ActiveJockeyForTheRace", ActiveJockeyForTheRace.id);
       formData.append("image", image);
       const response = await axios.post(`${window.env.API_URL}/createrace`, formData);

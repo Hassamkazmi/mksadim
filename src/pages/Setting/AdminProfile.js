@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import swal from "sweetalert";
 import axios from "axios";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const AdminProfile = () => {
+  const naviagate = useNavigate();
+  const { data: userProfile } = useSelector((state) => state.userProfile);
   const [NameEn, setNameEn] = useState("");
   const [NameAr, setNameAr] = useState("");
   const [shortCode, setshortCode] = useState("");
-  const history = useNavigate();
 
   const submit = async (event) => {};
+
   return (
     <div className="page">
       <div className="rightsidedata">
@@ -60,12 +62,16 @@ const AdminProfile = () => {
                   ></input>
                 </div>
               </div>
-
-              <div className="ButtonSection " style={{ justifyContent: "end" }}>
-                <button type="submit" className="SubmitButton">
+              <div className="ButtonSection">
+                  <button type="submit" className="SubmitButton"
+                  onClick={() => naviagate(-1)}>
+                    Back
+                  </button>
+                  <button type="submit" className="SubmitButton">
                   Edit
                 </button>
-              </div>
+                </div>
+              
             </form>
           </div>
         </div>

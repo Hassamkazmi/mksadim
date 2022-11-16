@@ -31,7 +31,7 @@ const NewsForm = () => {
   const [MaximumJockeyWeight, setMaximumJockeyWeight] = useState("");
   const [JockeyAllowance, setJockeyAllowance] = useState("");
   const [image, setImage] = useState();
-  const [NationalityId, setNationalityId] = useState("");
+  const [NationalityID, setNationalityID] = useState("");
   const [preview, setPreview] = useState();
 
   const submit = async (event) => {
@@ -46,7 +46,7 @@ const NewsForm = () => {
       formData.append("NameAr", NameAr);
       formData.append("DOB", DOB);
       formData.append("RemarksEn", RemarksEn);
-      formData.append("NationalityId ", NationalityId.id);
+      formData.append("NationalityID", NationalityID.ID);
       formData.append("RemarksAr", RemarksAr);
       formData.append("MiniumumJockeyWeight", MiniumumJockeyWeight);
       formData.append("MaximumJockeyWeight", MaximumJockeyWeight);
@@ -100,16 +100,12 @@ const NewsForm = () => {
     ];
     var days = ["اﻷحد", "اﻷثنين", "الثلاثاء", "اﻷربعاء", "الخميس", "الجمعة", "السبت"];
     var delDateString = days[date.getDay()] + ', ' + date.getDate() + ' ' + months[date.getMonth()] + ', ' + date.getFullYear();
-
     console.log(delDateString);
-
-  
-
     return delDateString;
   };
   let AllNationality = nationality === undefined ? <></> : nationality.map(function (item) {
     return {
-      id: item._id,
+      ID: item._id,
       value: item.NameEn,
       label: item.NameEn,
     };
@@ -313,8 +309,8 @@ const NewsForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Select Nationality</div>}
-                      defaultValue={NationalityId}
-                      onChange={setNationalityId}
+                      defaultValue={NationalityID}
+                      onChange={setNationalityID}
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
@@ -325,8 +321,8 @@ const NewsForm = () => {
                       required
                       placeholder={<div>حدد جيلتي</div>}
                       className='selectdir'
-                      defaultValue={NationalityId}
-                      onChange={setNationalityId}
+                      defaultValue={NationalityID}
+                      onChange={setNationalityID}
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}

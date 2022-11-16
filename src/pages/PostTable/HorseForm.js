@@ -147,8 +147,9 @@ const HorseForm = () => {
   const [KindOfHorse, setKindOfHorse] = useState("");
   const [Dam, setDam] = useState("");
   const [Sire, setSire] = useState("");
+  const [DOB, setDOB] = useState("");
   const [GSire, setGSire] = useState("");
-  const [WinningAmount, setWinningAmount] = useState("");
+  // const [WinningAmount, setWinningAmount] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
   const [image, setimage] = useState();
   const [Foal, setFoal] = useState("");
@@ -166,7 +167,7 @@ const HorseForm = () => {
       const formData = new FormData();
       formData.append("image", image);
       formData.append("NameEn", NameEn);
-      formData.append("Age", Age);
+      formData.append("DOB", DOB);
       formData.append("NameAr", NameAr);
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
@@ -180,11 +181,11 @@ const HorseForm = () => {
       formData.append("Sex", Sex.value);
       formData.append("Breeder", Breeder.id);
       formData.append("ColorID", ColorID.id);
-      formData.append("KindOfHorse", KindOfHorse);
+      formData.append("KindOfHorse", KindOfHorse.id);
       formData.append("Dam", Dam.id);
       formData.append("Sire", Sire.id);
       formData.append("GSire", GSire.id);
-      formData.append("WinningAmount", WinningAmount);
+      // formData.append("WinningAmount", WinningAmount);
       formData.append("OverAllRating", OverAllRating);
       formData.append("Foal", Foal.value);
       formData.append("Cap", Cap);
@@ -192,6 +193,7 @@ const HorseForm = () => {
       formData.append("STARS", STARS);
       formData.append("isGelted", isGelted.id);
       formData.append("NationalityId", NationalityId.id);
+      formData.append("CreationId", NationalityId.id);
       formData.append("PurchasePrice", PurchasePrice);
       const response = await axios.post(`${window.env.API_URL}createhorse?keyword=&page=`,formData);
       swal({
@@ -308,8 +310,8 @@ const onSelectFile = e => {
                 <div className="row mainrow">
                   <div className="col-sm">
                     <DatePicker
-                      onChange={setAge}
-                      value={Age}
+                      onChange={setDOB}
+                      value={DOB}
                       dayPlaceholder="  "
                       monthPlaceholder="Date Of Birth"
                       yearPlaceholder=""
@@ -321,8 +323,8 @@ const onSelectFile = e => {
                   <div className="col-sm">
                     <input type="text"
                      placeholder="Date Of Birth" 
-                     onChange={setAge}
-                     value={convert(Age)}
+                     onChange={setDOB}
+                     value={convert(DOB)}
                      style={{ direction: "rtl" }}
                      />
                   </div>
@@ -481,7 +483,7 @@ const onSelectFile = e => {
                       onChange={(e) => setPurchasePrice(e.target.value)}
                       name="Name"
                       value={PurchasePrice}
-                      text='number'
+                      type='number'
                       required
                     ></input><span className="spanForm"> |</span>
                   </div>
