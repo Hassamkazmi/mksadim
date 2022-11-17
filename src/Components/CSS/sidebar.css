@@ -40,11 +40,9 @@
 .accordion-body {
     background: #8D8D8D 97.94%;
     border-radius: 0px 0px 50px 0px;
-    padding: 0;
- 
-    height: fit-content;
     margin-top: -14px;
     padding: 20px 2px 10PX 1PX;
+    height: fit-content !important;
 }
 .SettingSec {
     font-style: normal;

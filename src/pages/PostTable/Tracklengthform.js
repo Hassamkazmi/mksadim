@@ -24,7 +24,7 @@ const Tracklengthform = () => {
       const formData = new FormData();
       formData.append("TrackLength", TrackLength);
       formData.append("RaceCourse", RaceCourse.id);
-      formData.append("RaceCourseImage", RaceCourseImage);
+      formData.append("image", RaceCourseImage);
       await axios.post(`${window.env.API_URL}/uploadTrackLength`, formData);
       swal({
         title: "Success!",

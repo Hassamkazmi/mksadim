@@ -66,7 +66,7 @@ const GetMeetingType = () => {
             }}
           >
             <div className="Header ">
-              <h4>Color Listings</h4>
+              <h4>Meeting Listings</h4>
 
               <div>
                 <h6
@@ -79,8 +79,8 @@ const GetMeetingType = () => {
                   Toggle to Arabic
                 </h6>
 
-                <Link to="/color">
-                  <button>Add Color</button>
+                <Link to="/meeting">
+                  <button>Add Meeting</button>
                 </Link>
               </div>
             </div>

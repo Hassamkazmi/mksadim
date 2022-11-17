@@ -3,6 +3,8 @@ import React,{useState} from 'react'
 import swal from 'sweetalert';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 const MeetingType = () => {
     const [NameEn, setNameEn] = useState("");
@@ -57,13 +59,20 @@ const MeetingType = () => {
           <form onSubmit={submit}>
             <div className="row mainrow">
               <div className="col-sm">
-                <input
-                  placeholder=" Name"
-                  onChange={(e) => setNameEn(e.target.value)}
+               
+                <FloatingLabel
+        controlId="floatingInput"
+        label="Name"
+        className="mb-3"
+onChange={(e) => setNameEn(e.target.value)}
                   name="Name"
                   value={NameEn}
-                  required
-                ></input><span className="spanForm"> |</span>
+> 
+        <Form.Control type="text" placeholder="Name" />
+      </FloatingLabel>
+                
+                
+                <span className="spanForm"> |</span>
               </div>
 
               <div className="col-sm">
@@ -101,7 +110,7 @@ const MeetingType = () => {
             <div className='ButtonSection ' style={{justifyContent:"end"}}>
      
 
-              <button Name='submit' className='SubmitButton'>Add Race Name</button>
+              <button Name='submit' className='SubmitButton'>Add Meeting</button>
 
             </div>
           </form>

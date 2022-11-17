@@ -18,6 +18,9 @@ import DateTimePicker from 'react-datetime-picker';
 import axios from "axios";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
+import { fetchTrackLength } from "../../../redux/getReducer/getTracklength";
 
 
 const RaceKinds = [
@@ -45,6 +48,9 @@ const RaceForm = () => {
   const { data: meeting } = useSelector((state) => state.meeting);
   const { data: RaceType } = useSelector((state) => state.RaceType);
   const {data : RaceName} = useSelector((state)=> state.RaceName );
+  const {data : TrackLength} = useSelector((state)=> state.trackLength );
+  
+
 
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -55,6 +61,7 @@ const RaceForm = () => {
       label: item.TrackNameEn,
     };
   });
+
 
   
 
@@ -109,6 +116,11 @@ const RaceForm = () => {
     };
   });
 
+
+  
+  
+
+
   const [MeetingType , setMeetingType ] = useState("");
   const [RaceNameEn, setRaceNameEn] = useState("");
   const [MeetingCode, setMeetingCode] = useState("");
@@ -124,7 +136,7 @@ const RaceForm = () => {
   const [WeatherIcon, setWeatherIcon] = useState("");
   const [WeatherDegree, setWeatherDegree] = useState("");
   const [Sponsor, setSponsor] = useState("");
-  const [TrackLength, setTrackLength] = useState("");
+// const [TrackLength,setTrackLength]=useState("")
   const [ActiveJockeyForTheRace, setActiveJockeyForTheRace] = useState("");
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
@@ -138,6 +150,7 @@ const RaceForm = () => {
     dispatch(fetchMeeting());
     dispatch(fetchRaceType());
     dispatch(fetchRaceName());
+    dispatch(fetchTrackLength())
     if (!image) {
       setPreview(undefined);
       return;
@@ -164,13 +177,18 @@ const RaceForm = () => {
       formData.append("WeatherType", WeatherType.value);
       formData.append("RaceStatus", RaceStatus.value);
       formData.append("RaceCourse", RaceCourse.id);
+      formData.append("TrackLength", 'ac84700b-152f-4b93-8d15-537913c01ad3');
+    
       formData.append("WeatherIcon", WeatherIcon);
       formData.append("Sponsor", Sponsor.id);
       formData.append("WeatherDegree", WeatherDegree);
-      formData.append("TrackLength", TrackLength.id);
+      
       formData.append("ActiveJockeyForTheRace", ActiveJockeyForTheRace.id);
       formData.append("image", image);
+
+      
       const response = await axios.post(`${window.env.API_URL}/createrace`, formData);
+      console.log(formData,"formdata")
       swal({
         title: "success!",
         text: "Data Submitted !",
@@ -192,6 +210,9 @@ const RaceForm = () => {
         button: "OK",
       });
     }
+ 
+ 
+ 
   };
   
 
@@ -261,13 +282,19 @@ const RaceForm = () => {
                 </div>
                 <div className="row  mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder="Meeting Code"
-                      onChange={(e) => setMeetingCode(e.target.value)}
-                      name="Name"
-                      value={MeetingCode}
-                      required
-                    ></input>
+                  <FloatingLabel
+        controlId="floatingInput"
+        label="Meeting Type"
+        className="mb-3"
+      onChange={(e)=> setMeetingCode(e.target.value)}
+      value={MeetingCode}
+      >
+
+        <Form.Control type="text" placeholder="Meeting Type" />
+
+      </FloatingLabel>
+
+
                     <span className="spanForm"> |</span>
                   </div>
 
@@ -433,8 +460,7 @@ const RaceForm = () => {
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Select Track Length</div>}
-                      defaultValue={TrackLength}
-                      onChange={setTrackLength}
+                  
                       options={GroundTypes}
                       isClearable={true}
                       isSearchable={true}
@@ -462,8 +488,8 @@ const RaceForm = () => {
                           اكتب للبحث عن الجنسية
                         </div>
                       }
-                      defaultValue={TrackLength}
-                      onChange={setTrackLength}
+                      // defaultValue={TrackLength}
+                      // onChange={setTrackLength}
                       options={GroundTypes}
                       isClearable={true}
                       isSearchable={true}

@@ -104,15 +104,18 @@ console.log(Math.max)
                     <tr className="trtabletd">
                       <th>Race Name</th>
                       <th>Race Name Arabic </th>
-                      <th>Race Kind </th>
+                      
                       <th>Racecource</th>
                       <th>Description </th>
                       <th>Description Arabic</th>
                       <th>Track Length </th>
+                      <th>Race Type</th>
                       <th>Weather in Degree </th>
                       <th>Weather Type </th>
                       <th>Day and Time</th>
-                      <th>Race Type</th>
+                      <th>Race Status</th>
+                      <th>Meeting Name</th>
+                      <th>Sponsor Image </th>
                       <th>image </th>
                       <th>Action</th>
                     </tr>
@@ -141,7 +144,7 @@ console.log(Math.max)
                                 style={{
                                   backgroundColor: `${
                                     RaceStatus === "Cancel"
-                                      ? "#000000"
+                                      ? "#5EC30F"
                                       : RaceStatus === "End"
                                       ? "#FF0000"
                                       : RaceStatus === "Live"
@@ -159,10 +162,10 @@ console.log(Math.max)
                                   }`,
                                 }}
                               >
-                                {item.RaceNameEn}
+                          {item.RaceNameModelData.NameEn}
                               </td>
-                              <td>{item.RaceNameAr} </td>
-                              <td>{item.RaceKind} </td>
+                              <td>    {item.RaceNameModelData.NameAr }</td>
+                            
                               <td>
                                 {item.RaceCourseData === null ? (
                                   <>N/A</>
@@ -192,9 +195,9 @@ console.log(Math.max)
                                 {item.DescriptionAr}
                               </td>
                               <td>
-                                {item.TrackLength}
+                                {item.TrackLengthData.TrackLength}
                               </td>
-
+<td>{item.RaceTypeModelData.NameEn} </td>
                               <td>{item.WeatherDegree}</td>
                               <td>{item.WeatherType}</td>
                               <td> <Moment parse="YYYY-MM-DD HH:mm">
@@ -202,8 +205,15 @@ console.log(Math.max)
                              </Moment></td>
                               {/* <td>{item.Horses.length}</td> */}
                               <td>{item.RaceStatus}</td>
+                              <td>{item.MeetingTypeData.NameEn} </td>
                               <td>
-                                {" "}
+                                <img src={item.SponsorData.image} alt='' 
+                                 style={{
+                                  width:"50px"
+                                }}/>
+                                 </td>
+                              <td>
+                               
                                 <img src={item.image} alt=""  style={{
                                   width:"50px"
                                 }}/>{" "}

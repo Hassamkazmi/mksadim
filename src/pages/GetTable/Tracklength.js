@@ -78,7 +78,7 @@ if (status === STATUSES.ERROR) {
                 }}
               >
                 <div className="Header ">
-                  <h4>Race Type Listings</h4>
+                  <h4>Track Length Listing</h4>
     
                   <div>
                     <h6
@@ -91,7 +91,7 @@ if (status === STATUSES.ERROR) {
                       Toggle to Arabic
                     </h6>
     
-                    <Link to="/racetypeform">
+                    <Link to="/tracklengthform">
                       <button>Add Track Length</button>
                     </Link>
                   </div>

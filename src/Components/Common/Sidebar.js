@@ -19,6 +19,10 @@ const Sidebar = () => {
     <Accordion.Body className='AccordionBody' style={{height:"157px"}}>
     <div><Link to='/races' className='mylink'>View Listings</Link></div>
    <div> <Link to='/raceform' className='mylink'>Add New</Link></div>
+   <div><Link to='/racename' className='mylink'>Race Name Listing</Link> </div>
+   <div><Link to='/racenameform' className='mylink'>Add Race Name</Link></div>
+   <div><Link to='/racetype' className='mylink'>Race Type Listing</Link> </div>
+   <div><Link to='/racetypeform' className='mylink'>Add Race Type</Link>  </div>
    <div> <Link to='/result' className='mylink'>Add Results</Link></div>
     </Accordion.Body>
   </Accordion.Item>
@@ -27,6 +31,11 @@ const Sidebar = () => {
     <Accordion.Body className='AccordionBody'>
     <div>  <Link to='/racecourse' className='mylink'>View Listing</Link></div>
    <div>   <Link to='/racecourseform' className='mylink'>Add New</Link></div>
+    
+   <div><Link to='/tracklength' className='mylink'>Track Length Listing</Link> </div>
+   <div><Link to='/tracklengthform' className='mylink'>Add Track Length</Link>  </div>
+
+
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="2">
@@ -34,6 +43,9 @@ const Sidebar = () => {
     <Accordion.Body className='AccordionBody'>
     <div><Link to='/horse' className='mylink'>View Listing</Link></div>
    <div> <Link to='/horseform' className='mylink'>Add New</Link></div>
+   <div> <Link to='/horsekind' className='mylink'>Horse Kind Listing</Link></div>
+   <div><Link to='/horsekindform' className='mylink'>Add Horse Kind  </Link>  </div>
+
     </Accordion.Body>
   </Accordion.Item>
   <Accordion.Item eventKey="3">
@@ -110,10 +122,7 @@ const Sidebar = () => {
    <div> <Link to='/breeder' className='mylink'>Add Breeder</Link></div>
    <div> <Link to='/nationality' className='mylink'>Add Nationality</Link></div>
    <div> <Link to='/gender' className='mylink'>Add Gender</Link></div>
-   <div><Link to='/horsekindform' className='mylink'>Add Horse Kind  </Link>  </div>
-   <div><Link to='/racetypeform' className='mylink'>Add Race Type</Link>  </div>
-   <div><Link to='/tracklengthform' className='mylink'>Add Track Length</Link>  </div>
-   <div><Link to='/racenameform' className='mylink'>Add Race Name</Link>  </div>
+ 
 
     </Accordion.Body>
     </Accordion.Item>
@@ -127,10 +136,8 @@ const Sidebar = () => {
    <div> <Link to='/breederlist' className='mylink'>Breeder </Link></div>
    <div> <Link to='/nationalitylist' className='mylink'>Nationality </Link></div>
    <div> <Link to='/genderlist' className='mylink'>Gender </Link></div>
-   <div> <Link to='/horsekind' className='mylink'>Horse Kind </Link></div>
-   <div><Link to='/racetype' className='mylink'>Race Type</Link> </div>
-   <div><Link to='/tracklength' className='mylink'>Track Length</Link> </div>
-   <div><Link to='/racename' className='mylink'>Race Name</Link> </div>
+  
+
 
     </Accordion.Body>
     </Accordion.Item>

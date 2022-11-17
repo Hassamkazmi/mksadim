@@ -40,21 +40,21 @@ const Foals = [
   { id: "7", value: "8", label: "8" },
   { id: "8", value: "9", label: "9" },
   { id: "9", value: "10", label: "10" },
-  
+
 ];
 
 const HorseForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-    const [isClearable, setIsClearable] = useState(true);
+  const [isClearable, setIsClearable] = useState(true);
 
   const { data: trainer } = useSelector((state) => state.trainer);
   const { data: owner } = useSelector((state) => state.owner);
   const { data: horse } = useSelector((state) => state.horse);
-  const {data: color} = useSelector((state) => state.color);
-  const {data: breeder} = useSelector((state) => state.breeder);
-  const {data: nationality} = useSelector((state) => state.nationality);
-  const {data: gender} = useSelector((state) => state.gender);
+  const { data: color } = useSelector((state) => state.color);
+  const { data: breeder } = useSelector((state) => state.breeder);
+  const { data: nationality } = useSelector((state) => state.nationality);
+  const { data: gender } = useSelector((state) => state.gender);
 
   useEffect(() => {
     dispatch(fetchOwner());
@@ -74,7 +74,7 @@ const HorseForm = () => {
     };
   });
 
-  let traineroption =  trainer === undefined ? <></> : trainer.map(function (item) {
+  let traineroption = trainer === undefined ? <></> : trainer.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
@@ -82,7 +82,7 @@ const HorseForm = () => {
     };
   });
 
-  let owneroption =   owner === undefined ? <></> : owner.map(function (item) {
+  let owneroption = owner === undefined ? <></> : owner.map(function (item) {
     return {
       id: item._id,
       value: item.NameEn,
@@ -131,7 +131,7 @@ const HorseForm = () => {
   //   };
   // });
 
-  console.log(trainer,'trainer')
+  console.log(trainer, 'trainer')
   const [ActiveOwner, setActiveOwner] = useState("");
   // const [Jockey, setJockey] = useState("");
   const [Age, setAge] = useState("");
@@ -140,7 +140,7 @@ const HorseForm = () => {
   const [Owner, setOwner] = useState("");
   const [ActiveTrainer, setActiveTrainer] = useState("");
   // const [ActiveJockey, setActiveJockey] = useState("");
-  const [Breeder, setBreeder] = useState(""); 
+  const [Breeder, setBreeder] = useState("");
   // const [Trainer, setTrainer] = useState("");
   const [Remarks, setRemarks] = useState("");
   // const [HorseRating, setHorseRating] = useState("");
@@ -150,7 +150,7 @@ const HorseForm = () => {
   const [Dam, setDam] = useState("");
   const [Sire, setSire] = useState("");
   const [DOB, setDOB] = useState("");
-  const [CreationId,setCreationId] = useState("")
+  const [CreationId, setCreationId] = useState("")
   const [GSire, setGSire] = useState("");
   // const [WinningAmount, setWinningAmount] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
@@ -163,7 +163,7 @@ const HorseForm = () => {
   const [PurchasePrice, setPurchasePrice] = useState("");
   const [Rds, setRds] = useState("");
   const [preview, setPreview] = useState()
- 
+
   const submit = async (event) => {
     event.preventDefault();
     try {
@@ -174,7 +174,7 @@ const HorseForm = () => {
       formData.append("NameAr", NameAr);
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
-  
+
       // formData.append("ActiveJockey", ActiveJockey.id);
       // formData.append("Owner", Owner.id);
       // formData.append("HorseRating", HorseRating);
@@ -182,13 +182,13 @@ const HorseForm = () => {
       // formData.append("Trainer", Trainer.id);
       // formData.append("Trainer", ActiveTrainer.id);
       formData.append("ActiveTrainer", ActiveTrainer.id);
-      formData.append("Sex", Sex.value);
+      formData.append("Sex", Sex.id);
       formData.append("Breeder", Breeder.id);
       formData.append("ColorID", ColorID.id);
       formData.append("KindOfHorse", KindOfHorse.id);
-      formData.append("Dam", Dam.id);
-      formData.append("Sire", Sire.id);
-      formData.append("GSire", GSire.id);
+      formData.append("Dam", Dam.id || undefined);
+      formData.append("Sire", Sire.id || undefined);
+      formData.append("GSire", GSire.id || undefined);
       // formData.append("WinningAmount", WinningAmount);
       formData.append("OverAllRating", OverAllRating);
       formData.append("Foal", Foal.value);
@@ -199,7 +199,7 @@ const HorseForm = () => {
       formData.append("NationalityId", NationalityId.id);
       formData.append("CreationId", NationalityId.id);
       formData.append("PurchasePrice", PurchasePrice);
-      const response = await axios.post(`${window.env.API_URL}createhorse?keyword=&page=`,formData);
+      const response = await axios.post(`${window.env.API_URL}createhorse?keyword=&page=`, formData);
       swal({
         title: "success!",
         text: 'Data Submitted !',
@@ -207,9 +207,9 @@ const HorseForm = () => {
         button: "OK",
       });
       history("/horse");
-       
-     
-    } 
+
+
+    }
     catch (error) {
       const err = error.response.data.message
       swal({
@@ -218,14 +218,14 @@ const HorseForm = () => {
         icon: "error",
         button: "OK",
       });
-      
-    
+
+
     }
   };
   useEffect(() => {
     if (!image) {
-        setPreview(undefined)
-        return
+      setPreview(undefined)
+      return
     }
 
     const objectUrl = URL.createObjectURL(image)
@@ -233,33 +233,33 @@ const HorseForm = () => {
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-}, [image])
-console.log(color,'color')
-const onSelectFile = e => {
+  }, [image])
+  console.log(color, 'color')
+  const onSelectFile = e => {
 
     // I've kept this example simple by using the first image instead of multiple
     setimage(e.target.files[0])
-  console.log(image,'image')
+    console.log(image, 'image')
 
   }
   const isSubmitData =
-  // ActiveOwner === "" ||
-  // Age === "" ||
-  // NameEn === "" ||
-  // NameAr === "" ||
-  // Owner === "" ||
-  // ActiveTrainer === "" ||
-  // Remarks === "" ||
-  // Sex === "" ||
-  // Color === "" ||
-  // KindOfHorse === "" ||
-  // Dam === "" ||
-  // Sire === "" ||
-  // GSire === "" ||
-  // WinningAmount === "" ||
-  // OverAllRating === "" ||
-  image === null ||
-  image === undefined
+    // ActiveOwner === "" ||
+    // Age === "" ||
+    // NameEn === "" ||
+    // NameAr === "" ||
+    // Owner === "" ||
+    // ActiveTrainer === "" ||
+    // Remarks === "" ||
+    // Sex === "" ||
+    // Color === "" ||
+    // KindOfHorse === "" ||
+    // Dam === "" ||
+    // Sire === "" ||
+    // GSire === "" ||
+    // WinningAmount === "" ||
+    // OverAllRating === "" ||
+    image === null ||
+    image === undefined
 
   const convert = (num) => {
 
@@ -272,15 +272,15 @@ const onSelectFile = e => {
 
     console.log(delDateString);
 
-  
+
 
     return delDateString;
   };
   return (
     <Fragment>
- 
+
       <div className="page">
-       
+
         <div className="rightsidedata">
           <div
             style={{
@@ -290,7 +290,7 @@ const onSelectFile = e => {
             <div className="Headers">Add Horse</div>
             <div className="form">
               <form onSubmit={submit}>
-              
+
                 <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -326,11 +326,11 @@ const onSelectFile = e => {
 
                   <div className="col-sm">
                     <input type="text"
-                     placeholder="Date Of Birth" 
-                     onChange={setDOB}
-                     value={convert(DOB)}
-                     style={{ direction: "rtl" }}
-                     />
+                      placeholder="Date Of Birth"
+                      onChange={setDOB}
+                      value={convert(DOB)}
+                      style={{ direction: "rtl" }}
+                    />
                   </div>
                 </div>
                 {/* <div className="row mainrow">
@@ -357,7 +357,7 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div> */}
-                
+
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -376,7 +376,7 @@ const onSelectFile = e => {
                     ></input>
                   </div>
                 </div> */}
-                 <div className="row mainrow">
+                <div className="row mainrow">
                   <div className="col-sm">
                     <Select
                       placeholder={<div>Select Foal</div>}
@@ -403,8 +403,8 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
-                
+                </div>
+
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <input
@@ -442,7 +442,7 @@ const onSelectFile = e => {
                   </div>
                 </div>
 
-                
+
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -470,14 +470,14 @@ const onSelectFile = e => {
                 <div className="row mainrow">
                   <div className="starstyle">
                     <p>Stars</p>
-                  <div>
-                  <Rating
-                    fractions={2}
-                    stop={5}
-                    initialRating={STARS}
-                    onClick={rate => setSTARS(rate)}
-                  />
-                  </div>
+                    <div>
+                      <Rating
+                        fractions={2}
+                        stop={5}
+                        initialRating={STARS}
+                        onClick={rate => setSTARS(rate)}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="row mainrow">
@@ -524,8 +524,8 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
-                
+                </div>
+
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -536,21 +536,21 @@ const onSelectFile = e => {
                       isClearable={true}
                       isSearchable={true}
                     /><span className="spanForm">
-                      
-                      
+
+
                       <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/breeder')}>+</button>
-        </OverlayTrigger> 
-                      
-                       |</span>
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/breeder')}>+</button>
+                      </OverlayTrigger>
+
+                      |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -564,33 +564,33 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                    
+
                       placeholder={<div>Select Color</div>}
                       defaultValue={ColorID}
                       onChange={setColor}
                       options={AllColor}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> 
-                    
-                    <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/color')}>+</button>
-        </OverlayTrigger> 
-                      
-                    
-                    |</span>
+                    /><span className="spanForm">
+
+                      <OverlayTrigger
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/color')}>+</button>
+                      </OverlayTrigger>
+
+
+                      |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -604,34 +604,34 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>  
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                    
+
                       placeholder={<div>Select Gender</div>}
                       defaultValue={Sex}
                       onChange={setSex}
                       options={AllGender}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> 
-                    
-                    <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/gender')}>+</button>
-        </OverlayTrigger> 
-                      
-                    
-                    
-                    |</span>
+                    /><span className="spanForm">
+
+                      <OverlayTrigger
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/gender')}>+</button>
+                      </OverlayTrigger>
+
+
+
+                      |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -645,7 +645,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>            
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -728,26 +728,26 @@ const onSelectFile = e => {
                       isClearable={true}
                       isSearchable={true}
                     /><span className="spanForm">
-                      
-                      
+
+
                       <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/ownerform')}>+</button>
-        </OverlayTrigger> 
-                      
-                      
-                       |</span>
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/ownerform')}>+</button>
+                      </OverlayTrigger>
+
+
+                      |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select className='selectdir'
                       placeholder={
                         <div >
                           اكتب للبحث عن المالك
@@ -756,7 +756,7 @@ const onSelectFile = e => {
                       defaultValue={Owner}
                       onChange={setOwner}
                       options={owneroption}
-              
+
                       isClearable={true}
                       isSearchable={true}
                     />
@@ -772,27 +772,27 @@ const onSelectFile = e => {
                       isClearable={true}
                       isSearchable={true}
                     /><span className="spanForm">
-                      
-                      <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/ownerform')}>+</button>
-        </OverlayTrigger> 
 
-                       |</span>
+                      <OverlayTrigger
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/ownerform')}>+</button>
+                      </OverlayTrigger>
+
+                      |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
-                         اكتب للبحث عن المالك النشط
+                          اكتب للبحث عن المالك النشط
                         </div>
                       }
                       defaultValue={ActiveOwner}
@@ -802,11 +802,11 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>              
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
-                    
+
                       placeholder={<div>Select Gelted</div>}
                       defaultValue={isGelted}
                       onChange={setisGelted}
@@ -827,7 +827,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div>              
+                </div>
                 <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -837,25 +837,25 @@ const onSelectFile = e => {
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> 
-                    
-                    <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/nationality')}>+</button>
-        </OverlayTrigger> 
-                    
-                    |</span>
+                    /><span className="spanForm">
+
+                      <OverlayTrigger
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/nationality')}>+</button>
+                      </OverlayTrigger>
+
+                      |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           اكتب للبحث عن الجنسية
@@ -868,7 +868,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
+                </div>
 
                 <div className="row mainrow">
                   <div className="col-sm">
@@ -883,7 +883,7 @@ const onSelectFile = e => {
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           اكتب للبحث عن الجنسية
@@ -896,7 +896,7 @@ const onSelectFile = e => {
                       isSearchable={true}
                     />
                   </div>
-                </div> 
+                </div>
                 {/* <div className="row mainrow">
                   <div className="col-sm">
                     <Select
@@ -934,29 +934,29 @@ const onSelectFile = e => {
                       options={traineroption}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> 
-                    
-                    <OverlayTrigger
-          
-         
-          overlay={
-            <Tooltip id={`tooltip-top`}>
-              Add more
-            </Tooltip>
-          }
-        >
-          <button className="addmore" onClick={()=> history('/trainerform')}>+</button>
-        </OverlayTrigger> 
-                    
-                    
-                    
-                    
-                    
-                    |</span>
+                    /><span className="spanForm">
+
+                      <OverlayTrigger
+
+
+                        overlay={
+                          <Tooltip id={`tooltip-top`}>
+                            Add more
+                          </Tooltip>
+                        }
+                      >
+                        <button className="addmore" onClick={() => history('/trainerform')}>+</button>
+                      </OverlayTrigger>
+
+
+
+
+
+                      |</span>
                   </div>
 
                   <div className="col-sm">
-                    <Select         className='selectdir'
+                    <Select className='selectdir'
                       placeholder={
                         <div style={{ direction: "rtl" }}>
                           اكتب للبحث عن المدرب النشط
@@ -1054,14 +1054,14 @@ const onSelectFile = e => {
                     />
                   </div>
                 </div> */}
-                
 
-             
+
+
 
                 <div className="ButtonSection">
-              <div>
-                  <input type='file' onChange={onSelectFile} className="formInput"/>
-                  {image &&  <img src={preview}  alt="" className="PreviewImage" /> }
+                  <div>
+                    <input type='file' onChange={onSelectFile} className="formInput" />
+                    {image && <img src={preview} alt="" className="PreviewImage" />}
                   </div>
                   <button type="submit" disabled={isSubmitData} className="SubmitButton">
                     Add Horse
