@@ -34,6 +34,7 @@ import getMeeting from './getReducer/getMeeting';
 import getRacetype from './getReducer/getRacetype';
 import getRaceName from './getReducer/getRaceName';
 import getSubscriber from './getReducer/getSubscriber';
+import getSingleSlider from './getReducer/getSingleSlider';
 
 const store = configureStore({
     reducer: {
@@ -58,6 +59,7 @@ const store = configureStore({
         postowner: PostOwner,
         slider: getSliderSlice,
         postslider: PostSlider,
+        singleSlider:getSingleSlider,
         userProfile: getUserDetails,
         singlejockey: getSingleJockey,
         singleowner: getSingleOwner,

@@ -1,26 +1,34 @@
 import React, { useState,useEffect } from "react";
-
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { add } from "../../redux/postReducer/PostSlider";
+import { useNavigate ,useLocation } from "react-router-dom";
+import { useDispatch ,useSelector } from "react-redux";
 import swal from "sweetalert";
+import axios from "axios";
+import { fetchSingleSlider } from "../../redux/getReducer/getSingleSlider";
 
 const SliderForm = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
-  const [TitleEn, setTitleEn] = useState("");
-  const [TitleAr, setTitleAr] = useState("");
+  const { state } = useLocation();
+
+  const { sliderid } = state;
+  const { data: singleSlider } = useSelector((state) => state.singleSlider);
+
+  const [state1, setState] = useState({
+		TitleEn: '',
+    TitleAr:'',
+    
+	});
   const [image, setImage] = useState();
-const [preview,setPreview] = useState()
+  const [preview,setPreview] = useState()
 
   const submit = async (event) => {
     event.preventDefault();
     try {
       const formData = new FormData();
       formData.append("image", image);
-      formData.append("TitleEn", TitleEn);
-      formData.append("TitleAr", TitleAr);
-      dispatch(add(formData));
+      formData.append("TitleEn", state1.TitleEn);
+      formData.append("TitleAr", state1.TitleAr);
+      const response = await axios.put(`${window.env.API_URL}/updateSlider/${sliderid}`, formData);
       history("/slider");
       swal({
         title: "Success!",
@@ -33,27 +41,35 @@ const [preview,setPreview] = useState()
     }
   };
   useEffect(() => {
+    dispatch(fetchSingleSlider({ sliderid }));
+  }, []);
+
+  useEffect(() => {
     if (!image) {
         setPreview(undefined)
         return
     }
-
     const objectUrl = URL.createObjectURL(image)
     setPreview(objectUrl)
-
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl)
-}, [image])
+    }, [image])
+    useEffect(() => {
+      if (singleSlider) {
+        setState({
+          TitleEn: singleSlider.TitleEn,
+          TitleAr: singleSlider.TitleAr,
+        });
+      } else {
+        dispatch(fetchSingleSlider({sliderid}));
+      }
+    }, [singleSlider]);
 
-const onSelectFile = e => {
-
-  
+   const onSelectFile = e => {
     setImage(e.target.files[0])
-  console.log(image,'image')
+    }
 
-  }
-  const isSubmitData =
-    TitleAr === "" || TitleEn === "" ;
+    console.log(singleSlider)
   return (
     <>
      
@@ -65,26 +81,35 @@ const onSelectFile = e => {
               marginTop: "30px",
             }}
           >
-            <div className="Headers">Add Slider</div>
+            <div className="Headers">Edit Slider</div>
             <div className="form">
               <form onSubmit={submit}>
                 <div className="row  mainrow">
                   <div className="col-sm">
-                    <input
-                      placeholder=" Name"
-                      onChange={(e) => setTitleEn(e.target.value)}
-                      name="Name"
-                      value={TitleEn}
-                      required
-                    ></input><span className="spanForm"> |</span>
+                  <input
+										type='text'
+										name='TitleEn'
+										id='TitleEn'
+										className='group__control'
+										placeholder='Title'
+										value={state1.TitleEn}
+										onChange={(e) =>
+											setState({ ...state1, TitleEn: e.target.value })
+										}
+									/><span className="spanForm"> |</span>
                   </div>
 
                   <div className="col-sm">
                     <input
                       style={{ direction: "rtl" }}
-                      onChange={(e) => setTitleAr(e.target.value)}
-                      name="Name"
-                      value={TitleAr}
+                      type='text'
+										name='TitleAr'
+										id='TitleAr'
+										className='group__control'
+										value={state1.TitleAr}
+										onChange={(e) =>
+											setState({ ...state1, TitleAr: e.target.value })
+										}
                       placeholder="اسم "
                     ></input>
                   </div>
@@ -98,7 +123,7 @@ const onSelectFile = e => {
             {image &&  <img src={preview} className="PreviewImage" alt="" /> }
         </div>
 
-                <button type='submit' disabled={isSubmitData} onClick={submit} className='SubmitButton'>Add Slider</button>
+                <button type='submit' onClick={submit} className='SubmitButton'>Add Slider</button>
 
                 </div>
         </form>

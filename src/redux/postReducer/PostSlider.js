@@ -24,5 +24,5 @@ const postslider = createSlice({
     
 })
 
-export const {add , remove} = postslider.actions;
+export const {add , remove ,edit} = postslider.actions;
 export default postslider.reducer;
