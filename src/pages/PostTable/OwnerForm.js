@@ -8,7 +8,8 @@ import DatePicker from "react-date-picker";
 import { fetchcolor } from "../../redux/getReducer/getColor";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
 import Select from "react-select";
-
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip'
 
 const OwnerForm = () => {
   const dispatch = useDispatch();
@@ -211,7 +212,21 @@ const OwnerForm = () => {
                       options={AllColor}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm">
+                      
+                      <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/color')}>+</button>
+        </OverlayTrigger> 
+                      
+                       |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -235,7 +250,20 @@ const OwnerForm = () => {
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/nationality')}>+</button>
+        </OverlayTrigger> 
+                    |</span>
                   </div>
 
                   <div className="col-sm">

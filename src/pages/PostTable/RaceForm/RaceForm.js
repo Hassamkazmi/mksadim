@@ -16,6 +16,8 @@ import Select from "react-select";
 import swal from "sweetalert";
 import DateTimePicker from 'react-datetime-picker';
 import axios from "axios";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 const RaceKinds = [
@@ -231,7 +233,19 @@ const RaceForm = () => {
                       isSearchable={true}
                       option ={<div> Hello</div> }
                     />{" "}
-                    <span className="spanForm"> |</span>
+                    <span className="spanForm">  
+        <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/meeting')}>+</button>
+        </OverlayTrigger>
+     |</span>
                   </div>
 
                   <div className="col-sm">
@@ -278,7 +292,18 @@ const RaceForm = () => {
                       isClearable={true}
                       isSearchable={true}
                     />
-                    <span className="spanForm"> |</span>
+                    <span className="spanForm">
+                       <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/racenameform')}>+</button>
+        </OverlayTrigger> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -374,7 +399,18 @@ const RaceForm = () => {
                       isClearable={true}
                       isSearchable={true}
                     />
-                    <span className="spanForm"> |</span>
+                    <span className="spanForm">     
+                     <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/racetypeform')}>+</button>
+        </OverlayTrigger> |</span>
                   </div>
 
                   <div className="col-sm">
@@ -403,7 +439,19 @@ const RaceForm = () => {
                       isClearable={true}
                       isSearchable={true}
                     />
-                    <span className="spanForm"> |</span>
+                    <span className="spanForm">
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/tracklengthform')}>+</button>
+        </OverlayTrigger> 
+                       |</span>
                   </div>
 
                   <div className="col-sm">
@@ -530,8 +578,22 @@ const RaceForm = () => {
                       options={racecourses}
                       isClearable={true}
                       isSearchable={true}
-                    />{" "}
-                    <span className="spanForm"> |</span>
+
+                    />
+                    <span className="spanForm">
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/racecourseform')}>+</button>
+        </OverlayTrigger> 
+                      
+                       |</span>
                   </div>
 
                   <div className="col-sm">
@@ -553,8 +615,21 @@ const RaceForm = () => {
                       options={JockeyForTheRace}
                       isClearable={true}
                       isSearchable={true}
-                    />{" "}
-                    <span className="spanForm"> |</span>
+                    />
+                    <span className="spanForm">
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/jockeyform')}>+</button>
+        </OverlayTrigger> 
+                      
+                       |</span>
                   </div>
 
                   <div className="col-sm">
@@ -603,8 +678,23 @@ const RaceForm = () => {
                       }
                       isClearable={true}
                       isSearchable={true}
-                    />{" "}
-                    <span className="spanForm"> |</span>
+                    />
+                    <span className="spanForm">
+                      
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/sponsorform')}>+</button>
+        </OverlayTrigger> 
+                      
+                      
+                       |</span>
                   </div>
 
                   <div className="col-sm">

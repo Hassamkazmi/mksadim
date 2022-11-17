@@ -16,6 +16,8 @@ import Moment from "react-moment";
 import swal from "sweetalert";
 import axios from "axios";
 import Rating from "react-rating";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Gender = [
   { id: "1", value: "Male", label: "Male" },
@@ -148,6 +150,7 @@ const HorseForm = () => {
   const [Dam, setDam] = useState("");
   const [Sire, setSire] = useState("");
   const [DOB, setDOB] = useState("");
+  const [CreationId,setCreationId] = useState("")
   const [GSire, setGSire] = useState("");
   // const [WinningAmount, setWinningAmount] = useState("");
   const [OverAllRating, setOverAllRating] = useState("");
@@ -171,6 +174,7 @@ const HorseForm = () => {
       formData.append("NameAr", NameAr);
       formData.append("Remarks", Remarks);
       formData.append("ActiveOwner", ActiveOwner.id);
+  
       // formData.append("ActiveJockey", ActiveJockey.id);
       // formData.append("Owner", Owner.id);
       // formData.append("HorseRating", HorseRating);
@@ -531,7 +535,22 @@ const onSelectFile = e => {
                       options={AllBreeder}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm">
+                      
+                      
+                      <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/breeder')}>+</button>
+        </OverlayTrigger> 
+                      
+                       |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -556,7 +575,22 @@ const onSelectFile = e => {
                       options={AllColor}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/color')}>+</button>
+        </OverlayTrigger> 
+                      
+                    
+                    |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -581,7 +615,23 @@ const onSelectFile = e => {
                       options={AllGender}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/gender')}>+</button>
+        </OverlayTrigger> 
+                      
+                    
+                    
+                    |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -677,7 +727,23 @@ const onSelectFile = e => {
                       options={owneroption}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm">
+                      
+                      
+                      <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/ownerform')}>+</button>
+        </OverlayTrigger> 
+                      
+                      
+                       |</span>
                   </div>
 
                   <div className="col-sm">
@@ -705,7 +771,21 @@ const onSelectFile = e => {
                       options={owneroption}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm">
+                      
+                      <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/ownerform')}>+</button>
+        </OverlayTrigger> 
+
+                       |</span>
                   </div>
 
                   <div className="col-sm">
@@ -754,6 +834,48 @@ const onSelectFile = e => {
                       placeholder={<div>Type to search Nationality</div>}
                       defaultValue={NationalityId}
                       onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/nationality')}>+</button>
+        </OverlayTrigger> 
+                    
+                    |</span>
+                  </div>
+
+                  <div className="col-sm">
+                    <Select         className='selectdir'
+                      placeholder={
+                        <div style={{ direction: "rtl" }}>
+                          اكتب للبحث عن الجنسية
+                        </div>
+                      }
+                      defaultValue={NationalityId}
+                      onChange={setNationalityId}
+                      options={AllNationality}
+                      isClearable={true}
+                      isSearchable={true}
+                    />
+                  </div>
+                </div> 
+
+                <div className="row mainrow">
+                  <div className="col-sm">
+                    <Select
+                      placeholder={<div>Creation Id</div>}
+                      defaultValue={CreationId}
+                      onChange={setCreationId}
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
@@ -812,7 +934,25 @@ const onSelectFile = e => {
                       options={traineroption}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/trainerform')}>+</button>
+        </OverlayTrigger> 
+                    
+                    
+                    
+                    
+                    
+                    |</span>
                   </div>
 
                   <div className="col-sm">

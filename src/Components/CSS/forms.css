@@ -394,4 +394,11 @@ border: none !important;
   align-items: center;
   margin: -36px 0px 0px 1px;
 }
- 
+.addmore {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: lightgray;
+  margin-right: 18px;
+  margin-top: 10px;
+}

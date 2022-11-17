@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { fetchracecourse } from "../../redux/getReducer/getRaceCourseSlice";
 import { useDispatch, useSelector } from "react-redux";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip'
+
 
 const Tracklengthform = () => {
   const dispatch = useDispatch();
@@ -45,10 +48,14 @@ const Tracklengthform = () => {
   };
   
   useEffect(() => {
+
+    dispatch(fetchracecourse())
+
     if (!RaceCourseImage) {
       setPreview(undefined);
       return;
     }
+    
     if (!RaceCourseImage.name.match(/\.(gif)$/)) {
       alert("select valid image.");
       return;
@@ -108,7 +115,20 @@ const Tracklengthform = () => {
                     isClearable={true}
                     isSearchable={true}
                   />
-                  <span className="spanForm"> |</span>
+                  <span className="spanForm"> 
+                  
+                  <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/racecourseform')}>+</button>
+        </OverlayTrigger> 
+                  |</span>
                 </div>
                 <div className="col-sm">
                   <Select

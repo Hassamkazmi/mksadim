@@ -11,6 +11,8 @@ import Select from "react-select";
 import { fetchnationality } from "../../redux/getReducer/getNationality";
 import { fetchcolor } from "../../redux/getReducer/getColor";
 import { fetchTrackLength } from "../../redux/getReducer/getTracklength";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 
 const RaceCourseForm = () => {
@@ -320,7 +322,20 @@ const RaceCourseForm = () => {
                       options={AllColor}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                          <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/color')}>+</button>
+        </OverlayTrigger> 
+                    
+                    |</span>
                   </div>
                   <div className="col-sm">
                     <Select
@@ -370,7 +385,22 @@ const RaceCourseForm = () => {
                       isClearable={true}
                       isSearchable={true}
                     />
-                    <span className="spanForm"> |</span>
+                    <span className="spanForm">
+                      
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/nationality')}>+</button>
+        </OverlayTrigger> 
+                      
+                      
+                       |</span>
                   </div>
 
                   <div className="col-sm">

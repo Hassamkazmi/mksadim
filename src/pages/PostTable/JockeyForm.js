@@ -10,6 +10,8 @@ import swal from "sweetalert";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import Rating from "react-rating";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const NewsForm = () => {
   const dispatch = useDispatch();
@@ -314,7 +316,23 @@ const NewsForm = () => {
                       options={AllNationality}
                       isClearable={true}
                       isSearchable={true}
-                    /><span className="spanForm"> |</span>
+                    /><span className="spanForm"> 
+                    
+                    <OverlayTrigger
+          
+         
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              Add more
+            </Tooltip>
+          }
+        >
+          <button className="addmore" onClick={()=> history('/nationality')}>+</button>
+        </OverlayTrigger> 
+                    
+                    
+                    
+                    |</span>
                   </div>
                   <div className="col-sm">
                     <Select
