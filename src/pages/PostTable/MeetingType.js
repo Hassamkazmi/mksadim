@@ -76,33 +76,55 @@ onChange={(e) => setNameEn(e.target.value)}
               </div>
 
               <div className="col-sm">
-                <input
-                  style={{ direction: "rtl" }}
-                  placeholder="اسم "
-                  onChange={(e) => setNameAr(e.target.value)}
+           
+                       <FloatingLabel
+        controlId="floatingInput"
+        label="اسم"
+        className="mb-3"
+onChange={(e) => setNameAr(e.target.value)}
                   name="Name"
                   value={NameAr}
-                ></input>
+                  style={{ direction: "rtl" }}
+               
+             
+> 
+        <Form.Control type="text" placeholder="اسم"     style={{ direction: "rtl" }}/>
+      </FloatingLabel>
               </div>
             </div>
 
             <div className="row mainrow">
               <div className="col-sm">
-                <input
-                  placeholder="Short Code"
-                  name="Detail"
-                  onChange={(e) => setshortCode(e.target.value)}
-                  value={shortCode}
-                ></input><span className="spanForm"> |</span>
+          
+                
+                <FloatingLabel
+        controlId="floatingInput"
+        label="Short Code"
+        className="mb-3"
+        onChange={(e) => setshortCode(e.target.value)}
+        value={shortCode}
+                 
+               
+             
+> 
+        <Form.Control type="text" placeholder="Short Code"     />
+      </FloatingLabel>
+                
+                <span className="spanForm"> |</span>
               </div>
 
               <div className="col-sm">
-                <input
-                 placeholder="التفاصيل"  style={{ direction: "rtl" }} 
-                  name="Detail"
-         
-            
-                ></input>
+              <FloatingLabel
+        controlId="floatingInput"
+        label="اسم"
+        className="mb-3"
+
+                  style={{ direction: "rtl" }}
+               
+             
+> 
+        <Form.Control type="text" placeholder="اسم"     style={{ direction: "rtl" }}/>
+      </FloatingLabel>
               </div>
             </div>
 

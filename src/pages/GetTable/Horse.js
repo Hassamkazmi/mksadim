@@ -127,18 +127,20 @@ const Horse = () => {
                         <th>Purchase Price</th>
                         <th>Breeder</th>
                         <th>Active Owner</th>
-                        <th>Over All Rating</th>
+                       
                         {/* <th>Dam</th>
                         <th>Sire</th>
                         <th>GSire</th> */}
                         <th>Remarks</th>
-                        <th>Winning Amount</th>
-                        <th>Rds</th>
-                        <th>Cap</th>
+                      
                        
-                        
-                        
-                         <th>Image</th>
+                       
+                        <th>Purchase Price </th>
+                        <th>Rating</th>
+                        <th>Creation </th>
+                     <th>Nationality </th>
+                      <th>Nationality image </th>
+                         <th>Horse Image Image</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -154,7 +156,7 @@ const Horse = () => {
                                   {item.Age}
                                 </Moment></td>
                              
-                              <td>{item.Sex}</td>
+                              <td>{item.SexModelData.NameEn}</td>
                             
                             <td>{item.ColorIDData.NameEn} </td>
                             {/* <td>{item.KindOfHorse === '' ? <>N/A</>: item.KindOfHorse}</td> */}
@@ -173,7 +175,6 @@ const Horse = () => {
                                   <>{item.OwnerModels.map((data) => data.NameEn)}</>
                                 )}
                               </td>
-                            <td>{item.OverAllRating}</td>
                           
                           
                             
@@ -181,14 +182,28 @@ const Horse = () => {
                               {/* <td>{item.SireData.NameEn}</td>
                               <td>{item.GSireData.NameEn}</td> */}
                               <td>{item.Remarks}</td>
-                              <td>{item.WinningAmount}</td>
-                              <td>{item.Rds}</td>
-                              <td>{item.Cap}</td>
+                              
+                         
+                              <td>{item.PurchasePrice} </td>
+                              <td>
+                                {item.STARS}
+                              </td>
+
+                              <td>{item.CreationIdData.NameEn} </td>
+                              <td>{item.NationalityData.NameEn} </td>
+                              <td>
+<img src={item.NationalityData.image} alt='' style={{
+                                  width:"50px"
+                                }}/>
+
+                              </td>
+
                               <td>
                                 <img src={item.HorseImage} alt="" style={{
                                   width:'30px',height:'30px'
                                 }}></img>
                               </td>
+                            
                               <td>
                                 <BiEdit />
                                 <MdDelete onClick={handleRemove} />
