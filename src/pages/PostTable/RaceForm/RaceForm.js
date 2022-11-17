@@ -107,7 +107,6 @@ const RaceForm = () => {
     };
   });
 
-  console.log(SponsorForTheRace,'SponsorForTheRace')
   const [MeetingType , setMeetingType ] = useState("");
   const [RaceNameEn, setRaceNameEn] = useState("");
   const [MeetingCode, setMeetingCode] = useState("");
@@ -128,7 +127,6 @@ const RaceForm = () => {
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const [RaceTyp, setRaceType] = useState("");
-
 
 
   useEffect(() => {

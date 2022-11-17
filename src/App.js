@@ -143,7 +143,7 @@ function App() {
                 <Route path="/meeting" element={<MeetingType/>}/>
                 <Route path="/slider" element={<Slider />} />
                 <Route path="/addverdict" element={<Verdict />} />
-                <Route path="/editjockey/:id" element={<EditJockey />} />
+                <Route path="/editjockey" element={<EditJockey />} />
                 <Route path="/editracecourse/:id" element={<EditRacecourse/>}/>
                 <Route path="/editowner/:id" element={<EditOwner/>}/>
                 <Route path="/editslider/:id" element={<EditSlider/>}/>

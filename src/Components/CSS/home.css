@@ -16,6 +16,7 @@ margin-bottom: 80px;
   border-radius: 50%;
   height: 35px;
   width: 80px;
+  object-fit: contain;
 }
 
 .table_delete_btn1{

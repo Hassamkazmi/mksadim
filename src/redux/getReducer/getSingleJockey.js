@@ -32,8 +32,8 @@ const getSingleJockey = createSlice({
 export const {setjockey, setStatus} = getSingleJockey.actions;
 export default getSingleJockey.reducer;
 //https://mksbackend.herokuapp.com/api/v1/Jockeyget
-export const fetchSinglejockey = createAsyncThunk('getsinglejockey/fetch', async ({id}) => {
-    const res = await axios.get(`${window.env.API_URL}/singleJockey/${id}`);
+export const fetchSinglejockey = createAsyncThunk('getsinglejockey/fetch', async ({jockeyid}) => {
+    const res = await axios.get(`${window.env.API_URL}/singleJockey/${jockeyid}`);
     const data = res.data;
     return data.data;
 })

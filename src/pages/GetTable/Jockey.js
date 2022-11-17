@@ -11,6 +11,7 @@ import { Modal } from "react-bootstrap";
 import { BsFillEyeFill } from "react-icons/bs";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Moment from "react-moment";
+import axios from "axios";
 
 const Statistic = () => {
   const [show, setShow] = useState(false);
@@ -21,10 +22,11 @@ const Statistic = () => {
     await setShow(true);
   };
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { data: jockey, status } = useSelector((state) => state.jockey);
   useEffect(() => {
     dispatch(fetchjockey());
+    
   }, [dispatch]);
   const handleRemove = (Id) => {
     swal({
@@ -39,13 +41,12 @@ const Statistic = () => {
           icon: "success",
         });
         dispatch(remove(Id));
-        history("/jockey");
+        navigate("/jockey");
       } else {
         swal("Your imaginary file is safe!");
       }
     });
-    dispatch(remove(Id));
-    history("/jockey");
+    
   };
 
   if (status === STATUSES.LOADING) {
@@ -147,11 +148,12 @@ const Statistic = () => {
                                 <img src={item.image} alt="" />
                               </td>
 
-                              <td className="table_delete_btn1">
-                                <Link to={`/editjockey/${item._id}`}>
-                                  {" "}
+                              <td className="table_delete_btn1" onClick={() => navigate('/editjockey',{
+                                state:{
+                                  jockeyid:item._id
+                                }
+                              })}>
                                   <BiEdit />
-                                </Link>
                                 <MdDelete
                                   onClick={() => handleRemove(item._id)}
                                 />
